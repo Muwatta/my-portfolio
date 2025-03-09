@@ -1,56 +1,91 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
-    <nav className="sticky w-full z-50">
-      <div className="w-full">
-        {/* Logo Line */}
-        <div className="bg-gradient-to-r from-blue-900 to-purple-400 px-4 h-20 flex items-center justify-center rounded-t text-center">
-          <h1 className="text-2xl font-extrabold text-white tracking-wide drop-shadow-lg">
-            Muwatta
-          </h1>
+    <nav className="sticky w-full z-50 bg-gray-800">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <h1 className="text-xl font-bold text-white">muwatta</h1>
+          </div>
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-4">
+            <Link to="/" className="text-white hover:text-gray-300">
+              Home
+            </Link>
+            <Link to="/portfolio" className="text-white hover:text-gray-300">
+              Portfolio
+            </Link>
+            <Link to="/skills" className="text-white hover:text-gray-300">
+              Skills
+            </Link>
+            <Link to="/blog" className="text-white hover:text-gray-300">
+              Blog
+            </Link>
+            <Link to="/contact" className="text-white hover:text-gray-300">
+              Contact
+            </Link>
+          </div>
+          {/* Mobile Menu Button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-white focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+            </button>
+          </div>
         </div>
-        {/* Navigation Line */}
-        <div className="bg-gray-800 px-4 h-16 flex items-center justify-center rounded-b text-center">
-          <ul className="flex justify-center space-x-4">
-            <li>
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
                 to="/"
-                style={{ textDecoration: "none" }}
-                className="inline-block w-24 h-10 bg-gray-700 text-white flex items-center justify-center rounded transition-colors hover:bg-gray-600 focus:bg-gray-600 focus:ring-2 focus:ring-gray-400 active:bg-gray-500"
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gray-300"
               >
                 Home
               </Link>
-            </li>
-            <li>
               <Link
                 to="/portfolio"
-                style={{ textDecoration: "none" }}
-                className="inline-block w-24 h-10 bg-gray-700 text-white flex items-center justify-center rounded transition-colors hover:bg-gray-600 focus:bg-gray-600 focus:ring-2 focus:ring-gray-400 active:bg-gray-500"
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gray-300"
               >
                 Portfolio
               </Link>
-            </li>
-            <li>
               <Link
                 to="/skills"
-                style={{ textDecoration: "none" }}
-                className="inline-block w-24 h-10 bg-gray-700 text-white flex items-center justify-center rounded transition-colors hover:bg-gray-600 focus:bg-gray-600 focus:ring-2 focus:ring-gray-400 active:bg-gray-500"
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gray-300"
               >
                 Skills
               </Link>
-            </li>
-            <li>
+              <Link
+                to="/blog"
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gray-300"
+              >
+                Blog
+              </Link>
               <Link
                 to="/contact"
-                style={{ textDecoration: "none" }}
-                className="inline-block w-24 h-10 bg-gray-700 text-white flex items-center justify-center rounded transition-colors hover:bg-gray-600 focus:bg-gray-600 focus:ring-2 focus:ring-gray-400 active:bg-gray-500"
+                onClick={() => setIsOpen(false)}
+                className="block text-white hover:text-gray-300"
               >
                 Contact
               </Link>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
