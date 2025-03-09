@@ -2,9 +2,7 @@
 title: eat good food
 date: 2025-03-09T13:47:40.825Z
 ---
-<!--StartFragment-->
-
-  My technology journey began in the wake of the Covid-19 pandemic during my second year (200L) at university.
+static/img/img_20241219_104415_645.jpg  My technology journey began in the wake of the Covid-19 pandemic during my second year (200L) at university.
 
             With a goal of integrating technology into Arabic culture and education, and ensuring financial security,
 
