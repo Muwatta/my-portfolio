@@ -90,7 +90,7 @@ const projects = [
   },
   {
     id: 7,
-    title: "NFE-23 @ Lekki, Lagos",
+    title: "Nigeria-Fintech-Week'23 @ Lekki, Lagos",
     category: "web",
     image: "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741467076/myself_finTech_week_brwsi3.jpg",
     description: "Myself during the FinTech week",

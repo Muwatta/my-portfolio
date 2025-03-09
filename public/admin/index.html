@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Content Manager</title>
+    <meta charset="UTF-8" />
+    <title>Content Manager - Muwatta Portfolio</title>
+    <!-- Tailwind CSS from CDN (for quick styling) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Netlify Identity Widget for authentication -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
-  <body>
-    <!-- Include the script that builds the page and powers Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-lg p-4">
+      <!-- Netlify CMS will take over this page -->
+      <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    </div>
   </body>
 </html>

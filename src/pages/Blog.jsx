@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 const Blog = () => {
   const [posts, setPosts] = useState([]);
 
-  // Fetch blog posts data (generated as a JSON file)
   useEffect(() => {
     fetch("/blog-posts.json")
       .then((response) => {

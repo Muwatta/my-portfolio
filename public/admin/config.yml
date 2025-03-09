@@ -1,15 +1,20 @@
 backend:
   name: git-gateway
-  branch: master # Branch to update
-media_folder: "static/img" # Folder for uploaded media files
-public_folder: "/img"
+  branch: master 
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
 collections:
-  - name: "posts"
-    label: "Posts"
-    folder: "_posts"
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "content/blog"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Medium Link", name: "mediumLink", widget: "string", default: "https://medium.com/@abdullahiMusliudeen" }
