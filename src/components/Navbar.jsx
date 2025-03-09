@@ -13,7 +13,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-white">muwatta</h1>
+            <h1 className="text-xl font-bold text-white">Muwatta</h1>
           </div>
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
@@ -47,7 +47,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="px-2 pt-2 pb-7 space-y-4">
               <Link
                 to="/"
                 onClick={() => setIsOpen(false)}

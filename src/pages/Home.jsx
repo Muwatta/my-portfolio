@@ -137,7 +137,7 @@ export default function Home() {
               transition={{ duration: 5, repeat: Infinity, delay: 0.6 }}
               className="mt-4 text-xl text-gray-300"
             >
-              Software Developer || Educator || Convener || Achiever
+              Software Developer || Educator || Convener || Multilinguist
             </motion.p>
             <a
               href="/Portfolio"
