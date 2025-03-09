@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "title": "Understanding Netlify CMS",
+      "excerpt": "Netlify CMS is an open-source React app for managing static site content...",
+      "image": "https://source.unsplash.com/random/800x600",
+      "mediumLink": "https://medium.com/@abdullahiMusliudeen/netlify-cms-guide"
+    },
+    {
+      "id": 2,
+      "title": "Why Tailwind CSS?",
+      "excerpt": "Tailwind CSS provides utility-first styling...",
+      "image": "https://source.unsplash.com/random/801x601",
+      "mediumLink": "https://medium.com/@abdullahiMusliudeen/tailwind-css-benefits"
+    }
+  ]
+  
