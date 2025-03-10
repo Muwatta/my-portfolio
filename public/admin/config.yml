@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
-  branch: main 
+  name: github
+  repo: Muwatta/my-portfolio
+  branch: master
+  auth_type: implicit
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
@@ -17,3 +19,4 @@ collections:
       - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list" }
