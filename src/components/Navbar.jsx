@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"; // ✅ Fix: Import React and useState
+import { Link } from "react-router-dom"; 
 import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
@@ -15,74 +15,53 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <h1 className="text-xl font-bold text-white">Muwatta</h1>
           </div>
+
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-4">
-            <Link to="/" className="text-white hover:text-gray-300">
+            <Link to="/" className="text-white hover:text-gray-300 transition duration-300">
               Home
             </Link>
-            <Link to="/portfolio" className="text-white hover:text-gray-300">
-              Portfolio
-            </Link>
-            <Link to="/skills" className="text-white hover:text-gray-300">
-              Skills
-            </Link>
-            <Link to="/blog" className="text-white hover:text-gray-300">
-              Blog
-            </Link>
-            <Link to="/contact" className="text-white hover:text-gray-300">
-              Contact
-            </Link>
+            {["Portfolio", "Skills", "Blog", "Contact"].map((item) => (
+              <Link
+                key={item}
+                to={`/${item.toLowerCase()}`}
+                className="text-white hover:text-gray-300 transition duration-300"
+              >
+                {item}
+              </Link>
+            ))}
           </div>
+
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
               className="text-white focus:outline-none"
               aria-label="Toggle menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         </div>
+
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-7 space-y-4">
-              <Link
-                to="/"
-                onClick={() => setIsOpen(false)}
-                className="block text-white hover:text-gray-300"
-              >
+              <Link to="/" onClick={() => setIsOpen(false)} className="block text-white hover:text-gray-300 transition duration-300">
                 Home
               </Link>
-              <Link
-                to="/portfolio"
-                onClick={() => setIsOpen(false)}
-                className="block text-white hover:text-gray-300"
-              >
-                Portfolio
-              </Link>
-              <Link
-                to="/skills"
-                onClick={() => setIsOpen(false)}
-                className="block text-white hover:text-gray-300"
-              >
-                Skills
-              </Link>
-              <Link
-                to="/blog"
-                onClick={() => setIsOpen(false)}
-                className="block text-white hover:text-gray-300"
-              >
-                Blog
-              </Link>
-              <Link
-                to="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block text-white hover:text-gray-300"
-              >
-                Contact
-              </Link>
+              {["Portfolio", "Skills", "Blog", "Contact"].map((item) => (
+                <Link
+                  key={item}
+                  to={`/${item.toLowerCase()}`}
+                  onClick={() => setIsOpen(false)}
+                  className="block text-white hover:text-gray-300 transition duration-300"
+                >
+                  {item}
+                </Link>
+              ))}
             </div>
           </div>
         )}
