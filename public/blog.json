@@ -1,0 +1,35 @@
+[
+    {
+      "id": 1,
+      "title": "Tailwind CSS: The Swiss Army Knife of Web Styling",
+      "date": "2024-03-10",
+      "excerpt": "Imagine you're a chef in a busy restaurant. You have two choices:",
+      "image": "",
+      "medium_link": "https://medium.com/@abdullahmusliudeen/tailwind-css-the-swiss-army-knife-of-web-styling-6dc559ebfd29"
+    },
+    {
+      "id": 2,
+      "title": "How a Math Lesson Led to an Animal Speed Clicker Game",
+      "date": "2024-03-09",
+      "excerpt": "It started with a simple JavaScript lesson. I introduced my students to the Math object, explaining how Math.random() could generate numbers unpredictably. They nodded, but I could tell—it wasn’t clicking.",
+      "image": "/uploads/blog2.jpg",
+      "medium_link": "https://medium.com/@abdullahmusliudeen/how-a-math-lesson-led-to-an-animal-speed-clicker-game-963b73b2fe04"
+    },
+    {
+      "id": 3,
+      "title": "Why I Want to Be a Frontend Developer and How HNG Will Help Me Achieve My Goals",
+      "date": "2024-03-08",
+      "excerpt": "Every seasoned developer has a starting point, and for me, frontend development is more than just writing code; it’s about creating seamless user experiences that bring ideas to life.",
+      "image": "/uploads/es6-features.jpg",
+      "medium_link": "https://medium.com/@yourmediumusername/javascript-es6-features"
+    },
+    {
+      "id": 4,
+      "title": "The Algorise Tech Bootcamp Journey! A Frontier for the Future",
+      "date": "2024-03-10",
+      "excerpt": "I’m honored to share the success of the Algorise Tech Explorers Bootcamp (Cohort-1), which ran for three weeks from December 16, 2024, to January 2, 2025, at Solace College, Jos, Plateau State.",
+      "image": "/uploads/react-hooks.jpg",
+      "medium_link": "https://www.linkedin.com/posts/abdullahi-musliudeen-64435a239_algorisetechbootcamp-buildingthefuture-codingforkids-activity-7281634199885795328-8Jos?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtRkBQBLKwsCyqaz84FAhsdI7s7vGtSJ3M"
+    }
+  ]
+  

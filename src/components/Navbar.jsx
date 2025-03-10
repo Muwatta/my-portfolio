@@ -1,5 +1,5 @@
-import React, { useState } from "react"; // ✅ Fix: Import React and useState
-import { Link } from "react-router-dom"; 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 
 const Navbar = () => {
@@ -11,16 +11,13 @@ const Navbar = () => {
     <nav className="sticky w-full z-50 bg-gray-800">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo (Now links to Home) */}
+          <Link to="/" className="flex-shrink-0">
             <h1 className="text-xl font-bold text-white">Muwatta</h1>
-          </div>
+          </Link>
 
-          {/* Desktop Menu */}
+          {/* Desktop Menu (Home removed) */}
           <div className="hidden md:flex space-x-4">
-            <Link to="/" className="text-white hover:text-gray-300 transition duration-300">
-              Home
-            </Link>
             {["Portfolio", "Skills", "Blog", "Contact"].map((item) => (
               <Link
                 key={item}
@@ -45,13 +42,10 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu (Home removed) */}
         {isOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-7 space-y-4">
-              <Link to="/" onClick={() => setIsOpen(false)} className="block text-white hover:text-gray-300 transition duration-300">
-                Home
-              </Link>
               {["Portfolio", "Skills", "Blog", "Contact"].map((item) => (
                 <Link
                   key={item}
