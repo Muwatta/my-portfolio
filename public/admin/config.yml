@@ -19,3 +19,4 @@ collections:
       - { label: "Excerpt", name: "excerpt", widget: "text" }
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list" }
