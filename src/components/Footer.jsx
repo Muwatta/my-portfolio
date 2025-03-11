@@ -39,7 +39,7 @@ export default function Footer() {
             <FaTwitter size={20} />
           </a>
           <a
-            href="https://leetcode.com/abdullahiMusliudeen"
+            href=https://leetcode.com/u/muwatta/"
             target="_blank"
             rel="noreferrer"
             className="text-white hover:text-[#FFA116]"
@@ -47,7 +47,7 @@ export default function Footer() {
             <SiLeetcode size={20} />
           </a>
           <a
-            href="https://github.com/abdullahiMusliudeen"
+            href="https://github.com/Muwatta"
             target="_blank"
             rel="noreferrer"
             className="text-white hover:text-gray-400"
