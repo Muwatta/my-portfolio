@@ -72,9 +72,8 @@ export default function Skills() {
                 target="_blank" 
                 rel="noopener noreferrer"
               >
-                <img 
-src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white"
-                  alt="Twitter" 
+                <img src="https://img.shields.io/badge/X-1DA1F2?style=flat&logo=X&logoColor=white"
+                  alt="X" 
                   className="h-8" 
                 />
               </a>
@@ -117,7 +116,7 @@ src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoCol
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Tailwind CSS</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Node.js</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
-            <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Mext.js</span>
+            <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Next.js</span>
           </div>
         </div>
       </div>
