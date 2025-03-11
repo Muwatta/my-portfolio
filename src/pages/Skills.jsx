@@ -57,7 +57,7 @@ export default function Skills() {
             {/* Social Handles */}
             <div className="mt-4 flex justify-center md:justify-start space-x-4">
               <a 
-                href="https://linkedin.com/in/yourprofile" 
+                href="www.linkedin.com/in/abdullahi-musliudeen-166b751b6" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -68,7 +68,7 @@ export default function Skills() {
                 />
               </a>
               <a 
-                href="https://twitter.com/yourprofile" 
+                href="https://x.com/MusliudeenAbdu1" 
                 target="_blank" 
                 rel="noopener noreferrer"
               >
@@ -117,6 +117,7 @@ export default function Skills() {
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Tailwind CSS</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Node.js</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Automation</span>
+            <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">Mext.js</span>
           </div>
         </div>
       </div>
