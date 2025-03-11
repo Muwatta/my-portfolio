@@ -73,7 +73,7 @@ export default function Skills() {
                 rel="noopener noreferrer"
               >
                 <img 
-                  src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" 
+src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white"
                   alt="Twitter" 
                   className="h-8" 
                 />
