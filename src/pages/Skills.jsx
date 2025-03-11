@@ -8,9 +8,9 @@ const Lightning = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: [0, 1, 0] }}
     transition={{
-      duration: 0.15, // Quick flash duration
+      duration: 0.35, 
       repeat: Infinity,
-      repeatDelay: 3, // Flash every 5 seconds
+      repeatDelay: 5, 
       ease: "easeInOut"
     }}
     style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
