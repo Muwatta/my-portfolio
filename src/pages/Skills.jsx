@@ -67,16 +67,11 @@ export default function Skills() {
                   className="h-8" 
                 />
               </a>
-              <a 
-                href="https://x.com/MusliudeenAbdu1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <img src="https://img.shields.io/badge/X-1DA1F2?style=flat&logo=X&logoColor=white"
-                  alt="X" 
-                  className="h-8" 
-                />
-              </a>
+             <a href="https://x.com/MusliudeenAbdu1" target="_blank" rel="noopener noreferrer">
+               <img src="https://img.shields.io/badge/X-1DA1F2?style=flat&logo=X&logoColor=white"
+                alt="X" className="h-8" />
+             </a>
+
               <a 
                 href="mailto:abdullahmusliudeen@gmail.com" 
                 target="_blank" 
