@@ -99,7 +99,7 @@ export default function Skills() {
 
         {/* Skills & Expertise Section */}
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-slate-100 text-center">My Skills & Expertise</h2>
+          <h2 className="text-2xl font-semibold text-slate-100 text-center">My Stacks</h2>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">HTML5</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">CSS3</span>
