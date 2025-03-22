@@ -39,7 +39,7 @@ export default function Footer() {
             <FaTwitter size={20} />
           </a>
           <a
-            href=https://leetcode.com/u/muwatta/"
+            href="https://leetcode.com/u/muwatta/"
             target="_blank"
             rel="noreferrer"
             className="text-white hover:text-[#FFA116]"
