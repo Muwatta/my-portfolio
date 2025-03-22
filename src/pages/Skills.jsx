@@ -8,9 +8,9 @@ const Lightning = () => (
     initial={{ opacity: 0 }}
     animate={{ opacity: [0, 1, 0] }}
     transition={{
-      duration: 0.15, // Quick flash duration
+      duration: 0.35, 
       repeat: Infinity,
-      repeatDelay: 3, // Flash every 5 seconds
+      repeatDelay: 5, 
       ease: "easeInOut"
     }}
     style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
@@ -67,16 +67,11 @@ export default function Skills() {
                   className="h-8" 
                 />
               </a>
-              <a 
-                href="https://x.com/MusliudeenAbdu1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-              >
-                <img src="https://img.shields.io/badge/X-1DA1F2?style=flat&logo=X&logoColor=white"
-                  alt="X" 
-                  className="h-8" 
-                />
-              </a>
+             <a href="https://x.com/MusliudeenAbdu1" target="_blank" rel="noopener noreferrer">
+               <img src="https://img.shields.io/badge/X-1DA1F2?style=flat&logo=X&logoColor=white"
+                alt="X" className="h-8" />
+             </a>
+
               <a 
                 href="mailto:abdullahmusliudeen@gmail.com" 
                 target="_blank" 
@@ -104,7 +99,7 @@ export default function Skills() {
 
         {/* Skills & Expertise Section */}
         <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-slate-100 text-center">My Skills & Expertise</h2>
+          <h2 className="text-2xl font-semibold text-slate-100 text-center">My Stacks</h2>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">HTML5</span>
             <span className="bg-blue-700 text-blue-200 px-3 py-1 rounded-full text-sm font-medium">CSS3</span>

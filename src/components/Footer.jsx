@@ -35,7 +35,7 @@ export default function Footer() {
             target="_blank"
             rel="noreferrer"
             className="text-white hover:text-[#1DA1F2]"
-          >
+          > 
             <FaTwitter size={20} />
           </a>
           <a
