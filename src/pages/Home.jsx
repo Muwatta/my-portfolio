@@ -60,15 +60,15 @@ const projects = [
   },
   {
     id: 3,
-    title: "9-Year-old-coder ",
-    category: "Budget Tracker",
+    title: "9-Year-old developer ",
+    category: "web",
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741465823/IMG-20241230-WA0017_sxyaqi.jpg",
-    description: "He is currently learning JavaScript after building 15 different Scratch projects",
+    description: "He is currently learning JavaScript after building 12 different Scratch projects",
   },
   {
     id: 4,
-    title: "ATE Convener and his students",
+    title: "ATE Convener and some students",
     category: "illustration",
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741465824/IMG-20250103-WA0008_lvaxeu.jpg",
@@ -83,7 +83,7 @@ const projects = [
   },
   {
     id: 6,
-    title: "The face behind the success of ATE",
+    title: "The men around the train of ATE",
     category: "web",
     image: "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741465826/IMG-20250105-WA0008_dxjjn1.jpg",
     description: "Indefatigable team members",
