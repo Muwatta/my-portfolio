@@ -1,43 +1,43 @@
 [
     {
       "id": 1,
-      "title": "My First Blog Post",
-      "date": "2023-01-01T10:00:00Z",
-      "excerpt": "This is a brief summary of my first blog post.",
-      "image": "/uploads/first-post.jpg",
-      "medium_link": "https://medium.com/@abdullahiMusliudeen/my-first-blog-post"
+      "title": "Tailwind CSS: The Swiss Army Knife of Web Styling",
+      "date": "2025-03-10",
+      "excerpt": "Imagine you're a chef in a busy restaurant. You have two choices:",
+      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630737/images_xiwhc6.jpg",
+      "medium_link": "https://medium.com/@abdullahmusliudeen/tailwind-css-the-swiss-army-knife-of-web-styling-6dc559ebfd29"
     },
     {
       "id": 2,
-      "title": "My second Blog Post",
-      "date": "2025-01-01T10:00:00Z",
-      "excerpt": "This is a brief summary of my second blog post.",
-      "image": "/uploads/second-post.jpg",
-      "medium_link": "https://medium.com/@abdullahiMusliudeen/my-second-blog-post"
+      "title": "How a Math Lesson Led to an Animal Speed Clicker Game",
+      "date": "2025-02-19",
+      "excerpt": "It started with a simple JavaScript lesson. I introduced my students to the Math object, explaining how Math.random() could generate numbers unpredictably. They nodded, but I could tell—it wasn’t clicking.",
+      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630737/images_1_vrrx12.jpg",
+      "medium_link": "https://medium.com/@abdullahmusliudeen/how-a-math-lesson-led-to-an-animal-speed-clicker-game-963b73b2fe04"
     },
     {
       "id": 3,
-      "title": "5 Reasons Why Sahuur is Important",
-      "date": "2025-03-10T06:35:32.132Z",
-      "excerpt": "Discover the essential benefits of sahuur during Ramadan and how it helps you stay energized and connected in Jos, Nigeria.",
-      "image": "https://www.bing.com/images/search?view=detailV2&ccid=%2bPZAkhGp&id=174F8A20FF230709006B6E402835EBFF62DB8253&thid=OIP.-PZAkhGpLM507UBGWZvs3gHaE8&mediaurl=https%3a%2f%2ft3.ftcdn.net%2fjpg%2f03%2f32%2f15%2f28%2f360_F_332152811_MFksOH70GXaxWPePlz4r8Byni9K6xesA.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.f8f6409211a92cce74ed4046599becde%3frik%3dU4LbYv%252frNShAbg%26pid%3dImgRaw%26r%3d0&exph=360&expw=539&q=sahuur&simid=608036068763196952&FORM=IRPRST&ck=59D942DA62D93E066BB0DF7CDF39364E&selectedIndex=1&itb=0",
-      "medium_link": "https://medium.com/@abdullahiMusliudeen/5-reasons-why-sahuur-is-important"
+      "title": "Why I Want to Be a Frontend Developer and How HNG Will Help Me Achieve My Goals",
+      "date": "2024-03-08",
+      "excerpt": "Every seasoned developer has a starting point, and for me, frontend development is more than just writing code; it’s about creating seamless user experiences that bring ideas to life.",
+      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630738/images_2_rqqgxn.jpg",
+      "medium_link": "https://medium.com/@yourmediumusername/javascript-es6-features"
     },
     {
       "id": 4,
+      "title": "The Algorise Tech Bootcamp Journey! A Frontier for the Future",
+      "date": "2025-01-03",
+      "excerpt": "I’m honored to share the success of the Algorise Tech Explorers Bootcamp (Cohort-1), which ran for three weeks from December 16, 2024, to January 2, 2025, at Solace College, Jos, Plateau State.",
+      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630750/IMG_20241219_104415_645_-1374329958_kgpgos.jpg",
+      "medium_link": "https://www.linkedin.com/posts/abdullahi-musliudeen-64435a239_algorisetechbootcamp-buildingthefuture-codingforkids-activity-7281634199885795328-8Jos?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtRkBQBLKwsCyqaz84FAhsdI7s7vGtSJ3M"
+    },
+     {
+      "id": 5,
       "title": "From Jos to Nationals: How 3 Girls Used Tech to Dream Bigger",
       "date": "2025-05-24T06:00:00.000Z",
       "excerpt": "From Classroom Dreams to National Finals: Girls Who Soared in Tech! Join us as we celebrate the incredible journey of three Jos girls who embraced technology and transformed their futures.",
       "image": "https://res.cloudinary.com/dee5edoss/image/upload/v1748055293/IMG-20250417-WA0009_u0hipk.jpg",
       "medium_link": "https://medium.com/@abdullahmusliudeen/from-jos-to-abuja-how-my-students-made-it-to-the-national-ict-competition-finals-b2c53eba11fb"
-    },
-    {
-      "id": 5,
-      "title": "5 Reasons Why Sahuur is Important",
-      "date": "2025-09-11T00:00:00Z",
-      "excerpt": "Discover the essential benefits of sahuur during Ramadan and how it helps you stay energized and connected in Jos, Nigeria.",
-      "image": "/img/sahuur-importance.jpg",
-      "medium_link": "https://medium.com/@abdullahiMusliudeen/5-reasons-why-sahuur-is-important"
     }
   ]
-
+  
