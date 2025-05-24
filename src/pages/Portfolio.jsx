@@ -59,6 +59,13 @@ const defaultProjects = [
     image: "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741426739/Screenshot_20250308-103124_fpgq9d.jpg",
     description: "A web game design with animal characters and UI elements.",
   },
+   {
+    id: 10,
+    title: "Brainiac-Quiz, an Offline App with selected school-based questions and answers",
+    category: "web",
+    image: "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1748057065/Screenshot_2025-05-24_042302_mo4osb.png",
+    description: "Showing up at the National event in Abuja",
+  },
 ];
 
 // Inline component to handle flipping animation
