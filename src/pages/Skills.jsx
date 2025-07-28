@@ -1,286 +1,273 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-// Lightning flash component that overlays the background.
-const Lightning = () => (
+const ParticleBackground = () => (
   <motion.div
-    className="absolute top-0 left-0 w-full h-full pointer-events-none"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: [0, 1, 0] }}
-    transition={{
-      duration: 0.35,
-      repeat: Infinity,
-      repeatDelay: 5,
-      ease: "easeInOut"
-    }}
-    style={{ backgroundColor: "rgba(255,255,255,0.8)" }}
+    className="absolute inset-0 pointer-events-none"
+    style={{ background: "radial-gradient(circle at 50%, rgba(255,255,255,0.05), transparent)" }}
+    animate={{ opacity: [0.3, 0.5, 0.3] }}
+    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
   />
 );
 
 export default function Skills() {
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSection = (section) => {
+    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  const sections = [
+    {
+      title: "Professional Summary",
+      content: (
+        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+          <li>Frontend developer, STEM educator, and founder with a background in Arabic Education, passionate about impactful tech solutions.</li>
+          <li>Skilled in React, TypeScript, Tailwind, and Next.js, building scalable, maintainable interfaces.</li>
+          <li>Leads bootcamps teaching web development, JavaScript, C++, and Scratch to Nigerian students.</li>
+          <li>Founder of Algorise Tech Explorers, empowering students with 4IR skills.</li>
+          <li>Experienced in IoT and embedded systems with Arduino and ESP32.</li>
+          <li>Active content creator and open-source contributor.</li>
+        </ul>
+      ),
+    },
+    {
+      title: "Skills",
+      content: (
+        <div>
+          <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+            <li><strong>Frontend Stack:</strong> HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS</li>
+            <li><strong>Tooling & Workflow:</strong> Git, GitHub, VS Code, Vite, REST APIs, Socket.IO, Prisma</li>
+            <li><strong>Backend & DevOps (Basic):</strong> Node.js, Express, PostgreSQL, CI/CD principles</li>
+            <li><strong>Embedded Systems:</strong> Arduino, ESP32, Sensor Integration (Ultrasonic, Soil, Servo, Buzzer)</li>
+            <li><strong>Other Skills:</strong> Teaching, Curriculum Design, Creative Writing, Project Leadership</li>
+            <li><strong>Languages:</strong> English (Fluent), Arabic (Fluent)</li>
+          </ul>
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold text-gray-800">Skill Proficiency</h3>
+            <div className="space-y-2 mt-2">
+              {["React (90%)", "JavaScript (85%)", "Tailwind CSS (80%)", "IoT Systems (75%)"].map((skill, index) => (
+                <div key={skill} className="flex items-center">
+                  <span className="w-32 text-gray-700">{skill.split(" (")[0]}</span>
+                  <div className="flex-1 bg-gray-200 rounded-full h-2">
+                    <motion.div
+                      className="bg-blue-600 h-2 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: skill.match(/(\d+)%/)[1] + "%" }}
+                      transition={{ duration: 1, delay: index * 0.2 }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "Education",
+      content: (
+        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+          <li>Bachelor’s in Arabic Education — Ahmadu Bello University, Zaria (2019 - 2024)</li>
+          <li>Frontend Web Development — Udemy & Self-paced Study (2023 - 2024)</li>
+          <li>Embedded Systems and IoT — Self-taught via projects and workshops (2024)</li>
+        </ul>
+      ),
+    },
+    {
+      title: "Projects",
+      content: (
+        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+          <li><strong>Smart Perishable Goods Marketplace:</strong> Next.js app with IoT sensor data, payment, and analytics to reduce food waste.</li>
+          <li><strong>Offline Face Recognition App:</strong> Tracks school staff attendance with face ID and local storage.</li>
+          <li><strong>Arduino Reaction Game & Smart Bin:</strong> Built with servo motors and ultrasonic sensors.</li>
+          <li><strong>Animal Speed Clicker Game:</strong> Educational JavaScript game for kids.</li>
+          <li><strong>Past Question Web App:</strong> School exam platform with scoring and leaderboards.</li>
+          <li><strong>Event Ticket App:</strong> Generates QR-coded tickets using React and Tailwind.</li>
+        </ul>
+      ),
+    },
+    {
+      title: "Experience",
+      content: (
+        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+          <li><strong>Founder, Algorise Tech Explorers (2024 - Present):</strong> Leads tech education for Nigerian youth, teaching web development and IoT.</li>
+          <li><strong>Freelance Frontend Developer:</strong> Builds responsive applications like e-commerce platforms and school tools.</li>
+          <li><strong>STEM Educator & Workshop Facilitator:</strong> Teaches C++, Scratch, HTML/CSS, and AI to students.</li>
+        </ul>
+      ),
+    },
+    {
+      title: "Additional Information",
+      content: (
+        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+          <li>Trains students in web development, Scratch, C++, and cloud concepts.</li>
+          <li>Creates weekly tech content on LinkedIn.</li>
+          <li>Delivers workshops on AI, web development, and digital skills.</li>
+        </ul>
+      ),
+    },
+  ];
+
   return (
-    <div
-      className="min-h-screen flex flex-col items-center px-4 py-12 relative"
-      style={{ backgroundColor: "#001F3F" }} // Navy-blue outer background
-    >
+    <div className="min-h-screen flex flex-col items-center px-4 py-12 sm:py-16 relative bg-gradient-to-b from-gray-900 to-blue-950">
       <Helmet>
-        <title>Resume | Abdullahi Musliudeen Oladipupo</title>
+        <title>Skills | Abdullahi Musliudeen Oladipupo</title>
         <meta
           name="description"
-          content="Learn more about Abdullahi Musliudeen Oladipupo - a passionate frontend developer and Arabic language graduate, dedicated to building engaging digital experiences. Connect with me on LinkedIn and X."
+          content="Explore Abdullahi Musliudeen Oladipupo's skills as a frontend developer, STEM educator, and founder empowering youth through technology."
         />
       </Helmet>
-      
-      {/* Lightning effect overlay */}
-      <Lightning />
 
-      {/* Resume Container */}
-      <div className="shadow-lg rounded-lg p-8 max-w-4xl w-full relative z-10">
-        <div className="flex flex-col md:flex-row items-center">
-          {/* Profile Image */}
-          <div className="flex-shrink-0">
-            <img 
-              className="w-40 h-40 rounded-full object-cover" 
-              src="https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg" 
-              alt="Profile"
+      <ParticleBackground />
+
+      <div className="flex flex-col lg:flex-row max-w-6xl w-full gap-8 relative z-10">
+        {/* Main Content */}
+        <div className="flex-1 bg-white bg-opacity-90 rounded-2xl shadow-xl p-6 sm:p-8">
+          <div className="flex flex-col sm:flex-row items-center mb-8">
+            <motion.img
+              className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover shadow-lg"
+              src="https://res.cloudinary.com/dee5edoss/image/upload/w_400,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg"
+              alt="Abdullahi Musliudeen Oladipupo"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              loading="lazy"
             />
-          </div>
-          {/* About & Social Information */}
-          <div className="mt-6 md:mt-0 md:ml-8 text-center md:text-left">
-            <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [1, 0.8, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-3xl font-bold text-center"
-              style={{ color: "#3B82F6" }} // Blue for header
-            >
-              Abdullahi Musliudeen Oladipupo
-            </motion.h1>
-            <p className="mt-2 text-justify" style={{ color: "#E0E7FF" }}>
-              I'm a frontend developer with a background in Arabic language, blending art and technology to craft digital experiences that resonate with both culture and functionality.
-            </p>
-            {/* Social Handles */}
-            <div className="mt-4 flex justify-center items-center space-x-4">
-              <a
-                href="https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6"
-                target="_blank"
-                rel="noopener noreferrer"
+            <div className="mt-6 sm:mt-0 sm:ml-8 text-center sm:text-left">
+              <motion.h1
+                className="text-3xl sm:text-4xl font-extrabold text-blue-600"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
               >
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-                  alt="LinkedIn"
-                  className="h-8 w-8"
-                />
-              </a>
-              <a
-                href="https://x.com/MusliudeenAbdu1"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
-                  alt="X"
-                  className="h-8 w-8"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Stacks & Skills Section */}
-        <div className="mt-8">
-          <h2 className="text-2xl font-semibold text-center" style={{ color: "#fff" }}>
-            Mastered Stacks
-          </h2>
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            {[
-              "HTML5", "CSS3", "JavaScript", "Python", "Git", "GitHub", 
-              "TypeScript", "React", "Tailwind", "Node.js", "Automation", "Next.js"
-            ].map((tech) => (
-              <span 
-                key={tech} 
-                className="px-3 py-1 rounded-full text-sm font-medium"
-                style={{ backgroundColor: "#2563EB", color: "#EFF6FF" }}
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Resume Section */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-semibold text-center" style={{ color: "#1E3A8A" }}>
-            Resume
-          </h2>
-
-          <div className="mt-4 space-y-6">
-            {/* Header Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
-            >
-              <p className="font-bold text-lg">Abdullahi Musliudeen Oladipupo</p>
-              <p className="text-justify">
-                Email:{" "}
-                <a
-                  href="mailto:abdullahmusliudeen@gmail.com"
-                  className="hover:underline"
-                  style={{ color: "#1E40AF" }}
-                >
-                  abdullahmusliudeen@gmail.com
-                </a>
+                Abdullahi Musliudeen Oladipupo
+              </motion.h1>
+              <p className="mt-2 text-gray-600 text-lg">
+                Frontend Developer | STEM Educator | Founder
               </p>
-              <p className="text-justify">
-                LinkedIn:{" "}
+              <div className="mt-4 flex justify-center sm:justify-start space-x-4">
                 <a
-                  href="https://www.linkedin.com/in/abdullahi-musliudeen-64435a239/"
+                  href="https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:underline"
-                  style={{ color: "#1E40AF" }}
+                  aria-label="LinkedIn Profile"
                 >
-                  linkedin.com/in/abdullahi-musliudeen-64435a239/
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                    alt="LinkedIn"
+                    className="h-8 w-8 hover:opacity-80 transition-opacity"
+                  />
                 </a>
-              </p>
-              <p className="font-bold">FRONTEND DEVELOPER || MULTILINGUIST</p>
+                <a
+                  href="https://x.com/MusliudeenAbdu1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X Profile"
+                >
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg"
+                    alt="X"
+                    className="h-8 w-8 hover:opacity-80 transition-opacity"
+                  />
+                </a>
+              </div>
             </div>
+          </div>
 
-            {/* Professional Summary Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
+          {/* Mastered Stacks */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold text-center text-white mb-4">Mastered Stacks</h2>
+            <div className="flex flex-wrap justify-center gap-2">
+              {["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Tailwind", "Node.js", "Next.js", "Git", "GitHub", "Vite", "Python", "Arduino", "ESP32", "Raspberry Pi"].map((tech) => (
+                <motion.span
+                  key={tech}
+                  className="px-3 py-1 rounded-full text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
+          </div>
+
+          {/* Resume Sections */}
+          {sections.map((section, index) => (
+            <motion.div
+              key={section.title}
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-                PROFESSIONAL SUMMARY
-              </p>
-              <ul className="list-disc list-inside text-justify">
-                <li>
-                  Dedicated Frontend Developer and Arabic Language Graduate with a passion for creative writing and continuous learning.
-                </li>
-                <li>
-                  Skilled in developing engaging user experiences using modern web technologies.
-                </li>
-                <li>
-                  Proven track record of helping clients build portfolios and collaborating on e-commerce sites.
-                </li>
-                <li>
-                  Experienced in organizing bootcamps and teaching programming.
-                </li>
-                <li>
-                  Currently developing a web past question app for a school.
-                </li>
-              </ul>
-            </div>
+              <button
+                onClick={() => toggleSection(section.title)}
+                className="w-full flex justify-between items-center text-xl font-semibold text-white bg-blue-800 bg-opacity-80 rounded-lg p-4 hover:bg-blue-700 transition-colors"
+                aria-expanded={openSections[section.title] || false}
+                aria-controls={`section-${section.title.toLowerCase().replace(" ", "-")}`}
+              >
+                {section.title}
+                {openSections[section.title] ? <FaChevronUp /> : <FaChevronDown />}
+              </button>
+              <AnimatePresence>
+                {openSections[section.title] && (
+                  <motion.div
+                    id={`section-${section.title.toLowerCase().replace(" ", "-")}`}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white bg-opacity-90 rounded-lg p-6 mt-2 shadow-md"
+                  >
+                    {section.content}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
 
-            {/* Skills Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
+          {/* Download Resume CTA */}
+          <div className="text-center mt-8">
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              aria-label="Download Resume"
             >
-              <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-                SKILLS
-              </p>
-              <ul className="list-disc list-inside text-justify">
-                <li>
-                  <strong>Web Technologies:</strong> HTML5, CSS3, JavaScript, React, Tailwind CSS, Node.js, Python
-                </li>
-                <li>
-                  <strong>Tools:</strong> Git, GitHub, VS Code
-                </li>
-                <li>
-                  <strong>Soft Skills:</strong> Creative Writing, Communication, Continuous Learning, Team Collaboration
-                </li>
-                <li>
-                  <strong>Languages:</strong> English (Fluent), Arabic (Fluent)
-                </li>
-              </ul>
-            </div>
+              Download Resume
+            </a>
+          </div>
+        </div>
 
-            {/* Education Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
-            >
-              <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-                EDUCATION
-              </p>
-              <ul className="list-disc list-inside text-justify">
-                <li>
-                  Bachelor’s in Arabic Language — Ahmadu Bello University, Zaria, Nigeria (2019 - 2024)
+        {/* Sticky Sidebar */}
+        <div className="hidden lg:block w-64">
+          <div className="sticky top-24 bg-gray-800 bg-opacity-90 rounded-lg p-4 shadow-lg">
+            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {sections.map((section) => (
+                <li key={section.title}>
+                  <button
+                    onClick={() => toggleSection(section.title)}
+                    className="text-blue-300 hover:text-blue-400 transition-colors w-full text-left"
+                    aria-label={`Jump to ${section.title}`}
+                  >
+                    {section.title}
+                  </button>
                 </li>
-                <li>
-                  Frontend Development Studies — Udemy (2023 - 2024)
-                </li>
-              </ul>
-            </div>
-
-{/* Projects Card */}
-<div
-  className="shadow-md p-4 rounded text-center md:text-center"
-  style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
->
-  <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-    PROJECTS
-  </p>
-  <ul className="space-y-1 list-disc list-inside text-justify">
-
-    <li>
-      <span className="font-bold">Animal Speed Clicker Game:</span> Created an interactive JavaScript-based game to improve reflexes and educate children about animals. (Role: Developer)
-    </li>
-    <li>
-      <span className="font-bold">Random ID Project:</span> Built a dynamic web application showcasing responsive design and modern development practices. (Role: Developer)
-    </li>
-    <li>
-      <span className="font-bold">E-commerce Website:</span> Designed and developed a fully responsive e-commerce website focusing on user experience and secure online transactions.
-    </li>
-    <li>
-      <span className="font-bold">Blog for Updates:</span> Created a dynamic blog platform to share updates and insights, integrating modern design and interactive features.
-    </li>
-    <li>
-      <span className="font-bold">Data Filtration Web App:</span> Designed a web application that enables efficient data filtering and visualization for enhanced user decision-making.
-    </li>
-    <li>
-      <span className="font-bold">Daily Budget Tracker App:</span> Developed an intuitive app for tracking daily expenses and managing budgets, ensuring financial insights are at users' fingertips.
-    </li>
-    <li>
-      <span className="font-bold">Event Ticket Application:</span> Developed a web application generating event tickets with QR codes using React and Tailwind CSS
-    </li>
-  </ul>
-</div>
-
-            {/* Experience Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
-            >
-              <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-                EXPERIENCE
-              </p>
-              <ul className="space-y-1 list-disc list-inside text-justify">
-                <li>
-                  <span className="font-bold">Freelance Frontend Developer:</span> Designed and developed responsive websites for local clients with a focus on enhancing user experience and performance using modern web technologies. Collaborated with clients to build professional portfolios and deliver high-quality web solutions. Worked on an e-commerce site project to drive online business growth. Currently developing a web past question application for a school.
-                </li>
-              </ul>
-            </div>
-
-            {/* Additional Information Card */}
-            <div
-              className="shadow-md p-4 rounded text-center"
-              style={{ backgroundColor: "#EFF6FF", color: "#1E3A8A" }}
-            >
-              <p className="font-semibold text-xl" style={{ color: "#1E3A8A" }}>
-                ADDITIONAL INFORMATION
-              </p>
-              <ul className="space-y-1 list-disc list-inside text-justify">
-                <li>
-                  Organized programming bootcamps and taught students, fostering skills in web development.
-                </li>
-                <li>
-                  Active contributor to open-source projects and committed to continuous professional development.
-                </li>
-              </ul>
-            </div>
+              ))}
+              <li>
+                <a
+                  href="/contact"
+                  className="text-blue-300 hover:text-blue-400 transition-colors"
+                  aria-label="Contact Me"
+                >
+                  Hire Me
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

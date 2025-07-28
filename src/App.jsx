@@ -6,9 +6,11 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Skills from "./pages/Skills";
+import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Loader from "./components/Loader";
+import Workshops from "./components/Workshops";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -28,12 +30,14 @@ function App() {
           <div className="min-h-screen flex flex-col">
             <main className="flex-grow">
               <Routes>
+                <Route path="/workshops" element={<Workshops />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<BlogPost />} />  {/* ✅ Added */}
+                <Route path="/blog/:id" element={<BlogPost />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/skills" element={<Skills />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/about" element={<About />} />
               </Routes>
             </main>
             <Footer />

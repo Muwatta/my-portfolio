@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaRobot } from "react-icons/fa";
 import emailjs from "emailjs-com";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 // Inline Robot Animation component
 const RobotAnimation = () => (
@@ -77,6 +79,10 @@ const Contact = () => {
 
   return (
     <div className="relative min-h-screen bg-blue-900 flex flex-col items-center justify-center p-8">
+       <Helmet>
+      <title>Contact | Abdullahi Musliudeen Oladipupo</title>
+      <meta name="description" content="Get in touch with Abdullahi Musliudeen Oladipupo, a Frontend Developer & Tech Trainer." />
+    </Helmet>
       {/* For large screens, display robot absolutely */}
       <div className="hidden md:block absolute top-8 left-8">
         <RobotAnimation />
