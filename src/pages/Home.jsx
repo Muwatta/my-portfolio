@@ -167,7 +167,7 @@ export default function Home() {
         {/* Hero Section */}
         <header className="flex flex-col md:flex-row items-center justify-center mb-12 sm:mb-16 space-y-8 md:space-y-0 md:space-x-12 text-center md:text-left">
           <motion.img
-            src="https://res.cloudinary.com/dee5edoss/image/upload/w_300,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1741428140/1735997370137_hjnkf0.jpg"
+            src="https://res.cloudinary.com/dee5edoss/image/upload/v1763611836/national_image_otksdm.jpg"
             alt="Muwatta, Frontend Developer and Educator"
             className="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover shadow-lg"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -224,7 +224,7 @@ export default function Home() {
         <section className="mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-8">What I Do</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {["Frontend Development", "IoT & Embedded Systems", "Tech Education", "Community Building"].map((skill, index) => (
+            {["Software Development", "IoT & Embedded Systems", "Tech Education", "Community Building"].map((skill, index) => (
               <motion.div
                 key={skill}
                 className="bg-gray-800 bg-opacity-80 p-6 rounded-lg text-center hover:bg-gray-700 transition-colors duration-300"
@@ -337,7 +337,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-4 bg-blue-900 bg-opacity-50 rounded-lg">
                 <p className="text-2xl font-bold text-blue-300">Bootcamp</p>
-                <p className="text-gray-300">60+ students Trained</p>
+                <p className="text-gray-300">100+ students Trained</p>
               </div>
               <div className="p-4 bg-blue-900 bg-opacity-50 rounded-lg">
                 <p className="text-2xl font-bold text-blue-300">10+</p>
@@ -354,6 +354,10 @@ export default function Home() {
               <div className="p-4 bg-blue-900 bg-opacity-50 rounded-lg">
                 <p className="text-2xl font-bold text-blue-300">Staff Training</p>
                 <p className="text-gray-300">Trained 20+ staff on EdTech demanding skills</p>
+              </div>
+              <div className="p-4 bg-blue-900 bg-opacity-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-300">Volunteering</p>
+                <p className="text-gray-300">Codeavour 7.0 — The largest coding and Robotic competition in the world (National level) </p>
               </div>
               <div className="p-4 bg-blue-900 bg-opacity-50 rounded-lg">
                 <p className="text-2xl font-bold text-blue-300">Tech Advocate</p>
