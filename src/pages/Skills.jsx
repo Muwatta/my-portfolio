@@ -24,9 +24,9 @@ export default function Skills() {
       title: "Professional Summary",
       content: (
         <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li>Frontend developer, STEM educator, and founder with a background in Arabic Education, passionate about impactful tech solutions.</li>
+          <li>Software Developer, STEM educator, and founder with a background in Arabic Education, passionate about impactful tech solutions.</li>
           <li>Skilled in React, TypeScript, Tailwind, and Next.js, building scalable, maintainable interfaces.</li>
-          <li>Leads bootcamps teaching web development, JavaScript, C++, and Scratch to Nigerian students.</li>
+          <li>Leads bootcamps teaching web development, Introduction to AI & ML using pictoblox and Google Workspace</li>
           <li>Founder of Algorise Tech Explorers, empowering students with 4IR skills.</li>
           <li>Experienced in IoT and embedded systems with Arduino and ESP32.</li>
           <li>Active content creator and open-source contributor.</li>
@@ -40,9 +40,9 @@ export default function Skills() {
           <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
             <li><strong>Frontend Stack:</strong> HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS</li>
             <li><strong>Tooling & Workflow:</strong> Git, GitHub, VS Code, Vite, REST APIs, Socket.IO, Prisma</li>
-            <li><strong>Backend & DevOps (Basic):</strong> Node.js, Express, PostgreSQL, CI/CD principles</li>
-            <li><strong>Embedded Systems:</strong> Arduino, ESP32, Sensor Integration (Ultrasonic, Soil, Servo, Buzzer)</li>
-            <li><strong>Other Skills:</strong> Teaching, Curriculum Design, Creative Writing, Project Leadership</li>
+            <li><strong>Backend & DevOps:</strong> Django REST APIs, Authentication, PostgreSQL, Real Projects, Deployment exposure</li>
+            <li><strong>Embedded Systems:</strong> Arduino, ESP32 and Raspberry PI</li>
+            <li><strong>Other Skills:</strong> Databases Beyond Basic CRUD, System Design and Scalability, Testing and Reliability, Devops and Production Readiness, Product Thinkig</li>
             <li><strong>Languages:</strong> English (Fluent), Arabic (Fluent)</li>
           </ul>
           <div className="mt-4">
@@ -71,8 +71,8 @@ export default function Skills() {
       content: (
         <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
           <li>Bachelor’s in Arabic Education — Ahmadu Bello University, Zaria (2019 - 2024)</li>
+          <li>ProDev Backend Django — ALX Software Engineering (August - November, 2025)</li>
           <li>Frontend Web Development — Udemy & Self-paced Study (2023 - 2024)</li>
-          <li>Embedded Systems and IoT — Self-taught via projects and workshops (2024)</li>
         </ul>
       ),
     },
