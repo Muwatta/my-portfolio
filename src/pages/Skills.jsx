@@ -19,95 +19,121 @@ export default function Skills() {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const sections = [
-    {
-      title: "Professional Summary",
-      content: (
+ const sections = [
+  {
+    title: "Professional Summary",
+    content: (
+      <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+        <li>Backend Engineer with hands-on experience building production-style systems using Python, Django, and Django REST Framework.</li>
+        <li>Strong focus on API design, authentication, database modeling, caching, and background task processing.</li>
+        <li>Completed ALX ProDev Backend Engineering program with an E-commerce backend capstone reflecting real-world engineering workflows.</li>
+        <li>Experienced educator and technical mentor with a strong ability to communicate complex backend concepts clearly.</li>
+        <li>Builds secure, scalable, and maintainable backend services with deployment and CI/CD exposure.</li>
+      </ul>
+    ),
+  },
+  {
+    title: "Skills",
+    content: (
+      <div>
         <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li>Software Developer, STEM educator, and founder with a background in Arabic Education, passionate about impactful tech solutions.</li>
-          <li>Skilled in React, TypeScript, Tailwind, and Next.js, building scalable, maintainable interfaces.</li>
-          <li>Leads bootcamps teaching web development, Introduction to AI & ML using pictoblox and Google Workspace</li>
-          <li>Founder of Algorise Tech Explorers, empowering students with 4IR skills.</li>
-          <li>Experienced in IoT and embedded systems with Arduino and ESP32.</li>
-          <li>Active content creator and open-source contributor.</li>
+          <li>
+            <strong>Backend:</strong> Python, Django, Django REST Framework, RESTful API design, JWT authentication, Role-based access control
+          </li>
+          <li>
+            <strong>Databases & Caching:</strong> PostgreSQL, database schema design, query optimization, Redis caching
+          </li>
+          <li>
+            <strong>Async & Background Jobs:</strong> Celery, RabbitMQ
+          </li>
+          <li>
+            <strong>DevOps & Tooling:</strong> Docker, Docker Compose, Git, GitHub Actions (CI/CD), Linux basics
+          </li>
+          <li>
+            <strong>Testing & Quality:</strong> Unit tests and integration tests (Django TestCase, API testing exposure)
+          </li>
+          <li>
+            <strong>Languages:</strong> English (Fluent), Arabic (Fluent)
+          </li>
         </ul>
-      ),
-    },
-    {
-      title: "Skills",
-      content: (
-        <div>
-          <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-            <li><strong>Frontend Stack:</strong> HTML5, CSS3, JavaScript, TypeScript, React, Tailwind CSS</li>
-            <li><strong>Tooling & Workflow:</strong> Git, GitHub, VS Code, Vite, REST APIs, Socket.IO, Prisma</li>
-            <li><strong>Backend & DevOps:</strong> Django REST APIs, Authentication, PostgreSQL, Real Projects, Deployment exposure</li>
-            <li><strong>Languages:</strong> English (Fluent), Arabic (Fluent)</li>
-          </ul>
-          <div className="mt-4">
-            <h3 className="text-lg font-semibold text-gray-800">Skill Proficiency</h3>
-            <div className="space-y-2 mt-2">
-              {["React (90%)", "JavaScript (85%)", "Tailwind CSS (80%)", "IoT Systems (75%)"].map((skill, index) => (
-                <div key={skill} className="flex items-center">
-                  <span className="w-32 text-gray-700">{skill.split(" (")[0]}</span>
-                  <div className="flex-1 bg-gray-200 rounded-full h-2">
-                    <motion.div
-                      className="bg-blue-600 h-2 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: skill.match(/(\d+)%/)[1] + "%" }}
-                      transition={{ duration: 1, delay: index * 0.2 }}
-                    />
-                  </div>
+
+        <div className="mt-4">
+          <h3 className="text-lg font-semibold text-gray-800">Core Backend Proficiency</h3>
+          <div className="space-y-2 mt-2">
+            {[
+              "Python (90%)",
+              "Django & DRF (85%)",
+              "PostgreSQL (80%)",
+              "REST API Design (85%)",
+              "Docker & CI/CD (70%)",
+            ].map((skill, index) => (
+              <div key={skill} className="flex items-center">
+                <span className="w-40 text-gray-700">{skill.split(" (")[0]}</span>
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <motion.div
+                    className="bg-blue-600 h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: skill.match(/(\d+)%/)[1] + "%" }}
+                    transition={{ duration: 1, delay: index * 0.2 }}
+                  />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
-      ),
-    },
-    {
-      title: "Education",
-      content: (
-        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li>Bachelor’s in Arabic Education — Ahmadu Bello University, Zaria (2019 - 2024)</li>
-          <li>ProDev Backend Django — ALX Software Engineering (August - November, 2025)</li>
-          <li>Frontend Web Development — Udemy & Self-paced Study (2023 - 2024)</li>
-        </ul>
-      ),
-    },
-    {
-      title: "Projects",
-      content: (
-        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li><strong>Smart Perishable Goods Marketplace:</strong> Next.js app with IoT sensor data, payment, and analytics to reduce food waste.</li>
-          <li><strong>Offline Face Recognition App:</strong> Tracks school staff attendance with face ID and local storage.</li>
-          <li><strong>Arduino Reaction Game & Smart Bin:</strong> Built with servo motors and ultrasonic sensors.</li>
-          <li><strong>Animal Speed Clicker Game:</strong> Educational JavaScript game for kids.</li>
-          <li><strong>Past Question Web App:</strong> School exam platform with scoring and leaderboards.</li>
-          <li><strong>Event Ticket App:</strong> Generates QR-coded tickets using React and Tailwind.</li>
-        </ul>
-      ),
-    },
-    {
-      title: "Experience",
-      content: (
-        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li><strong>Founder, Algorise Tech Explorers (2024 - Present):</strong> Leads tech education for Nigerian youth, teaching web development and IoT.</li>
-          <li><strong>Freelance Frontend Developer:</strong> Builds responsive applications like e-commerce platforms and school tools.</li>
-          <li><strong>STEM Educator & Workshop Facilitator:</strong> Teaches C++, Scratch, HTML/CSS, and AI to students.</li>
-        </ul>
-      ),
-    },
-    {
-      title: "Additional Information",
-      content: (
-        <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-          <li>Trains students in web development, Scratch, C++, and cloud concepts.</li>
-          <li>Creates weekly tech content on LinkedIn.</li>
-          <li>Delivers workshops on AI, web development, and digital skills.</li>
-        </ul>
-      ),
-    },
-  ];
+      </div>
+    ),
+  },
+  {
+    title: "Education",
+    content: (
+      <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+        <li>Bachelor’s Degree in Arabic Education — Ahmadu Bello University, Zaria (2019 - 2024)</li>
+        <li>ALX ProDev Backend Engineering — Python & Django (2025)</li>
+      </ul>
+    ),
+  },
+  {
+    title: "Projects",
+    content: (
+      <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+        <li>
+          <strong>Project Nexus – E-commerce Backend:</strong> Designed and implemented a production-style backend with Django REST Framework, PostgreSQL, JWT authentication, Redis caching, Celery background tasks, Docker, and CI/CD pipelines.
+        </li>
+        <li>
+          <strong>Learning Management System (Backend):</strong> Built secure APIs for multi-role users with background email notifications and modular architecture.
+        </li>
+        <li>
+          <strong>Airbnb & Travel App Backends:</strong> Implemented backend logic, relational database models, API endpoints, and CI/CD workflows.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    title: "Experience",
+    content: (
+      <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+        <li>
+          <strong>Backend Engineer Trainee — ALX ProDev (2025):</strong> Built and shipped backend systems focusing on APIs, databases, async processing, caching, and deployment readiness.
+        </li>
+        <li>
+          <strong>Founder & Technical Lead — Algorise Tech Explorers (2024 - Present):</strong> Leads backend-focused training sessions, mentors students, and designs technical curricula.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    title: "Additional Information",
+    content: (
+      <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
+        <li>Strong interest in backend systems, distributed architectures, and scalable product development.</li>
+        <li>Comfortable collaborating in remote, async engineering teams.</li>
+        <li>Actively building and refining production-ready backend projects.</li>
+      </ul>
+    ),
+  },
+];
+
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-12 sm:py-16 relative bg-gradient-to-b from-gray-900 to-blue-950">
@@ -144,7 +170,7 @@ export default function Skills() {
                 Abdullahi Musliudeen Oladipupo
               </motion.h1>
               <p className="mt-2 text-gray-600 text-lg">
-                Frontend Developer | STEM Educator | Founder
+                Software Developer | STEM Educator | Founder
               </p>
               <div className="mt-4 flex justify-center sm:justify-start space-x-4">
                 <a
