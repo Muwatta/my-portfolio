@@ -134,7 +134,6 @@ export default function Skills() {
   },
 ];
 
-
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-12 sm:py-16 relative bg-gradient-to-b from-gray-900 to-blue-950">
       <Helmet>
@@ -203,13 +202,32 @@ export default function Skills() {
 
           {/* Mastered Stacks */}
           <div className="mb-8">
-            <h2 className="text-2xl font-semibold text-center text-white mb-4">Mastered Stacks</h2>
+            <h2 className="text-2xl font-semibold text-center text-white mb-4">
+              Backend Engineering Stack
+            </h2>
+
             <div className="flex flex-wrap justify-center gap-2">
-              {["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Tailwind", "Node.js", "Git", "GitHub", "Vite", "Python"].map((tech) => (
+              {[
+                "Python",
+                "Django",
+                "Django REST Framework",
+                "PostgreSQL",
+                "Redis",
+                "Celery",
+                "RabbitMQ",
+                "JWT Authentication",
+                "REST APIs",
+                "Docker",
+                "Docker Compose",
+                "Git",
+                "GitHub",
+                "GitHub Actions",
+                "Linux",
+              ].map((tech) => (
                 <motion.span
                   key={tech}
                   className="px-3 py-1 rounded-full text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {tech}
@@ -217,6 +235,7 @@ export default function Skills() {
               ))}
             </div>
           </div>
+
 
           {/* Resume Sections */}
           {sections.map((section, index) => (
