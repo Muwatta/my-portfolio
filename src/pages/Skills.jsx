@@ -38,11 +38,9 @@ export default function Skills() {
       content: (
         <div>
           <ul className="list-disc list-inside text-gray-700 text-justify space-y-2">
-            <li><strong>Frontend Stack:</strong> HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS</li>
+            <li><strong>Frontend Stack:</strong> HTML5, CSS3, JavaScript, TypeScript, React, Tailwind CSS</li>
             <li><strong>Tooling & Workflow:</strong> Git, GitHub, VS Code, Vite, REST APIs, Socket.IO, Prisma</li>
             <li><strong>Backend & DevOps:</strong> Django REST APIs, Authentication, PostgreSQL, Real Projects, Deployment exposure</li>
-            <li><strong>Embedded Systems:</strong> Arduino, ESP32 and Raspberry PI</li>
-            <li><strong>Other Skills:</strong> Databases Beyond Basic CRUD, System Design and Scalability, Testing and Reliability, Devops and Production Readiness, Product Thinkig</li>
             <li><strong>Languages:</strong> English (Fluent), Arabic (Fluent)</li>
           </ul>
           <div className="mt-4">
@@ -181,7 +179,7 @@ export default function Skills() {
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-center text-white mb-4">Mastered Stacks</h2>
             <div className="flex flex-wrap justify-center gap-2">
-              {["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Tailwind", "Node.js", "Next.js", "Git", "GitHub", "Vite", "Python", "Arduino", "ESP32", "Raspberry Pi"].map((tech) => (
+              {["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Tailwind", "Node.js", "Git", "GitHub", "Vite", "Python"].map((tech) => (
                 <motion.span
                   key={tech}
                   className="px-3 py-1 rounded-full text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
