@@ -4,10 +4,10 @@ export const projects = [
     title: "Brainiac Quiz Platform",
     category: "EdTech",
     description:
-      "Real-time quiz platform serving 500+ concurrent users with live leaderboards and analytics dashboard.",
-    tech: ["React", "TypeScript", "Django", "PostgreSQL", "Redis", "Socket.io"],
-    metrics: ["500+ concurrent users", "99.9% uptime", "2s response time"],
-    image: "https://res.cloudinary.com/dee5edoss/image/upload/v1748057065/Screenshot_2025-05-24_042302_mo4osb.png",
+      "Interactive quiz platform serving 500+ concurrent users with real-time leaderboards.",
+    tech: ["React", "Python", "MongoDB", "Socket.io"],
+    metrics: ["500+ concurrent users", "99.9% uptime"],
+    image: "/images/atTheNational.jpg",
     github: "https://github.com/Muwatta/brainiac-quiz",
     live: "https://brainiac.muwatta.dev",
     featured: true,
@@ -18,13 +18,9 @@ export const projects = [
     category: "EdTech",
     description:
       "Learning management system for vocational training centers across 12 states.",
-    tech: ["Next.js", "Django REST", "PostgreSQL", "AWS S3", "PWA"],
-    metrics: [
-      "12 states deployed",
-      "2,000+ active students",
-      "40% admin time saved",
-    ],
-    image: "/images/withMyStudent.jpg", // ← Changed to existing image
+    tech: ["Next.js", "Django REST", "PostgreSQL", "AWS S3"],
+    metrics: ["12 states", "2,000+ students", "40% time saved"],
+    image: "/images/withMyStudent.jpg",
     github: "https://github.com/Muwatta/nigeriaskills-lms",
     live: "https://nigeriaskills.edu.ng",
     featured: true,
@@ -34,23 +30,12 @@ export const projects = [
     title: "IoT Git Monitoring System",
     category: "IoT + Fullstack",
     description:
-      "Real-time environmental monitoring for agricultural facilities with predictive alerts.",
-    tech: [
-      "React",
-      "Python",
-      "MQTT",
-      "InfluxDB",
-      "TensorFlow Lite",
-      "Raspberry Pi",
-    ],
-    metrics: [
-      "30% reduction in spoilage",
-      "50+ sensors deployed",
-      "24/7 monitoring",
-    ],
-    image: "/images/scratch_students.jpg", // ← Changed to existing image
+      "Real-time environmental monitoring for agricultural facilities.",
+    tech: ["React", "Python", "MQTT", "InfluxDB"],
+    metrics: ["30% spoilage reduction", "50+ sensors"],
+    image: "/images/scratch_students.jpg",
     github: "https://github.com/Muwatta/git-monitor",
-    live: "https://demo.muwatta.dev/git-monitor",
+    live: "https://git-monitor.vercel.app",
     featured: true,
   },
 ];
