@@ -1,43 +1,54 @@
 [
-    {
-      "id": 1,
-      "title": "Tailwind CSS: The Swiss Army Knife of Web Styling",
-      "date": "2025-03-10",
-      "excerpt": "Imagine you're a chef in a busy restaurant. You have two choices:",
-      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630737/images_xiwhc6.jpg",
-      "medium_link": "https://medium.com/@abdullahmusliudeen/tailwind-css-the-swiss-army-knife-of-web-styling-6dc559ebfd29"
-    },
-    {
-      "id": 2,
-      "title": "How a Math Lesson Led to an Animal Speed Clicker Game",
-      "date": "2025-02-19",
-      "excerpt": "It started with a simple JavaScript lesson. I introduced my students to the Math object, explaining how Math.random() could generate numbers unpredictably. They nodded, but I could tell—it wasn’t clicking.",
-      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630737/images_1_vrrx12.jpg",
-      "medium_link": "https://medium.com/@abdullahmusliudeen/how-a-math-lesson-led-to-an-animal-speed-clicker-game-963b73b2fe04"
-    },
-    {
-      "id": 3,
-      "title": "Why I Want to Be a Frontend Developer and How HNG Will Help Me Achieve My Goals",
-      "date": "2024-03-08",
-      "excerpt": "Every seasoned developer has a starting point, and for me, frontend development is more than just writing code; it’s about creating seamless user experiences that bring ideas to life.",
-      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630738/images_2_rqqgxn.jpg",
-      "medium_link": "https://medium.com/@yourmediumusername/javascript-es6-features"
-    },
-    {
-      "id": 4,
-      "title": "The Algorise Tech Bootcamp Journey! A Frontier for the Future",
-      "date": "2025-01-03",
-      "excerpt": "I’m honored to share the success of the Algorise Tech Explorers Bootcamp (Cohort-1), which ran for three weeks from December 16, 2024, to January 2, 2025, at Solace College, Jos, Plateau State.",
-      "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741630750/IMG_20241219_104415_645_-1374329958_kgpgos.jpg",
-      "medium_link": "https://www.linkedin.com/posts/abdullahi-musliudeen-64435a239_algorisetechbootcamp-buildingthefuture-codingforkids-activity-7281634199885795328-8Jos?utm_source=share&utm_medium=member_desktop&rcm=ACoAADtRkBQBLKwsCyqaz84FAhsdI7s7vGtSJ3M"
-    },
-     {
-      "id": 5,
-      "title": "From Jos to Nationals: How 3 Girls Used Tech to Dream Bigger",
-      "date": "2025-05-24T06:00:00.000Z",
-      "excerpt": "From Classroom Dreams to National Finals: Girls Who Soared in Tech! Join us as we celebrate the incredible journey of three Jos girls who embraced technology and transformed their futures.",
-      "image": "https://res.cloudinary.com/dee5edoss/image/upload/v1748055293/IMG-20250417-WA0009_u0hipk.jpg",
-      "medium_link": "https://medium.com/@abdullahmusliudeen/from-jos-to-abuja-how-my-students-made-it-to-the-national-ict-competition-finals-b2c53eba11fb"
-    }
-  ]
-  
+  {
+    "id": 1,
+    "title": "Building a Production-Ready REST API with Django & PostgreSQL",
+    "excerpt": "A deep dive into designing secure, scalable REST APIs using Django REST Framework — covering authentication, pagination, filtering, and deployment.",
+    "body": "When building production APIs, the foundation matters more than the feature count. In this article, I walk through the exact architecture I used in Project Nexus — from schema design to JWT auth to Redis caching.\n\nFirst, we model our database carefully. Django's ORM is powerful but only when you respect the relational model underneath it. I'll show you how I designed the product, order, and user tables with proper foreign keys and indexes.\n\nNext, we configure DRF serializers to handle nested relationships without the N+1 query trap. This is where most tutorials fall short — they show you the happy path but not the performance pitfalls.\n\nFinally, we wire up GitHub Actions for automated testing and deployment to a Docker container. Every push to main runs the test suite before anything goes live.",
+    "category": "Tech",
+    "date": "March 10, 2025",
+    "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
+    "medium_link": "https://medium.com/@your-handle/your-article-slug",
+    "tags": ["Django", "PostgreSQL", "REST API", "Docker"],
+    "readTime": "8 min read",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Why I Teach Backend Engineering to Non-CS Students",
+    "excerpt": "Running Algorise Tech Explorers taught me that curiosity beats credentials. Here's how I structure backend workshops for complete beginners.",
+    "body": "The biggest lie in tech education is that you need a computer science degree to be a software engineer. I've watched Arabic Education graduates, accountants, and teachers become competent backend developers in months.\n\nAt Algorise Tech Explorers, we start with the 'why' before the 'how'. Why does a server exist? Why do databases need schemas? Why does an API need authentication? Once students understand the purpose, the implementation makes sense.\n\nThis article breaks down my 12-week curriculum and the specific teaching techniques that moved the needle most.",
+    "category": "Education",
+    "date": "February 22, 2025",
+    "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+    "medium_link": "https://medium.com/@your-handle/your-article-slug-2",
+    "tags": ["Education", "Mentorship", "Backend"],
+    "readTime": "6 min read",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "title": "Celery + RabbitMQ: Background Jobs That Actually Work",
+    "excerpt": "A practical guide to async task processing in Django — without the headaches. Real patterns from production systems.",
+    "body": "Background tasks are where Django apps either scale or collapse. I've seen systems grind to a halt because someone ran a PDF generation job inside a view function. Celery with RabbitMQ fixes this — if you configure it correctly.\n\nIn this guide, I cover the exact setup I use: separate Celery worker containers in Docker Compose, task retries with exponential backoff, and monitoring with Flower.",
+    "category": "Tech",
+    "date": "January 15, 2025",
+    "image": "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80",
+    "medium_link": "https://medium.com/@your-handle/your-article-slug-3",
+    "tags": ["Celery", "RabbitMQ", "Django", "Async"],
+    "readTime": "10 min read",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "React for Backend Developers: What You Actually Need",
+    "excerpt": "You don't need to master the entire React ecosystem. Here's the 20% that covers 80% of full-stack frontend work.",
+    "body": "As a backend developer stepping into full-stack territory, React can feel overwhelming. Hooks, context, state management libraries, bundlers — the ecosystem is enormous. But most backend developers only need a small slice of it.\n\nThis article is that slice. We cover useState, useEffect, fetching data from your own APIs, and how to structure a React project that won't become a maintenance nightmare.",
+    "category": "Frontend",
+    "date": "December 5, 2024",
+    "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
+    "medium_link": "https://medium.com/@your-handle/your-article-slug-4",
+    "tags": ["React", "Frontend", "Full Stack"],
+    "readTime": "7 min read",
+    "featured": false
+  }
+]
