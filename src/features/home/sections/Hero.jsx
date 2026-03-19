@@ -31,7 +31,7 @@ export const Hero = () => {
 
             <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               I build scalable EdTech systems and mentor developers. Currently
-              focused on learning management platforms serving 10,000+ users
+              focused on learning management platforms serving 5,000+ users
               across Nigeria.
             </p>
 
