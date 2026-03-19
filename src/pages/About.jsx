@@ -1,314 +1,491 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Helmet } from "react-helmet-async";
+import { HiArrowRight } from "react-icons/hi";
+import { FaQuoteLeft } from "react-icons/fa";
 
-const ParticleBackground = () => (
-  <motion.div
-    className="absolute inset-0 pointer-events-none"
-    style={{ background: "radial-gradient(circle at 50%, rgba(255,255,255,0.05), transparent)" }}
-    animate={{ opacity: [0.3, 0.5, 0.3] }}
-    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-  />
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+
+const STORY = [
+  {
+    id: "classroom",
+    label: "01",
+    title: "From Classroom to Code",
+    content: [
+      "My roots lie in Arabic Education — teaching in classrooms filled with chalk dust and eager students. I cherished the 'aha!' moments when ideas clicked, but a quiet voice urged me to explore beyond the blackboard.",
+      "Technology wasn't an instant love. I wrestled with code, leaned on late-night tutorials, and broke things often. Each error taught me resilience. I wasn't just learning — I was becoming a creator.",
+    ],
+  },
+  {
+    id: "fullstack",
+    label: "02",
+    title: "Going Full Stack",
+    content: [
+      "I taught myself frontend development — HTML, CSS, JavaScript, React, Tailwind, Next.js. Then I went deeper: Python, Django, DRF, PostgreSQL, Redis, Docker. Coding, I realized, mirrors teaching: it's about clarity, engagement, and impact.",
+      "This sparked Algorise Tech Explorers — my mission to empower Nigerian students with 4IR skills. It's not just about code. It's about fostering confidence to create, fail, and rise again.",
+    ],
+  },
+  {
+    id: "impact",
+    label: "03",
+    title: "Empowering the Next Generation",
+    content: [
+      "Through tech bootcamps, I've trained over 50 students, watching them grow into confident builders. Some reached the finals of the National ICT Competition for Girls in Abuja — a proud milestone rooted in Jos.",
+      "Today I build real-world projects, lead workshops, and guide students in web dev, embedded systems, AI & ML, and Scratch for kids as young as seven.",
+    ],
+  },
+  {
+    id: "philosophy",
+    label: "04",
+    title: "My Philosophy",
+    content: [
+      "My core belief: your past doesn't define your future. If an Arabic Education graduate can build full-stack apps and mentor young innovators, so can you.",
+      "This journey isn't just about tech — it's about purpose and progress. I'm just getting started, In Sha'a Allah.",
+    ],
+  },
+];
+
+const MILESTONES = [
+  {
+    year: "2019–2024",
+    event: "B.A. Arabic Education, Ahmadu Bello University",
+    type: "edu",
+  },
+  {
+    year: "2023",
+    event: "Began self-learning full-stack development",
+    type: "dev",
+  },
+  { year: "2024", event: "Founded Algorise Tech Explorers", type: "milestone" },
+  {
+    year: "2024",
+    event: "Trained 50+ students in tech bootcamps",
+    type: "milestone",
+  },
+  {
+    year: "2025",
+    event: "Led students to National ICT Competition finals",
+    type: "milestone",
+  },
+  {
+    year: "2025",
+    event: "2nd Runner-Up, African Intelligence LMS Hackathon",
+    type: "award",
+  },
+  {
+    year: "2025",
+    event: "Bootcamp 2.0 — Embedded Systems, AI & ML, Web Dev",
+    type: "milestone",
+  },
+  {
+    year: "2025",
+    event: "ALX ProDev Backend Engineering (Python & Django)",
+    type: "edu",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "Muwatta's bootcamps ignited my passion for coding. I am launching my first app at 10!",
+    author: "Muhammad",
+    location: "Jos",
+  },
+  {
+    quote:
+      "His leadership in Algorise Tech Explorers is transforming tech education in Jos.",
+    author: "Colleague",
+    location: "Kwara",
+  },
+  {
+    quote:
+      "Muwatta's workshops are engaging and empowering. He makes tech accessible!",
+    author: "Parent",
+    location: "Lagos",
+  },
+];
+
+const TYPE_COLORS = {
+  edu: { dot: "#8b5cf6", label: "Education" },
+  dev: { dot: "#3b82f6", label: "Dev" },
+  milestone: { dot: "#10b981", label: "Milestone" },
+  award: { dot: "#f59e0b", label: "Award" },
+};
+
+// ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
+
+const SectionLabel = ({ children }) => (
+  <div className="flex items-center gap-3 mb-8">
+    <div className="w-1 h-5 rounded-full bg-gradient-to-b from-blue-400 to-cyan-400" />
+    <p className="text-[11px] font-mono tracking-[0.22em] uppercase text-slate-500">
+      {children}
+    </p>
+  </div>
 );
 
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
+
 const About = () => {
-  const [openSections, setOpenSections] = useState({});
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [formStatus, setFormStatus] = useState(null);
+  const [openId, setOpenId] = useState("classroom");
+  const [testimonialIdx, setIdx] = useState(0);
 
-  const toggleSection = (section) => {
-    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
-  };
-
-  const testimonials = [
-    {
-      quote: "Muwatta’s bootcamps ignited my passion for coding. I am launching my first app at 10!",
-      author: "Muhammad, Jos",
-    },
-    {
-      quote: "His leadership in Algorise Tech Explorers is transforming tech education in Jos.",
-      author: "Colleague, Kwara",
-    },
-    {
-      quote: "Muwatta’s workshops are engaging and empowering. He makes tech accessible!",
-      author: "Parent, Lagos",
-    },
-  ];
-
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const sections = [
-    {
-      title: "From Classroom to Code",
-      content: (
-        <div className="space-y-4">
-          <p className="text-gray-200">
-            My roots lie in Arabic Education, teaching in classrooms filled with chalk dust and eager students. I cherished the "aha!" moments when ideas clicked, but a quiet voice urged me to explore beyond the blackboard.
-          </p>
-          <p className="text-gray-200">
-            Technology wasn’t an instant love. I wrestled with code, leaned on late-night YouTube tutorials, and broke things often. Each error taught me resilience. I wasn’t just learning, I was becoming a creator.
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "Crafting Impactful Experiences",
-      content: (
-        <div className="space-y-4">
-          <p className="text-gray-200">
-            I taught myself frontend development—HTML, CSS, JavaScript, React, Tailwind, Next.js—focusing on crafting experiences that resonate. Coding, I realized, mirrors teaching: it’s about clarity, engagement, and impact.
-          </p>
-          <p className="text-gray-200">
-            This sparked <strong>Algorise Tech Explorers</strong>, my mission to empower Nigerian students with 4IR skills. It’s not just about code—it’s about fostering confidence to create, fail, and rise again, just as I did.
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "Empowering the Next Generation",
-      content: (
-        <div className="space-y-4">
-          <p className="text-gray-200">
-            Through tech bootcamps, I’ve trained over 50 students, watching them grow into confident builders. Some reached the finals of the <strong>National ICT Competition for Girls</strong> in Abuja—a proud milestone rooted in Jos.
-          </p>
-          <p className="text-gray-200">
-            Today, I build real-world projects, lead workshops, and create content for aspiring coders. I teach Frontend, Scratch, C++ for embedded systems, and guide students in crafting smart devices with Arduino and Raspberry Pi. My bootcamps cover Web Dev and Scratch for kids as young as seven.
-          </p>
-        </div>
-      ),
-    },
-    {
-      title: "My Philosophy",
-      content: (
-        <div className="space-y-4">
-          <p className="text-gray-200">
-            My core belief? <strong>Your past doesn’t define your future.</strong> If an Arabic graduate can build full-stack apps and mentor young innovators, so can you.
-          </p>
-          <p className="text-gray-200">
-            This journey isn’t just about tech—it’s about purpose and progress. I’m just getting started, <em>In Sha'a Allah</em>.
-          </p>
-        </div>
-      ),
-    },
-  ];
-
-  const milestones = [
-    { year: "2019-2024", event: "Earned Bachelor’s in Arabic Education, Ahmadu Bello University" },
-    { year: "2023", event: "Began self-learning frontend development" },
-    { year: "2024", event: "Founded Algorise Tech Explorers" },
-    { year: "2024", event: "Trained 50+ students in tech bootcamps" },
-    { year: "2025", event: "Led students to National ICT Competition finals" },
-    { year: "2025", event: "2nd Runner-Up, African Intelligence LMS Hackathon" },
-    { year: "2025", event: "Bootcamp 2.0 | teamed to trained primary & students on Embedded system, AI & ML, Web Dev"},
-  ];
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      setFormStatus("Please fill out all fields.");
-      return;
-    }
-    try {
-      const response = await fetch("https://formspree.io/f/your-form-id", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        setFormStatus("Thank you for your feedback!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        setFormStatus("Failed to send feedback. Please try again.");
-      }
-    } catch (error) {
-      setFormStatus("An error occurred. Please try again later.");
-    }
-  };
+  const prev = () =>
+    setIdx((i) => (i - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  const next = () => setIdx((i) => (i + 1) % TESTIMONIALS.length);
 
   return (
-    <div className="min-h-screen px-4 py-12 sm:py-16 bg-gradient-to-b from-gray-900 to-blue-950 relative">
+    <div
+      className="min-h-screen bg-[#06090f] text-slate-200 relative overflow-hidden"
+      style={{ fontFamily: "'Syne', sans-serif" }}
+    >
       <Helmet>
         <title>About | Abdullahi Musliudeen Oladipupo</title>
-        <meta name="description" content="Frontend Developer & Tech Trainer" />
+        <meta
+          name="description"
+          content="Full Stack Developer, Educator & Founder — from Arabic Education to building production systems."
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
+          rel="stylesheet"
+        />
       </Helmet>
-      <ParticleBackground />
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 relative z-10">
-        {/* Main Content */}
-        <div className="flex-1">
-          <motion.section
-            className="bg-gray-800 bg-opacity-90 rounded-2xl shadow-xl p-6 sm:p-10 mb-12"
+
+      {/* BG */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.7) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.7) 1px,transparent 1px)`,
+          backgroundSize: "52px 52px",
+        }}
+      />
+      <div className="absolute -top-40 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600 opacity-[0.06] blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full bg-violet-700 opacity-[0.07] blur-[130px] pointer-events-none" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-16 sm:py-20">
+        {/* ── HERO ── */}
+        <div className="flex flex-col lg:flex-row items-start gap-12 mb-24">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            className="relative flex-shrink-0"
+          >
+            <div className="w-32 h-32 rounded-2xl overflow-hidden ring-1 ring-slate-800">
+              <img
+                src="https://res.cloudinary.com/dee5edoss/image/upload/w_400,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg"
+                alt="Abdullahi Musliudeen"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-green-400 ring-2 ring-[#06090f]" />
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ delay: 0.15 }}
+            className="flex-1"
           >
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-blue-300 mb-6" aria-label="My Story">
-              My Story
-            </h2>
-            <div className="space-y-6">
-              {sections.map((section, index) => (
-                <motion.div
-                  key={section.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <button
-                    onClick={() => toggleSection(section.title)}
-                    className="w-full flex justify-between items-center text-xl font-semibold text-white bg-blue-800 bg-opacity-80 rounded-lg p-4 hover:bg-blue-700 transition-colors"
-                    aria-expanded={openSections[section.title] || false}
-                    aria-controls={`section-${section.title.toLowerCase().replace(" ", "-")}`}
-                  >
-                    {section.title}
-                    {openSections[section.title] ? <FaChevronUp /> : <FaChevronDown />}
-                  </button>
-                  <AnimatePresence>
-                    {openSections[section.title] && (
-                      <motion.div
-                        id={`section-${section.title.toLowerCase().replace(" ", "-")}`}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="bg-gray-900 rounded-lg p-6 mt-2 text-gray-200 text-base sm:text-lg leading-relaxed"
-                      >
-                        {section.content}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </div>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-3">
+              Full Stack Developer · Educator · Founder
+            </p>
+            <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-[1.05] mb-5">
+              My
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
+                Story
+              </span>
+            </h1>
+            <p
+              className="text-slate-400 text-[15px] max-w-xl leading-relaxed mb-8"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Arabic Education graduate turned full-stack engineer. I build
+              production systems end-to-end and run Algorise Tech Explorers — a
+              bootcamp shaping the next wave of Nigerian developers.
+            </p>
+            <div className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="inline-block px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                aria-label="Contact me to collaborate"
+                className="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors flex items-center gap-2 group"
               >
-                Get in Touch
+                Get in Touch{" "}
+                <HiArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
               <a
                 href="/resume.pdf"
                 download
-                className="inline-block px-8 py-3 bg-gray-700 text-white font-semibold rounded-full hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
-                aria-label="Download Resume"
+                className="px-6 py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-bold transition-colors"
+              >
+                Download CV
+              </a>
+            </div>
+          </motion.div>
+
+          {/* STAT CARDS */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            className="hidden xl:flex flex-col gap-3 flex-shrink-0 w-48"
+          >
+            {[
+              { value: "50+", label: "Students Trained" },
+              { value: "2+", label: "Years Building" },
+              { value: "3+", label: "Projects Shipped" },
+              { value: "1st", label: "Hackathon Podium" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="rounded-xl border border-slate-800 bg-slate-900/50 px-4 py-3"
+              >
+                <p className="text-2xl font-extrabold text-white">{s.value}</p>
+                <p className="text-[11px] text-slate-500 mt-0.5">{s.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* ── STORY ACCORDION ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-24"
+        >
+          <SectionLabel>The Journey</SectionLabel>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {/* tab buttons */}
+            <div className="flex flex-col gap-2">
+              {STORY.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setOpenId(s.id)}
+                  className="text-left px-5 py-4 rounded-xl border transition-all duration-200 group"
+                  style={{
+                    borderColor: openId === s.id ? "#3b82f6" : "#1e293b",
+                    backgroundColor:
+                      openId === s.id ? "#3b82f610" : "transparent",
+                  }}
+                >
+                  <span className="block text-[10px] font-mono text-slate-600 mb-1">
+                    {s.label}
+                  </span>
+                  <span
+                    className={`text-sm font-bold transition-colors ${openId === s.id ? "text-blue-400" : "text-slate-400 group-hover:text-slate-200"}`}
+                  >
+                    {s.title}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            {/* content panel */}
+            <div className="lg:col-span-2">
+              <AnimatePresence mode="wait">
+                {STORY.filter((s) => s.id === openId).map((s) => (
+                  <motion.div
+                    key={s.id}
+                    initial={{ opacity: 0, x: 12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -12 }}
+                    transition={{ duration: 0.3 }}
+                    className="rounded-2xl border border-slate-800 bg-slate-900/40 p-8 h-full"
+                  >
+                    <p className="text-[10px] font-mono text-blue-400 mb-2">
+                      {s.label}
+                    </p>
+                    <h3 className="text-2xl font-extrabold text-white mb-6">
+                      {s.title}
+                    </h3>
+                    <div className="space-y-4">
+                      {s.content.map((para, i) => (
+                        <p
+                          key={i}
+                          className="text-slate-400 text-[15px] leading-relaxed"
+                          style={{ fontFamily: "'Lora', serif" }}
+                        >
+                          {para}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── MILESTONES ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mb-24"
+        >
+          <SectionLabel>Milestones</SectionLabel>
+          <div className="relative pl-6 border-l border-slate-800 space-y-7">
+            {MILESTONES.map((m, i) => {
+              const tc = TYPE_COLORS[m.type] || TYPE_COLORS.milestone;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 + i * 0.07 }}
+                  className="relative"
+                >
+                  <div
+                    className="absolute -left-[1.65rem] top-1.5 w-3 h-3 rounded-full border-2 border-[#06090f]"
+                    style={{ backgroundColor: tc.dot }}
+                  />
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                    <span className="text-[10px] font-mono text-slate-600 flex-shrink-0 w-20">
+                      {m.year}
+                    </span>
+                    <p className="text-slate-300 text-sm leading-relaxed">
+                      {m.event}
+                    </p>
+                    <span
+                      className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full flex-shrink-0"
+                      style={{
+                        color: tc.dot,
+                        backgroundColor: tc.dot + "18",
+                        border: `1px solid ${tc.dot}30`,
+                      }}
+                    >
+                      {tc.label}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* legend */}
+          <div className="flex flex-wrap gap-4 mt-8">
+            {Object.entries(TYPE_COLORS).map(([, v]) => (
+              <div key={v.label} className="flex items-center gap-1.5">
+                <div
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: v.dot }}
+                />
+                <span className="text-[10px] text-slate-600 font-mono">
+                  {v.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── TESTIMONIALS ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mb-24"
+        >
+          <SectionLabel>What People Say</SectionLabel>
+          <div className="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-10 sm:p-14 overflow-hidden">
+            <div className="absolute top-6 left-8 text-blue-500/10">
+              <FaQuoteLeft size={80} />
+            </div>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={testimonialIdx}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35 }}
+                className="relative z-10 max-w-2xl mx-auto text-center"
+              >
+                <p
+                  className="text-xl sm:text-2xl font-semibold text-white leading-relaxed mb-6"
+                  style={{ fontFamily: "'Lora', serif", fontStyle: "italic" }}
+                >
+                  "{TESTIMONIALS[testimonialIdx].quote}"
+                </p>
+                <p className="text-blue-400 font-bold text-sm">
+                  {TESTIMONIALS[testimonialIdx].author}
+                </p>
+                <p className="text-slate-600 text-xs font-mono mt-1">
+                  {TESTIMONIALS[testimonialIdx].location}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* controls */}
+            <div className="flex items-center justify-center gap-4 mt-10">
+              <button
+                onClick={prev}
+                className="w-9 h-9 rounded-full border border-slate-700 hover:border-blue-500 text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
+              >
+                ←
+              </button>
+              <div className="flex gap-2">
+                {TESTIMONIALS.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setIdx(i)}
+                    className="w-1.5 h-1.5 rounded-full transition-all"
+                    style={{
+                      backgroundColor:
+                        i === testimonialIdx ? "#3b82f6" : "#334155",
+                    }}
+                  />
+                ))}
+              </div>
+              <button
+                onClick={next}
+                className="w-9 h-9 rounded-full border border-slate-700 hover:border-blue-500 text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
+              >
+                →
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* ── CTA ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-violet-900/10 pointer-events-none" />
+          <div className="relative z-10">
+            <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3">
+              Open to opportunities
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              Let's build something great.
+            </h2>
+            <p
+              className="text-slate-400 text-sm mb-8 max-w-md mx-auto leading-relaxed"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Available for full-stack roles, backend contracts, and technical
+              education partnerships.
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <Link
+                to="/contact"
+                className="px-7 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-colors"
+              >
+                Hire Me
+              </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="px-7 py-3 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 font-bold text-sm transition-colors"
               >
                 Download Resume
               </a>
             </div>
-          </motion.section>
-
-          {/* Milestone Timeline */}
-          <motion.section
-            className="bg-gray-800 bg-opacity-90 rounded-2xl shadow-xl p-6 sm:p-10 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-blue-300 mb-6">Milestones</h2>
-            <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-500"></div>
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  className={`flex items-center mb-8 ${index % 2 === 0 ? "flex-row-reverse" : ""}`}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                >
-                  <div className="w-1/2 px-4">
-                    <div className="bg-gray-900 rounded-lg p-4 shadow-md">
-                      <p className="text-blue-300 font-semibold">{milestone.year}</p>
-                      <p className="text-gray-200">{milestone.event}</p>
-                    </div>
-                  </div>
-                  <div className="w-1/2"></div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* Testimonial Carousel */}
-          <motion.section
-            className="bg-gray-800 bg-opacity-90 rounded-2xl shadow-xl p-6 sm:p-10 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-center text-blue-300 mb-6">What People Say</h2>
-            <div className="relative max-w-3xl mx-auto">
-              <motion.div
-                key={testimonials[currentTestimonial].quote}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="bg-gray-900 rounded-lg p-6 text-center"
-              >
-                <p className="text-gray-200 italic text-lg">"{testimonials[currentTestimonial].quote}"</p>
-                <p className="text-blue-300 mt-2 font-semibold">— {testimonials[currentTestimonial].author}</p>
-              </motion.div>
-              <div className="flex justify-between mt-4">
-                <button
-                  onClick={prevTestimonial}
-                  className="px-4 py-2 bg-gray-700 text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  aria-label="Previous Testimonial"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={nextTestimonial}
-                  className="px-4 py-2 bg-gray-700 text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  aria-label="Next Testimonial"
-                >
-                  →
-                </button>
-              </div>
-            </div>
-          </motion.section>
-
-       </div>
-
-        {/* Sticky Sidebar */}
-        <div className="hidden lg:block w-64">
-          <div className="sticky top-24 bg-gray-800 bg-opacity-90 rounded-lg p-4 shadow-lg">
-            <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {sections.map((section) => (
-                <li key={section.title}>
-                  <button
-                    onClick={() => toggleSection(section.title)}
-                    className="text-blue-300 hover:text-blue-400 transition-colors w-full text-left"
-                    aria-label={`Jump to ${section.title}`}
-                  >
-                    {section.title}
-                  </button>
-                </li>
-              ))}
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-blue-300 hover:text-blue-400 transition-colors"
-                  aria-label="Contact Me"
-                >
-                  Contact Me
-                </Link>
-              </li>
-            </ul>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,13 +1,6 @@
 import { motion } from "framer-motion";
 
-const categories = [
-  "All",
-  "EdTech",
-  "IoT",
-  "Dashboard",
-  "E-Commerce",
-  "API Integration",
-];
+const categories = ["All", "Backend", "Full Stack", "Frontend", "IoT + AI"];
 
 export const FilterTabs = ({ active, onChange }) => {
   return (
@@ -16,7 +9,11 @@ export const FilterTabs = ({ active, onChange }) => {
         <button
           key={category}
           onClick={() => onChange(category)}
-          className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${active === category ? "text-white" : "text-slate-400 hover:text-white"}`}
+          className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+            active === category
+              ? "text-white"
+              : "text-slate-400 hover:text-white"
+          }`}
         >
           {active === category && (
             <motion.div

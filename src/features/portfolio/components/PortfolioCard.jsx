@@ -2,8 +2,18 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
+const CATEGORY_COLORS = {
+  Backend: { bg: "#3b82f620", text: "#60a5fa", border: "#3b82f640" },
+  "Full Stack": { bg: "#8b5cf620", text: "#a78bfa", border: "#8b5cf640" },
+  Frontend: { bg: "#06b6d420", text: "#22d3ee", border: "#06b6d440" },
+  "IoT + AI": { bg: "#10b98120", text: "#34d399", border: "#10b98140" },
+  EdTech: { bg: "#f59e0b20", text: "#fbbf24", border: "#f59e0b40" },
+};
+
 export const PortfolioCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const colors =
+    CATEGORY_COLORS[project.category] || CATEGORY_COLORS["Backend"];
 
   return (
     <motion.article
@@ -21,13 +31,20 @@ export const PortfolioCard = ({ project, index }) => {
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover"
-          animate={{ scale: isHovered ? 1.1 : 1 }}
+          animate={{ scale: isHovered ? 1.08 : 1 }}
           transition={{ duration: 0.6 }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent" />
 
-        {/* Category */}
-        <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-blue-500/20 backdrop-blur text-blue-300 text-xs font-medium border border-blue-500/30">
+        {/* Category badge */}
+        <span
+          className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold backdrop-blur"
+          style={{
+            backgroundColor: colors.bg,
+            color: colors.text,
+            border: `1px solid ${colors.border}`,
+          }}
+        >
           {project.category}
         </span>
 
@@ -45,10 +62,10 @@ export const PortfolioCard = ({ project, index }) => {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/90 backdrop-blur text-white rounded-lg text-sm font-medium hover:bg-slate-800"
+                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/90 backdrop-blur text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <FiGithub size={16} /> Code
+                  <FiGithub size={15} /> Code
                 </a>
               )}
               {project.live && (
@@ -56,10 +73,10 @@ export const PortfolioCard = ({ project, index }) => {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 ml-auto"
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 ml-auto transition-colors"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <FiExternalLink size={16} /> Live
+                  <FiExternalLink size={15} /> Live
                 </a>
               )}
             </motion.div>
@@ -69,16 +86,16 @@ export const PortfolioCard = ({ project, index }) => {
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors leading-snug">
           {project.title}
         </h3>
-        <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+        <p className="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
           {project.description}
         </p>
 
-        {/* Tech */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.slice(0, 3).map((tech) => (
+        {/* Tech pills */}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tech.slice(0, 4).map((tech) => (
             <span
               key={tech}
               className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300"
@@ -86,16 +103,21 @@ export const PortfolioCard = ({ project, index }) => {
               {tech}
             </span>
           ))}
+          {project.tech.length > 4 && (
+            <span className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-500">
+              +{project.tech.length - 4}
+            </span>
+          )}
         </div>
 
         {/* Metrics */}
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+        <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-800">
           {project.metrics.map((metric) => (
             <span
               key={metric}
-              className="text-xs text-slate-500 flex items-center gap-1"
+              className="text-xs text-slate-500 flex items-center gap-1.5"
             >
-              <span className="w-1 h-1 rounded-full bg-green-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 flex-shrink-0" />
               {metric}
             </span>
           ))}
