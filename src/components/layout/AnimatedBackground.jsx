@@ -1,7 +1,6 @@
-// src/components/AnimatedBackground.jsx
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const AnimatedBackground = () => {
+export default function AnimatedBackground() {
   const { scrollYProgress } = useScroll();
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -50]);
@@ -40,6 +39,4 @@ const AnimatedBackground = () => {
       />
     </div>
   );
-};
-
-export default AnimatedBackground;
+}

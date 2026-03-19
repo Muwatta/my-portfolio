@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
-import { navItems } from "../data/constants";
+import { navItems } from "../../data/constants";
 
 // FIXED: Use motion.create() instead of motion()
 const MotionLink = motion.create(Link);

@@ -1,7 +1,7 @@
 // src/hooks/useInView.js
 import { useState, useEffect, useRef } from "react";
 
-export const useInView = (threshold = 0.2, triggerOnce = true) => {
+export function useInView(threshold = 0.2, triggerOnce = true) {
   const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
@@ -21,6 +21,6 @@ export const useInView = (threshold = 0.2, triggerOnce = true) => {
   }, [threshold, triggerOnce]);
 
   return [ref, isInView];
-};
+}
 
 export default useInView;
