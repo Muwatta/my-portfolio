@@ -126,7 +126,7 @@ const SkillPill = ({ label, color = "#3b82f6" }) => (
 const SectionTitle = ({ children }) => (
   <div className="flex items-center gap-3 mb-6">
     <div className="w-1 h-6 rounded-full bg-gradient-to-b from-blue-400 to-violet-500" />
-    <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-slate-400">
+    <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-slate-500 dark:text-slate-400">
       {children}
     </h2>
   </div>
@@ -150,7 +150,7 @@ export default function Skills() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080c14] text-slate-200 relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#080c14] text-slate-800 dark:text-slate-200 relative overflow-hidden">
       <Helmet>
         <title>Skills | Abdullahi Musliudeen Oladipupo</title>
         <meta
@@ -250,7 +250,7 @@ export default function Skills() {
                 href="https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 text-sm font-semibold transition-colors"
               >
                 LinkedIn ↗
               </a>
@@ -258,7 +258,7 @@ export default function Skills() {
                 href="https://x.com/MusliudeenAbdu1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 text-sm font-semibold transition-colors"
               >
                 X ↗
               </a>
@@ -270,7 +270,7 @@ export default function Skills() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.6 }}
-            className="hidden xl:block w-72 rounded-xl bg-slate-900 border border-slate-800 p-5 flex-shrink-0"
+            className="hidden xl:block w-72 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-5 flex-shrink-0"
           >
             <div className="flex items-center gap-1.5 mb-4">
               <div className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
@@ -378,7 +378,7 @@ export default function Skills() {
             {PROFICIENCY.map((item, i) => (
               <div key={item.label}>
                 <div className="flex justify-between mb-1.5">
-                  <span className="text-sm text-slate-300">{item.label}</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-300">{item.label}</span>
                   <span className="text-xs font-mono text-slate-500">
                     {item.value}%
                   </span>
@@ -417,7 +417,7 @@ export default function Skills() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 + i * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="rounded-xl border border-slate-800 bg-slate-900/60 p-5 cursor-default"
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/60 p-5 cursor-default"
                 style={{ borderTopColor: p.accent, borderTopWidth: 2 }}
               >
                 <p
@@ -434,7 +434,7 @@ export default function Skills() {
                   {p.stack.map((s) => (
                     <span
                       key={s}
-                      className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400"
+                      className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-500 dark:text-slate-400"
                     >
                       {s}
                     </span>
@@ -453,7 +453,7 @@ export default function Skills() {
           className="mb-20"
         >
           <SectionTitle>Experience & Education</SectionTitle>
-          <div className="relative pl-6 border-l border-slate-800 space-y-8">
+          <div className="relative pl-6 border-l border-slate-200 dark:border-slate-800 space-y-8">
             {TIMELINE.map((item, i) => (
               <motion.div
                 key={i}
@@ -517,7 +517,7 @@ export default function Skills() {
             ].map((card) => (
               <div
                 key={card.label}
-                className="rounded-xl border border-slate-800 bg-slate-900/40 p-5"
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 p-5"
               >
                 <div className="text-2xl mb-3">{card.icon}</div>
                 <p className="font-bold text-white mb-1">{card.label}</p>
@@ -532,7 +532,7 @@ export default function Skills() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-center border border-slate-800 rounded-2xl p-10 bg-slate-900/30"
+          className="text-center border border-slate-200 dark:border-slate-800 rounded-2xl p-10 bg-slate-100/30 dark:bg-slate-900/30"
         >
           <p className="text-xs tracking-[0.2em] uppercase text-slate-500 mb-2 font-mono">
             Open to opportunities
@@ -554,7 +554,7 @@ export default function Skills() {
             <a
               href="/resume.pdf"
               download
-              className="px-6 py-3 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 font-bold text-sm transition-colors"
+              className="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-colors"
             >
               Download Resume
             </a>

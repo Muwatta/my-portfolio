@@ -70,7 +70,7 @@ const Contact = () => {
   };
 
   const inputBase =
-    "w-full bg-slate-900/80 border rounded-lg px-4 py-3 text-slate-200 text-sm placeholder-slate-600 focus:outline-none transition-all duration-200";
+    "w-full bg-white/80 dark:bg-slate-900/80 border rounded-lg px-4 py-3 text-slate-800 dark:text-slate-200 text-sm placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none transition-all duration-200";
 
   const inputStyle = (field) => ({
     borderColor: focused === field ? "#3b82f6" : "#1e293b",
@@ -79,7 +79,7 @@ const Contact = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#06090f] text-slate-200 relative overflow-hidden"
+      className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Helmet>
@@ -142,7 +142,7 @@ const Contact = () => {
             transition={{ delay: 0.2 }}
             className="lg:col-span-3"
           >
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-8">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 p-8">
               <p className="text-xs font-mono tracking-[0.2em] uppercase text-slate-500 mb-6">
                 Send a message
               </p>
@@ -151,7 +151,7 @@ const Contact = () => {
                 {/* name + email row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
                       Name
                     </label>
                     <input
@@ -168,7 +168,7 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
                       Email
                     </label>
                     <input
@@ -188,7 +188,7 @@ const Contact = () => {
 
                 {/* message */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">
+                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
                     Message
                   </label>
                   <textarea
@@ -274,7 +274,7 @@ const Contact = () => {
             </div>
 
             {/* contact links */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 p-6">
               <p className="text-xs font-mono tracking-[0.2em] uppercase text-slate-500 mb-5">
                 Find me on
               </p>
@@ -285,7 +285,7 @@ const Contact = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-900/30 hover:bg-slate-900/60 transition-all duration-200 group"
+                    className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-slate-700 bg-slate-100/30 dark:bg-slate-900/30 hover:bg-slate-900/60 transition-all duration-200 group"
                   >
                     <div
                       className="w-8 h-8 rounded-lg flex items-center justify-center text-sm flex-shrink-0"
@@ -300,7 +300,7 @@ const Contact = () => {
                       <p className="text-[10px] font-mono text-slate-600 uppercase tracking-wider">
                         {link.label}
                       </p>
-                      <p className="text-sm text-slate-300 group-hover:text-white transition-colors truncate">
+                      <p className="text-sm text-slate-700 dark:text-slate-300 group-hover:text-white transition-colors truncate">
                         {link.value}
                       </p>
                     </div>
@@ -311,7 +311,7 @@ const Contact = () => {
             </div>
 
             {/* response time */}
-            <div className="rounded-xl border border-slate-800 bg-slate-900/30 px-5 py-4">
+            <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/30 px-5 py-4">
               <p className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-1">
                 Response time
               </p>

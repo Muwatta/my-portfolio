@@ -2,15 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Flip Card CSS */
-.perspective {
-  perspective: 1000px;
+/* ── LIGHT THEME (default) ─────────────────────────────────── */
+:root {
+  --bg-primary:   #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-card:      #f1f5f9;
+  --border:       #e2e8f0;
+  --text-primary: #0f172a;
+  --text-muted:   #64748b;
+  --accent:       #2563eb;
 }
 
-.backface-hidden {
-  backface-visibility: hidden;
+
+.dark {
+  --bg-primary:   #020617;
+  --bg-secondary: #06090f;
+  --bg-card:      #0f172a;
+  --border:       #1e293b;
+  --text-primary: #f1f5f9;
+  --text-muted:   #64748b;
+  --accent:       #3b82f6;
 }
 
-.rotate-y-180 {
-  transform: rotateY(180deg);
+*, *::before, *::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
 }
+
+
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+
+.perspective       { perspective: 1000px; }
+.backface-hidden   { backface-visibility: hidden; }
+.rotate-y-180      { transform: rotateY(180deg); }

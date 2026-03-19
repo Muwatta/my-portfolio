@@ -13,9 +13,8 @@ export default function Portfolio() {
         />
       </Helmet>
 
-      <div className="relative min-h-screen bg-slate-950 text-slate-100 selection:bg-blue-500/30">
+      <div className="relative min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-500/30 transition-colors duration-300">
         <AnimatedBackground />
-
         <main className="relative z-10">
           <Hero />
           <ProjectGrid />

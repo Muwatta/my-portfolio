@@ -109,7 +109,7 @@ const Blog = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#06090f] text-slate-200 relative overflow-hidden"
+      className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Helmet>
@@ -176,7 +176,7 @@ const Blog = () => {
               placeholder="Search title, topic or tag…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-9 pr-4 py-2 rounded-lg bg-slate-900/80 border border-slate-800 text-slate-300 text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-64 transition-colors"
+              className="pl-9 pr-4 py-2 rounded-lg bg-white/80 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 text-sm placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none focus:border-blue-500/60 w-64 transition-colors"
             />
           </div>
           <div className="flex flex-wrap gap-2">
@@ -227,7 +227,7 @@ const Blog = () => {
               className="mb-14 group"
             >
               <SectionLabel>Featured</SectionLabel>
-              <div className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/40 hover:border-slate-700 transition-colors duration-300">
+              <div className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 hover:border-slate-700 transition-colors duration-300">
                 <div className="lg:col-span-7 relative overflow-hidden h-56 lg:h-auto min-h-[300px]">
                   <img
                     src={featured.image}
@@ -270,7 +270,7 @@ const Blog = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 mt-6 pt-5 border-t border-slate-800">
+                  <div className="flex items-center gap-4 mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
                     <a
                       href={featured.medium_link}
                       target="_blank"
@@ -317,7 +317,7 @@ const Blog = () => {
                     visible: { opacity: 1, y: 0 },
                   }}
                   whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                  className="group flex flex-col rounded-xl border border-slate-800 bg-slate-900/40 overflow-hidden hover:border-slate-700 transition-colors duration-300"
+                  className="group flex flex-col rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 overflow-hidden hover:border-slate-700 transition-colors duration-300"
                 >
                   <div className="overflow-hidden h-44 relative">
                     <img
@@ -358,7 +358,7 @@ const Blog = () => {
                         ))}
                       </div>
                     )}
-                    <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-800/80">
+                    <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800/80">
                       <a
                         href={blog.medium_link}
                         target="_blank"
@@ -412,7 +412,7 @@ const Blog = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mb-12 rounded-xl border border-dashed border-slate-700 bg-slate-900/30 p-6"
+            className="mb-12 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-100/30 dark:bg-slate-900/30 p-6"
           >
             <p className="text-xs font-mono text-blue-400 mb-3 uppercase tracking-widest">
               📝 How to add a new post
@@ -424,7 +424,7 @@ const Blog = () => {
               </code>{" "}
               and add a new object to the array:
             </p>
-            <pre className="text-[11px] text-slate-400 bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-800">{`{
+            <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`{
   "id": 5,                          ← next number in sequence
   "title": "Your Post Title",
   "excerpt": "Short teaser shown on cards (1-2 sentences).",
@@ -448,7 +448,7 @@ const Blog = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-violet-900/10 pointer-events-none" />
           <div className="relative z-10">
@@ -477,7 +477,7 @@ const Blog = () => {
                 </motion.p>
               ) : (
                 <motion.div key="form" className="flex justify-center">
-                  <div className="flex rounded-lg overflow-hidden border border-slate-700 w-full max-w-sm focus-within:border-blue-500 transition-colors">
+                  <div className="flex rounded-lg overflow-hidden border border-slate-300 dark:border-slate-700 w-full max-w-sm focus-within:border-blue-500 transition-colors">
                     <input
                       type="email"
                       placeholder="your@email.com"
@@ -486,7 +486,7 @@ const Blog = () => {
                       onKeyDown={(e) =>
                         e.key === "Enter" && email && setSubscribed(true)
                       }
-                      className="flex-1 px-4 py-3 bg-slate-900 text-slate-200 text-sm placeholder-slate-600 focus:outline-none"
+                      className="flex-1 px-4 py-3 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-sm placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none"
                     />
                     <button
                       onClick={() => email && setSubscribed(true)}

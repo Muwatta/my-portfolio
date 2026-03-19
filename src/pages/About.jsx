@@ -136,7 +136,7 @@ const About = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#06090f] text-slate-200 relative overflow-hidden"
+      className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Helmet>
@@ -217,7 +217,7 @@ const About = () => {
               <a
                 href="/resume.pdf"
                 download
-                className="px-6 py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-bold transition-colors"
+                className="px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 text-sm font-bold transition-colors"
               >
                 Download CV
               </a>
@@ -239,7 +239,7 @@ const About = () => {
             ].map((s) => (
               <div
                 key={s.label}
-                className="rounded-xl border border-slate-800 bg-slate-900/50 px-4 py-3"
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/50 px-4 py-3"
               >
                 <p className="text-2xl font-extrabold text-white">{s.value}</p>
                 <p className="text-[11px] text-slate-500 mt-0.5">{s.label}</p>
@@ -292,7 +292,7 @@ const About = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -12 }}
                     transition={{ duration: 0.3 }}
-                    className="rounded-2xl border border-slate-800 bg-slate-900/40 p-8 h-full"
+                    className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 p-8 h-full"
                   >
                     <p className="text-[10px] font-mono text-blue-400 mb-2">
                       {s.label}
@@ -326,7 +326,7 @@ const About = () => {
           className="mb-24"
         >
           <SectionLabel>Milestones</SectionLabel>
-          <div className="relative pl-6 border-l border-slate-800 space-y-7">
+          <div className="relative pl-6 border-l border-slate-200 dark:border-slate-800 space-y-7">
             {MILESTONES.map((m, i) => {
               const tc = TYPE_COLORS[m.type] || TYPE_COLORS.milestone;
               return (
@@ -388,7 +388,7 @@ const About = () => {
           className="mb-24"
         >
           <SectionLabel>What People Say</SectionLabel>
-          <div className="relative rounded-2xl border border-slate-800 bg-slate-900/40 p-10 sm:p-14 overflow-hidden">
+          <div className="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/40 dark:bg-slate-900/40 p-10 sm:p-14 overflow-hidden">
             <div className="absolute top-6 left-8 text-blue-500/10">
               <FaQuoteLeft size={80} />
             </div>
@@ -420,7 +420,7 @@ const About = () => {
             <div className="flex items-center justify-center gap-4 mt-10">
               <button
                 onClick={prev}
-                className="w-9 h-9 rounded-full border border-slate-700 hover:border-blue-500 text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
+                className="w-9 h-9 rounded-full border border-slate-300 dark:border-slate-700 hover:border-blue-500 text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
               >
                 ←
               </button>
@@ -439,7 +439,7 @@ const About = () => {
               </div>
               <button
                 onClick={next}
-                className="w-9 h-9 rounded-full border border-slate-700 hover:border-blue-500 text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
+                className="w-9 h-9 rounded-full border border-slate-300 dark:border-slate-700 hover:border-blue-500 text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
               >
                 →
               </button>
@@ -452,7 +452,7 @@ const About = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="rounded-2xl border border-slate-800 bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
+          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-violet-900/10 pointer-events-none" />
           <div className="relative z-10">
@@ -479,7 +479,7 @@ const About = () => {
               <a
                 href="/resume.pdf"
                 download
-                className="px-7 py-3 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 font-bold text-sm transition-colors"
+                className="px-7 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-colors"
               >
                 Download Resume
               </a>

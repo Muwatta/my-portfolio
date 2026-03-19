@@ -66,7 +66,7 @@ const BlogPost = () => {
   // ── loading ──
   if (loading)
     return (
-      <div className="min-h-screen bg-[#06090f] flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-[#06090f] flex items-center justify-center">
         <div className="w-6 h-6 rounded-full border-2 border-blue-500 border-t-transparent animate-spin" />
       </div>
     );
@@ -74,7 +74,7 @@ const BlogPost = () => {
   // ── 404 ──
   if (!post)
     return (
-      <div className="min-h-screen bg-[#06090f] flex flex-col items-center justify-center text-slate-400 gap-4">
+      <div className="min-h-screen bg-white dark:bg-[#06090f] flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 gap-4">
         <p className="text-6xl font-extrabold text-slate-700">404</p>
         <p className="text-sm">Post not found.</p>
         <Link
@@ -90,7 +90,7 @@ const BlogPost = () => {
 
   return (
     <div
-      className="min-h-screen bg-[#06090f] text-slate-200 relative overflow-hidden"
+      className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Helmet>
@@ -152,7 +152,7 @@ const BlogPost = () => {
           </h1>
 
           <p
-            className="text-lg text-slate-400 leading-relaxed border-l-2 border-blue-500 pl-5"
+            className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed border-l-2 border-blue-500 pl-5"
             style={{ fontFamily: "'Lora', serif", fontStyle: "italic" }}
           >
             {post.excerpt}
@@ -164,7 +164,7 @@ const BlogPost = () => {
               {post.tags.map((t) => (
                 <span
                   key={t}
-                  className="text-[10px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-500 border border-slate-700"
+                  className="text-[10px] px-2.5 py-1 rounded-full bg-slate-800 text-slate-500 border border-slate-300 dark:border-slate-700"
                 >
                   {t}
                 </span>
@@ -173,7 +173,7 @@ const BlogPost = () => {
           )}
 
           {/* author row */}
-          <div className="flex items-center justify-between mt-7 pt-6 border-t border-slate-800">
+          <div className="flex items-center justify-between mt-7 pt-6 border-t border-slate-200 dark:border-slate-800">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-slate-700 flex-shrink-0">
                 <img
@@ -183,7 +183,7 @@ const BlogPost = () => {
                 />
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-300">
+                <p className="text-xs font-bold text-slate-700 dark:text-slate-300">
                   Abdullahi Musliudeen
                 </p>
                 <p className="text-[10px] text-slate-600">
@@ -218,7 +218,7 @@ const BlogPost = () => {
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2 }}
-          className="rounded-2xl overflow-hidden mb-12 border border-slate-800"
+          className="rounded-2xl overflow-hidden mb-12 border border-slate-200 dark:border-slate-800"
         >
           <img
             src={post.image}
@@ -268,18 +268,18 @@ const BlogPost = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="grid grid-cols-2 gap-4 border-t border-slate-800 pt-10"
+            className="grid grid-cols-2 gap-4 border-t border-slate-200 dark:border-slate-800 pt-10"
           >
             {prev ? (
               <Link
                 to={`/blog/${prev.id}`}
-                className="group flex flex-col gap-1.5 p-4 rounded-xl border border-slate-800 hover:border-blue-500/30 bg-slate-900/40 transition-colors"
+                className="group flex flex-col gap-1.5 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/30 bg-slate-100/40 dark:bg-slate-900/40 transition-colors"
               >
                 <span className="text-[10px] font-mono uppercase tracking-widest text-slate-600 flex items-center gap-1">
                   <HiArrowLeft className="transition-transform group-hover:-translate-x-1" />{" "}
                   Previous
                 </span>
-                <span className="text-sm font-bold text-slate-300 line-clamp-2">
+                <span className="text-sm font-bold text-slate-700 dark:text-slate-300 line-clamp-2">
                   {prev.title}
                 </span>
               </Link>
@@ -289,13 +289,13 @@ const BlogPost = () => {
             {next ? (
               <Link
                 to={`/blog/${next.id}`}
-                className="group flex flex-col gap-1.5 p-4 rounded-xl border border-slate-800 hover:border-blue-500/30 bg-slate-900/40 transition-colors text-right"
+                className="group flex flex-col gap-1.5 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-500/30 bg-slate-100/40 dark:bg-slate-900/40 transition-colors text-right"
               >
                 <span className="text-[10px] font-mono uppercase tracking-widest text-slate-600 flex items-center gap-1 justify-end">
                   Next{" "}
                   <HiArrowRight className="transition-transform group-hover:translate-x-1" />
                 </span>
-                <span className="text-sm font-bold text-slate-300 line-clamp-2">
+                <span className="text-sm font-bold text-slate-700 dark:text-slate-300 line-clamp-2">
                   {next.title}
                 </span>
               </Link>
