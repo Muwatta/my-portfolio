@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";  
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Skills from "./pages/Skills";
@@ -13,25 +14,55 @@ import Loader from "./components/Loader";
 import Workshops from "./components/Workshops";
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Preload critical assets
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000);
-    return () => clearTimeout(timer);
+    const preloadAssets = async () => {
+      const criticalImages = [
+        "https://res.cloudinary.com/dee5edoss/image/upload/v1763611836/national_image_otksdm.jpg",
+      ];
+
+      try {
+        await Promise.all(
+          criticalImages.map(
+            (src) =>
+              new Promise((resolve) => {
+                const img = new Image();
+                img.onload = resolve;
+                img.onerror = resolve; // Continue even if image fails
+                img.src = src;
+              })
+          )        );
+      } catch (error) {
+        console.log("Preload error:", error);
+      }
+
+      // Minimum display time for loader (prevents flash)
+      setTimeout(() => setIsLoading(false), 1500);
+    };
+
+    preloadAssets();
   }, []);
 
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Navbar />
-          <div className="min-h-screen flex flex-col">
+    <div className="relative min-h-screen bg-slate-950">
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <Loader key="loader" onComplete={() => setIsLoading(false)} />
+        ) : (
+          <motion.div
+            key="app"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col min-h-screen"
+          >
+            <Navbar />
             <main className="flex-grow">
               <Routes>
-                <Route path="/workshops" element={<Workshops />} />
                 <Route path="/" element={<Home />} />
+                <Route path="/workshops" element={<Workshops />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogPost />} />
                 <Route path="/portfolio" element={<Portfolio />} />
@@ -41,10 +72,10 @@ function App() {
               </Routes>
             </main>
             <Footer />
-          </div>
-        </>
-      )}
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 

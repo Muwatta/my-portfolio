@@ -1,124 +1,183 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
+import { navItems } from "../data/constants";
+
+// FIXED: Use motion.create() instead of motion()
+const MotionLink = motion.create(Link);
+const MotionNavLink = motion.create(NavLink);
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
-  const navItems = ["Portfolio", "Skills", "Blog", "Contact", "About"];
-
-  // Animation variants for mobile menu
   const menuVariants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
     closed: {
       opacity: 0,
-      y: -20,
+      height: 0,
       transition: { duration: 0.3, ease: "easeIn" },
+    },
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
+  const itemVariants = {
+    closed: { opacity: 0, x: -20 },
+    open: { opacity: 1, x: 0 },
+  };
+
   return (
-    <nav className="sticky top-0 w-full z-50 bg-gradient-to-r from-gray-900 to-blue-900 bg-opacity-90 backdrop-blur-sm shadow-lg">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+    <motion.nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-slate-950/90 backdrop-blur-md border-b border-slate-800/50 shadow-lg"
+          : "bg-transparent"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="container mx-auto px-6">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0">
-            <motion.h1
-              className="text-2xl font-extrabold text-white"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-            >
-              Muwatta
-            </motion.h1>
-          </Link>
+          <MotionLink
+            to="/"
+            className="flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
+              AM
+            </h1>
+          </MotionLink>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <NavLink
-                key={item}
-                to={`/${item.toLowerCase()}`}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item, i) => (
+              <MotionNavLink
+                key={item.name}
+                to={item.path}
                 className={({ isActive }) =>
-                  `relative text-white font-medium hover:text-blue-300 transition-colors duration-300 ${
-                    isActive ? "text-blue-300 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-300" : ""
+                  `relative text-sm font-medium transition-colors duration-300 py-2 ${
+                    isActive ? "text-white" : "text-slate-400 hover:text-white"
                   }`
                 }
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
               >
-                {item}
-              </NavLink>
+                {({ isActive }) => (
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    {item.name}
+                    <motion.span
+                      className="absolute -bottom-1 left-0 h-0.5 bg-blue-500 rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: isActive ? "100%" : 0 }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.span>
+                )}
+              </MotionNavLink>
             ))}
-            <Link
-              to="/contact"
-              className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-              aria-label="Hire Muwatta"
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
             >
-              Hire Me
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="text-white focus:outline-none focus:ring-2 focus:ring-blue-500 rounded"
-              aria-label="Toggle menu"
-              aria-expanded={isOpen}
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <motion.div
-            className="md:hidden bg-gray-800 bg-opacity-95"
-            initial="closed"
-            animate="open"
-            variants={menuVariants}
-          >
-            <div className="px-4 pt-4 pb-6 space-y-4">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item}
-                  to={`/${item.toLowerCase()}`}
-                  onClick={() => setIsOpen(false)}
-                  className={({ isActive }) =>
-                    `block text-white font-medium hover:text-blue-300 transition-colors duration-300 ${
-                      isActive ? "text-blue-300" : ""
-                    }`
-                  }
-                >
-
-
-                  
-                  {item}
-                </NavLink>
-              ))}
               <Link
                 to="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block px-4 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 text-center"
-                aria-label="Hire Muwatta"
+                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-indigo-500 transition-all shadow-lg shadow-blue-500/25"
               >
                 Hire Me
               </Link>
+            </motion.div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            onClick={toggleMenu}
+            className="md:hidden relative w-10 h-10 flex items-center justify-center text-white rounded-lg hover:bg-slate-800/50"
+            whileTap={{ scale: 0.9 }}
+            aria-label="Toggle menu"
+          >
+            <AnimatePresence mode="wait">
+              {isOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                >
+                  <FiX size={24} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                >
+                  <FiMenu size={24} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="md:hidden absolute top-full left-0 right-0 bg-slate-950/95 backdrop-blur-xl border-b border-slate-800/50 overflow-hidden"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={menuVariants}
+          >
+            <div className="container mx-auto px-6 py-6 space-y-1">
+              {navItems.map((item) => (
+                <motion.div key={item.name} variants={itemVariants}>
+                  <NavLink
+                    to={item.path}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      `block py-3 px-4 rounded-xl text-base font-medium transition-all ${
+                        isActive
+                          ? "bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                          : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                      }`
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         )}
-      </div>
-    </nav>
+      </AnimatePresence>
+    </motion.nav>
   );
 };
 
