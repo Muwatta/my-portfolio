@@ -16,7 +16,7 @@ export const projects = [
     ],
     metrics: ["JWT Auth", "Dockerized", "CI/CD Pipeline"],
     image: "/images/atTheNational.jpg",
-    github: "https://github.com/Muwatta/alx-project-nexus",
+    github: "https://github.com/Muwatta/e-shop",
     live: null,
     featured: true,
   },

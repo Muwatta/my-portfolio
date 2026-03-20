@@ -16,7 +16,6 @@ const SKILLS = {
     "Python",
     "Django",
     "Django REST Framework",
-    "Node.js",
     "REST APIs",
     "JWT Auth",
     "RBAC",
@@ -65,7 +64,7 @@ const TIMELINE = [
     desc: "Completed intensive program with E-commerce backend capstone.",
   },
   {
-    year: "2019–2024",
+    year: "2019–2022",
     role: "B.A. Arabic Education",
     org: "Ahmadu Bello University, Zaria",
     type: "edu",

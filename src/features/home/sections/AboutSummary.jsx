@@ -37,11 +37,7 @@ export const AboutSummary = () => {
                 mentorship.
               </p>
             </div>
-            <div className="mt-8">
-              <MagneticButton as={Link} to="/about" variant="secondary">
-                Full Background →
-              </MagneticButton>
-            </div>
+            
           </motion.div>
 
           <motion.div

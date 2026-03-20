@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── LIGHT THEME (default) ─────────────────────────────────── */
+/* ── LIGHT THEME (default) */
 :root {
   --bg-primary:   #ffffff;
   --bg-secondary: #f8fafc;

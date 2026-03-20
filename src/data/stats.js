@@ -1,6 +1,6 @@
 export const impactStats = [
   {
-    value: 50,
+    value: 100,
     suffix: "+",
     label: "Students Mentored",
     context: "Into tech careers",
@@ -9,7 +9,7 @@ export const impactStats = [
     value: 3,
     suffix: "",
     label: "Production Systems",
-    context: "Serving 10,000+ users",
+    context: "Serving 5,000+ users",
   },
   {
     value: 12,
@@ -26,11 +26,11 @@ export const impactStats = [
 ];
 
 export const recognition = [
-  { title: "Girls in ICT Award", year: "2024", type: "Finalist" },
+  { title: "Girls in ICT Award", year: "2025", type: "Finalist" },
   {
     title: "African Intelligence Hackathon",
-    year: "2023",
+    year: "2025",
     type: "2nd Runner-up",
   },
-  { title: "Codeavour 7.0", year: "2023", type: "National Volunteer" },
+  { title: "Codeavour 7.0", year: "2025", type: "National Volunteer" },
 ];
