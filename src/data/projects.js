@@ -35,7 +35,8 @@ export const projects = [
       "Docker",
     ],
     metrics: ["Multi-role system", "JWT RBAC", "Docker ready"],
-    image: "/images/withMyStudent.jpg",
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
     github: "https://github.com/Muwatta/nexuslms",
     live: null,
     featured: true,
@@ -48,7 +49,8 @@ export const projects = [
       "Django REST backend for a fintech platform exposing secure JSON endpoints consumed by a React frontend. Fully Dockerized with JWT authentication and production-ready architecture.",
     tech: ["Django REST", "PostgreSQL", "JWT", "Docker"],
     metrics: ["Secure JWT Auth", "REST API", "Dockerized"],
-    image: "/images/scratch_students.jpg",
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1773992369/Screenshot_2026-03-20_083744_p8fjvc.png",
     github: "https://github.com/Muwatta/nexus-fintech-backend",
     live: null,
     featured: true,
