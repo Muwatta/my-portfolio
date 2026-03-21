@@ -28,7 +28,7 @@ export const AboutSummary = () => {
               </p>
               <p>
                 Currently leading technical architecture for NigeriaSkills LMS,
-                a platform training 2,000+ students across 12 states. Previously
+                a platform training 500+ students across 5 states. Previously
                 mentored 50+ developers into their first engineering roles.
               </p>
               <p>
@@ -47,7 +47,7 @@ export const AboutSummary = () => {
             className="grid grid-cols-2 gap-4"
           >
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">6+</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">2+</div>
               <div className="text-slate-400 text-sm">Years Building</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
@@ -55,7 +55,7 @@ export const AboutSummary = () => {
               <div className="text-slate-400 text-sm">Developers Mentored</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">10k+</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">500+</div>
               <div className="text-slate-400 text-sm">Users Served</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">

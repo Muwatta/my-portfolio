@@ -1,10 +1,10 @@
 export const technicalSkills = [
-  { name: "React & Next.js", level: 95, category: "Frontend" },
-  { name: "TypeScript", level: 90, category: "Frontend" },
-  { name: "Django & Django REST", level: 92, category: "Backend" },
+  { name: "React & Next.js", level: 90, category: "Frontend" },
+  { name: "TypeScript", level: 85, category: "Frontend" },
+  { name: "Django & Django REST", level: 90, category: "Backend" },
   { name: "PostgreSQL", level: 88, category: "Database" },
   { name: "System Design", level: 85, category: "Architecture" },
-  { name: "AWS & DevOps", level: 80, category: "Infrastructure" },
+  { name: "DevOps", level: 50, category: "Infrastructure" },
 ];
 
 export const skillCategories = [
@@ -21,7 +21,7 @@ export const skillCategories = [
   },
   {
     title: "DevOps & Infrastructure",
-    skills: ["AWS", "Docker", "CI/CD", "Linux", "Nginx"],
+    skills: ["Docker", "CI/CD", "Linux", "Nginx"],
     description: "Deployment pipelines and cloud infrastructure management",
   },
 ];

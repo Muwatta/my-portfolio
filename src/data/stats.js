@@ -12,7 +12,7 @@ export const impactStats = [
     context: "Serving 5,000+ users",
   },
   {
-    value: 12,
+    value: 5,
     suffix: "",
     label: "States Reached",
     context: "With EdTech deployments",
