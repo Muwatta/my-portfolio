@@ -38,7 +38,7 @@ export const projects = [
     ],
     metrics: ["Live on Render", "Dockerized", "CI/CD Pipeline"],
     image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
+      "https://repository-images.githubusercontent.com/673056755/2f723190-6c2d-4572-adef-1e38afc79cc7",
     github: "https://github.com/Muwatta/ShopCore",
     live: "https://alx-project-nexus-ng70.onrender.com",
     featured: true,
@@ -52,7 +52,7 @@ export const projects = [
     metrics: ["Fully Displayed", "Google map integrated"],
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1774204504/Screenshot_2026-03-22_193314_qqku1x.png",
-    github: "https://github.com/Muwatta/school_lms_spa",
+    github: "https://github.com/Muwatta/amun_private_academy",
     live: "https://amunbrightacademy.netlify.app/",
     featured: true,
   },
@@ -64,7 +64,7 @@ export const projects = [
       "Real-time messaging REST API built with Django signals, a custom ORM manager for unread messages, nested routing, async operations, and a full CI/CD pipeline. Containerized and production-ready.",
     tech: ["Django REST", "PostgreSQL", "Docker", "GitHub Actions"],
     metrics: ["Signal-driven", "Custom ORM manager", "CI/CD ready"],
-    image: "/images/atTheNational.jpg",
+    image: "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
     github: "https://github.com/Muwatta/NexTalk",
     live: null,
     featured: true,
@@ -101,19 +101,6 @@ export const projects = [
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1773992369/Screenshot_2026-03-20_083744_p8fjvc.png",
     github: "https://github.com/Muwatta/nexus-fintech-backend",
-    live: null,
-    featured: false,
-  },
-  {
-    id: "ate-lms-backend",
-    title: "ATE LMS Backend",
-    category: "Backend",
-    description:
-      "Multi-role LMS backend with secure APIs, background email notifications via Celery, and a modular architecture designed for real-world deployment.",
-    tech: ["Django REST", "PostgreSQL", "Celery", "JWT"],
-    metrics: ["Multi-role RBAC", "Background jobs", "Modular design"],
-    image: "/images/atTheNational.jpg",
-    github: "https://github.com/Muwatta/ate_lms_backend",
     live: null,
     featured: false,
   },
