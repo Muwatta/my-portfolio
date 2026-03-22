@@ -14,7 +14,7 @@ export const projects = [
       "Paystack",
       "Docker",
     ],
-    metrics: ["5-role RBAC", "8/8 tests passing", "Paystack integrated"],
+    metrics: ["5-role RBAC", "full tests passing", "Paystack integrated"],
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
     github: "https://github.com/Muwatta/nexuslms",
@@ -40,6 +40,19 @@ export const projects = [
     image: "/images/atTheNational.jpg",
     github: "https://github.com/Muwatta/ShopCore",
     live: "https://alx-project-nexus-ng70.onrender.com",
+    featured: true,
+  },
+  {
+    id: "School landing page",
+    title: "School landing page",
+    category: "Frontend",
+    description: "",
+    tech: ["React", "Tailwind", "TypeScript", "Vite"],
+    metrics: ["Fully Displayed", "", "Google map integrated"],
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
+    github: "https://github.com/Muwatta/school_lms_spa",
+    live: "https://amunbrightacademy.netlify.app/",
     featured: true,
   },
   {
