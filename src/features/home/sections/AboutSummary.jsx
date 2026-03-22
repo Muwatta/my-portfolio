@@ -55,7 +55,7 @@ export const AboutSummary = () => {
               <div className="text-slate-400 text-sm">Developers Mentored</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">500+</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">100+</div>
               <div className="text-slate-400 text-sm">Users Served</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
