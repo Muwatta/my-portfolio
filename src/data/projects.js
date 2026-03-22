@@ -37,7 +37,8 @@ export const projects = [
       "GitHub Actions",
     ],
     metrics: ["Live on Render", "Dockerized", "CI/CD Pipeline"],
-    image: "/images/atTheNational.jpg",
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
     github: "https://github.com/Muwatta/ShopCore",
     live: "https://alx-project-nexus-ng70.onrender.com",
     featured: true,
@@ -48,9 +49,9 @@ export const projects = [
     category: "Frontend",
     description: "",
     tech: ["React", "Tailwind", "TypeScript", "Vite"],
-    metrics: ["Fully Displayed", "", "Google map integrated"],
+    metrics: ["Fully Displayed", "Google map integrated"],
     image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1774204504/Screenshot_2026-03-22_193314_qqku1x.png",
     github: "https://github.com/Muwatta/school_lms_spa",
     live: "https://amunbrightacademy.netlify.app/",
     featured: true,
