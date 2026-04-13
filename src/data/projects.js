@@ -64,7 +64,8 @@ export const projects = [
       "Real-time messaging REST API built with Django signals, a custom ORM manager for unread messages, nested routing, async operations, and a full CI/CD pipeline. Containerized and production-ready.",
     tech: ["Django REST", "PostgreSQL", "Docker", "GitHub Actions"],
     metrics: ["Signal-driven", "Custom ORM manager", "CI/CD ready"],
-    image: "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
     github: "https://github.com/Muwatta/NexTalk",
     live: null,
     featured: true,
@@ -77,7 +78,7 @@ export const projects = [
       "Autonomous crop protection system using computer vision for disease detection, ML-based classification, growth tracking over time, and an AI advisory engine for irrigation and protection recommendations.",
     tech: ["Python", "OpenCV", "Flask", "ML", "Raspberry Pi"],
     metrics: ["Disease detection", "ML classification", "Advisory engine"],
-    image: "/images/scratch_students.jpg",
+    image: "/images/agroguard.png",
     github: "https://github.com/Muwatta/agroguard",
     live: null,
     featured: true,
@@ -103,6 +104,30 @@ export const projects = [
     github: "https://github.com/Muwatta/nexus-fintech-backend",
     live: null,
     featured: false,
+  },
+  {
+    id: "dghi-academy",
+    title: "DGHI Academy — School Website",
+    category: "Full Stack",
+    description:
+      "A complete school website with separate sections for morning school and evening madrasa. Built with Next.js 14, TypeScript, Tailwind CSS, and Supabase for authentication and real‑time order management. Includes dynamic forms, analytics, and WhatsApp integration.",
+    tech: [
+      "Next.js 14",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Vercel",
+      "Resend",
+      "Zustand",
+    ],
+    metrics: [
+      "200+ visitors (first week)",
+    ],
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1775469651/logo_dgh_lynlvp.jpg",
+    github: "https://github.com/muwatta/dgh-academy",
+    live: "https://dghacademy.com.ng",
+    featured: true,
   },
 ];
 
