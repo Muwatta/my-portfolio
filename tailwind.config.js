@@ -4,7 +4,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // shared accent — same in both themes
         brand: {
           400: "#60a5fa",
           500: "#3b82f6",

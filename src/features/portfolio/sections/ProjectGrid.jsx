@@ -4,6 +4,7 @@ import { Container } from "../../../components/layout/Container";
 import { PortfolioCard } from "../components/PortfolioCard";
 import { FilterTabs } from "../components/FilterTabs";
 import { projects } from "../../../data";
+import { Link } from "react-router-dom";
 
 export const ProjectGrid = () => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -22,20 +23,20 @@ export const ProjectGrid = () => {
         {/* Section header */}
         <div className="text-center mb-8 sm:mb-10 px-2">
           <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3">
-            Selected Work
+            All Projects
           </p>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-3">
-            Production{" "}
+            Everything I've{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-              Systems
+              Built
             </span>
           </h2>
           <p
             className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed"
             style={{ fontFamily: "'Lora', serif" }}
           >
-            Real-world backends, full-stack apps, and IoT systems — built,
-            shipped, and open source.
+            A complete archive of my public work — from production backends to
+            experimental prototypes.
           </p>
         </div>
 
@@ -78,13 +79,29 @@ export const ProjectGrid = () => {
           </div>
         )}
 
+        {/* Back to Featured Projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mt-12 text-center"
+        >
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-700 hover:border-blue-500/50 text-slate-300 hover:text-white text-sm font-bold transition-all"
+          >
+            ← Back to Featured Projects
+          </Link>
+        </motion.div>
+
         {/* GitHub CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-14 text-center"
+          className="mt-6 text-center"
         >
           <p className="text-slate-500 text-sm mb-4">
             See everything I'm building

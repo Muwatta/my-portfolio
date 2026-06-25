@@ -9,12 +9,13 @@ import {
   FaHeart,
   FaEnvelope,
   FaMapMarkerAlt,
+  FaLocationArrow,
 } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { useState, useEffect } from "react";
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+// DAT─
 
 const SOCIAL_LINKS = [
   {
@@ -91,7 +92,7 @@ const CONTACT_INFO = [
   },
 ];
 
-// ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
+// SUB-COMPONENTS
 
 const SocialIcon = ({ href, icon: Icon, label, color, hoverBg }) => {
   const [hovered, setHovered] = useState(false);
@@ -211,7 +212,7 @@ const FooterHeading = ({ children, accent = "bg-blue-500" }) => (
   </h4>
 );
 
-// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
+// MAIN COMPONENT
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -319,14 +320,14 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 dark:text-slate-600">
             <p className="flex items-center gap-1 flex-wrap justify-center sm:justify-start">
-              © {year} Abdullahi Musliudeen · Made with
+              © {year} Abdullahi Musliudeen ·
               <motion.span
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{ duration: 1.2, repeat: Infinity }}
               >
-                <FaHeart className="text-red-500 w-3 h-3 mx-0.5" />
+                <FaLocationArrow className="text-red-500 w-3 h-3 mx-0.5" />
               </motion.span>
-              in Jos, Nigeria
+              in Lagos, Nigeria
             </p>
             <div className="flex gap-5">
               {["Privacy", "Terms"].map((item) => (

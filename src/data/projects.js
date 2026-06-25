@@ -1,5 +1,56 @@
 export const projects = [
   {
+    id: "ssc-cooperative",
+    title: "SSC Cooperative — Full Stack Management System",
+    category: "Full Stack",
+    description:
+      "Complete cooperative management system with role-based access for Admin, Committee, and Staff. Features member registration, savings posting, loan applications with 2‑stage approval, surety management, repayment tracking, and automated email notifications via Resend (banking‑style templates). Built with a secure Django REST API and a responsive React + TypeScript frontend, deployed on Render and Vercel.",
+    tech: [
+      "Django REST",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "PostgreSQL",
+      "Resend",
+      "JWT",
+      "Framer Motion",
+    ],
+    metrics: [
+      "Live in production",
+      "Banking‑style email templates",
+      "Loan approval workflow",
+      "Dark mode support",
+    ],
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1782392024/Screenshot_2026-06-25_131450_idclwm.png",
+    github: "https://github.com/Muwatta/ssc-cooperative-system",
+    live: "https://solacestaffcooperative.com.ng",
+    featured: true,
+  },
+  {
+    id: "dghi-academy",
+    title: "DGHI Academy — School Website",
+    category: "Full Stack",
+    description:
+      "A complete school website with separate sections for morning school and evening madrasa. Built with Next.js 14, TypeScript, Tailwind CSS, and Supabase for authentication and real‑time order management. Includes dynamic forms, analytics, and WhatsApp integration.",
+    tech: [
+      "Next.js 14",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Vercel",
+      "Resend",
+      "Zustand",
+    ],
+    metrics: ["200+ visitors (first week)", "Live on Vercel"],
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1775469651/logo_dgh_lynlvp.jpg",
+    github: "https://github.com/muwatta/dgh-academy",
+    live: "https://dghacademy.com.ng",
+    featured: true,
+  },
+  {
     id: "nexus-lms",
     title: "NexusLMS — Full Stack LMS",
     category: "Full Stack",
@@ -14,7 +65,7 @@ export const projects = [
       "Paystack",
       "Docker",
     ],
-    metrics: ["5-role RBAC", "full tests passing", "Paystack integrated"],
+    metrics: ["5-role RBAC", "Full test suite", "Paystack integrated"],
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
     github: "https://github.com/Muwatta/nexuslms",
@@ -36,7 +87,7 @@ export const projects = [
       "Docker",
       "GitHub Actions",
     ],
-    metrics: ["Live on Render", "Dockerized", "CI/CD Pipeline"],
+    metrics: ["Live on Render", "Dockerized", "CI/CD pipeline"],
     image:
       "https://repository-images.githubusercontent.com/673056755/2f723190-6c2d-4572-adef-1e38afc79cc7",
     github: "https://github.com/Muwatta/ShopCore",
@@ -44,16 +95,17 @@ export const projects = [
     featured: true,
   },
   {
-    id: "School landing page",
-    title: "School landing page",
+    id: "school-landing-page",
+    title: "School Landing Page",
     category: "Frontend",
-    description: "",
-    tech: ["React", "Tailwind", "TypeScript", "Vite"],
-    metrics: ["Fully Displayed", "Google map integrated"],
+    description:
+      "A modern, responsive landing page for a private academy, built with React, Tailwind, and TypeScript. Features integrated Google Maps, contact forms, and a clean, accessible design.",
+    tech: ["React", "Tailwind CSS", "TypeScript", "Vite"],
+    metrics: ["Fully responsive", "Google Maps integrated"],
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1774204504/Screenshot_2026-03-22_193314_qqku1x.png",
     github: "https://github.com/Muwatta/amun_private_academy",
-    live: "https://amunbrightacademy.netlify.app/",
+    live: "https://amunbrightacademy.netlify.app",
     featured: true,
   },
   {
@@ -104,30 +156,6 @@ export const projects = [
     github: "https://github.com/Muwatta/nexus-fintech-backend",
     live: null,
     featured: false,
-  },
-  {
-    id: "dghi-academy",
-    title: "DGHI Academy — School Website",
-    category: "Full Stack",
-    description:
-      "A complete school website with separate sections for morning school and evening madrasa. Built with Next.js 14, TypeScript, Tailwind CSS, and Supabase for authentication and real‑time order management. Includes dynamic forms, analytics, and WhatsApp integration.",
-    tech: [
-      "Next.js 14",
-      "TypeScript",
-      "Tailwind CSS",
-      "Supabase",
-      "Vercel",
-      "Resend",
-      "Zustand",
-    ],
-    metrics: [
-      "200+ visitors (first week)",
-    ],
-    image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/v1775469651/logo_dgh_lynlvp.jpg",
-    github: "https://github.com/muwatta/dgh-academy",
-    live: "https://dghacademy.com.ng",
-    featured: true,
   },
 ];
 

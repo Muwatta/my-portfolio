@@ -5,7 +5,6 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    // Split vendor chunks for better caching
     rollupOptions: {
       output: {
         manualChunks: {
@@ -16,15 +15,11 @@ export default defineConfig({
         },
       },
     },
-    // Warn if any chunk exceeds 500kb
     chunkSizeWarningLimit: 500,
-    // Minify output
     minify: "esbuild",
-    // Generate source maps for error tracking (optional — remove if you want)
     sourcemap: false,
   },
 
-  // Optimize dependencies
   optimizeDeps: {
     include: ["react", "react-dom", "framer-motion", "react-router-dom"],
   },
