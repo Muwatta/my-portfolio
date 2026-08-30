@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
-// Animated background for subtle visual effect
 const AnimatedBackground = () => (
   <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-blue-900 opacity-80">
     <motion.div
@@ -68,7 +67,7 @@ const Workshops = () => {
       } else {
         setFormStatus("Failed to register. Please try again.");
       }
-    } catch (error) {
+    } catch {
       setFormStatus("An error occurred. Please try again later.");
     }
   };
