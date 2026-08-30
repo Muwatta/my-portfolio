@@ -1,185 +1,410 @@
-# Abdullahi Musliudeen — Developer Portfolio
+# Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer
 
-[![Live Demo](https://img.shields.io/badge/Live-iamabdullahi.netlify.app-00C7B7?style=flat-square&logo=netlify)](https://iamabdullahi.netlify.app/)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Live Portfolio](https://img.shields.io/badge/Portfolio-iamabdullahi.netlify.app-00C7B7?style=flat-square\&logo=netlify)](https://iamabdullahi.netlify.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-muwatta-181717?style=flat-square\&logo=github)](https://github.com/muwatta)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Abdullahi%20Musliudeen-0A66C2?style=flat-square\&logo=linkedin)](https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6)
+[![CI](https://img.shields.io/badge/CI-Lint%20%7C%20Test%20%7C%20Build-success?style=flat-square)](https://github.com/muwatta/my-portfolio/actions)
 
-A modern, fully responsive personal portfolio built with React and Vite — showcasing full-stack engineering projects, technical skills, and writing.
+> **A personal portfolio built to showcase how I design, build, and ship software — with a focus on backend engineering, full-stack systems, and real-world problem solving.**
 
-🔗 **Live:** [iamabdullahi.netlify.app](https://iamabdullahi.netlify.app/)
-
----
-
-## ✨ Features
-
-- **Dark / Light theme** — persists across sessions via localStorage
-- **Mobile-first design** — fully responsive across all screen sizes
-- **Animated UI** — smooth page transitions and micro-interactions via Framer Motion
-- **Blog system** — JSON-driven blog with category filtering, search, and newsletter
-- **Contact form** — powered by EmailJS, no backend required
-- **SEO ready** — dynamic meta tags via React Helmet Async
-- **Performance optimized** — code splitting, chunk caching, and asset optimization via Vite
+🌐 **Live:** [iamabdullahi.netlify.app](https://iamabdullahi.netlify.app/)
 
 ---
 
-## 🛠 Tech Stack
+## About the Project
 
-| Layer | Technology |
-|---|---|
-| Framework | React 18 |
-| Build Tool | Vite 5 |
-| Styling | Tailwind CSS 3 |
-| Animation | Framer Motion |
-| Routing | React Router v6 |
-| Forms | EmailJS |
-| SEO | React Helmet Async |
-| Icons | React Icons |
-| Fonts | Google Fonts (Syne + Lora) |
-| Deployment | Netlify |
+This portfolio is more than a collection of project screenshots.
+
+It is designed to show:
+
+* how I approach software problems
+* the systems I have built for real users and organizations
+* my backend and full-stack engineering capabilities
+* selected work across **EdTech, business systems, AI, and IoT**
+* technical writing and engineering notes
+
+My primary engineering focus is **Python, Django, Django REST Framework, PostgreSQL, Redis, and React/TypeScript**.
 
 ---
 
-## 📁 Project Structure
+## What the Portfolio Showcases
 
+### Backend Engineering
+
+* REST API development
+* Authentication and authorization
+* Role-based access control
+* Relational data modelling
+* PostgreSQL
+* Redis caching
+* Asynchronous processing
+* API-driven application architecture
+
+### Full-Stack Development
+
+* React
+* TypeScript
+* JavaScript
+* Next.js
+* Tailwind CSS
+* Responsive interfaces
+* API integration
+
+### Engineering & Delivery
+
+* Docker
+* GitHub Actions
+* CI/CD
+* Linux
+* Production-oriented workflows
+* Testing and linting
+* SEO and performance optimization
+
+### AI & Systems
+
+* Machine Learning
+* Computer Vision
+* OpenCV
+* Arduino
+* IoT
+* Smart systems
+
+---
+
+## Featured Work
+
+The portfolio highlights projects based on **problem complexity, real-world value, and engineering depth**, including:
+
+### ATE Management System
+
+Operational platform built for Algorise Tech Explorers and used by **100+ users**.
+
+### SSC Cooperative Management System
+
+A production-oriented platform for members, savings, loans, sureties, approvals, reporting, and auditing.
+
+### ShopCore
+
+Backend-focused e-commerce system demonstrating **JWT authentication, Redis caching, Celery/RabbitMQ, Docker, and CI/CD**.
+
+### NexTalk
+
+Django REST messaging API demonstrating **permissions, custom ORM managers, nested routing, pagination, signals, asynchronous operations, and automated testing**.
+
+### Madrasah LMS
+
+Education-focused backend system covering users, roles, learning structures, and administrative workflows.
+
+### AgroGuard
+
+AI + IoT system combining **computer vision, machine learning, Arduino, sensors, and automatic irrigation**.
+
+---
+
+## Key Features
+
+* **Responsive design** across desktop, tablet, and mobile
+* **Dark / light theme** with persisted user preference
+* **Animated interactions** powered by Framer Motion
+* **Project showcase** with GitHub and live-demo links
+* **Technical blog** with search, filtering, tags, and featured posts
+* **Contact form** with EmailJS
+* **SEO metadata** with React Helmet Async
+* **Code splitting and asset optimization** through Vite
+* **Client-side routing** with React Router
+* **Automated CI checks** for linting, testing, and production builds
+
+---
+
+## Tech Stack
+
+| Area       | Technology                       |
+| ---------- | -------------------------------- |
+| Frontend   | React 18, TypeScript, JavaScript |
+| Build      | Vite                             |
+| Styling    | Tailwind CSS                     |
+| Animation  | Framer Motion                    |
+| Routing    | React Router                     |
+| Forms      | EmailJS                          |
+| SEO        | React Helmet Async               |
+| Icons      | React Icons                      |
+| Content    | JSON-based blog data             |
+| Deployment | Netlify                          |
+| Quality    | ESLint, Vitest, GitHub Actions   |
+
+---
+
+## Architecture
+
+```text
+                    ┌─────────────────────┐
+                    │      Visitor        │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │   React Frontend    │
+                    │  Pages + Components │
+                    └──────────┬──────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+        React Router      Blog Content      Contact Form
+                           (JSON)             (EmailJS)
+              │
+              ▼
+        SEO / UI / Animation
+              │
+              ▼
+          Vite Build
+              │
+              ▼
+           Netlify
 ```
+
+---
+
+## Project Structure
+
+```text
 my-portfolio/
 ├── public/
-│   ├── _redirects         # Netlify SPA routing fix
-│   ├── blog.json          # Blog posts — edit here to add new posts
-│   ├── resume.pdf         # Downloadable CV
-│   └── images/            # Static images
+│   ├── _redirects
+│   ├── blog.json
+│   ├── resume.pdf
+│   └── images/
+│
 ├── src/
 │   ├── components/
-│   │   ├── layout/        # Navbar, Footer, AnimatedBackground, Loader
-│   │   └── ui/            # SectionHeader, Badge, MagneticButton
+│   │   ├── layout/
+│   │   └── ui/
+│   │
 │   ├── context/
-│   │   └── ThemeContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   ├── ThemeContextValue.js
+│   │   └── useTheme.js
+│   │
 │   ├── data/
 │   │   ├── projects.js
 │   │   ├── skills.js
 │   │   ├── testimonials.js
 │   │   ├── stats.js
 │   │   └── navigation.js
+│   │
 │   ├── features/
 │   │   ├── home/
 │   │   └── portfolio/
+│   │
 │   ├── hooks/
 │   │   └── useInView.js
-│   └── pages/
-│       ├── Home.jsx
-│       ├── Portfolio.jsx
-│       ├── Skills.jsx
-│       ├── About.jsx
-│       ├── Blog.jsx
-│       ├── BlogPost.jsx
-│       └── Contact.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Portfolio.jsx
+│   │   ├── Skills.jsx
+│   │   ├── About.jsx
+│   │   ├── Blog.jsx
+│   │   ├── BlogPost.jsx
+│   │   └── Contact.jsx
+│   │
+│   └── __tests__/
+│
+├── .github/
+│   └── workflows/
+│       └── node.js.yml
+│
 ├── netlify.toml
-└── vite.config.js
+├── eslint.config.js
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+├── package.json
+└── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm
+* Node.js 22+
+* npm
 
 ### Installation
 
 ```bash
-git clone https://github.com/Muwatta/my-portfolio.git
+git clone https://github.com/muwatta/my-portfolio.git
 cd my-portfolio
-npm install
+npm ci
+```
+
+### Development
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Open:
+
+```text
+http://localhost:5173
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+### Tests
+
+```bash
+npm test -- --run
+```
 
 ### Production Build
 
 ```bash
 npm run build
+```
+
+### Preview Production Build
+
+```bash
 npm run preview
 ```
 
 ---
 
-## 📝 Adding a Blog Post
+## Content Management
 
-Open `public/blog.json` and add a new object to the array:
+### Add a Blog Post
+
+Blog content is stored in:
+
+```text
+public/blog.json
+```
+
+Each post supports:
 
 ```json
 {
-  "id": 5,
-  "title": "Your Post Title",
-  "excerpt": "Short teaser (1-2 sentences).",
-  "body": "Full text here.\n\nNew paragraph.",
+  "id": 1,
+  "title": "Designing Better Django APIs",
+  "excerpt": "Lessons from building backend systems with Django REST Framework.",
+  "body": "Full article content...",
   "category": "Tech",
-  "date": "March 20, 2025",
-  "image": "https://images.unsplash.com/photo?w=800&q=80",
-  "medium_link": "https://medium.com/@you/slug",
-  "tags": ["Django", "API"],
-  "readTime": "5 min read",
-  "featured": false
+  "date": "August 30, 2026",
+  "image": "/images/blog-cover.jpg",
+  "medium_link": "https://medium.com/...",
+  "tags": ["Django", "DRF", "Backend"],
+  "readTime": "6 min read",
+  "featured": true
 }
 ```
 
-**Categories:** `Tech` · `Education` · `IoT` · `Frontend`
+Supported categories:
 
-No rebuild needed — save, commit, push. Netlify auto-deploys.
-
----
-
-## 📬 Contact Form
-
-Uses [EmailJS](https://emailjs.com). Update credentials in `src/pages/Contact.jsx`:
-
-```js
-emailjs.send("SERVICE_ID", "TEMPLATE_ID", payload, "PUBLIC_KEY")
+```text
+Tech · Education · IoT · Frontend
 ```
 
 ---
 
-## 🌐 Deployment
+## Quality & CI
 
-Hosted on **Netlify** with auto-deploys from `master`.
+The repository uses GitHub Actions to automatically validate changes.
 
-`netlify.toml` configures:
-- SPA routing redirects
-- Security headers (X-Frame-Options, XSS Protection, Content-Type-Options)
-- Asset caching (1 year for JS/CSS, 1 hour for blog.json)
+Every push or pull request runs:
 
----
+```text
+Install dependencies
+        ↓
+      Lint
+        ↓
+      Test
+        ↓
+      Build
+```
 
-## 🔒 Security Headers
-
-| Header | Value |
-|---|---|
-| X-Frame-Options | DENY |
-| X-XSS-Protection | 1; mode=block |
-| X-Content-Type-Options | nosniff |
-| Referrer-Policy | strict-origin-when-cross-origin |
+The goal is to ensure that the portfolio remains deployable as the codebase evolves.
 
 ---
 
-## 📄 License
+## Deployment
 
-MIT — free to use as a template. Attribution appreciated.
+The portfolio is deployed on **Netlify**.
 
----
+Deployment configuration supports:
 
-## 👤 Author
-
-**Abdullahi Musliudeen Oladipupo**
-
-- 🌐 [iamabdullahi.netlify.app](https://iamabdullahi.netlify.app/)
-- 💼 [github.com/Muwatta](https://github.com/Muwatta)
-- 🔗 [LinkedIn](https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6)
-- 🐦 [@MusliudeenAbdu1](https://x.com/MusliudeenAbdu1)
+* SPA routing
+* security headers
+* asset caching
+* automated deployment from GitHub
 
 ---
 
-> Built with ☕ and late nights in Jos, Nigeria.
+## Security
+
+Current security-related configuration includes:
+
+| Header                   | Configuration                     |
+| ------------------------ | --------------------------------- |
+| `X-Frame-Options`        | `DENY`                            |
+| `X-XSS-Protection`       | `1; mode=block`                   |
+| `X-Content-Type-Options` | `nosniff`                         |
+| `Referrer-Policy`        | `strict-origin-when-cross-origin` |
+
+---
+
+## Design Principles
+
+This portfolio follows a few simple principles:
+
+**Evidence over claims**
+Projects are presented around what was actually built and why it matters.
+
+**User-centric content**
+Visitors should understand the problem, solution, and outcome before the implementation details.
+
+**Engineering depth**
+Important projects document architecture, technical decisions, and trade-offs.
+
+**Progressive disclosure**
+Recruiters can get the key information quickly, while engineers can explore deeper technical details.
+
+---
+
+## Roadmap
+
+Planned improvements include:
+
+* project case-study pages
+* architecture diagrams
+* engineering decision notes
+* stronger accessibility coverage
+* richer automated tests
+* performance and Core Web Vitals monitoring
+* improved project filtering and search
+* technical writing focused on backend engineering and system design
+
+---
+
+## Author
+
+**Abdullahi Oladipupo Musliudeen**
+
+Backend Engineer · Full-Stack Software Engineer
+
+* 🌐 [Portfolio](https://iamabdullahi.netlify.app/)
+* 💻 [GitHub](https://github.com/muwatta)
+* 💼 [LinkedIn](https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6)
+* ✉️ [Email](mailto:abdullahmusliudeen@gmail.com)
+* 𝕏 [X](https://x.com/MusliudeenAbdu1)
+
+---
+
+> I build software for real users, learn from real problems, and document what I learn.
