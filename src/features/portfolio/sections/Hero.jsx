@@ -13,9 +13,9 @@ const ICON_MAP = {
 };
 
 const STATS = [
-  { value: "6+", label: "Projects" },
-  { value: "100+", label: "Students" },
-  { value: "3+", label: "Languages" },
+  { value: "100+", label: "Active Users" },
+  { value: "150+", label: "Learners Trained" },
+  { value: "6+", label: "Production Systems" },
 ];
 
 export const Hero = () => {
@@ -53,7 +53,7 @@ export const Hero = () => {
               transition={{ delay: 0.1 }}
               className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3"
             >
-              Full Stack Engineer · STEM Educator · Founder
+              Backend Engineer · Full-Stack Developer
             </motion.p>
 
             <motion.h1

@@ -57,8 +57,6 @@ const Blog = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
   const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
@@ -184,6 +182,7 @@ const Blog = () => {
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
+                aria-pressed={category === cat}
                 className="px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider transition-all duration-200"
                 style={{
                   backgroundColor: category === cat ? "#2563eb" : "transparent",
@@ -442,64 +441,6 @@ const Blog = () => {
             </p>
           </motion.div>
         )}
-
-        {/* NEWSLETTER */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100/30 dark:bg-slate-900/30 p-10 sm:p-14 text-center relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-transparent to-violet-900/10 pointer-events-none" />
-          <div className="relative z-10">
-            <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3">
-              Newsletter
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-              Stay in the loop.
-            </h2>
-            <p
-              className="text-slate-400 text-sm mb-8 max-w-sm mx-auto leading-relaxed"
-              style={{ fontFamily: "'Lora', serif" }}
-            >
-              New posts on full-stack engineering and tech education — no spam,
-              ever.
-            </p>
-            <AnimatePresence mode="wait">
-              {subscribed ? (
-                <motion.p
-                  key="done"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-green-400 font-bold text-lg"
-                >
-                  ✓ You're subscribed!
-                </motion.p>
-              ) : (
-                <motion.div key="form" className="flex justify-center">
-                  <div className="flex rounded-lg overflow-hidden border border-slate-300 dark:border-slate-700 w-full max-w-sm focus-within:border-blue-500 transition-colors">
-                    <input
-                      type="email"
-                      placeholder="your@email.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      onKeyDown={(e) =>
-                        e.key === "Enter" && email && setSubscribed(true)
-                      }
-                      className="flex-1 px-4 py-3 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-sm placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none"
-                    />
-                    <button
-                      onClick={() => email && setSubscribed(true)}
-                      className="px-5 py-3 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors whitespace-nowrap"
-                    >
-                      Subscribe
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
       </div>
     </div>
   );

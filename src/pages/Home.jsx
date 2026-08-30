@@ -15,10 +15,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Abdullahi Musliudeen | Full-Stack Engineer & Educator</title>
+        <title>Abdullahi Musliudeen | Backend Engineer & Full-Stack Developer</title>
         <meta
           name="description"
-          content="I build scalable EdTech systems and mentor developers. Currently serving 10,000+ users across Nigeria."
+          content="Backend Engineer & Full-Stack Developer. I build production systems with Django, Django REST Framework, PostgreSQL, Redis, and React/TypeScript — and mentor developer talent through Algorise Tech Explorers."
         />
       </Helmet>
 

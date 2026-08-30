@@ -78,7 +78,7 @@ export const CallToAction = () => {
             style={{ fontFamily: "'Lora', serif" }}
           >
             Whether you need a full-stack engineer, a backend specialist, or a
-            tech educator — I bring production-grade thinking and real-world
+            technical mentor — I bring production-grade thinking and real-world
             experience to every project.
           </motion.p>
 
@@ -141,7 +141,7 @@ export const CallToAction = () => {
             
             
             <span className="font-mono text-xs">
-              📍 Lagos, Nigeria (WAT · UTC+1)
+              📍 Jos, Nigeria (WAT · UTC+1)
             </span>
           </motion.div>
         </motion.div>

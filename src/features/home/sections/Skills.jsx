@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionHeader } from "../../../components/ui/SectionHeader";
 import { Container } from "../../../components/layout/Container";
-import { SkillBar } from "./components/SkillBar";
 import { technicalSkills, skillCategories } from "../../../data";
 
 export const Skills = () => {
@@ -15,14 +14,30 @@ export const Skills = () => {
         />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Skill Bars */}
-          <div className="space-y-6">
-            {technicalSkills.map((skill, index) => (
-              <SkillBar key={skill.name} skill={skill} index={index} />
-            ))}
+          {/* Core Stack */}
+          <div>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-5">
+              Core Stack
+            </h4>
+            <div className="grid grid-cols-2 gap-3">
+              {technicalSkills.map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                  className="px-4 py-3 rounded-xl bg-slate-100/60 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800"
+                >
+                  <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                    {skill}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
-          {/* Skill Categories */}
+          {/* Evidence-based categories */}
           <div className="space-y-6">
             {skillCategories.map((category) => (
               <motion.div

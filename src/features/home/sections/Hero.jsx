@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { MagneticButton } from "../../../components/ui/MagneticButton";
 import { Container } from "../../../components/layout/Container";
 import { ctaNavigation } from "../../../data";
 
 export const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
       <Container className="relative z-10">
@@ -37,18 +39,14 @@ export const Hero = () => {
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <MagneticButton
                 size="lg"
-                onClick={() =>
-                  (window.location.href = ctaNavigation.primary.href)
-                }
+                onClick={() => navigate(ctaNavigation.primary.href)}
               >
                 {ctaNavigation.primary.name}
               </MagneticButton>
               <MagneticButton
                 variant="secondary"
                 size="lg"
-                onClick={() =>
-                  window.open(ctaNavigation.secondary.href, "_blank")
-                }
+                onClick={() => navigate(ctaNavigation.secondary.href)}
               >
                 {ctaNavigation.secondary.name}
               </MagneticButton>

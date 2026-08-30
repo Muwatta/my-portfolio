@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 
 const CATEGORY_COLORS = {
   Backend: { bg: "#3b82f620", text: "#60a5fa", border: "#3b82f640" },
   "Full Stack": { bg: "#8b5cf620", text: "#a78bfa", border: "#8b5cf640" },
   Frontend: { bg: "#06b6d420", text: "#22d3ee", border: "#06b6d440" },
-  "IoT + AI": { bg: "#10b98120", text: "#34d399", border: "#10b98140" },
+  "AI + IoT": { bg: "#10b98120", text: "#34d399", border: "#10b98140" },
   EdTech: { bg: "#f59e0b20", text: "#fbbf24", border: "#f59e0b40" },
 };
 
@@ -48,40 +48,31 @@ export const PortfolioCard = ({ project, index }) => {
           {project.category}
         </span>
 
-        {/* Hover Actions */}
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              className="absolute bottom-4 left-4 right-4 flex gap-3"
+        {/* Actions */}
+        <div className="absolute bottom-4 left-4 right-4 flex gap-3">
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-slate-900/90 backdrop-blur text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors"
+              onClick={(e) => e.stopPropagation()}
             >
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-slate-900/90 backdrop-blur text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FiGithub size={15} /> Code
-                </a>
-              )}
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 ml-auto transition-colors"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <FiExternalLink size={15} /> Live
-                </a>
-              )}
-            </motion.div>
+              <FiGithub size={15} /> Code
+            </a>
           )}
-        </AnimatePresence>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-500 ml-auto transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FiExternalLink size={15} /> Live
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Content */}

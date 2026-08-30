@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { skillCategories } from "../data";
 
 const SKILLS = {
   frontend: [
@@ -31,15 +33,6 @@ const SKILLS = {
   ],
   async: ["Celery", "RabbitMQ", "WebSockets", "Background Jobs"],
 };
-
-const PROFICIENCY = [
-  { label: "Python & Django", value: 90, color: "#3b82f6" },
-  { label: "React & Next.js", value: 82, color: "#8b5cf6" },
-  { label: "PostgreSQL", value: 80, color: "#06b6d4" },
-  { label: "REST API Design", value: 88, color: "#10b981" },
-  { label: "Docker & CI/CD", value: 72, color: "#f59e0b" },
-  { label: "TypeScript", value: 75, color: "#ec4899" },
-];
 
 const TIMELINE = [
   {
@@ -133,12 +126,6 @@ const SectionTitle = ({ children }) => (
 
 export default function Skills() {
   const [activeTab, setActiveTab] = useState("frontend");
-  const [animateBars, setAnimateBars] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setAnimateBars(true), 600);
-    return () => clearTimeout(t);
-  }, []);
 
   const tabColors = {
     frontend: "#8b5cf6",
@@ -154,7 +141,7 @@ export default function Skills() {
         <title>Skills | Abdullahi Musliudeen Oladipupo</title>
         <meta
           name="description"
-          content="Full Stack Developer — Python, Django, React, PostgreSQL, Docker."
+          content="Backend Engineer & Full-Stack Developer — Python, Django, React, PostgreSQL, Docker."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
@@ -238,13 +225,12 @@ export default function Skills() {
               transition={{ delay: 0.45 }}
               className="flex items-center gap-4"
             >
-              <a
-                href="/resume.pdf"
-                download
+              <Link
+                to="/resume"
                 className="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-colors"
               >
-                Download CV
-              </a>
+                View Resume
+              </Link>
               <a
                 href="https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6"
                 target="_blank"
@@ -332,6 +318,7 @@ export default function Skills() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
+                aria-pressed={activeTab === tab}
                 className="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all"
                 style={{
                   backgroundColor:
@@ -365,38 +352,39 @@ export default function Skills() {
           </AnimatePresence>
         </motion.div>
 
-        {/* ── PROFICIENCY BARS ── */}
+        {/* ── EXPERIENCE AREAS (evidence-based) ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
           className="mb-20"
         >
-          <SectionTitle>Proficiency</SectionTitle>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-5">
-            {PROFICIENCY.map((item, i) => (
-              <div key={item.label}>
-                <div className="flex justify-between mb-1.5">
-                  <span className="text-sm text-slate-700 dark:text-slate-300">
-                    {item.label}
-                  </span>
-                  <span className="text-xs font-mono text-slate-500">
-                    {item.value}%
-                  </span>
+          <SectionTitle>Experience Areas</SectionTitle>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {skillCategories.map((cat) => (
+              <div
+                key={cat.title}
+                className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/60 dark:bg-slate-900/60 p-5"
+              >
+                <h3 className="text-white font-bold text-base mb-1">
+                  {cat.title}
+                </h3>
+                <p className="text-slate-400 text-xs mb-3 leading-relaxed">
+                  {cat.description}
+                </p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {cat.skills.map((s) => (
+                    <span
+                      key={s}
+                      className="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-500 dark:text-slate-400"
+                    >
+                      {s}
+                    </span>
+                  ))}
                 </div>
-                <div className="h-1.5 bg-slate-800 rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full rounded-full"
-                    style={{ backgroundColor: item.color }}
-                    initial={{ width: 0 }}
-                    animate={{ width: animateBars ? `${item.value}%` : 0 }}
-                    transition={{
-                      duration: 1.2,
-                      delay: i * 0.1,
-                      ease: "easeOut",
-                    }}
-                  />
-                </div>
+                <p className="text-[10px] font-mono text-blue-400/80">
+                  {cat.evidence}
+                </p>
               </div>
             ))}
           </div>
@@ -501,12 +489,12 @@ export default function Skills() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
-                label: "Full Stack",
+                label: "Backend",
                 desc: "React frontends + Django backends, shipped end-to-end.",
                 icon: "⚡",
               },
               {
-                label: "Educator",
+                label: "Mentor",
                 desc: "Mentoring engineers at Algorise Tech Explorers.",
                 icon: "🎓",
               },
@@ -546,19 +534,18 @@ export default function Skills() {
             education partnerships.
           </p>
           <div className="flex justify-center gap-4 flex-wrap">
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-colors"
             >
               Hire Me
-            </a>
-            <a
-              href="/resume.pdf"
-              download
+            </Link>
+            <Link
+              to="/resume"
               className="px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-colors"
             >
-              Download Resume
-            </a>
+              View Resume
+            </Link>
           </div>
         </motion.div>
       </div>

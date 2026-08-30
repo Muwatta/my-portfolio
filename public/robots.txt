@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamabdullahi.netlify.app/sitemap.xml

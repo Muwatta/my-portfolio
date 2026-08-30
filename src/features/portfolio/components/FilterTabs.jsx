@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const categories = ["All", "Backend", "Full Stack", "Frontend", "IoT + AI"];
+const categories = ["All", "Backend", "Full Stack", "Frontend", "AI + IoT"];
 
 export const FilterTabs = ({ active, onChange }) => {
   return (
@@ -9,6 +9,7 @@ export const FilterTabs = ({ active, onChange }) => {
         <button
           key={category}
           onClick={() => onChange(category)}
+          aria-pressed={active === category}
           className={`relative px-4 py-2 rounded-full text-sm font-medium transition-colors ${
             active === category
               ? "text-white"

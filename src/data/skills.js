@@ -1,10 +1,10 @@
 export const technicalSkills = [
-  { name: "React & Next.js", level: 90, category: "Frontend" },
-  { name: "TypeScript", level: 85, category: "Frontend" },
-  { name: "Django & Django REST", level: 90, category: "Backend" },
-  { name: "PostgreSQL", level: 88, category: "Database" },
-  { name: "System Design", level: 85, category: "Architecture" },
-  { name: "DevOps", level: 50, category: "Infrastructure" },
+  "React & Next.js",
+  "TypeScript",
+  "Django & Django REST",
+  "PostgreSQL",
+  "System Design",
+  "Docker & CI/CD",
 ];
 
 export const skillCategories = [

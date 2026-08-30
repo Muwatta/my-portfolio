@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { HiSun, HiMoon } from "react-icons/hi";
-import { navItems } from "../../data/constants";
+import { navItems } from "../../data/navigation";
 import { useTheme } from "../../context/useTheme";
 
 const MotionLink = motion.create(Link);

@@ -6,7 +6,7 @@ export default function Portfolio() {
   return (
     <>
       <Helmet>
-        <title>Portfolio | Abdullahi Musliudeen - Full-Stack Engineer</title>
+        <title>Portfolio | Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer</title>
         <meta
           name="description"
           content="Explore production-grade web applications, IoT systems, and EdTech platforms built by Abdullahi Musliudeen."

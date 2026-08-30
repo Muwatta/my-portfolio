@@ -6,7 +6,6 @@ import {
   FaTwitter,
   FaGithub,
   FaArrowUp,
-  FaHeart,
   FaEnvelope,
   FaMapMarkerAlt,
   FaLocationArrow,
@@ -27,7 +26,7 @@ const SOCIAL_LINKS = [
   },
   {
     icon: FaLinkedin,
-    href: "https://linkedin.com/in/abdullahi-musliudeen-64435a239",
+    href: "https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6",
     label: "LinkedIn",
     color: "#0077B5",
     hoverBg: "rgba(0,119,181,0.15)",
@@ -64,11 +63,10 @@ const SOCIAL_LINKS = [
 
 const QUICK_LINKS = [
   { name: "Portfolio", href: "/portfolio" },
-  { name: "Skills", href: "/skills" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
-  { name: "Resume", href: "/resume.pdf" },
+  { name: "Resume", href: "/resume" },
 ];
 
 const CONTACT_INFO = [
@@ -144,66 +142,22 @@ const BackToTop = () => {
   );
 };
 
-const Newsletter = () => {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email) return;
-    setStatus("loading");
-    setTimeout(() => {
-      setStatus("success");
-      setEmail("");
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
-  };
-
-  return (
-    <div>
-      <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-1">
-        Stay Updated
-      </h4>
-      <p className="text-slate-500 dark:text-slate-500 text-xs mb-4 leading-relaxed">
-        New posts on full-stack engineering and tech education.
-      </p>
-      <form
-        onSubmit={handleSubmit}
-        className="flex rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 focus-within:border-blue-500/60 transition-colors"
-      >
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          disabled={status !== "idle"}
-          className="flex-1 px-3 py-2.5 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white text-sm placeholder-slate-400 dark:placeholder-slate-600 focus:outline-none"
-        />
-        <button
-          type="submit"
-          disabled={status !== "idle"}
-          className={`px-4 py-2.5 text-xs font-bold text-white transition-colors whitespace-nowrap flex items-center justify-center min-w-[80px] ${
-            status === "success"
-              ? "bg-green-500"
-              : "bg-blue-600 hover:bg-blue-500"
-          }`}
-        >
-          {status === "loading" ? (
-            <motion.div
-              className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-            />
-          ) : status === "success" ? (
-            "✓ Done!"
-          ) : (
-            "Subscribe"
-          )}
-        </button>
-      </form>
-    </div>
-  );
-};
+const WorkWithMe = () => (
+  <div>
+    <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-1">
+      Work With Me
+    </h4>
+    <p className="text-slate-500 dark:text-slate-500 text-xs mb-4 leading-relaxed">
+      Open to backend engineering roles and full-stack contracts.
+    </p>
+    <Link
+      to="/contact"
+      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors"
+    >
+      Let's Work Together
+    </Link>
+  </div>
+);
 
 const FooterHeading = ({ children, accent = "bg-blue-500" }) => (
   <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
@@ -240,9 +194,9 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-5 max-w-xs">
-                Full-Stack Engineer & Tech Educator — building production
-                systems and mentoring the next generation of Nigerian
-                developers.
+                Backend Engineer & Full-Stack Developer — building production
+                systems with Django, PostgreSQL, and React, and mentoring the
+                next generation of Nigerian developers.
               </p>
               <div className="flex flex-wrap gap-2">
                 {SOCIAL_LINKS.map((s) => (
@@ -308,9 +262,9 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Newsletter */}
+            {/* Work With Me */}
             <div>
-              <Newsletter />
+              <WorkWithMe />
             </div>
           </div>
 
@@ -327,19 +281,11 @@ export default function Footer() {
               >
                 <FaLocationArrow className="text-red-500 w-3 h-3 mx-0.5" />
               </motion.span>
-              in Lagos, Nigeria
+              in Jos, Nigeria
             </p>
-            <div className="flex gap-5">
-              {["Privacy", "Terms"].map((item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
+            <p>
+              Backend Engineer · Full-Stack Developer
+            </p>
           </div>
         </div>
       </footer>

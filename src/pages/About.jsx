@@ -143,7 +143,7 @@ const About = () => {
         <title>About | Abdullahi Musliudeen Oladipupo</title>
         <meta
           name="description"
-          content="Full Stack Developer, Educator & Founder — from Arabic Education to building production systems."
+          content="Backend Engineer & Full-Stack Developer — from Arabic Education to building production systems."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
@@ -214,13 +214,12 @@ const About = () => {
                 Work Together{" "}
                 <HiArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
-              <a
-                href="/resume.pdf"
-                download
+              <Link
+                to="/resume"
                 className="px-6 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 text-sm font-bold transition-colors"
               >
-                Download CV
-              </a>
+                View Resume
+              </Link>
             </div>
           </motion.div>
 
@@ -420,6 +419,7 @@ const About = () => {
             <div className="flex items-center justify-center gap-4 mt-10">
               <button
                 onClick={prev}
+                aria-label="Previous testimonial"
                 className="w-9 h-9 rounded-full border border-slate-300 dark:border-slate-700 hover:border-blue-500 text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
               >
                 ←
@@ -429,6 +429,8 @@ const About = () => {
                   <button
                     key={i}
                     onClick={() => setIdx(i)}
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    aria-current={i === testimonialIdx ? "true" : undefined}
                     className="w-1.5 h-1.5 rounded-full transition-all"
                     style={{
                       backgroundColor:
@@ -439,6 +441,7 @@ const About = () => {
               </div>
               <button
                 onClick={next}
+                aria-label="Next testimonial"
                 className="w-9 h-9 rounded-full border border-slate-300 dark:border-slate-700 hover:border-blue-500 text-slate-500 dark:text-slate-400 hover:text-blue-400 transition-all flex items-center justify-center text-sm"
               >
                 →
@@ -476,13 +479,12 @@ const About = () => {
               >
                 Hire Me
               </Link>
-              <a
-                href="/resume.pdf"
-                download
+              <Link
+                to="/resume"
                 className="px-7 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-slate-500 text-slate-700 dark:text-slate-300 font-bold text-sm transition-colors"
               >
-                Download Resume
-              </a>
+                View Resume
+              </Link>
             </div>
           </div>
         </motion.div>

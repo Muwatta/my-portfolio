@@ -1,20 +1,20 @@
-export const mainNavigation = [
-  { name: "Work", href: "/portfolio" },
-  { name: "About", href: "/about" },
-  { name: "Writing", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+export const navItems = [
+  { name: "Work", path: "/portfolio" },
+  { name: "About", path: "/about" },
+  { name: "Writing", path: "/blog" },
+  { name: "Contact", path: "/contact" },
 ];
 
 export const ctaNavigation = {
   primary: { name: "View My Work", href: "/portfolio" },
-  secondary: { name: "Download CV", href: "/resume.pdf" },
+  secondary: { name: "View Resume", href: "/resume" },
 };
 
 export const socialLinks = [
   { name: "GitHub", href: "https://github.com/Muwatta", icon: "github" },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com/in/abdullahi-musliudeen",
+    href: "https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6",
     icon: "linkedin",
   },
   { name: "X", href: "https://x.com/MusliudeenAbdu1", icon: "twitter" },

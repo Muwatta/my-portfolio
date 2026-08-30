@@ -187,7 +187,7 @@ const BlogPost = () => {
                   Abdullahi Musliudeen
                 </p>
                 <p className="text-[10px] text-slate-600">
-                  Full Stack Developer
+                  Backend Engineer · Full-Stack Developer
                 </p>
               </div>
             </div>

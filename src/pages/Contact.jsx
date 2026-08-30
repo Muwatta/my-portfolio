@@ -18,7 +18,7 @@ const LINKS = [
   {
     icon: <FaLinkedin />,
     label: "LinkedIn",
-    value: "abdullahi-musliudeen",
+    value: "abdullahi-musliudeen-166b751b6",
     href: "https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6",
     color: "#0ea5e9",
   },
@@ -86,7 +86,7 @@ const Contact = () => {
         <title>Contact | Abdullahi Musliudeen Oladipupo</title>
         <meta
           name="description"
-          content="Get in touch with Abdullahi Musliudeen — Full Stack Developer & Tech Educator."
+          content="Get in touch with Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap"

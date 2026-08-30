@@ -70,14 +70,14 @@ export const Resume = () => {
           transition={{ delay: 0.1 }}
           className="flex justify-center mb-12"
         >
-          <a
-            href="/resume.pdf"
-            download
+          <button
+            type="button"
+            onClick={() => window.print()}
             className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-colors"
           >
             <HiDownload className="w-5 h-5" />
-            Download PDF Resume
-          </a>
+            Print / Save as PDF
+          </button>
         </motion.div>
 
         {/* Sections */}

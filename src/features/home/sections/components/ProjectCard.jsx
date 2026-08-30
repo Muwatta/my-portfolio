@@ -74,15 +74,17 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
               <FiGithub size={16} /> Code
             </a>
           )}
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition-colors ml-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <FiExternalLink size={16} /> Live
-          </a>
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition-colors ml-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <FiExternalLink size={16} /> Live
+            </a>
+          )}
         </div>
       </div>
     </motion.article>
