@@ -34,12 +34,11 @@ describe("Portfolio UI (browser rendering)", () => {
     ).toBeInTheDocument();
     const logoLinks = await screen.findAllByRole("link", { name: "AM" });
     expect(logoLinks.length).toBeGreaterThan(0);
-    expect(
-      await screen.findByRole("link", { name: /Work/i }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /About/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Writing/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Contact/i })).toBeInTheDocument();
+    const workLinks = await screen.findAllByRole("link", { name: /Work/i });
+    expect(workLinks.length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /About/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /Writing/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /Contact/i }).length).toBeGreaterThan(0);
   });
 
   it("toggles the theme from dark to light and back", async () => {

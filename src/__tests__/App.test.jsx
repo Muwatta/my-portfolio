@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import process from "node:process";
 import { projects, featuredProjects, getProjectById } from "../data/projects";
 import { ctaNavigation } from "../data/navigation";
 
