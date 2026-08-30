@@ -53,7 +53,7 @@ export const ProjectGrid = () => {
           {filteredProjects.length !== 1 ? "s" : ""}
         </p>
 
-        {/* Grid — 1 col mobile, 2 col tablet, 3 col desktop */}
+        {/* Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}

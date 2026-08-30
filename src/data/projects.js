@@ -29,6 +29,33 @@ export const projects = [
     featured: true,
   },
   {
+    id: "kma-spices",
+    title: "KMA Spices & Herbs — E‑commerce Website",
+    category: "Full Stack",
+    description:
+      "A full‑featured e‑commerce platform for a Nigerian spice business. Customers can browse spices, add to cart, checkout via bank transfer or cash on delivery, manage orders, and edit their profile. Admins have a dedicated dashboard with real‑time order notifications, product and content management, and inventory reports. Built with Next.js 14 (App Router), Supabase (Auth, PostgreSQL, Storage, Realtime), Tailwind CSS, and deployed on Vercel.",
+    tech: [
+      "Next.js 14",
+      "TypeScript",
+      "Supabase",
+      "Tailwind CSS",
+      "Zustand",
+      "Framer Motion",
+      "Resend",
+      "Vercel",
+    ],
+    metrics: [
+      "Real‑time admin dashboard",
+      "Bank transfer / COD",
+      "WhatsApp ordering",
+    ],
+    image:
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1782392970/Screenshot_2026-06-25_140609_ggutei.png",
+    github: "https://github.com/muwatta/spices_shop",
+    live: "https://www.kmaglobalink.com.ng",
+    featured: true,
+  },
+  {
     id: "dghi-academy",
     title: "DGHI Academy — School Website",
     category: "Full Stack",
@@ -43,7 +70,7 @@ export const projects = [
       "Resend",
       "Zustand",
     ],
-    metrics: ["200+ visitors (first week)", "Live on Vercel"],
+    metrics: ["200+ visitors (first week)"],
     image:
       "https://res.cloudinary.com/dee5edoss/image/upload/v1775469651/logo_dgh_lynlvp.jpg",
     github: "https://github.com/muwatta/dgh-academy",
@@ -70,42 +97,6 @@ export const projects = [
       "https://res.cloudinary.com/dee5edoss/image/upload/v1773992371/Screenshot_2026-03-20_081149_gqfud9.png",
     github: "https://github.com/Muwatta/nexuslms",
     live: null,
-    featured: true,
-  },
-  {
-    id: "shopcore",
-    title: "ShopCore — E-Commerce Backend",
-    category: "Backend",
-    description:
-      "Production-grade e-commerce API with JWT role-based auth, Redis caching, async task queues via Celery & RabbitMQ, and a full Docker + GitHub Actions CI/CD pipeline. Live on Render.",
-    tech: [
-      "Django",
-      "PostgreSQL",
-      "Redis",
-      "Celery",
-      "RabbitMQ",
-      "Docker",
-      "GitHub Actions",
-    ],
-    metrics: ["Live on Render", "Dockerized", "CI/CD pipeline"],
-    image:
-      "https://repository-images.githubusercontent.com/673056755/2f723190-6c2d-4572-adef-1e38afc79cc7",
-    github: "https://github.com/Muwatta/ShopCore",
-    live: "https://alx-project-nexus-ng70.onrender.com",
-    featured: true,
-  },
-  {
-    id: "school-landing-page",
-    title: "School Landing Page",
-    category: "Frontend",
-    description:
-      "A modern, responsive landing page for a private academy, built with React, Tailwind, and TypeScript. Features integrated Google Maps, contact forms, and a clean, accessible design.",
-    tech: ["React", "Tailwind CSS", "TypeScript", "Vite"],
-    metrics: ["Fully responsive", "Google Maps integrated"],
-    image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/v1774204504/Screenshot_2026-03-22_193314_qqku1x.png",
-    github: "https://github.com/Muwatta/amun_private_academy",
-    live: "https://amunbrightacademy.netlify.app",
     featured: true,
   },
   {
