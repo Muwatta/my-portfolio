@@ -21,6 +21,12 @@ describe("Portfolio UI (browser rendering)", () => {
     ]);
   });
 
+  beforeEach(() => {
+    localStorage.clear();
+    document.documentElement.classList.remove("light");
+    document.documentElement.classList.add("dark");
+  });
+
   it("renders the homepage with identity and navigation", async () => {
     renderApp(["/"]);
     expect(
