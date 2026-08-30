@@ -2,88 +2,88 @@
 export const featuredProjects = [
   {
     id: 1,
-    title: "Brainiac Quiz App",
+    title: "ATE Management System",
     category: "Full-Stack",
     image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/w_800,ar_16:9,c_fill,g_auto,e_sharpen/v1748057065/Screenshot_2025-05-24_042302_mo4osb.png",
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1782392024/Screenshot_2026-06-25_131450_idclwm.png",
     description:
-      "Interactive quiz platform with real-time scoring, user auth, and global leaderboard.",
-    tech: ["React", "Python", "MongoDB", "Socket.io"],
+      "Production platform managing 100+ active users for Algorise Tech Explorers bootcamps. Student enrollment, progress tracking, attendance, grades, and admin dashboards.",
+    tech: ["Django REST", "React", "TypeScript", "PostgreSQL", "Redis"],
     color: "from-blue-500 to-cyan-400",
-    github: "https://github.com/Muwatta/brainiac-quiz",
-    live: "https://brainiac-quiz.vercel.app",
+    github: "https://github.com/Muwatta/ate-management",
+    live: "https://ate-management.vercel.app",
   },
   {
     id: 2,
-    title: "EdTech Dashboard",
+    title: "SSC Cooperative System",
     category: "Full-Stack",
     image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/w_800,ar_16:9,c_fill,g_auto,e_art:hokusai/v1741465823/IMG-20241230-WA0032_hzmxke.jpg",
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1782392024/Screenshot_2026-06-25_131450_idclwm.png",
     description:
-      "Admin portal for managing bootcamps with student progress tracking and analytics.",
-    tech: ["Next.js", "Tailwind", "PostgreSQL", "Prisma"],
+      "Member and loan management platform live in production. Role-based workflows, 2-stage loan approval, savings tracking, and automated email notifications.",
+    tech: ["Django REST", "React", "TypeScript", "PostgreSQL"],
     color: "from-purple-500 to-pink-400",
-    github: "https://github.com/Muwatta/edtech-dashboard",
-    live: "https://edtech-dashboard.vercel.app",
+    github: "https://github.com/Muwatta/ssc-cooperative-system",
+    live: "https://solacestaffcooperative.com.ng",
   },
   {
     id: 3,
-    title: "Git Monitoring System",
-    category: "Full-Stack + Git",
+    title: "NexTalk — Messaging API",
+    category: "Backend",
     image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/w_800,ar_16:9,c_fill,g_auto,e_art:hokusai/v1741465826/IMG-20250105-WA0014_cre4mh.jpg",
+      "https://res.cloudinary.com/dee5edoss/image/upload/v1741622032/Data-Filteration_ggkqyy.png",
     description:
-      "Real-time sensor dashboard with MQTT integration and data visualization.",
-    tech: ["React", "Python", "MQTT", "Chart.js"],
+      "Production-grade REST API demonstrating advanced Django patterns: signals, custom ORM managers, CI/CD pipeline, Docker containerization, and comprehensive testing.",
+    tech: ["Django REST", "PostgreSQL", "Docker", "GitHub Actions", "pytest"],
     color: "from-emerald-500 to-teal-400",
-    github: "https://github.com/Muwatta/git-monitor",
-    live: "https://git-monitor.vercel.app",
+    github: "https://github.com/Muwatta/NexTalk",
+    live: null,
   },
 ];
 
 export const skills = [
-  { name: "JavaScript / TypeScript", level: 95, icon: "⚡" },
-  { name: "React & Next.js", level: 92, icon: "⚛️" },
-  { name: "Python / Django", level: 90, icon: "🐍" },
-  { name: "MongoDB / PostgreSQL", level: 88, icon: "🗄️" },
-  { name: "Tailwind CSS", level: 95, icon: "🎨" },
-  { name: "Git & Github", level: 85, icon: "🔌" },
+  { name: "Django & DRF", level: 90, icon: "🐍" },
+  { name: "PostgreSQL & Redis", level: 88, icon: "🗄️" },
+  { name: "React & Next.js", level: 90, icon: "⚛️" },
+  { name: "TypeScript", level: 85, icon: "⚡" },
+  { name: "Docker & CI/CD", level: 85, icon: "🐳" },
+  { name: "System Design", level: 85, icon: "📐" },
 ];
 
 export const testimonials = [
   {
     quote:
-      "Muwatta built a custom learning platform that scaled beautifully and was easy to maintain.",
-    author: "Tech Bootcamp Organizer",
-    role: "Education Director",
+      "He delivered a production system that scaled seamlessly and remains maintainable. His understanding of complex workflows is exceptional.",
+    author: "Cooperative Administrator",
+    role: "Operations Lead",
     avatar: "👨‍💼",
   },
   {
     quote:
-      "His full-stack skills combined with teaching ability made complex backend concepts accessible.",
-    author: "Former Student",
-    role: "Junior Developer",
-    avatar: "👩‍💻",
+      "Muwatta built our e-commerce platform end-to-end. Professional delivery, responsive to feedback, and production-ready code.",
+    author: "Client",
+    role: "Business Owner",
+    avatar: "👩‍💼",
   },
   {
     quote:
-      "Delivered clean, performant code and turned our idea into a production-ready EdTech tool.",
-    author: "EdTech Collaborator",
-    role: "Product Manager",
+      "His ability to translate educational domain requirements into technical architecture is rare. Highly recommended.",
+    author: "EdTech Partner",
+    role: "Product Lead",
     avatar: "🚀",
   },
 ];
 
 export const stats = [
-  { num: 50, suffix: "+", label: "Students Mentored" },
-  { num: 10, suffix: "+", label: "Projects Delivered" },
-  { num: 3, suffix: "", label: "Hackathon Awards" },
-  { num: 100, suffix: "%", label: "Client Satisfaction" },
+  { num: 100, suffix: "+", label: "Active Users" },
+  { num: 150, suffix: "+", label: "Learners Mentored" },
+  { num: 6, suffix: "+", label: "Production Systems" },
+  { num: 2024, suffix: "", label: "Founder, Algorise Tech" },
 ];
 
 export const navItems = [
-  { name: "Portfolio", path: "/portfolio" },
-  { name: "Skills", path: "/skills" },
-  { name: "Blog", path: "/blog" },
+  { name: "Work", path: "/portfolio" },
   { name: "About", path: "/about" },
+  { name: "Writing", path: "/blog" },
+  { name: "Contact", path: "/contact" },
 ];

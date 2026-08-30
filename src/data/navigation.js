@@ -1,13 +1,13 @@
 export const mainNavigation = [
   { name: "Work", href: "/portfolio" },
-  { name: "Expertise", href: "/skills" },
   { name: "About", href: "/about" },
   { name: "Writing", href: "/blog" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export const ctaNavigation = {
-  primary: { name: "Start a Project", href: "/contact" },
-  secondary: { name: "View Resume", href: "/resume.pdf" },
+  primary: { name: "View My Work", href: "/portfolio" },
+  secondary: { name: "Download CV", href: "/resume.pdf" },
 };
 
 export const socialLinks = [
@@ -17,5 +17,5 @@ export const socialLinks = [
     href: "https://linkedin.com/in/abdullahi-musliudeen",
     icon: "linkedin",
   },
-  { name: "Twitter", href: "https://x.com/MusliudeenAbdu1", icon: "twitter" },
+  { name: "X", href: "https://x.com/MusliudeenAbdu1", icon: "twitter" },
 ];

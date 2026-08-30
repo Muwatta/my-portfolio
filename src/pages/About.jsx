@@ -9,39 +9,39 @@ import { FaQuoteLeft } from "react-icons/fa";
 
 const STORY = [
   {
-    id: "classroom",
+    id: "what-i-build",
     label: "01",
-    title: "From Classroom to Code",
+    title: "What I Build",
     content: [
-      "My roots lie in Arabic Education — teaching in classrooms filled with chalk dust and eager students. I cherished the 'aha!' moments when ideas clicked, but a quiet voice urged me to explore beyond the blackboard.",
-      "Technology wasn't an instant love. I wrestled with code, leaned on late-night tutorials, and broke things often. Each error taught me resilience. I wasn't just learning — I was becoming a creator.",
+      "Backend-heavy web applications, APIs, and data-driven platforms. Systems that handle real operational complexity: role-based workflows, financial transactions, multi-tenant architecture, and real-time updates.",
+      "I specialize in Django and Django REST Framework paired with modern frontends (React, Next.js) and production infrastructure (PostgreSQL, Redis, Docker, CI/CD). My systems are built for reliability and scale.",
     ],
   },
   {
-    id: "fullstack",
+    id: "how-i-work",
     label: "02",
-    title: "Going Full Stack",
+    title: "How I Work",
     content: [
-      "I taught myself frontend development — HTML, CSS, JavaScript, React, Tailwind, Next.js. Then I went deeper: Python, Django, DRF, PostgreSQL, Redis, Docker. Coding, I realized, mirrors teaching: it's about clarity, engagement, and impact.",
-      "This sparked Algorise Tech Explorers — my mission to empower Nigerian students with 4IR skills. It's not just about code. It's about fostering confidence to create, fail, and rise again.",
+      "Understand the domain → Model the data → Design the API → Implement business logic → Test → Deploy → Iterate.",
+      "I focus on data modeling first, because correct data models eliminate bugs downstream. Then I design APIs that are intuitive and secure. Testing and deployment are not afterthoughts—they're built in from day one.",
     ],
   },
   {
-    id: "impact",
+    id: "what-makes-me-different",
     label: "03",
-    title: "Empowering the Next Generation",
+    title: "What Makes Me Different",
     content: [
-      "Through tech bootcamps, I've trained over 50 students, watching them grow into confident builders. Some reached the finals of the National ICT Competition for Girls in Abuja — a proud milestone rooted in Jos.",
-      "Today I build real-world projects, lead workshops, and guide students in web dev, embedded systems, AI & ML, and Scratch for kids as young as seven.",
+      "My background in Arabic Education gives me an unusual advantage: I understand complex user workflows and hierarchical systems. I can translate how people work—whether students in a classroom or cooperative members managing loans—into structured backend systems.",
+      "I don't just write code. I think like a domain expert, understand user problems deeply, and build systems that actually solve them.",
     ],
   },
   {
-    id: "philosophy",
+    id: "my-story",
     label: "04",
-    title: "My Philosophy",
+    title: "My Story",
     content: [
-      "My core belief: your past doesn't define your future. If an Arabic Education graduate can build full-stack apps and mentor young innovators, so can you.",
-      "This journey isn't just about tech — it's about purpose and progress. I'm just getting started, In Sha'a Allah.",
+      "I started in Arabic Education—teaching, watching ideas click, understanding how learning works. Then technology called. I taught myself to code: Python, Django, React, full-stack development. But I brought something from teaching: clarity, patience, and purpose.",
+      "I founded Algorise Tech Explorers to share what I learned. 150+ students trained. Some reached national competition finals. Then I realized: my real strength wasn't just teaching coding—it was building systems that work.",
     ],
   },
 ];
@@ -54,19 +54,24 @@ const MILESTONES = [
   },
   {
     year: "2023",
-    event: "Began self-learning full-stack development",
+    event: "Began self-teaching full-stack development",
     type: "dev",
   },
   { year: "2024", event: "Founded Algorise Tech Explorers", type: "milestone" },
   {
     year: "2024",
-    event: "Trained 50+ students in tech bootcamps",
+    event: "Deployed ATE Management System (100+ users)",
+    type: "milestone",
+  },
+  {
+    year: "2024",
+    event: "Trained 150+ students in bootcamps & workshops",
     type: "milestone",
   },
   {
     year: "2025",
     event: "Led students to National ICT Competition finals",
-    type: "milestone",
+    type: "award",
   },
   {
     year: "2025",
@@ -75,12 +80,7 @@ const MILESTONES = [
   },
   {
     year: "2025",
-    event: "Bootcamp 2.0 — Embedded Systems, AI & ML, Web Dev",
-    type: "milestone",
-  },
-  {
-    year: "2025",
-    event: "ALX ProDev Backend Engineering (Python & Django)",
+    event: "Completed ALX ProDev Backend Engineering (Django & Python)",
     type: "edu",
   },
 ];
@@ -88,21 +88,21 @@ const MILESTONES = [
 const TESTIMONIALS = [
   {
     quote:
-      "Muwatta's bootcamps ignited my passion for coding. I am launching my first app at 10!",
-    author: "Muhammad",
+      "He delivered a production system that transformed our operations. Exceptional understanding of workflow requirements.",
+    author: "Cooperative Administrator",
+    location: "Nigeria",
+  },
+  {
+    quote:
+      "Built our platform end-to-end. Professional, responsive, and production-ready code. Highly recommended.",
+    author: "Client",
+    location: "Nigeria",
+  },
+  {
+    quote:
+      "Muwatta's bootcamps are transforming tech education in Jos. He makes complex systems accessible.",
+    author: "Student",
     location: "Jos",
-  },
-  {
-    quote:
-      "His leadership in Algorise Tech Explorers is transforming tech education in Jos.",
-    author: "Colleague",
-    location: "Kwara",
-  },
-  {
-    quote:
-      "Muwatta's workshops are engaging and empowering. He makes tech accessible!",
-    author: "Parent",
-    location: "Lagos",
   },
 ];
 
@@ -189,29 +189,29 @@ const About = () => {
             className="flex-1"
           >
             <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-3">
-              Full Stack Developer · Educator · Founder
+              Backend Engineer · Full-Stack Developer · Founder
             </p>
             <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-[1.05] mb-5">
-              My
+              Building Systems That
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
-                Story
+                Solve Real Problems
               </span>
             </h1>
             <p
               className="text-slate-400 text-[15px] max-w-xl leading-relaxed mb-8"
               style={{ fontFamily: "'Lora', serif" }}
             >
-              Arabic Education graduate turned full-stack engineer. I build
-              production systems end-to-end and run Algorise Tech Explorers — a
-              bootcamp shaping the next wave of Nigerian developers.
+              Backend-heavy engineer who builds production systems. Also mentor
+              developer talent through Algorise Tech Explorers. From Arabic
+              Education into systems architecture.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
                 to="/contact"
                 className="px-6 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors flex items-center gap-2 group"
               >
-                Get in Touch{" "}
+                Work Together{" "}
                 <HiArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
               <a
@@ -232,10 +232,10 @@ const About = () => {
             className="hidden xl:flex flex-col gap-3 flex-shrink-0 w-48"
           >
             {[
-              { value: "50+", label: "Students Trained" },
-              { value: "2+", label: "Years Building" },
-              { value: "3+", label: "Projects Shipped" },
-              { value: "1st", label: "Hackathon Podium" },
+              { value: "100+", label: "Active Users" },
+              { value: "150+", label: "Learners Trained" },
+              { value: "6+", label: "Production Systems" },
+              { value: "2024", label: "ATE Founded" },
             ].map((s) => (
               <div
                 key={s.label}

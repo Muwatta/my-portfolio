@@ -22,7 +22,7 @@ export const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
               <span className="block text-slate-400 text-xl md:text-2xl font-normal mb-2">
-                Full-Stack Engineer
+                Backend Engineer · Full-Stack Developer
               </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
                 Abdullahi Musliudeen
@@ -30,9 +30,8 @@ export const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              I build scalable EdTech systems and mentor developers. Currently
-              focused on learning management platforms serving 5,000+ users
-              across Nigeria.
+              I build backend systems and full-stack products that solve real
+              operational problems. Django · DRF · PostgreSQL · Redis · React
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">

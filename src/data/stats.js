@@ -2,35 +2,35 @@ export const impactStats = [
   {
     value: 100,
     suffix: "+",
-    label: "Students Mentored",
-    context: "Into tech careers",
+    label: "Active Users",
+    context: "ATE Management System",
   },
   {
-    value: 3,
-    suffix: "",
+    value: 150,
+    suffix: "+",
+    label: "Learners Trained",
+    context: "Through bootcamps & workshops",
+  },
+  {
+    value: 6,
+    suffix: "+",
     label: "Production Systems",
-    context: "Serving 5,000+ users",
+    context: "Live and client-deployed",
   },
   {
-    value: 5,
+    value: 2024,
     suffix: "",
-    label: "States Reached",
-    context: "With EdTech deployments",
-  },
-  {
-    value: 2,
-    suffix: "",
-    label: "National Awards",
-    context: "Girls in ICT, Codeavour",
+    label: "Founded ATE",
+    context: "Algorise Tech Explorers",
   },
 ];
 
 export const recognition = [
-  { title: "Girls in ICT Award", year: "2025", type: "Finalist" },
+  { title: "Girls in ICT Nigeria", year: "2025", type: "National Finals" },
   {
-    title: "African Intelligence Hackathon",
+    title: "African Intelligence LMS Hackathon",
     year: "2025",
     type: "2nd Runner-up",
   },
-  { title: "Codeavour 7.0", year: "2025", type: "National Volunteer" },
+  { title: "ALX ProDev Backend Engineering", year: "2025", type: "Completed" },
 ];

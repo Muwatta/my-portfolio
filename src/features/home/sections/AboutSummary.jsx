@@ -17,27 +17,27 @@ export const AboutSummary = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Engineer. Educator.{" "}
-              <span className="text-blue-400">Builder.</span>
+              Backend Systems That
+              <br />
+              <span className="text-blue-400">Actually Work.</span>
             </h2>
             <div className="space-y-4 text-slate-400 leading-relaxed">
               <p>
-                I specialize in turning complex educational challenges into
-                scalable software solutions. My work sits at the intersection of
-                engineering rigor and pedagogical impact.
+                I specialize in building production-grade backend systems: REST
+                APIs, role-based authorization, financial workflows, real-time
+                data processing, and scalable architecture.
               </p>
               <p>
-                Currently leading technical architecture for NigeriaSkills LMS,
-                a platform training 500+ students across 5 states. Previously
-                mentored 50+ developers into their first engineering roles.
+                Current platform manages 100+ active users. Live production
+                systems for cooperatives, e-commerce, and educational
+                institutions. Also founded and run Algorise Tech Explorers,
+                mentoring 150+ learners.
               </p>
               <p>
-                I believe the best code is the code that teaches—whether that's
-                through clean architecture, thorough documentation, or direct
-                mentorship.
+                My approach: understand domain → model data properly → design
+                clear APIs → implement with testing → deploy with confidence.
               </p>
             </div>
-            
           </motion.div>
 
           <motion.div
@@ -47,20 +47,20 @@ export const AboutSummary = () => {
             className="grid grid-cols-2 gap-4"
           >
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">2+</div>
-              <div className="text-slate-400 text-sm">Years Building</div>
-            </div>
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">50+</div>
-              <div className="text-slate-400 text-sm">Developers Mentored</div>
-            </div>
-            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
               <div className="text-3xl font-bold text-blue-400 mb-2">100+</div>
-              <div className="text-slate-400 text-sm">Users Served</div>
+              <div className="text-slate-400 text-sm">Active Users</div>
             </div>
             <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
-              <div className="text-3xl font-bold text-blue-400 mb-2">3</div>
+              <div className="text-3xl font-bold text-blue-400 mb-2">150+</div>
+              <div className="text-slate-400 text-sm">Learners Trained</div>
+            </div>
+            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
+              <div className="text-3xl font-bold text-blue-400 mb-2">6+</div>
               <div className="text-slate-400 text-sm">Production Systems</div>
+            </div>
+            <div className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800">
+              <div className="text-3xl font-bold text-blue-400 mb-2">2024</div>
+              <div className="text-slate-400 text-sm">ATE Founded</div>
             </div>
           </motion.div>
         </div>

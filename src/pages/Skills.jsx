@@ -44,54 +44,54 @@ const PROFICIENCY = [
 const TIMELINE = [
   {
     year: "2025",
-    role: "Backend Engineer Trainee",
-    org: "ALX ProDev",
-    type: "work",
-    desc: "Built and shipped production-grade backend systems: APIs, async tasks, caching, and deployment pipelines.",
+    role: "ALX Backend Engineering Program",
+    org: "Python & Django Mastery",
+    type: "edu",
+    desc: "Completed intensive backend engineering program with production systems capstone.",
   },
   {
     year: "2024–Present",
     role: "Founder & Technical Lead",
     org: "Algorise Tech Explorers",
     type: "work",
-    desc: "Leads backend-focused training, mentors students, and designs full technical curricula.",
+    desc: "Built and maintain 100+ user platform. Mentor 150+ students. Design and deliver technical curricula.",
   },
   {
-    year: "2025",
-    role: "ALX ProDev Backend Engineering",
-    org: "Python & Django",
-    type: "edu",
-    desc: "Completed intensive program with E-commerce backend capstone.",
+    year: "2024",
+    role: "Independent Software Engineer",
+    org: "Full Stack Development",
+    type: "work",
+    desc: "Delivered production systems: cooperative management, e-commerce, educational platforms.",
   },
   {
-    year: "2019–2022",
+    year: "2019–2024",
     role: "B.A. Arabic Education",
     org: "Ahmadu Bello University, Zaria",
     type: "edu",
-    desc: "Graduated with strong analytical and communication foundations.",
+    desc: "Foundation in communication, structured thinking, and understanding complex organizational systems.",
   },
 ];
 
 const PROJECTS = [
   {
-    name: "Project Nexus",
-    tag: "E-commerce Backend",
-    stack: ["Django", "PostgreSQL", "Redis", "Celery", "Docker"],
-    desc: "Production-style backend with JWT auth, Redis caching, async task queues, and full CI/CD pipeline.",
+    name: "ATE Management System",
+    tag: "100+ Active Users",
+    stack: ["Django", "PostgreSQL", "Redis", "React", "TypeScript"],
+    desc: "Production platform managing bootcamp operations, student progression, and real-time dashboards for 100+ users.",
     accent: "#3b82f6",
   },
   {
-    name: "LMS Backend",
-    tag: "Learning Management",
-    stack: ["Django REST", "PostgreSQL", "Celery", "JWT"],
-    desc: "Secure multi-role API with background email notifications and modular architecture.",
+    name: "SSC Cooperative",
+    tag: "Financial Workflows",
+    stack: ["Django REST", "PostgreSQL", "React", "Resend"],
+    desc: "Live system handling member registration, savings, 2-stage loan approvals, sureties, and repayment tracking.",
     accent: "#8b5cf6",
   },
   {
-    name: "Airbnb & Travel APIs",
-    tag: "Platform Backend",
-    stack: ["Django", "PostgreSQL", "GitHub Actions"],
-    desc: "Relational models, RESTful endpoints, and automated deployment workflows.",
+    name: "NexTalk Messaging API",
+    tag: "Advanced Patterns",
+    stack: ["Django", "PostgreSQL", "Docker", "GitHub Actions"],
+    desc: "Production-grade REST API demonstrating signals, custom ORM managers, nested routing, async operations, and CI/CD.",
     accent: "#06b6d4",
   },
 ];
@@ -206,7 +206,7 @@ export default function Skills() {
               transition={{ delay: 0.1 }}
               className="text-xs tracking-[0.25em] uppercase text-blue-400 mb-2 font-mono"
             >
-              Full Stack Developer · Educator · Founder
+              Backend Engineer · Full-Stack Developer
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 15 }}
@@ -226,10 +226,10 @@ export default function Skills() {
               transition={{ delay: 0.35 }}
               className="text-slate-400 text-sm max-w-xl leading-relaxed mb-6"
             >
-              I architect full-stack systems end-to-end — from React interfaces
-              to Django APIs, PostgreSQL schemas, Redis caches, and Docker-based
-              CI/CD pipelines. I also found and run Algorise Tech Explorers,
-              mentoring the next generation of engineers.
+              Backend engineer specializing in Django, Django REST Framework,
+              PostgreSQL, and Redis. I design scalable APIs, complex business
+              logic, authentication systems, and production infrastructure.
+              Full-stack capabilities with React and Next.js.
             </motion.p>
 
             <motion.div
@@ -377,7 +377,9 @@ export default function Skills() {
             {PROFICIENCY.map((item, i) => (
               <div key={item.label}>
                 <div className="flex justify-between mb-1.5">
-                  <span className="text-sm text-slate-700 dark:text-slate-300">{item.label}</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-300">
+                    {item.label}
+                  </span>
                   <span className="text-xs font-mono text-slate-500">
                     {item.value}%
                   </span>

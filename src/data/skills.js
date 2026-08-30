@@ -9,26 +9,89 @@ export const technicalSkills = [
 
 export const skillCategories = [
   {
-    title: "Frontend Engineering",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    title: "Backend Engineering",
+    skills: [
+      "Django",
+      "Django REST Framework",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "JWT Authentication",
+      "RBAC Systems",
+      "API Design",
+    ],
     description:
-      "Building accessible, performant interfaces with modern tooling",
+      "REST APIs · Authentication · Authorization · ORM · Query Optimization · Business Logic",
+    evidence: "ATE Management System · SSC Cooperative · NexusLMS · NexTalk",
   },
   {
-    title: "Backend Systems",
-    skills: ["Django", "Django REST", "PostgreSQL", "Redis", "Celery"],
-    description: "Scalable APIs and data models for production applications",
+    title: "Databases & Caching",
+    skills: ["PostgreSQL", "Redis", "Data Modeling", "Query Optimization"],
+    description:
+      "Data modeling · Query optimization · Caching strategies · ACID compliance · Indexing",
+    evidence: "All production systems",
   },
   {
-    title: "DevOps & Infrastructure",
-    skills: ["Docker", "CI/CD", "Linux", "Nginx"],
-    description: "Deployment pipelines and cloud infrastructure management",
+    title: "Async & Distributed Systems",
+    skills: [
+      "Celery",
+      "RabbitMQ",
+      "AsyncIO",
+      "Background Jobs",
+      "Message Queues",
+    ],
+    description:
+      "Background job processing · Async workflows · Message queues · Event-driven architecture",
+    evidence: "ShopCore · NexTalk · ATE Management",
+  },
+  {
+    title: "Frontend Engineering",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vite",
+      "Framer Motion",
+      "State Management",
+    ],
+    description:
+      "Component design · Type-safe development · Performance optimization · Responsive design",
+    evidence: "ATE · SSC Cooperative · KMA Spices · DGHI Academy",
+  },
+  {
+    title: "Infrastructure & DevOps",
+    skills: [
+      "Docker",
+      "CI/CD",
+      "GitHub Actions",
+      "Linux",
+      "Nginx",
+      "Containerization",
+    ],
+    description:
+      "Containerization · Deployment pipelines · CI/CD automation · Production monitoring",
+    evidence: "NexusLMS · NexTalk · All deployed systems",
+  },
+  {
+    title: "AI / ML & Computer Vision",
+    skills: [
+      "Python",
+      "OpenCV",
+      "TensorFlow",
+      "scikit-learn",
+      "IoT Integration",
+      "Raspberry Pi",
+    ],
+    description:
+      "Computer vision · Disease detection · ML classification · IoT automation",
+    evidence: "AgroGuard",
   },
 ];
 
 export const currentFocus = [
-  "Learning Management Systems",
-  "Real-time data pipelines",
-  "EdTech accessibility",
-  "Technical mentorship",
+  "Backend architecture at scale",
+  "Distributed system design",
+  "Production-grade testing",
+  "Technical education & mentorship",
 ];
