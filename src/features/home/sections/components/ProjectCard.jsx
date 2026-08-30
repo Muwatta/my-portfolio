@@ -1,7 +1,24 @@
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import { Badge } from "../../../../components/ui/Badge";
 
+const CoverFallback = ({ title }) => (
+  <div
+    className="w-full h-full flex items-center justify-center"
+    style={{
+      background:
+        "linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #111827 100%)",
+    }}
+  >
+    <span
+      className="text-6xl font-extrabold text-slate-700/70 select-none"
+      aria-hidden="true"
+    >
+      {title.split(" ")[0].charAt(0)}
+    </span>
+  </div>
+);
 
 export const ProjectCard = ({ project, index, isActive, onClick }) => {
   return (
@@ -16,11 +33,15 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
     >
       {/* Image */}
       <div className="aspect-video relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <CoverFallback title={project.title} />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent" />
 
         {/* Category Badge */}
@@ -85,6 +106,13 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
               <FiExternalLink size={16} /> Live
             </a>
           )}
+          <Link
+            to={`/portfolio/${project.id}`}
+            className="flex items-center gap-1 text-sm font-semibold text-slate-300 hover:text-blue-400 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Case Study <FiArrowRight size={14} />
+          </Link>
         </div>
       </div>
     </motion.article>

@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { AnimatePresence, MotionConfig } from "framer-motion";
+import { MotionConfig } from "framer-motion";
 import { ThemeProvider } from "./context/ThemeContext";
 
 // Layout
@@ -12,6 +12,7 @@ import Loader from "./components/layout/Loader";
 // Routes — code-split per page
 const Home = lazy(() => import("./pages/Home"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
 const About = lazy(() => import("./pages/About"));
 const Blog = lazy(() => import("./pages/Blog"));
@@ -45,26 +46,25 @@ function App() {
             <Loader>
               <Navbar />
               <main id="main-content" className="flex-grow">
-                <AnimatePresence mode="wait">
-                  <Suspense fallback={<PageLoader />}>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/portfolio" element={<Portfolio />} />
-                      <Route path="/skills" element={<Skills />} />
-                      <Route path="/about" element={<About />} />
-                      <Route path="/blog" element={<Blog />} />
-                      <Route path="/blog/:id" element={<BlogPost />} />
-                      <Route path="/contact" element={<Contact />} />
-                      <Route path="/now" element={<Now />} />
-                      <Route
-                        path="/engineering-experience"
-                        element={<EngineeringExperience />}
-                      />
-                      <Route path="/resume" element={<Resume />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </Suspense>
-                </AnimatePresence>
+                <Suspense fallback={<PageLoader />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/portfolio/:id" element={<ProjectDetail />} />
+                    <Route path="/skills" element={<Skills />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:id" element={<BlogPost />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/now" element={<Now />} />
+                    <Route
+                      path="/engineering-experience"
+                      element={<EngineeringExperience />}
+                    />
+                    <Route path="/resume" element={<Resume />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
               </main>
               <Footer />
             </Loader>

@@ -23,4 +23,12 @@ export default defineConfig({
   optimizeDeps: {
     include: ["react", "react-dom", "framer-motion", "react-router-dom"],
   },
+
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./src/test/setup.js"],
+    css: false,
+    testTimeout: 30000,
+  },
 });

@@ -331,6 +331,49 @@ export const projects = [
     github: "https://github.com/Muwatta/nexus-fintech-backend",
     live: null,
   },
+  {
+    id: "shopcore",
+    title: "ShopCore — E-commerce REST Backend",
+    category: "Backend",
+    featured: false,
+    impact: "reference",
+    description:
+      "Production-ready Django e-commerce backend with JWT role-based authentication, product and category catalog CRUD, a full order lifecycle with checkout, async email notifications via Celery + RabbitMQ, Redis caching, PostgreSQL persistence, and a Docker + GitHub Actions CI/CD pipeline.",
+    problem:
+      "Needed a production-ready e-commerce backend covering authentication, catalog, orders, and checkout with async task processing and caching built in.",
+    approach:
+      "Organized as separate Django apps (accounts, catalog, orders, checkout) over a shared backend config, with role-based JWT auth, Celery workers for async email and order processing, Redis caching, PostgreSQL persistence, and Docker + GitHub Actions CI/CD for deployment.",
+    architecture:
+      "Django REST API → PostgreSQL | Redis (caching) | Celery + RabbitMQ (async tasks) | Docker + GitHub Actions (CI/CD)",
+    engineering: [
+      "JWT role-based permissions (Admin, Customer, Staff)",
+      "Product and category CRUD with filtering, sorting, and pagination",
+      "Full order lifecycle — creation, tracking, and checkout",
+      "Async email notifications and order processing via Celery + RabbitMQ",
+      "Redis caching for performance optimization",
+      "Dockerized dev and production environments",
+    ],
+    result:
+      "Live Django REST API deployed on Render, with Redis caching and RabbitMQ-backed async tasks.",
+    tech: [
+      "Python",
+      "Django REST",
+      "PostgreSQL",
+      "Redis",
+      "Celery",
+      "RabbitMQ",
+      "Docker",
+      "GitHub Actions",
+    ],
+    metrics: [
+      "JWT role-based auth",
+      "Async tasks (Celery + RabbitMQ)",
+      "Redis caching",
+      "CI/CD pipeline",
+    ],
+    github: "https://github.com/muwatta/ShopCore",
+    live: "https://alx-project-nexus-ng70.onrender.com",
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
