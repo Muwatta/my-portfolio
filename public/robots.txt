@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iamabdullahi.netlify.app/sitemap.xml
+Sitemap: https://www.muwatta.com.ng/sitemap.xml

@@ -201,7 +201,7 @@ MIT — free to use as a template. Attribution appreciated.
 
 **Abdullahi Musliudeen Oladipupo**
 
-- 🌐 [iamabdullahi.netlify.app](https://iamabdullahi.netlify.app/)
+- 🌐 [www.muwatta.com.ng](https://www.muwatta.com.ng/)
 - 💼 [github.com/Muwatta](https://github.com/Muwatta)
 - 🔗 [LinkedIn](https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6)
 - 🐦 [@MusliudeenAbdu1](https://x.com/MusliudeenAbdu1)
