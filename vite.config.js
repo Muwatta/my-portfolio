@@ -12,6 +12,7 @@ export default defineConfig({
           router: ["react-router-dom"],
           motion: ["framer-motion"],
           icons: ["react-icons"],
+          supabase: ["@supabase/supabase-js"],
         },
       },
     },

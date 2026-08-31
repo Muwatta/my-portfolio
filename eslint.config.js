@@ -7,6 +7,18 @@ export default [
   { ignores: ["dist"] },
 
   {
+    files: ["scripts/**/*.js", "supabase/**/*.js", "vite.config.js"],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+      sourceType: "module",
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
+
+  {
     files: ["**/*.{js,jsx}"],
 
     languageOptions: {

@@ -1,13 +1,14 @@
 # Abdullahi Musliudeen — Developer Portfolio
 
-[![Live Demo](https://img.shields.io/badge/Live-iamabdullahi.netlify.app-00C7B7?style=flat-square&logo=netlify)](https://iamabdullahi.netlify.app/)
+[![Live Demo](https://img.shields.io/badge/Live-vercel.com-000000?style=flat-square&logo=vercel)](https://my-portfolio.vercel.app/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-Blog%20%26%20Admin-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
 
 A modern, fully responsive personal portfolio built with React and Vite — showcasing full-stack engineering projects, technical skills, and writing.
 
-🔗 **Live:** [iamabdullahi.netlify.app](https://iamabdullahi.netlify.app/)
+🔗 **Live:** hosted on Vercel
 
 ---
 
@@ -16,7 +17,8 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 - **Dark / Light theme** — persists across sessions via localStorage
 - **Mobile-first design** — fully responsive across all screen sizes
 - **Animated UI** — smooth page transitions and micro-interactions via Framer Motion
-- **Blog system** — JSON-driven blog with category filtering and search
+- **Blog system** — Supabase-backed with search and category filtering
+- **Admin editor** — create/edit/delete posts from `/admin` (works on your phone)
 - **Contact form** — powered by EmailJS, no backend required
 - **SEO ready** — dynamic meta tags via React Helmet Async
 - **Performance optimized** — code splitting, chunk caching, and asset optimization via Vite
@@ -33,10 +35,11 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 | Animation | Framer Motion |
 | Routing | React Router v6 |
 | Forms | EmailJS |
+| Backend & Auth | Supabase (Postgres + Auth + RLS) |
 | SEO | React Helmet Async |
 | Icons | React Icons |
 | Fonts | Google Fonts (Syne + Lora) |
-| Deployment | Netlify |
+| Deployment | Vercel |
 
 ---
 
@@ -45,15 +48,16 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 ```
 my-portfolio/
 ├── public/
-│   ├── _redirects         # Netlify SPA routing fix
-│   ├── blog.json          # Blog posts — edit here to add new posts
+│   ├── blog.json          # Static fallback (only when Supabase is unset)
+│   ├── blog/posts/        # Static fallback posts
 │   └── images/            # Static images
 ├── src/
 │   ├── components/
 │   │   ├── layout/        # Navbar, Footer, AnimatedBackground, Loader
 │   │   └── ui/            # SectionHeader, Badge, MagneticButton
 │   ├── context/
-│   │   └── ThemeContext.jsx
+│   │   ├── ThemeContext.jsx
+│   │   └── AuthContext.jsx # Supabase auth for the admin editor
 │   ├── data/
 │   │   ├── projects.js
 │   │   ├── skills.js
@@ -65,6 +69,9 @@ my-portfolio/
 │   │   └── portfolio/
 │   ├── hooks/
 │   │   └── useInView.js
+│   ├── lib/
+│   │   ├── supabase.js    # Client + isSupabaseConfigured
+│   │   └── blog.js        # Blog data service (read/write)
 │   └── pages/
 │       ├── Home.jsx
 │       ├── Portfolio.jsx
@@ -72,8 +79,14 @@ my-portfolio/
 │       ├── About.jsx
 │       ├── Blog.jsx
 │       ├── BlogPost.jsx
+│       ├── Admin.jsx      # Private editor for blog posts
 │       └── Contact.jsx
-├── netlify.toml
+├── scripts/
+│   ├── build-blog.js      # Regenerates static fallback blog.json
+│   └── import-posts.js    # One-time import of posts into Supabase
+├── supabase/
+│   └── schema.sql         # blog_posts table + RLS policies
+├── vercel.json            # SPA rewrites for Vercel
 └── vite.config.js
 ```
 
@@ -110,28 +123,44 @@ npm run preview
 
 ### From your phone (recommended)
 
-A **Decap CMS** admin UI is built in at `/admin`. Log in with your Netlify
-Identity account and you can create, edit, and delete posts with a
-phone-friendly editor — no source code or Git needed. Every save commits to
-GitHub and Netlify auto-deploys.
+A private admin editor is built into the app at **`/admin`**. Log in with your
+Supabase account and you can create, edit, and delete posts with a
+phone-friendly form — no source code or Git needed.
 
-1. Visit `https://iamabdullahi.netlify.app/admin/`
-2. Log in (email + password, or OAuth)
-3. Use **Blog Posts** → **New Post** / edit / delete
+1. Visit `https://<your-site>.vercel.app/admin`
+2. Log in with your Supabase Auth account
+3. Create / edit / delete posts; changes appear immediately
 
-### How it works
+### How it works (security)
 
-- Each post lives as its own file in `public/blog/posts/*.json`
-- `scripts/build-blog.js` regenerates `public/blog.json` (the index the site
-  reads) on every build — so the frontend code never changes
-- Netlify runs `npm run build`, which runs `npm run gen:blog` first
+- Blog posts live in a **Supabase Postgres** table (`blog_posts`)
+- **Row Level Security (RLS)** is enabled:
+  - Anyone (`anon`) can **read** posts
+  - Only **authenticated** users can **create / update / delete**
+- The `/admin` page requires login via Supabase Auth — only accounts you create
+  have access. See `supabase/schema.sql` for the exact policies.
+
+### Setup checklist
+
+1. Create a Supabase project
+2. Run `supabase/schema.sql` in the SQL Editor
+3. Add an admin user under Authentication → Users
+4. Add these env vars in Vercel:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+5. _(One-time)_ import existing posts:
+
+   ```bash
+   VITE_SUPABASE_URL="https://xxxx.supabase.co" \
+   SUPABASE_SERVICE_ROLE_KEY="sb_...service_role" \
+   node scripts/import-posts.js
+   ```
 
 **Categories:** `Tech` · `Education` · `IoT` · `Frontend`
 
-### Directly in code
-
-Add a new file under `public/blog/posts/` following the existing format, then
-build. The `id` is assigned automatically — you don't need to set it.
+> The static `public/blog.json` + `public/blog/posts/` files are only used as a
+> fallback when Supabase env vars aren't configured (e.g. local dev without
+> keys). Once configured, the blog reads and writes directly to Supabase.
 
 ---
 
@@ -147,23 +176,18 @@ emailjs.send("SERVICE_ID", "TEMPLATE_ID", payload, "PUBLIC_KEY")
 
 ## 🌐 Deployment
 
-Hosted on **Netlify** with auto-deploys from `master`.
+Hosted on **Vercel** with auto-deploys from the `master` branch (GitHub).
 
-`netlify.toml` configures:
-- SPA routing redirects
-- Security headers (X-Frame-Options, XSS Protection, Content-Type-Options)
-- Asset caching (1 year for JS/CSS, 1 hour for blog.json)
+`vercel.json` configures SPA rewrites so every route (including `/admin`)
+serves `index.html`. No build command change is needed — `npm run build` runs
+the Vite build.
 
----
+### Env vars (Project Settings → Environment Variables)
 
-## 🔒 Security Headers
-
-| Header | Value |
+| Variable | Purpose |
 |---|---|
-| X-Frame-Options | DENY |
-| X-XSS-Protection | 1; mode=block |
-| X-Content-Type-Options | nosniff |
-| Referrer-Policy | strict-origin-when-cross-origin |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_ANON_KEY` | Public anon key (safe in the client) |
 
 ---
 

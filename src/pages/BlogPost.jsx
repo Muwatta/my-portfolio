@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { FaShareAlt, FaClock } from "react-icons/fa";
+import { fetchPosts, fetchPost } from "../lib/blog";
 
 const TAG_COLORS = {
   Tech: { bg: "#3b82f615", text: "#60a5fa", border: "#3b82f635" },
@@ -38,11 +39,10 @@ const BlogPost = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch("/blog.json")
-      .then((r) => r.json())
-      .then((data) => {
+    Promise.all([fetchPosts(), fetchPost(id)])
+      .then(([data, post]) => {
         setAll(data);
-        setPost(data.find((b) => b.id === parseInt(id)) || null);
+        setPost(post);
         setLoading(false);
       })
       .catch(() => setLoading(false));

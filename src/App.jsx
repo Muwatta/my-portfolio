@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import { ThemeProvider } from "./context/ThemeContext";
+import { AuthProvider } from "./context/AuthContext";
 
 // Layout
 import Navbar from "./components/layout/Navbar";
@@ -24,6 +25,7 @@ const EngineeringExperience = lazy(() =>
 );
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -35,7 +37,8 @@ function App() {
   return (
     <HelmetProvider>
       <ThemeProvider>
-        <MotionConfig reducedMotion="user">
+        <AuthProvider>
+          <MotionConfig reducedMotion="user">
           <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
             <a
               href="#main-content"
@@ -62,6 +65,7 @@ function App() {
                       element={<EngineeringExperience />}
                     />
                     <Route path="/resume" element={<Resume />} />
+                    <Route path="/admin" element={<Admin />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Suspense>
@@ -70,6 +74,7 @@ function App() {
             </Loader>
           </div>
         </MotionConfig>
+        </AuthProvider>
       </ThemeProvider>
     </HelmetProvider>
   );

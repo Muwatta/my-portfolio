@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaSearch, FaShareAlt, FaClock } from "react-icons/fa";
 import { HiArrowRight } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
+import { fetchPosts } from "../lib/blog";
 
 const CATEGORIES = ["All", "Tech", "Education", "IoT", "Frontend"];
 
@@ -60,18 +61,14 @@ const Blog = () => {
   const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
-    fetch("/blog.json")
-      .then((r) => {
-        if (!r.ok) throw new Error();
-        return r.json();
-      })
+    fetchPosts()
       .then((data) => {
         setBlogs(data);
         setFiltered(data);
         setLoading(false);
       })
       .catch(() => {
-        setError("Couldn't load posts. Make sure /public/blog.json exists.");
+        setError("Couldn't load posts.");
         setLoading(false);
       });
   }, []);
@@ -417,15 +414,16 @@ const Blog = () => {
               📝 How to add a new post
             </p>
             <p className="text-slate-400 text-xs leading-6 mb-3">
-              In production, use the <strong>Decap CMS</strong> editor at{" "}
+              In production, use the private <strong>admin editor</strong> at{" "}
               <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
                 /admin
               </code>{" "}
-              (phone friendly, no code needed). For dev, add a JSON file under{" "}
+              (login with Supabase, phone friendly). For dev, add a JSON file
+              under{" "}
               <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
                 public/blog/posts/
               </code>{" "}
-              and rebuild:
+              as a static fallback:
             </p>
             <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`// public/blog/posts/your-slug.json
 {
