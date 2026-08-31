@@ -439,7 +439,7 @@ const Blog = () => {
   "tags": ["Django", "API"],
   "readTime": "5 min read",
   "featured": false                 ← only ONE post should be true
-}`}</pre></pre>
+}`}</pre>
             <p className="text-slate-600 text-[11px] mt-3">
               💡 This panel is hidden in production builds.
             </p>
