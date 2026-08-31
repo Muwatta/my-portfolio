@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "gen:blog": "node scripts/build-blog.js",
+    "dev": "npm run gen:blog && vite",
+    "build": "npm run gen:blog && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest"

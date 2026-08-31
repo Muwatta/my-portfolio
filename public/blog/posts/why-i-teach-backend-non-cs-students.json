@@ -1,0 +1,13 @@
+{
+  "id": 2,
+  "title": "Why I Teach Backend Engineering to Non-CS Students",
+  "excerpt": "Running Algorise Tech Explorers taught me that curiosity beats credentials. Here's how I structure backend workshops for complete beginners.",
+  "body": "The biggest lie in tech education is that you need a computer science degree to be a software engineer. I've watched Arabic Education graduates, accountants, and teachers become competent backend developers in months.\n\nAt Algorise Tech Explorers, we start with the 'why' before the 'how'. Why does a server exist? Why do databases need schemas? Why does an API need authentication? Once students understand the purpose, the implementation makes sense.\n\nThis article breaks down my 12-week curriculum and the specific teaching techniques that moved the needle most.",
+  "category": "Education",
+  "date": "February 22, 2025",
+  "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
+  "medium_link": "https://medium.com/@your-handle/your-article-slug-2",
+  "tags": ["Education", "Mentorship", "Backend"],
+  "readTime": "6 min read",
+  "featured": false
+}

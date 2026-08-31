@@ -106,29 +106,32 @@ npm run preview
 
 ---
 
-## 📝 Adding a Blog Post
+## 📝 Managing Blog Posts
 
-Open `public/blog.json` and add a new object to the array:
+### From your phone (recommended)
 
-```json
-{
-  "id": 5,
-  "title": "Your Post Title",
-  "excerpt": "Short teaser (1-2 sentences).",
-  "body": "Full text here.\n\nNew paragraph.",
-  "category": "Tech",
-  "date": "March 20, 2025",
-  "image": "https://images.unsplash.com/photo?w=800&q=80",
-  "medium_link": "https://medium.com/@you/slug",
-  "tags": ["Django", "API"],
-  "readTime": "5 min read",
-  "featured": false
-}
-```
+A **Decap CMS** admin UI is built in at `/admin`. Log in with your Netlify
+Identity account and you can create, edit, and delete posts with a
+phone-friendly editor — no source code or Git needed. Every save commits to
+GitHub and Netlify auto-deploys.
+
+1. Visit `https://iamabdullahi.netlify.app/admin/`
+2. Log in (email + password, or OAuth)
+3. Use **Blog Posts** → **New Post** / edit / delete
+
+### How it works
+
+- Each post lives as its own file in `public/blog/posts/*.json`
+- `scripts/build-blog.js` regenerates `public/blog.json` (the index the site
+  reads) on every build — so the frontend code never changes
+- Netlify runs `npm run build`, which runs `npm run gen:blog` first
 
 **Categories:** `Tech` · `Education` · `IoT` · `Frontend`
 
-No rebuild needed — save, commit, push. Netlify auto-deploys.
+### Directly in code
+
+Add a new file under `public/blog/posts/` following the existing format, then
+build. The `id` is assigned automatically — you don't need to set it.
 
 ---
 

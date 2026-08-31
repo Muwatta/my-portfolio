@@ -417,14 +417,18 @@ const Blog = () => {
               📝 How to add a new post
             </p>
             <p className="text-slate-400 text-xs leading-6 mb-3">
-              Open{" "}
+              In production, use the <strong>Decap CMS</strong> editor at{" "}
               <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
-                /public/blog.json
+                /admin
               </code>{" "}
-              and add a new object to the array:
+              (phone friendly, no code needed). For dev, add a JSON file under{" "}
+              <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
+                public/blog/posts/
+              </code>{" "}
+              and rebuild:
             </p>
-            <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`{
-  "id": 5,                          ← next number in sequence
+            <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`// public/blog/posts/your-slug.json
+{
   "title": "Your Post Title",
   "excerpt": "Short teaser shown on cards (1-2 sentences).",
   "body": "Full text.\\n\\nNew paragraph.",
@@ -435,7 +439,7 @@ const Blog = () => {
   "tags": ["Django", "API"],
   "readTime": "5 min read",
   "featured": false                 ← only ONE post should be true
-}`}</pre>
+}`}</pre></pre>
             <p className="text-slate-600 text-[11px] mt-3">
               💡 This panel is hidden in production builds.
             </p>
