@@ -11,7 +11,7 @@ import {
   FaLocationArrow,
 } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
-import { motion, AnimatePresence, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // DAT─
@@ -84,7 +84,7 @@ const CONTACT_INFO = [
   },
   {
     icon: FaMapMarkerAlt,
-    value: "Jos, Nigeria (WAT · UTC+1)",
+    value: "Lagos, Nigeria (WAT · UTC+1)",
     href: null,
     color: "text-cyan-500",
   },
@@ -114,6 +114,7 @@ const SocialIcon = ({ href, icon: Icon, label, color, hoverBg }) => {
 
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
   useEffect(() => scrollY.on("change", (v) => setVisible(v > 400)), [scrollY]);
 
@@ -131,7 +132,8 @@ const BackToTop = () => {
           className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-shadow"
         >
           <motion.div
-            animate={{ y: [0, -3, 0] }}
+            aria-hidden="true"
+            animate={reduceMotion ? {} : { y: [0, -3, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
             <FaArrowUp className="text-white w-4 h-4" />
@@ -170,6 +172,7 @@ const FooterHeading = ({ children, accent = "bg-blue-500" }) => (
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const reduceMotion = useReducedMotion();
 
   return (
     <>
@@ -276,12 +279,13 @@ export default function Footer() {
             <p className="flex items-center gap-1 flex-wrap justify-center sm:justify-start">
               © {year} Abdullahi Musliudeen ·
               <motion.span
-                animate={{ scale: [1, 1.3, 1] }}
+                aria-hidden="true"
+                animate={reduceMotion ? {} : { scale: [1, 1.3, 1] }}
                 transition={{ duration: 1.2, repeat: Infinity }}
               >
                 <FaLocationArrow className="text-red-500 w-3 h-3 mx-0.5" />
               </motion.span>
-              in Jos, Nigeria
+              in Lagos, Nigeria
             </p>
             <p>
               Backend Engineer · Full-Stack Developer

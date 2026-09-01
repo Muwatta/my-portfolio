@@ -54,6 +54,10 @@ export const PortfolioCard = ({ project, index }) => {
           <motion.img
             src={project.image}
             alt={project.title}
+            width={640}
+            height={360}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             animate={{ scale: isHovered ? 1.08 : 1 }}
             transition={{ duration: 0.6 }}

@@ -29,8 +29,8 @@ export const ValueProposition = () => {
               Who I Help
             </h3>
             <p className="text-slate-400">
-              EdTech startups, vocational training centers, and engineering
-              teams building systems that impact thousands of users.
+              EdTech startups, vocational training centers, and teams that need
+              backend systems, APIs, and reliable production infrastructure.
             </p>
           </div>
           <div>

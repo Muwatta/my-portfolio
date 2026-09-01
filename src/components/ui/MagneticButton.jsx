@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export const MagneticButton = ({
@@ -10,10 +10,11 @@ export const MagneticButton = ({
   ...props
 }) => {
   const ref = useRef(null);
+  const reduceMotion = useReducedMotion();
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
-    if (!ref.current) return;
+    if (!ref.current || reduceMotion) return;
     const { clientX, clientY } = e;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const x = (clientX - left - width / 2) * 0.3;
@@ -48,7 +49,7 @@ export const MagneticButton = ({
       )}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      animate={{ x: position.x, y: position.y }}
+      animate={reduceMotion ? {} : { x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       {...props}
     >

@@ -7,13 +7,15 @@ import { testimonials } from "../../../data";
 
 export const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
+    if (paused) return;
     const interval = setInterval(() => {
       setActiveIndex((i) => (i + 1) % testimonials.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [paused]);
 
   return (
     <section id="testimonials" className="py-16 md:py-32 bg-slate-900/30">
@@ -24,7 +26,16 @@ export const Testimonials = () => {
           subtitle="Specific outcomes from real collaborations, not vague praise."
         />
 
-        <div className="relative max-w-4xl mx-auto">
+        <div
+          className="relative max-w-4xl mx-auto"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={() => setPaused(false)}
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Testimonials"
+        >
           <div className="relative h-[300px] md:h-[250px]">
             <AnimatePresence mode="wait">
               <TestimonialCard
@@ -42,6 +53,7 @@ export const Testimonials = () => {
                 onClick={() => setActiveIndex(i)}
                 className={`h-2 rounded-full transition-all ${i === activeIndex ? "bg-blue-500 w-8" : "bg-slate-700 hover:bg-slate-600 w-2"}`}
                 aria-label={`Go to testimonial ${i + 1}`}
+                aria-current={i === activeIndex ? "true" : undefined}
               />
             ))}
           </div>

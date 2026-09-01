@@ -150,35 +150,47 @@ const Contact = () => {
                 {/* name + email row */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                    <label
+                      htmlFor="contact-name"
+                      className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider"
+                    >
                       Name
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
                       placeholder="Your name"
+                      autoComplete="name"
                       value={form.name}
                       onChange={handleChange}
                       onFocus={() => setFocused("name")}
                       onBlur={() => setFocused(null)}
                       required
+                      aria-required="true"
                       className={inputBase}
                       style={inputStyle("name")}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                    <label
+                      htmlFor="contact-email"
+                      className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider"
+                    >
                       Email
                     </label>
                     <input
+                      id="contact-email"
                       type="email"
                       name="email"
                       placeholder="your@email.com"
+                      autoComplete="email"
                       value={form.email}
                       onChange={handleChange}
                       onFocus={() => setFocused("email")}
                       onBlur={() => setFocused(null)}
                       required
+                      aria-required="true"
                       className={inputBase}
                       style={inputStyle("email")}
                     />
@@ -187,10 +199,14 @@ const Contact = () => {
 
                 {/* message */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider">
+                  <label
+                    htmlFor="contact-message"
+                    className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase tracking-wider"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="contact-message"
                     name="message"
                     placeholder="What's on your mind?"
                     value={form.message}
@@ -198,6 +214,7 @@ const Contact = () => {
                     onFocus={() => setFocused("message")}
                     onBlur={() => setFocused(null)}
                     required
+                    aria-required="true"
                     rows={6}
                     className={inputBase + " resize-none"}
                     style={inputStyle("message")}
@@ -208,6 +225,7 @@ const Contact = () => {
                 <AnimatePresence>
                   {status && (
                     <motion.p
+                      role="alert"
                       initial={{ opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0 }}
@@ -228,6 +246,7 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={sending}
+                  aria-busy={sending}
                   whileTap={{ scale: 0.97 }}
                   className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-bold text-sm transition-colors"
                   style={{

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { MagneticButton } from "../../../components/ui/MagneticButton";
 import { Container } from "../../../components/layout/Container";
@@ -6,6 +6,7 @@ import { ctaNavigation } from "../../../data";
 
 export const Hero = () => {
   const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
   return (
     <section className="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
       <Container className="relative z-10">
@@ -63,7 +64,7 @@ export const Hero = () => {
             <div className="relative w-full max-w-md mx-auto aspect-square">
               {/* Animated rings */}
               <motion.div
-                animate={{ rotate: 360 }}
+                animate={reduceMotion ? {} : { rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-0 rounded-full border-2 border-dashed border-slate-700/50"
               />
@@ -71,6 +72,10 @@ export const Hero = () => {
                 <img
                   src="https://res.cloudinary.com/dee5edoss/image/upload/v1763611836/national_image_otksdm.jpg"
                   alt="Abdullahi Musliudeen"
+                  width={576}
+                  height={576}
+                  decoding="async"
+                  fetchpriority="high"
                   className="w-full h-full object-cover rounded-full"
                 />
               </div>
