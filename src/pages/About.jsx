@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Helmet } from "react-helmet-async";
 import { HiArrowRight } from "react-icons/hi";
 import { FaQuoteLeft } from "react-icons/fa";
+import Seo from "../components/seo/Seo";
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
@@ -139,17 +139,17 @@ const About = () => {
       className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
-      <Helmet>
-        <title>About | Abdullahi Musliudeen Oladipupo</title>
-        <meta
-          name="description"
-          content="Backend Engineer & Full-Stack Developer — from Arabic Education to building production systems."
-        />
+      <Seo
+        title="About | Abdullahi Musliudeen Oladipupo"
+        description="Backend Engineer & Full-Stack Developer. I build production systems with Django, DRF, PostgreSQL, Redis and React — and run Algorise Tech Explorers."
+        path="/about"
+        type="profile"
+      >
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
           rel="stylesheet"
         />
-      </Helmet>
+      </Seo>
 
       {/* BG */}
       <div

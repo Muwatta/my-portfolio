@@ -1,19 +1,17 @@
-import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { HiDownload } from "react-icons/hi";
 import { Container } from "../components/layout/Container";
+import Seo from "../components/seo/Seo";
 
 export const Resume = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200">
-      <Helmet>
-        <title>Resume | Abdullahi Musliudeen</title>
-        <meta
-          name="description"
-          content="Resume and CV for backend engineer & full-stack developer."
-        />
-      </Helmet>
+      <Seo
+        title="Resume | Abdullahi Musliudeen"
+        description="Resume and CV for Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer building production systems with Django, DRF, PostgreSQL, Redis and React."
+        path="/resume"
+      />
 
       {/* Background */}
       <div

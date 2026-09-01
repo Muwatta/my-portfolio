@@ -176,6 +176,7 @@ export default function AdminPage() {
         <div className="w-full max-w-sm">
           <Helmet>
             <title>Admin Login | Abdullahi Musliudeen</title>
+            <meta name="robots" content="noindex" />
           </Helmet>
           <div className="mb-8 text-center">
             <p className="text-5xl mb-4">🔐</p>
@@ -232,6 +233,7 @@ export default function AdminPage() {
     <div className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200">
       <Helmet>
         <title>Admin | Abdullahi Musliudeen</title>
+        <meta name="robots" content="noindex" />
       </Helmet>
       <div className="max-w-5xl mx-auto px-4 py-10">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8">

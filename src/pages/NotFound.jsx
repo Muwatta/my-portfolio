@@ -10,10 +10,8 @@ export const NotFound = () => {
     >
       <Helmet>
         <title>Page Not Found | Abdullahi Musliudeen</title>
-        <meta
-          name="description"
-          content="The page you are looking for does not exist."
-        />
+        <meta name="robots" content="noindex" />
+        <link rel="canonical" href="https://muwatta.com.ng/" />
       </Helmet>
 
       {/* Grid background */}

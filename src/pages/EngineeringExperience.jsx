@@ -1,10 +1,10 @@
-import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { Container } from "../components/layout/Container";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { engineeringExperience } from "../data/experience";
+import Seo from "../components/seo/Seo";
 
 export const EngineeringExperience = () => {
   const typeColors = {
@@ -15,13 +15,11 @@ export const EngineeringExperience = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200">
-      <Helmet>
-        <title>Engineering Experience | Abdullahi Musliudeen</title>
-        <meta
-          name="description"
-          content="Production systems built. Users served. Learners mentored. Engineering impact."
-        />
-      </Helmet>
+      <Seo
+        title="Engineering Experience | Abdullahi Musliudeen"
+        description="Production systems built, users served, learners mentored. Engineering impact and domain experience from Abdullahi Musliudeen."
+        path="/engineering-experience"
+      />
 
       {/* Background */}
       <div

@@ -1,8 +1,8 @@
-import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { skillCategories } from "../data";
+import Seo from "../components/seo/Seo";
 
 const SKILLS = {
   frontend: [
@@ -137,17 +137,16 @@ export default function Skills() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-[#080c14] text-slate-800 dark:text-slate-200 relative overflow-hidden">
-      <Helmet>
-        <title>Skills | Abdullahi Musliudeen Oladipupo</title>
-        <meta
-          name="description"
-          content="Backend Engineer & Full-Stack Developer — Python, Django, React, PostgreSQL, Docker."
-        />
+      <Seo
+        title="Skills | Abdullahi Musliudeen Oladipupo"
+        description="Backend Engineer & Full-Stack Developer — Python, Django, Django REST Framework, PostgreSQL, Redis, Celery, Docker and React."
+        path="/skills"
+      >
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
           rel="stylesheet"
         />
-      </Helmet>
+      </Seo>
 
       {/* Grid background */}
       <div

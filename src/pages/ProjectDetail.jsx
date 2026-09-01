@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import Seo from "../components/seo/Seo";
 import {
   HiArrowLeft,
   HiOutlineLightningBolt,
@@ -78,9 +79,10 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-white dark:bg-[#06090f] flex flex-col items-center justify-center px-4 text-center">
-        <Helmet>
-          <title>Project Not Found | Abdullahi Musliudeen</title>
-        </Helmet>
+      <Helmet>
+        <title>Project Not Found | Abdullahi Musliudeen</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
         <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-4">
           Error 404
         </p>
@@ -109,10 +111,13 @@ const ProjectDetail = () => {
       className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
-      <Helmet>
-        <title>{project.title} | Abdullahi Musliudeen</title>
-        <meta name="description" content={project.description} />
-      </Helmet>
+      <Seo
+        title={`${project.title} | Abdullahi Musliudeen`}
+        description={project.description}
+        path={`/portfolio/${project.id}`}
+        image={project.image}
+        type="article"
+      />
 
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"

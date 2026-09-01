@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "emailjs-com";
-import { Helmet } from "react-helmet-async";
 import { HiArrowRight } from "react-icons/hi";
 import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import Seo from "../components/seo/Seo";
 
 // ─── CONTACT LINKS ────────────────────────────────────────────────────────────
 
@@ -82,17 +82,16 @@ const Contact = () => {
       className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
-      <Helmet>
-        <title>Contact | Abdullahi Musliudeen Oladipupo</title>
-        <meta
-          name="description"
-          content="Get in touch with Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer."
-        />
+      <Seo
+        title="Contact | Abdullahi Musliudeen Oladipupo"
+        description="Open to backend & full-stack engineering opportunities. Get in touch with Abdullahi Musliudeen for contract development or full-time work."
+        path="/contact"
+      >
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;1,400&display=swap"
           rel="stylesheet"
         />
-      </Helmet>
+      </Seo>
 
       {/* BG */}
       <div

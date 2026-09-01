@@ -1,21 +1,19 @@
-import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { HiArrowRight } from "react-icons/hi";
 import { Container } from "../components/layout/Container";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { nowContent } from "../data/now";
+import Seo from "../components/seo/Seo";
 
 export const Now = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200">
-      <Helmet>
-        <title>Now | Abdullahi Musliudeen</title>
-        <meta
-          name="description"
-          content="What I'm currently working on and focusing on."
-        />
-      </Helmet>
+      <Seo
+        title="Now | Abdullahi Musliudeen"
+        description="What Abdullahi Musliudeen is currently working on and focusing on — backend and full-stack engineering."
+        path="/now"
+      />
 
       {/* Background */}
       <div

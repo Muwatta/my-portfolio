@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaSearch, FaShareAlt, FaClock } from "react-icons/fa";
 import { HiArrowRight } from "react-icons/hi";
-import { Helmet } from "react-helmet-async";
 import { fetchPosts } from "../lib/blog";
+import Seo from "../components/seo/Seo";
 
 const CATEGORIES = ["All", "Tech", "Education", "IoT", "Frontend"];
 
@@ -107,17 +107,16 @@ const Blog = () => {
       className="min-h-screen bg-white dark:bg-[#06090f] text-slate-800 dark:text-slate-200 relative overflow-hidden"
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
-      <Helmet>
-        <title>Blog | Abdullahi Musliudeen Oladipupo</title>
-        <meta
-          name="description"
-          content="Writing on full-stack engineering, backend systems, education, and tech."
-        />
+      <Seo
+        title="Writing | Abdullahi Musliudeen Oladipupo"
+        description="Writing on backend engineering, Django REST Framework, API design, system design, DevOps, React and computer vision."
+        path="/blog"
+      >
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"
           rel="stylesheet"
         />
-      </Helmet>
+      </Seo>
 
       {/* BG */}
       <div
