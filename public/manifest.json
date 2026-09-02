@@ -23,26 +23,26 @@
       "purpose": "maskable"
     },
     {
-      "src": "/images/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/images/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/images/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/images/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/images/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/images/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/images/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "maskable"
     }
@@ -72,8 +72,8 @@
       "url": "/blog",
       "icons": [
         {
-          "src": "/images/android-chrome-192x192.png",
-          "sizes": "192x192",
+          "src": "/images/favicon-32x32.png",
+          "sizes": "32x32",
           "type": "image/png"
         }
       ]
@@ -85,8 +85,8 @@
       "url": "/portfolio",
       "icons": [
         {
-          "src": "/images/android-chrome-192x192.png",
-          "sizes": "192x192",
+          "src": "/images/favicon-32x32.png",
+          "sizes": "32x32",
           "type": "image/png"
         }
       ]
@@ -98,8 +98,8 @@
       "url": "/contact",
       "icons": [
         {
-          "src": "/images/android-chrome-192x192.png",
-          "sizes": "192x192",
+          "src": "/images/favicon-32x32.png",
+          "sizes": "32x32",
           "type": "image/png"
         }
       ]

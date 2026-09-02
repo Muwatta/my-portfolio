@@ -84,8 +84,11 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
           if (response.ok) {
+            const responseToCache = response.clone();
             const cache = caches.open(CACHE_NAME_PREFIX("api"));
-            cache.then((c) => c.put(request, response.clone()));
+            cache
+              .then((c) => c.put(request, responseToCache))
+              .catch((error) => console.error("API cache failed:", error));
           }
           return response;
         })
@@ -115,8 +118,11 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
           if (response.ok) {
+            const responseToCache = response.clone();
             const cache = caches.open(CACHE_NAME_PREFIX("runtime"));
-            cache.then((c) => c.put(request, response.clone()));
+            cache
+              .then((c) => c.put(request, responseToCache))
+              .catch((error) => console.error("Page cache failed:", error));
           }
           return response;
         })
