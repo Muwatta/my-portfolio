@@ -4,9 +4,9 @@ const ASSETS_CACHE = `${CACHE_PREFIX}-assets`;
 const API_CACHE = `${CACHE_PREFIX}-api`;
 
 const CACHE_VERSIONS = {
-  runtime: 1,
-  assets: 1,
-  api: 1,
+  runtime: 2,
+  assets: 2,
+  api: 2,
 };
 
 const CACHE_NAME_PREFIX = (type) =>
