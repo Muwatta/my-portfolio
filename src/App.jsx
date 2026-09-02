@@ -6,12 +6,10 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { AuthProvider } from "./context/AuthContext";
 import PWAInstallPrompt from "./components/PWAInstallPrompt";
 
-// Layout
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Loader from "./components/layout/Loader";
 
-// Routes — code-split per page
 const Home = lazy(() => import("./pages/Home"));
 const Portfolio = lazy(() => import("./pages/Portfolio"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
@@ -24,6 +22,7 @@ const Now = lazy(() => import("./pages/Now"));
 const EngineeringExperience = lazy(
   () => import("./pages/EngineeringExperience"),
 );
+
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
