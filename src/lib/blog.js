@@ -2,7 +2,7 @@ import { supabase, isSupabaseConfigured } from "./supabase";
 
 const TABLE = "blog_posts";
 
-const TO_PUBLIC = (row) => ({
+export const asPublicPost = (row = {}) => ({
   id: row.id,
   title: row.title,
   excerpt: row.excerpt,
@@ -13,30 +13,46 @@ const TO_PUBLIC = (row) => ({
   medium_link: row.medium_link,
   tags: row.tags || [],
   readTime: row.read_time || row.readTime,
-  featured: row.featured,
+  featured: Boolean(row.featured),
+  published: row.published !== false,
 });
 
-export async function fetchPosts() {
+export const filterPublicPosts = (posts = []) =>
+  posts.filter((post) => post.published !== false);
+
+const TO_PUBLIC = (row) => asPublicPost(row);
+
+export async function fetchPosts({ includeDrafts = false } = {}) {
   if (!isSupabaseConfigured || !supabase) {
     const res = await fetch("/blog.json");
     if (!res.ok) throw new Error("Couldn't load posts.");
-    return res.json();
+    const posts = await res.json();
+    return includeDrafts ? posts : filterPublicPosts(posts);
   }
 
-  const { data, error } = await supabase
+  let query = supabase
     .from(TABLE)
     .select("*")
     .order("date", { ascending: false });
 
+  if (!includeDrafts) {
+    query = query.eq("published", true);
+  }
+
+  const { data, error } = await query;
+
   if (error) throw error;
-  return data.map(TO_PUBLIC);
+  return (data || [])
+    .map(TO_PUBLIC)
+    .filter((post) => (includeDrafts ? true : post.published));
 }
 
 export async function fetchPost(id) {
   if (!isSupabaseConfigured || !supabase) {
     const res = await fetch("/blog.json");
     const all = await res.json();
-    return all.find((b) => String(b.id) === String(id)) || null;
+    const post = all.find((b) => String(b.id) === String(id));
+    return post && post.published !== false ? post : null;
   }
 
   const { data, error } = await supabase
@@ -46,7 +62,9 @@ export async function fetchPost(id) {
     .maybeSingle();
 
   if (error) throw error;
-  return data ? TO_PUBLIC(data) : null;
+  if (!data) return null;
+  const publicPost = TO_PUBLIC(data);
+  return publicPost.published ? publicPost : null;
 }
 
 const TO_ROW = (post) => ({
@@ -59,7 +77,8 @@ const TO_ROW = (post) => ({
   medium_link: post.medium_link,
   tags: post.tags || [],
   read_time: post.readTime || post.read_time || "5 min read",
-  featured: post.featured || false,
+  featured: Boolean(post.featured),
+  published: post.published !== false,
 });
 
 export async function createPost(post) {

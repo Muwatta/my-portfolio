@@ -1,3 +1,4 @@
+-- !preview on -- Supabase PostgreSQL schema
 -- Blog posts table for the Supabase-backed portfolio blog.
 -- Run this in the Supabase SQL editor (Dashboard > SQL Editor).
 
@@ -13,6 +14,7 @@ create table if not exists public.blog_posts (
   tags        text[] not null default '{}',
   read_time   text not null default '5 min read',
   featured    boolean not null default false,
+  published   boolean not null default true,
   created_at  timestamptz not null default now()
 );
 
