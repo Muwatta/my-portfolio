@@ -15,29 +15,6 @@ import {
 import { useAuth } from "../context/AuthContext";
 import { isSupabaseConfigured } from "../lib/supabase";
 import { fetchPosts, createPost, updatePost, deletePost } from "../lib/blog";
-import {
-  fetchProjects,
-  createProject,
-  updateProject,
-  deleteProject,
-  fetchSkills,
-  createSkill,
-  updateSkill,
-  deleteSkill,
-  fetchTestimonials,
-  createTestimonial,
-  updateTestimonial,
-  deleteTestimonial,
-  fetchExperience,
-  createExperience,
-  updateExperience,
-  deleteExperience,
-  fetchStats,
-  createStat,
-  updateStat,
-  deleteStat,
-} from "../lib/content";
-import { openUploadWidget } from "../lib/cloudinary";
 
 const EMPTY = {
   title: "",
