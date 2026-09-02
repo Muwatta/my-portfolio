@@ -14,7 +14,12 @@ import {
 } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import { isSupabaseConfigured } from "../lib/supabase";
-import { fetchPosts, createPost, updatePost, deletePost } from "../lib/blog";
+import {
+  fetchPosts,
+  createPost,
+  updatePost,
+  deletePost,
+} from "../lib/blog";
 import {
   fetchProjects,
   createProject,
@@ -225,7 +230,9 @@ export default function AdminPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="w-full px-4 py-2.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:border-blue-500"
             />
-            {authError && <p className="text-red-400 text-xs">{authError}</p>}
+            {authError && (
+              <p className="text-red-400 text-xs">{authError}</p>
+            )}
             <button
               type="submit"
               className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold transition-colors"
@@ -462,7 +469,11 @@ export default function AdminPage() {
                 disabled={saving}
                 className="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-sm font-bold transition-colors"
               >
-                {saving ? "Saving…" : selected ? "Update Post" : "Create Post"}
+                {saving
+                  ? "Saving…"
+                  : selected
+                    ? "Update Post"
+                    : "Create Post"}
               </button>
               {selected && (
                 <button
