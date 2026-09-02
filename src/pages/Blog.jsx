@@ -417,26 +417,23 @@ const Blog = () => {
               <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
                 /admin
               </code>{" "}
-              (login with Supabase, phone friendly). For dev, add a JSON file
-              under{" "}
+              (GitHub login, phone friendly). For dev, add a Markdown file under{" "}
               <code className="text-blue-300 bg-slate-800 px-1.5 py-0.5 rounded">
-                public/blog/posts/
+                content/blog/
               </code>{" "}
-              as a static fallback:
+              with frontmatter:
             </p>
-            <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`// public/blog/posts/your-slug.json
-{
-  "title": "Your Post Title",
-  "excerpt": "Short teaser shown on cards (1-2 sentences).",
-  "body": "Full text.\\n\\nNew paragraph.",
-  "category": "Tech",               ← Tech | Education | IoT | Frontend
-  "date": "March 19, 2025",
-  "image": "https://unsplash.com/…",
-  "medium_link": "https://medium.com/@you/slug",
-  "tags": ["Django", "API"],
-  "readTime": "5 min read",
-  "featured": false                 ← only ONE post should be true
-}`}</pre>
+            <pre className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-950 rounded-lg p-4 overflow-x-auto leading-6 border border-slate-200 dark:border-slate-800">{`---
+title: "Your Post Title"
+excerpt: "Short teaser shown on cards."
+category: Tech
+date: "2026-09-02"
+tags: ["Django", "API"]
+featured: false
+published: true
+---
+
+Your post body goes here.`}</pre>
             <p className="text-slate-600 text-[11px] mt-3">
               💡 This panel is hidden in production builds.
             </p>

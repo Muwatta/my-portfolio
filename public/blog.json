@@ -1,9 +1,25 @@
 [
   {
-    "id": 1,
+    "title": "5 Reasons Why Sahuur is Important",
+    "date": "2025-09-11T00:00:00Z",
+    "excerpt": "Discover the essential benefits of sahuur during Ramadan and how it helps you stay energized and connected in Jos, Nigeria.",
+    "image": "/img/sahuur-importance.jpg",
+    "mediumLink": "https://medium.com/@abdullahiMusliudeen/5-reasons-why-sahuur-is-important",
+    "body": "## Introduction\r\n\r\nDuring Ramadan, sahuur—the pre-dawn meal—is more than just a routine; it’s a vital part of the day. In Jos, Nigeria, families come together for sahuur, not only to prepare their bodies for the long day ahead but also to strengthen community bonds. Here are five key reasons why sahuur is so important.\r\n\r\n## 1. Provides Essential Energy\r\n\r\nAfter a long night of fasting, sahuur supplies your body with the energy it needs to start the day. A balanced sahuur keeps your blood sugar levels steady and prepares you for the challenges of the day.\r\n\r\n## 2. Enhances Focus and Productivity\r\n\r\nA nutritious pre-dawn meal helps sharpen your mind. With the right mix of proteins, complex carbohydrates, and hydration, sahuur boosts mental clarity and concentration, whether you're at work or in school.\r\n\r\n## 3. Promotes Hydration\r\n\r\nIn Jos, where the weather can be quite warm, staying hydrated is crucial. Sahuur is the ideal time to rehydrate your body after a long night without water, reducing the risk of dehydration during the day.\r\n\r\n## 4. Encourages Healthy Eating Habits\r\n\r\nPlanning a wholesome sahuur sets a positive tone for the day. It helps you maintain a structured eating schedule, which can prevent overeating later at iftaar and support a balanced diet throughout Ramadan.\r\n\r\n## 5. Strengthens Family and Community Bonds\r\n\r\nSahuur is often a shared meal among family members and neighbors in Jos. This time together fosters a sense of unity and support, making the fasting experience more enriching and communal.\r\n\r\n## Conclusion\r\n\r\nEmbracing sahuur can transform your Ramadan experience. By providing energy, enhancing focus, ensuring hydration, and reinforcing healthy habits, it plays a critical role in both your physical and spiritual well-being. Enjoy your sahuur and the communal warmth it brings to your day.",
+    "id": 1
+  },
+  {
+    "title": "5 Reasons Why Sahuur is Important",
+    "date": "2025-03-10T06:35:32.132Z",
+    "excerpt": "Discover the essential benefits of sahuur during Ramadan and how it helps you stay energized and connected in Jos, Nigeria.",
+    "image": "https://res.cloudinary.com/dee5edoss/image/upload/v1748055293/IMG-20250417-WA0009_u0hipk.jpg",
+    "mediumLink": "https://medium.com/@abdullahiMusliudeen/5-reasons-why-sahuur-is-important",
+    "body": "## Introduction\r\n\r\nDuring Ramadan, sahuur—the pre-dawn meal—is more than just a routine; it’s a vital part of the day. In Jos, Nigeria, families come together for sahuur, not only to prepare their bodies for the long day ahead but also to strengthen community bonds. Here are five key reasons why sahuur is so important.\r\n\r\n## 1. Provides Essential Energy\r\n\r\nAfter a long night of fasting, sahuur supplies your body with the energy it needs to start the day. A balanced sahuur keeps your blood sugar levels steady and prepares you for the challenges of the day.\r\n\r\n## 2. Enhances Focus and Productivity\r\n\r\nA nutritious pre-dawn meal helps sharpen your mind. With the right mix of proteins, complex carbohydrates, and hydration, sahuur boosts mental clarity and concentration, whether you're at work or in school.\r\n\r\n## 3. Promotes Hydration\r\n\r\nIn Jos, where the weather can be quite warm, staying hydrated is crucial. Sahuur is the ideal time to rehydrate your body after a long night without water, reducing the risk of dehydration during the day.\r\n\r\n## 4. Encourages Healthy Eating Habits\r\n\r\nPlanning a wholesome sahuur sets a positive tone for the day. It helps you maintain a structured eating schedule, which can prevent overeating later at iftaar and support a balanced diet throughout Ramadan.\r\n\r\n## 5. Strengthens Family and Community Bonds\r\n\r\nSahuur is often a shared meal among family members and neighbors in Jos. This time together fosters a sense of unity and support, making the fasting experience more enriching and communal.\r\n\r\n## Conclusion\r\n\r\nEmbracing sahuur can transform your Ramadan experience. By providing energy, enhancing focus, ensuring hydration, and reinforcing healthy habits, it plays a critical role in both your physical and spiritual well-being. Enjoy your sahuur and the communal warmth it brings to your day.",
+    "id": 2
+  },
+  {
     "title": "Building a Production-Ready REST API with Django & PostgreSQL",
     "excerpt": "A deep dive into designing secure, scalable REST APIs using Django REST Framework — covering authentication, pagination, filtering, and deployment.",
-    "body": "When building production APIs, the foundation matters more than the feature count. In this article, I walk through the exact architecture I used in Project Nexus — from schema design to JWT auth to Redis caching.\n\nFirst, we model our database carefully. Django's ORM is powerful but only when you respect the relational model underneath it. I'll show you how I designed the product, order, and user tables with proper foreign keys and indexes.\n\nNext, we configure DRF serializers to handle nested relationships without the N+1 query trap. This is where most tutorials fall short — they show you the happy path but not the performance pitfalls.\n\nFinally, we wire up GitHub Actions for automated testing and deployment to a Docker container. Every push to main runs the test suite before anything goes live.",
     "category": "Tech",
     "date": "March 10, 2025",
     "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
@@ -15,13 +31,13 @@
       "Docker"
     ],
     "readTime": "8 min read",
-    "featured": true
+    "featured": true,
+    "body": "When building production APIs, the foundation matters more than the feature count. In this article, I walk through the exact architecture I used in Project Nexus — from schema design to JWT auth to Redis caching.\n\nFirst, we model our database carefully. Django's ORM is powerful but only when you respect the relational model underneath it. I'll show you how I designed the product, order, and user tables with proper foreign keys and indexes.\n\nNext, we configure DRF serializers to handle nested relationships without the N+1 query trap. This is where most tutorials fall short — they show you the happy path but not the performance pitfalls.\n\nFinally, we wire up GitHub Actions for automated testing and deployment to a Docker container. Every push to main runs the test suite before anything goes live.",
+    "id": 3
   },
   {
-    "id": 2,
     "title": "Why I Teach Backend Engineering to Non-CS Students",
     "excerpt": "Running Algorise Tech Explorers taught me that curiosity beats credentials. Here's how I structure backend workshops for complete beginners.",
-    "body": "The biggest lie in tech education is that you need a computer science degree to be a software engineer. I've watched Arabic Education graduates, accountants, and teachers become competent backend developers in months.\n\nAt Algorise Tech Explorers, we start with the 'why' before the 'how'. Why does a server exist? Why do databases need schemas? Why does an API need authentication? Once students understand the purpose, the implementation makes sense.\n\nThis article breaks down my 12-week curriculum and the specific teaching techniques that moved the needle most.",
     "category": "Education",
     "date": "February 22, 2025",
     "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
@@ -32,13 +48,13 @@
       "Backend"
     ],
     "readTime": "6 min read",
-    "featured": false
+    "featured": false,
+    "body": "The biggest lie in tech education is that you need a computer science degree to be a software engineer. I've watched Arabic Education graduates, accountants, and teachers become competent backend developers in months.\n\nAt Algorise Tech Explorers, we start with the 'why' before the 'how'. Why does a server exist? Why do databases need schemas? Why does an API need authentication? Once students understand the purpose, the implementation makes sense.\n\nThis article breaks down my 12-week curriculum and the specific teaching techniques that moved the needle most.",
+    "id": 4
   },
   {
-    "id": 3,
     "title": "Celery + RabbitMQ: Background Jobs That Actually Work",
     "excerpt": "A practical guide to async task processing in Django — without the headaches. Real patterns from production systems.",
-    "body": "Background tasks are where Django apps either scale or collapse. I've seen systems grind to a halt because someone ran a PDF generation job inside a view function. Celery with RabbitMQ fixes this — if you configure it correctly.\n\nIn this guide, I cover the exact setup I use: separate Celery worker containers in Docker Compose, task retries with exponential backoff, and monitoring with Flower.",
     "category": "Tech",
     "date": "January 15, 2025",
     "image": "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80",
@@ -50,13 +66,22 @@
       "Async"
     ],
     "readTime": "10 min read",
-    "featured": false
+    "featured": false,
+    "body": "Background tasks are where Django apps either scale or collapse. I've seen systems grind to a halt because someone ran a PDF generation job inside a view function. Celery with RabbitMQ fixes this — if you configure it correctly.\n\nIn this guide, I cover the exact setup I use: separate Celery worker containers in Docker Compose, task retries with exponential backoff, and monitoring with Flower.",
+    "id": 5
   },
   {
-    "id": 4,
+    "title": "My second Blog Post",
+    "date": "2025-01-01T10:00:00Z",
+    "excerpt": "This is a brief summary of my second blog post.",
+    "image": "/uploads/second-post.jpg",
+    "mediumLink": "https://medium.com/@abdullahiMusliudeen/my-second-blog-post",
+    "body": "Here is the full content of my second blog post. Write your content in Markdown and use this file format to keep things consistent.",
+    "id": 6
+  },
+  {
     "title": "React for Backend Developers: What You Actually Need",
     "excerpt": "You don't need to master the entire React ecosystem. Here's the 20% that covers 80% of full-stack frontend work.",
-    "body": "As a backend developer stepping into full-stack territory, React can feel overwhelming. Hooks, context, state management libraries, bundlers — the ecosystem is enormous. But most backend developers only need a small slice of it.\n\nThis article is that slice. We cover useState, useEffect, fetching data from your own APIs, and how to structure a React project that won't become a maintenance nightmare.",
     "category": "Frontend",
     "date": "December 5, 2024",
     "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
@@ -67,6 +92,21 @@
       "Full Stack"
     ],
     "readTime": "7 min read",
-    "featured": false
+    "featured": false,
+    "body": "As a backend developer stepping into full-stack territory, React can feel overwhelming. Hooks, context, state management libraries, bundlers — the ecosystem is enormous. But most backend developers only need a small slice of it.\n\nThis article is that slice. We cover useState, useEffect, fetching data from your own APIs, and how to structure a React project that won't become a maintenance nightmare.",
+    "id": 7
+  },
+  {
+    "title": "My First Blog Post",
+    "date": "2023-01-01T10:00:00Z",
+    "excerpt": "This is a brief summary of my first blog post.",
+    "image": "/uploads/first-post.jpg",
+    "mediumLink": "https://medium.com/@abdullahiMusliudeen/my-first-blog-post",
+    "body": "Here is the full content of my first blog post. Write your content in Markdown and use this file format to keep things consistent.",
+    "id": 8
+  },
+  {
+    "body": "title: From Jos to Nationals: How 3 Girls Used Tech to Dream Bigger  \r\ndate: 2025-05-24T06:00:00.000Z  \r\nexcerpt: Discover how three girls from Plateau State became national finalists in Nigeria’s Girls in ICT competition — and what it revealed about grassroots tech educhttps://res.cloudinary.com/dee5edoss/image/upload/v1748055293/IMG-20250417-WA0009_u0hipk.jpg/img/girls-ict-nationals.jpg  \r\nmediumLink: https://medium.com/@abdullahmusliudeen/from-jos-to-abuja-how-my-students-made-it-to-the-national-ict-competition-finals-b2c53eba11fb \r\n---\r\n\r\n\r\nSir, we’ve never entered a plane before.”\r\nThat was the voice of Hauwa & Nafisa — quiet, excited, a bit nervous.\r\nIt hit me then: this was bigger than just a tech competition.\r\n\r\nIt started with a share…\r\nWhen we saw the post shared by a colleague. A call for applications for the National-Girls in ICT Competition, I knew it was the kind of opportunity we couldn’t ignore.\r\n\r\nWe quickly put together a team:\r\n— Hauwa Ejura Muhammad (Team Lead)\r\n— Nafisa Hamzah Aliyu\r\n— Hafsa Cisse\r\n\r\nBrilliant girls. Eager to learn. Willing to try.\r\n\r\nWe poured energy into our application, not sure what to expect. Then came the first win:\r\nWe were shortlisted.\r\n\r\nFrom over 200 applicants nationwide, our team was selected as one of the 37 schools to compete at the regional level. We were part of the North Central region — ready to represent our school, our state (Plateau), and every young girl who dares to dream in a male-dominated space.\r\n\r\nThe Regionals: Confidence Tested\r\nThe competition was tough.\r\nEvery team brought their best ideas and brightest girls.\r\nBut we didn’t shrink.\r\nWe showed up, pitched well, and pushed through our nerves.\r\n\r\nWe ended up as runners-up — just behind Niger State, and by a very slim margin. The judges remarked:\r\n\r\n“You girls impressed us. Their clarity, their confidence — it’s rare at this level. You’re nearly the winner for us, Team Solace!”\r\n\r\nThat meant only one thing:\r\nWe were going to the Nationals.\r\n\r\nThe Nationals: 13 States, One Dream\r\nThe final stage brought together just 13 teams — the best from every region across Nigeria, including:\r\nOgun, Anambra, Edo, Taraba, Kaduna… and Plateau — our girls.\r\n\r\nFor Hauwa, Nafisa, and Hafsa, it was more than just tech.\r\nIt was their first time on a plane.\r\nWe flew from Bauchi to Abuja, sponsored by the Federal Government, who covered everything — flights, meals, accommodation, logistics.\r\n\r\nIn Abuja, the girls explored places they had only read about:\r\n— The ICT Museum\r\n— National Data Centers\r\n— Foreign Embassies\r\n— And networking sessions with top women in tech and government.\r\n\r\nFor three full days, they learned, presented, competed, and grew.\r\n\r\nWhat This Journey Taught Me\r\nAs a tech educator and founder of Algorise Tech Explorers, I’ve always believed in building grassroots tech talent. But this journey reminded me:\r\n\r\n— Exposure changes everything.\r\n— Girls need visible wins to believe they belong in tech.\r\n— Nigeria is full of untapped talent just waiting to be supported.\r\n\r\nThe pride in my students’ eyes when they returned — not as “just girls learning tech” but as national finalists — is something I’ll never forget.\r\n\r\nFinal Thoughts\r\nWe didn’t win the top spot.\r\nBut we won something far greater: belief.\r\nIn themselves. In their abilities. In the future they can shape with code and courage.\r\n\r\nFrom Arabic classrooms to AI workshops, from Scratch projects to cloud bootcamps, this journey has never been just about tech for me. It’s about creating pathways.\r\n\r\nAnd to every young girl out there:\r\nYou’re not too small.\r\nYou’re not too late.\r\nYou’re not alone.\r\n\r\nLet’s keep building.",
+    "id": 9
   }
 ]

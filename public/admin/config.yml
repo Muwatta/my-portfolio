@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: Muwatta/my-portfolio
+  branch: master
+  base_url: https://api.netlify.com
+  auth_endpoint: api/auth
+
+publish_mode: editorial_workflow
+media_folder: public/images/blog
+public_folder: /images/blog
+
+collections:
+  - name: blog
+    label: Blog posts
+    folder: content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}} — {{date}}"
+    fields:
+      - { label: ID, name: id, widget: number, value_type: int, required: false }
+      - { label: Title, name: title, widget: string }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Category, name: category, widget: select, options: [Tech, Education, IoT, Frontend] }
+      - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Image, name: image, widget: image, required: false }
+      - { label: Medium link, name: medium_link, widget: string, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Read time, name: readTime, widget: string, default: "5 min read" }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - { label: Published, name: published, widget: boolean, default: true }
+      - { label: Body, name: body, widget: markdown }

@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3-38BDF8?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/)
-[![Supabase](https://img.shields.io/badge/Supabase-Blog%20%26%20Admin-3ECF8E?style=flat-square&logo=supabase)](https://supabase.com/)
+[![Decap CMS](https://img.shields.io/badge/Decap%20CMS-GitHub-181717?style=flat-square&logo=github)](https://decapcms.org/)
 
 A modern, fully responsive personal portfolio built with React and Vite — showcasing full-stack engineering projects, technical skills, and writing.
 
@@ -17,8 +17,8 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 - **Dark / Light theme** — persists across sessions via localStorage
 - **Mobile-first design** — fully responsive across all screen sizes
 - **Animated UI** — smooth page transitions and micro-interactions via Framer Motion
-- **Blog system** — Supabase-backed with search and category filtering
-- **Admin editor** — create/edit/delete posts from `/admin` (works on your phone)
+- **Blog system** — Markdown-backed with search and category filtering
+- **Admin editor** — Decap CMS at `/admin/`, backed by GitHub (works on your phone)
 - **Contact form** — powered by EmailJS, no backend required
 - **SEO ready** — dynamic meta tags via React Helmet Async
 - **Performance optimized** — code splitting, chunk caching, and asset optimization via Vite
@@ -35,7 +35,7 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 | Animation | Framer Motion |
 | Routing | React Router v6 |
 | Forms | EmailJS |
-| Backend & Auth | Supabase (Postgres + Auth + RLS) |
+| Content management | Decap CMS + GitHub |
 | SEO | React Helmet Async |
 | Icons | React Icons |
 | Fonts | Google Fonts (Syne + Lora) |
@@ -48,8 +48,8 @@ A modern, fully responsive personal portfolio built with React and Vite — show
 ```
 my-portfolio/
 ├── public/
-│   ├── blog.json          # Static fallback (only when Supabase is unset)
-│   ├── blog/posts/        # Static fallback posts
+│   ├── blog.json          # Generated blog index
+│   ├── admin/             # Decap CMS entry point and configuration
 │   └── images/            # Static images
 ├── src/
 │   ├── components/
@@ -57,7 +57,7 @@ my-portfolio/
 │   │   └── ui/            # SectionHeader, Badge, MagneticButton
 │   ├── context/
 │   │   ├── ThemeContext.jsx
-│   │   └── AuthContext.jsx # Supabase auth for the admin editor
+│   │   └── AuthContext.jsx # Legacy auth context
 │   ├── data/
 │   │   ├── projects.js
 │   │   ├── skills.js
@@ -70,8 +70,8 @@ my-portfolio/
 │   ├── hooks/
 │   │   └── useInView.js
 │   ├── lib/
-│   │   ├── supabase.js    # Client + isSupabaseConfigured
-│   │   └── blog.js        # Blog data service (read/write)
+│   │   ├── supabase.js    # Optional legacy content client
+│   │   └── blog.js        # Static blog data service
 │   └── pages/
 │       ├── Home.jsx
 │       ├── Portfolio.jsx
@@ -82,10 +82,9 @@ my-portfolio/
 │       ├── Admin.jsx      # Private editor for blog posts
 │       └── Contact.jsx
 ├── scripts/
-│   ├── build-blog.js      # Regenerates static fallback blog.json
-│   └── import-posts.js    # One-time import of posts into Supabase
-├── supabase/
-│   └── schema.sql         # blog_posts table + RLS policies
+│   ├── build-blog.js      # Generates blog.json from Markdown
+│   └── import-posts.js    # Legacy Supabase import utility
+├── content/blog/          # Markdown posts managed by Decap CMS
 ├── vercel.json            # SPA rewrites for Vercel
 └── vite.config.js
 ```
@@ -123,44 +122,29 @@ npm run preview
 
 ### From your phone (recommended)
 
-A private admin editor is built into the app at **`/admin`**. Log in with your
-Supabase account and you can create, edit, and delete posts with a
-phone-friendly form — no source code or Git needed.
+A private admin editor is available at **`/admin/`**. Sign in with GitHub and
+you can create, edit, and delete posts with a phone-friendly form.
 
-1. Visit `https://<your-site>.vercel.app/admin`
-2. Log in with your Supabase Auth account
-3. Create / edit / delete posts; changes appear immediately
+1. Configure GitHub OAuth for Decap CMS and update `public/admin/config.yml`.
+2. Visit `https://<your-site>/admin/`
+3. Log in with GitHub and create or edit posts.
 
 ### How it works (security)
 
-- Blog posts live in a **Supabase Postgres** table (`blog_posts`)
-- **Row Level Security (RLS)** is enabled:
-  - Anyone (`anon`) can **read** posts
-  - Only **authenticated** users can **create / update / delete**
-- The `/admin` page requires login via Supabase Auth — only accounts you create
-  have access. See `supabase/schema.sql` for the exact policies.
+- Blog posts live as Markdown files in `content/blog/`.
+- Decap CMS uses GitHub commits or pull requests for editorial changes.
+- Configure OAuth before deploying; never put a GitHub client secret in the frontend.
 
 ### Setup checklist
 
-1. Create a Supabase project
-2. Run `supabase/schema.sql` in the SQL Editor
-3. Add an admin user under Authentication → Users
-4. Add these env vars in Vercel:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-5. _(One-time)_ import existing posts:
-
-   ```bash
-   VITE_SUPABASE_URL="https://xxxx.supabase.co" \
-   SUPABASE_SERVICE_ROLE_KEY="sb_...service_role" \
-   node scripts/import-posts.js
-   ```
+1. Configure the GitHub backend and OAuth endpoint in `public/admin/config.yml`.
+2. Configure the OAuth callback URL with your chosen OAuth provider.
+3. Commit CMS changes so the deployment rebuilds `public/blog.json`.
 
 **Categories:** `Tech` · `Education` · `IoT` · `Frontend`
 
-> The static `public/blog.json` + `public/blog/posts/` files are only used as a
-> fallback when Supabase env vars aren't configured (e.g. local dev without
-> keys). Once configured, the blog reads and writes directly to Supabase.
+> `public/blog.json` is generated at build time from Markdown files in
+> `content/blog/`. No database or runtime environment variables are required.
 
 ---
 
@@ -178,16 +162,14 @@ emailjs.send("SERVICE_ID", "TEMPLATE_ID", payload, "PUBLIC_KEY")
 
 Hosted on **Vercel** with auto-deploys from the `master` branch (GitHub).
 
-`vercel.json` configures SPA rewrites so every route (including `/admin`)
-serves `index.html`. No build command change is needed — `npm run build` runs
-the Vite build.
+`vercel.json` configures SPA rewrites for application routes. The static
+`/admin/` directory is served directly by Vercel for Decap CMS.
 
 ### Env vars (Project Settings → Environment Variables)
 
 | Variable | Purpose |
 |---|---|
-| `VITE_SUPABASE_URL` | Supabase project URL |
-| `VITE_SUPABASE_ANON_KEY` | Public anon key (safe in the client) |
+| GitHub OAuth | Required by Decap CMS for `/admin/` |
 
 ---
 
