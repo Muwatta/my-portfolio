@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Muwatta/my-portfolio
   branch: master
-  base_url: https://api.netlify.com
+  base_url: https://www.muwatta.com.ng/api
   auth_endpoint: auth
 
 publish_mode: editorial_workflow

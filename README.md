@@ -137,9 +137,11 @@ you can create, edit, and delete posts with a phone-friendly form.
 
 ### Setup checklist
 
-1. Configure the GitHub backend and OAuth endpoint in `public/admin/config.yml`.
-2. Configure the OAuth callback URL with your chosen OAuth provider.
-3. Commit CMS changes so the deployment rebuilds `public/blog.json`.
+1. Create a GitHub OAuth App with callback URL
+   `https://www.muwatta.com.ng/api/callback`.
+2. Add `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, and `SITE_URL` to Vercel.
+3. Deploy and visit `https://www.muwatta.com.ng/admin/`.
+4. Commit CMS changes so the deployment rebuilds `public/blog.json`.
 
 **Categories:** `Tech` · `Education` · `IoT` · `Frontend`
 
