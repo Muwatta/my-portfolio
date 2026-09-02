@@ -3,7 +3,7 @@ backend:
   repo: Muwatta/my-portfolio
   branch: master
   base_url: https://api.netlify.com
-  auth_endpoint: api/auth
+  auth_endpoint: auth
 
 publish_mode: editorial_workflow
 media_folder: public/images/blog
