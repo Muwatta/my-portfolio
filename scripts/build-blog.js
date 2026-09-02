@@ -8,10 +8,11 @@ const postsDir = join(rootDir, "public", "blog", "posts");
 const markdownDir = join(rootDir, "content", "blog");
 const outFile = join(rootDir, "public", "blog.json");
 
-const legacyPosts = readdirSync(postsDir)
-  .filter((f) => f.endsWith(".json"))
-  .map((f) => JSON.parse(readFileSync(join(postsDir, f), "utf8")))
-;
+const legacyPosts = existsSync(postsDir)
+  ? readdirSync(postsDir)
+      .filter((f) => f.endsWith(".json"))
+      .map((f) => JSON.parse(readFileSync(join(postsDir, f), "utf8")))
+  : [];
 
 const markdownPosts = existsSync(markdownDir)
   ? readdirSync(markdownDir)
