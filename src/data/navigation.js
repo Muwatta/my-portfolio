@@ -2,7 +2,7 @@ export const navItems = [
   { name: "Work", path: "/portfolio" },
   { name: "About", path: "/about" },
   { name: "Writing", path: "/blog" },
-  { name: "Contact", path: "/contact" },
+  { name: "Let's Talk", path: "/contact" },
 ];
 
 export const ctaNavigation = {

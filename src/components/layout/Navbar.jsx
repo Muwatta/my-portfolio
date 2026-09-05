@@ -97,16 +97,21 @@ const Navbar = () => {
                 to={item.path}
                 className={({ isActive }) =>
                   `relative text-sm font-medium transition-colors duration-300 py-2 ${
-                    isActive
-                      ? "text-slate-900 dark:text-white"
-                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    item.name === "Let's Talk"
+                      ? "rounded-full bg-blue-600/10 px-4 text-blue-700 shadow-sm shadow-blue-500/10 dark:text-blue-300"
+                      : isActive
+                        ? "text-slate-900 dark:text-white"
+                        : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                   }`
                 }
               >
                 {({ isActive }) => (
                   <motion.span
                     className="inline-block"
-                    whileHover={{ y: -2 }}
+                    whileHover={{
+                      y: -2,
+                      scale: item.name === "Let's Talk" ? 1.05 : 1,
+                    }}
                     whileTap={{ scale: 0.95 }}
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -114,7 +119,7 @@ const Navbar = () => {
                   >
                     {item.name}
                     <motion.span
-                      className="absolute -bottom-1 left-0 h-0.5 bg-blue-500 rounded-full"
+                      className={`absolute -bottom-1 left-0 h-0.5 rounded-full ${item.name === "Let's Talk" ? "bg-cyan-400" : "bg-blue-500"}`}
                       initial={{ width: 0 }}
                       animate={{ width: isActive ? "100%" : 0 }}
                       whileHover={{ width: "100%" }}
@@ -157,20 +162,6 @@ const Navbar = () => {
                 )}
               </AnimatePresence>
             </motion.button>
-
-            {/* Hire Me */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <Link
-                to="/contact"
-                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-full hover:from-blue-500 hover:to-indigo-500 transition-all shadow-lg shadow-blue-500/25 text-sm"
-              >
-                Hire Me
-              </Link>
-            </motion.div>
           </div>
 
           {/* Mobile: theme toggle + hamburger */}
@@ -261,9 +252,11 @@ const Navbar = () => {
                     onClick={closeMenu}
                     className={({ isActive }) =>
                       `block py-3 px-4 rounded-xl text-base font-medium transition-all ${
-                        isActive
-                          ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
-                          : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50"
+                        item.name === "Let's Talk"
+                          ? "bg-blue-600/10 text-blue-700 dark:text-blue-300 border border-blue-500/30"
+                          : isActive
+                            ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20"
+                            : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/50"
                       }`
                     }
                   >
@@ -271,15 +264,6 @@ const Navbar = () => {
                   </NavLink>
                 </motion.div>
               ))}
-              <div className="pt-3 pb-1">
-                <Link
-                  to="/contact"
-                  onClick={closeMenu}
-                  className="block w-full text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all text-sm"
-                >
-                  Hire Me
-                </Link>
-              </div>
             </div>
           </motion.div>
         )}
