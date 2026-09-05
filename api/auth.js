@@ -14,7 +14,7 @@ export default function handler(req, res) {
 
   const state = crypto.randomBytes(24).toString("hex");
   const origin = process.env.SITE_URL || `https://${req.headers.host}`;
-  const callback = `${origin}/api/callback`;
+  const callback = `${origin}/callback`;
   const authorizeUrl = new URL("https://github.com/login/oauth/authorize");
   authorizeUrl.searchParams.set("client_id", clientId);
   authorizeUrl.searchParams.set("redirect_uri", callback);
@@ -23,7 +23,7 @@ export default function handler(req, res) {
 
   res.setHeader(
     "Set-Cookie",
-    `decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=600`,
+    `decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=600`,
   );
   res.redirect(authorizeUrl.toString());
 }

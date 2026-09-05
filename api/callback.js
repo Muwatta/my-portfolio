@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       client_id: process.env.GITHUB_CLIENT_ID,
       client_secret: process.env.GITHUB_CLIENT_SECRET,
       code,
-      redirect_uri: `${process.env.SITE_URL || `https://${req.headers.host}`}/api/callback`,
+      redirect_uri: `${process.env.SITE_URL || `https://${req.headers.host}`}/callback`,
     }),
   });
   const token = await response.json();
@@ -40,12 +40,21 @@ export default async function handler(req, res) {
     token: token.access_token,
     provider: "github",
   });
-  const message = `authorization:github:success:${payload}`;
+  const successMessage = `authorization:github:success:${payload}`;
 
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.send(`<!doctype html>
 <script>
-  window.opener.postMessage(${JSON.stringify(message)}, "*");
-  window.close();
+  (function() {
+    function receiveMessage(e) {
+      window.opener.postMessage(
+        ${JSON.stringify(successMessage)},
+        e.origin
+      );
+      window.removeEventListener("message", receiveMessage, false);
+    }
+    window.addEventListener("message", receiveMessage, false);
+    window.opener.postMessage("authorizing:github", "*");
+  })();
 </script>`);
 }

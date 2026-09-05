@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Muwatta/my-portfolio
   branch: master
-  base_url: https://www.muwatta.com.ng/api
+  base_url: https://www.muwatta.com.ng/
   auth_endpoint: auth
 
 publish_mode: editorial_workflow
