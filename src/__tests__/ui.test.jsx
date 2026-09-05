@@ -30,15 +30,26 @@ describe("Portfolio UI (browser rendering)", () => {
   it("renders the homepage with identity and navigation", async () => {
     renderApp(["/"]);
     expect(
-      await screen.findByRole("heading", { level: 1, name: /Abdullahi Musliudeen/i }),
+      await screen.findByRole("heading", {
+        level: 1,
+        name: /Abdullahi Musliudeen/i,
+      }),
     ).toBeInTheDocument();
-    const logoLinks = await screen.findAllByRole("link", { name: "AM" });
+    const logoLinks = await screen.findAllByRole("link", {
+      name: /Muwatta home/i,
+    });
     expect(logoLinks.length).toBeGreaterThan(0);
     const workLinks = await screen.findAllByRole("link", { name: /Work/i });
     expect(workLinks.length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: /About/i }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: /Writing/i }).length).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: /Contact/i }).length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: /About/i }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: /Writing/i }).length,
+    ).toBeGreaterThan(0);
+    expect(
+      screen.getAllByRole("link", { name: /Let's Talk/i }).length,
+    ).toBeGreaterThan(0);
   });
 
   it("toggles the theme from dark to light and back", async () => {
@@ -79,14 +90,27 @@ describe("Portfolio UI (browser rendering)", () => {
     expect(
       screen.getByRole("heading", { name: "The Problem" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Solution" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Engineering" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Architecture" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Tech Stack" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Outcome" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Solution" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Engineering" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Architecture" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Tech Stack" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Outcome" }),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: /View Source Code/i }),
-    ).toHaveAttribute("href", "https://github.com/Muwatta/ssc-cooperative-system");
+    ).toHaveAttribute(
+      "href",
+      "https://github.com/Muwatta/ssc-cooperative-system",
+    );
   });
 
   it("renders a case study for a project without an image", async () => {

@@ -98,6 +98,10 @@
   @apply mt-1 block w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-normal text-slate-900 outline-none focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100;
 }
 
+.label {
+  @apply block text-sm font-semibold;
+}
+
 .field::placeholder {
   @apply text-slate-500 dark:text-slate-400;
 }

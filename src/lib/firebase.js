@@ -12,6 +12,7 @@ const firebaseConfig = {
 };
 
 export const isFirebaseConfigured =
+  import.meta.env.MODE !== "test" &&
   Object.values(firebaseConfig).every(Boolean);
 const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
 

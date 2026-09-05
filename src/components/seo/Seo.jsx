@@ -15,11 +15,12 @@ export default function Seo({
   image = SITE.image,
   type = "website",
   jsonLd,
+  canonicalUrl,
   robots = "index, follow",
   children,
 }) {
   const url = pageUrl(path);
-  const canonical = url;
+  const canonical = canonicalUrl || url;
 
   return (
     <Helmet>

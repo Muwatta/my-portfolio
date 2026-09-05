@@ -3,16 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../../../components/layout/Container";
 import { PortfolioCard } from "../components/PortfolioCard";
 import { FilterTabs } from "../components/FilterTabs";
-import { projects } from "../../../data";
+import { projects as legacyProjects } from "../../../data";
 import { Link } from "react-router-dom";
 
-export const ProjectGrid = () => {
+export const ProjectGrid = ({ projects = legacyProjects }) => {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
     return projects.filter((p) => p.category === activeFilter);
-  }, [activeFilter]);
+  }, [activeFilter, projects]);
 
   return (
     <section

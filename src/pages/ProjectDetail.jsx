@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -12,7 +12,7 @@ import {
   HiOutlineCode,
 } from "react-icons/hi";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
-import { getProjectById } from "../data";
+import { fetchProject } from "../lib/projects";
 import { ArchitectureDiagram } from "../features/portfolio/components/ArchitectureDiagram";
 import { breadcrumbSchema, pageUrl, PERSON_ID, SITE } from "../lib/seo";
 
@@ -71,11 +71,25 @@ const Section = ({ icon, title, children }) => (
 
 const ProjectDetail = () => {
   const { id } = useParams();
-  const project = getProjectById(id);
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
+    fetchProject(id)
+      .then(setProject)
+      .catch(() => setProject(null))
+      .finally(() => setLoading(false));
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white dark:bg-[#06090f] flex items-center justify-center text-sm text-slate-500">
+        Loading project...
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -113,10 +127,15 @@ const ProjectDetail = () => {
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Seo
-        title={`${project.title} | Abdullahi Musliudeen`}
-        description={project.description}
+        title={project.seoTitle || `${project.title} | Muwatta`}
+        description={
+          project.seoDescription ||
+          project.shortDescription ||
+          project.description
+        }
         path={`/portfolio/${project.id}`}
-        image={project.image}
+        canonicalUrl={project.canonicalUrl || undefined}
+        image={project.imageUrl || project.image}
         type="article"
         jsonLd={[
           {
@@ -126,9 +145,11 @@ const ProjectDetail = () => {
             name: project.title,
             description: project.description,
             url: pageUrl(`/portfolio/${project.id}`),
-            ...(project.image ? { image: project.image } : {}),
+            ...(project.imageUrl || project.image
+              ? { image: project.imageUrl || project.image }
+              : {}),
             author: { "@id": PERSON_ID },
-            keywords: project.tech,
+            keywords: project.technologies || project.tech,
           },
           breadcrumbSchema([
             { name: "Home", path: "/" },

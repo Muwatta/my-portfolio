@@ -26,6 +26,7 @@ const EngineeringExperience = lazy(
 const Resume = lazy(() => import("./pages/Resume"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
+const AdminProjects = lazy(() => import("./pages/AdminProjects"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -72,6 +73,10 @@ function App() {
                       />
                       <Route path="/resume" element={<Resume />} />
                       <Route path="/admin/login" element={<Admin />} />
+                      <Route
+                        path="/admin/projects"
+                        element={<AdminProjects />}
+                      />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>
