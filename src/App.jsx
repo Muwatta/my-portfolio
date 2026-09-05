@@ -68,6 +68,7 @@ function App() {
                         element={<EngineeringExperience />}
                       />
                       <Route path="/resume" element={<Resume />} />
+                      <Route path="/admin/login" element={<Admin />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>

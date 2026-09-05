@@ -1,5 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { supabase, isSupabaseConfigured } from "../lib/supabase";
+import {
+  browserLocalPersistence,
+  onAuthStateChanged,
+  setPersistence,
+  signInWithEmailAndPassword,
+  signOut as firebaseSignOut,
+} from "firebase/auth";
+import { auth, isFirebaseConfigured } from "../lib/firebase";
 
 const AuthContext = createContext(null);
 
@@ -8,32 +15,35 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!isSupabaseConfigured || !supabase) {
+    if (!isFirebaseConfigured || !auth) {
       setLoading(false);
       return;
     }
 
-    supabase.auth.getSession().then(({ data }) => {
-      setUser(data.session?.user ?? null);
+    setPersistence(auth, browserLocalPersistence).catch(() => {});
+    return onAuthStateChanged(auth, (nextUser) => {
+      setUser(nextUser);
       setLoading(false);
     });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = (email, password) =>
-    supabase.auth.signInWithPassword({ email, password });
+  const signIn = (email, password) => {
+    if (!auth) throw new Error("Firebase is not configured.");
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
-  const signOut = () => supabase.auth.signOut();
+  const signOut = () => (auth ? firebaseSignOut(auth) : Promise.resolve());
 
   return (
-    <AuthContext.Provider value={{ user, loading, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        signIn,
+        signOut,
+        isConfigured: isFirebaseConfigured,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
