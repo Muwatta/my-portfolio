@@ -9,7 +9,8 @@ service cloud.firestore {
     function isAdmin() {
       return signedIn()
         && exists(/databases/$(database)/documents/admin_users/$(request.auth.uid))
-        && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'admin';
+        && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'admin'
+        && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.active == true;
     }
 
     function validArticleStatus(status) {

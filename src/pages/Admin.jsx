@@ -4,13 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import { db } from "../lib/firebase";
-import {
-  createPost,
-  deletePost,
-  fetchPosts,
-  updatePost,
-  uploadArticleCover,
-} from "../lib/blog";
+import { createPost, deletePost, fetchPosts, updatePost } from "../lib/blog";
 
 const EMPTY = {
   title: "",
@@ -131,6 +125,7 @@ export default function AdminPage() {
   const [tagsText, setTagsText] = useState("");
   const [notice, setNotice] = useState("");
   const [saving, setSaving] = useState(false);
+  const [preview, setPreview] = useState(false);
 
   useEffect(() => {
     if (!user || !db) {
@@ -139,7 +134,11 @@ export default function AdminPage() {
     }
     getDoc(doc(db, "admin_users", user.uid))
       .then((snapshot) =>
-        setAuthorized(snapshot.exists() && snapshot.data().role === "admin"),
+        setAuthorized(
+          snapshot.exists() &&
+            snapshot.data().role === "admin" &&
+            snapshot.data().active === true,
+        ),
       )
       .catch(() => setAuthorized(false));
   }, [user]);
@@ -219,17 +218,6 @@ export default function AdminPage() {
     setPosts((current) => current.filter((item) => item.id !== post.id));
     if (selected?.id === post.id) openNew();
   };
-  const upload = async (event) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    try {
-      change("image", await uploadArticleCover(file, selected?.id));
-      setNotice("Cover uploaded. Save the article to keep it.");
-    } catch (error) {
-      setNotice(error.message || "Unable to upload cover.");
-    }
-  };
-
   return (
     <Shell title="Content Manager">
       <div className="grid gap-8 lg:grid-cols-[280px_1fr]">
@@ -361,16 +349,15 @@ export default function AdminPage() {
               Cover image
               <input
                 className="field"
-                type="file"
-                accept="image/*"
-                onChange={upload}
-              />
-              <input
-                className="field mt-2"
-                placeholder="Image URL"
+                type="url"
+                placeholder="https://example.com/cover.jpg"
                 value={form.image}
                 onChange={(event) => change("image", event.target.value)}
               />
+              <span className="mt-1 block text-xs font-normal text-slate-500">
+                Firebase Storage requires a paid billing plan. Use an image URL
+                on the free plan.
+              </span>
             </label>
           </div>
           <label className="block text-sm font-semibold">
@@ -383,7 +370,42 @@ export default function AdminPage() {
             />
           </label>
           {notice && <p className="text-sm text-blue-700">{notice}</p>}
+          {preview && (
+            <article className="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+              {form.image && (
+                <img
+                  className="mb-4 max-h-64 w-full rounded-lg object-cover"
+                  src={form.image}
+                  alt=""
+                />
+              )}
+              <p className="text-xs font-bold uppercase tracking-widest text-blue-600">
+                {form.category} · {form.status}
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold">
+                {form.title || "Untitled article"}
+              </h2>
+              <p className="mt-2 text-sm text-slate-500">{form.excerpt}</p>
+              <div className="mt-5 space-y-3 text-sm leading-7">
+                {(form.body || "Write the article body to preview it.")
+                  .split(/\n+/)
+                  .filter(Boolean)
+                  .map((paragraph, index) => (
+                    <p key={`${index}-${paragraph.slice(0, 12)}`}>
+                      {paragraph}
+                    </p>
+                  ))}
+              </div>
+            </article>
+          )}
           <div className="flex gap-3">
+            <button
+              className="button-secondary"
+              type="button"
+              onClick={() => setPreview((current) => !current)}
+            >
+              {preview ? "Hide preview" : "Preview"}
+            </button>
             <button className="button-primary" disabled={saving} type="submit">
               {saving ? "Saving..." : "Save article"}
             </button>

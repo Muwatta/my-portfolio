@@ -9,11 +9,11 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db, isFirebaseConfigured, storage } from "./firebase";
+import { db, isFirebaseConfigured } from "./firebase";
 
 export const asPublicPost = (row = {}) => ({
   id: row.id,
+  slug: row.slug || String(row.id || ""),
   title: row.title,
   excerpt: row.excerpt,
   body: row.body,
@@ -24,6 +24,7 @@ export const asPublicPost = (row = {}) => ({
   tags: row.tags || [],
   readTime: row.read_time || row.readTime,
   featured: Boolean(row.featured),
+  status: row.status || (row.published === false ? "draft" : "published"),
   published: row.published !== false,
 });
 
@@ -42,16 +43,12 @@ const fetchLegacyPosts = async (includeDrafts) => {
 
 export async function fetchPosts({ includeDrafts = false } = {}) {
   if (isFirebaseConfigured && db) {
-    try {
-      const articles = collection(db, "articles");
-      const articleQuery = includeDrafts
-        ? query(articles)
-        : query(articles, where("status", "==", "published"));
-      const posts = fromFirestore(await getDocs(articleQuery));
-      if (posts.length || includeDrafts) return posts;
-    } catch (error) {
-      if (includeDrafts) throw error;
-    }
+    const articles = collection(db, "articles");
+    const articleQuery = includeDrafts
+      ? query(articles)
+      : query(articles, where("status", "==", "published"));
+    const posts = fromFirestore(await getDocs(articleQuery));
+    if (posts.length || includeDrafts) return posts;
   }
   return fetchLegacyPosts(includeDrafts);
 }
@@ -62,32 +59,50 @@ export async function fetchPost(id) {
 }
 
 export async function createPost(post) {
-  if (!isFirebaseConfigured || !db) throw new Error("Firebase is not configured.");
-  const status = post.status || (post.published === false ? "draft" : "published");
+  if (!isFirebaseConfigured || !db)
+    throw new Error("Firebase is not configured.");
+  const status =
+    post.status || (post.published === false ? "draft" : "published");
   const now = serverTimestamp();
-  const article = { ...post, status, published: status === "published", publishedAt: status === "published" ? now : null, createdAt: now, updatedAt: now };
+  const article = {
+    ...post,
+    status,
+    published: status === "published",
+    publishedAt: status === "published" ? now : null,
+    createdAt: now,
+    updatedAt: now,
+  };
   const created = await addDoc(collection(db, "articles"), article);
-  return { id: created.id, ...asPublicPost({ ...post, status, published: status === "published" }) };
+  return {
+    id: created.id,
+    ...asPublicPost({ ...post, status, published: status === "published" }),
+  };
 }
 
 export async function updatePost(id, post) {
-  if (!isFirebaseConfigured || !db) throw new Error("Firebase is not configured.");
-  const status = post.status || (post.published === false ? "draft" : "published");
-  const article = { ...post, status, published: status === "published", updatedAt: serverTimestamp() };
-  if (status === "published" && !post.publishedAt) article.publishedAt = serverTimestamp();
+  if (!isFirebaseConfigured || !db)
+    throw new Error("Firebase is not configured.");
+  const status =
+    post.status || (post.published === false ? "draft" : "published");
+  const article = {
+    ...post,
+    status,
+    published: status === "published",
+    updatedAt: serverTimestamp(),
+  };
+  if (status === "published" && !post.publishedAt)
+    article.publishedAt = serverTimestamp();
   delete article.id;
   delete article.createdAt;
   await updateDoc(doc(db, "articles", id), article);
-  return { id, ...asPublicPost({ ...post, status, published: status === "published" }) };
+  return {
+    id,
+    ...asPublicPost({ ...post, status, published: status === "published" }),
+  };
 }
 
 export async function deletePost(id) {
-  if (!isFirebaseConfigured || !db) throw new Error("Firebase is not configured.");
+  if (!isFirebaseConfigured || !db)
+    throw new Error("Firebase is not configured.");
   await deleteDoc(doc(db, "articles", id));
-}
-
-export async function uploadArticleCover(file, articleId = crypto.randomUUID()) {
-  if (!isFirebaseConfigured || !storage) throw new Error("Firebase is not configured.");
-  const snapshot = await uploadBytes(ref(storage, `article-covers/${articleId}/${file.name}`), file, { contentType: file.type });
-  return getDownloadURL(snapshot.ref);
 }
