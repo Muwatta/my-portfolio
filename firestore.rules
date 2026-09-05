@@ -1,0 +1,86 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/admin_users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function validArticleStatus(status) {
+      return status in ['draft', 'published', 'archived'];
+    }
+
+    function validCommentStatus(status) {
+      return status in ['pending', 'approved', 'rejected', 'spam'];
+    }
+
+    match /profiles/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create, update: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow delete: if isAdmin();
+    }
+
+    match /admin_users/{userId} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow write: if isAdmin();
+    }
+
+    match /articles/{articleId} {
+      allow read: if resource.data.status == 'published'
+        || isAdmin();
+      allow create: if isAdmin()
+        && validArticleStatus(request.resource.data.status)
+        && request.resource.data.title is string
+        && request.resource.data.slug is string;
+      allow update: if isAdmin()
+        && validArticleStatus(request.resource.data.status);
+      allow delete: if isAdmin();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /tags/{tagId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /article_tags/{articleTagId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /comments/{commentId} {
+      allow read: if resource.data.status == 'approved' || isAdmin();
+      allow create: if request.resource.data.status == 'pending'
+        && request.resource.data.author_name is string
+        && request.resource.data.content is string
+        && request.resource.data.content.size() <= 5000;
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /likes/{likeId} {
+      allow read: if isAdmin();
+      allow create: if request.resource.data.article_id is string
+        && (request.resource.data.user_id == request.auth.uid
+          || request.resource.data.anonymous_identifier is string);
+      allow delete: if isAdmin()
+        || (signedIn() && resource.data.user_id == request.auth.uid);
+    }
+
+    match /article_views/{viewId} {
+      allow read: if isAdmin();
+      allow create: if request.resource.data.article_id is string
+        && request.resource.data.anonymous_identifier is string;
+    }
+  }
+}
