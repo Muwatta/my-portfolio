@@ -65,12 +65,16 @@ const legacyFallback = () =>
 
 export async function fetchProjects({ includeDrafts = false } = {}) {
   if (isFirebaseConfigured && db) {
-    const projectsQuery = includeDrafts
-      ? query(collection(db, "projects"))
-      : query(collection(db, "projects"), where("status", "==", "published"));
-    const snapshot = await getDocs(projectsQuery);
-    const items = snapshot.docs.map((item) => asProject(item.data(), item.id));
-    if (items.length || includeDrafts) return sortProjects(items);
+    try {
+      const projectsQuery = includeDrafts
+        ? query(collection(db, "projects"))
+        : query(collection(db, "projects"), where("status", "==", "published"));
+      const snapshot = await getDocs(projectsQuery);
+      const items = snapshot.docs.map((item) => asProject(item.data(), item.id));
+      if (items.length || includeDrafts) return sortProjects(items);
+    } catch (error) {
+      console.warn("Falling back to legacy projects because Firestore is unavailable:", error);
+    }
   }
   return sortProjects(legacyFallback());
 }
@@ -78,21 +82,25 @@ export async function fetchProjects({ includeDrafts = false } = {}) {
 export async function fetchProject(id, { includeDrafts = false } = {}) {
   const normalizedId = String(id ?? "").trim();
   if (isFirebaseConfigured && db && normalizedId) {
-    const directSnapshot = await getDoc(doc(db, "projects", normalizedId));
-    if (directSnapshot.exists()) {
-      const project = asProject(directSnapshot.data(), directSnapshot.id);
-      if (includeDrafts || project.status === "published") return project;
-      return null;
-    }
+    try {
+      const directSnapshot = await getDoc(doc(db, "projects", normalizedId));
+      if (directSnapshot.exists()) {
+        const project = asProject(directSnapshot.data(), directSnapshot.id);
+        if (includeDrafts || project.status === "published") return project;
+        return null;
+      }
 
-    const slugSnapshot = await getDocs(
-      query(collection(db, "projects"), where("slug", "==", normalizedId)),
-    );
-    if (!slugSnapshot.empty) {
-      const firstMatch = slugSnapshot.docs[0];
-      const project = asProject(firstMatch.data(), firstMatch.id);
-      if (includeDrafts || project.status === "published") return project;
-      return null;
+      const slugSnapshot = await getDocs(
+        query(collection(db, "projects"), where("slug", "==", normalizedId)),
+      );
+      if (!slugSnapshot.empty) {
+        const firstMatch = slugSnapshot.docs[0];
+        const project = asProject(firstMatch.data(), firstMatch.id);
+        if (includeDrafts || project.status === "published") return project;
+        return null;
+      }
+    } catch (error) {
+      console.warn("Falling back to a legacy project lookup because Firestore is unavailable:", error);
     }
   }
 
