@@ -182,6 +182,14 @@ export default function AdminProjects() {
     setPreview(false);
     setNotice("");
   };
+  const openPreview = (project) => {
+    if (!project?.id) return;
+    window.open(
+      `/admin/projects/preview/${project.id}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+  };
   const save = async (event) => {
     event.preventDefault();
     if (!form.title || !form.slug || !form.description)
@@ -292,6 +300,14 @@ export default function AdminProjects() {
                     {project.title}
                   </span>
                   <StatusPill status={project.status} />
+                </button>
+                <button
+                  className="rounded p-2 text-slate-400 hover:text-blue-600"
+                  aria-label={`Preview ${project.title}`}
+                  onClick={() => openPreview(project)}
+                  title="Open preview"
+                >
+                  <FiEye />
                 </button>
                 <button
                   className="rounded p-2 text-slate-400 hover:text-red-600"
@@ -533,6 +549,16 @@ export default function AdminProjects() {
               <FiEye />
               {preview ? "Hide preview" : "Preview"}
             </button>
+            {selected && (
+              <button
+                className="button-secondary inline-flex items-center gap-2"
+                type="button"
+                onClick={() => openPreview(selected)}
+              >
+                <FiEye />
+                Open preview
+              </button>
+            )}
             <button className="button-primary" disabled={saving} type="submit">
               {saving ? "Saving..." : "Save project"}
             </button>

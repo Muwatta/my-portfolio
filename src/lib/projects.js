@@ -76,16 +76,33 @@ export async function fetchProjects({ includeDrafts = false } = {}) {
 }
 
 export async function fetchProject(id, { includeDrafts = false } = {}) {
-  if (isFirebaseConfigured && db) {
-    const snapshot = await getDoc(doc(db, "projects", String(id)));
-    if (snapshot.exists()) {
-      const project = asProject(snapshot.data(), snapshot.id);
+  const normalizedId = String(id ?? "").trim();
+  if (isFirebaseConfigured && db && normalizedId) {
+    const directSnapshot = await getDoc(doc(db, "projects", normalizedId));
+    if (directSnapshot.exists()) {
+      const project = asProject(directSnapshot.data(), directSnapshot.id);
+      if (includeDrafts || project.status === "published") return project;
+      return null;
+    }
+
+    const slugSnapshot = await getDocs(
+      query(collection(db, "projects"), where("slug", "==", normalizedId)),
+    );
+    if (!slugSnapshot.empty) {
+      const firstMatch = slugSnapshot.docs[0];
+      const project = asProject(firstMatch.data(), firstMatch.id);
       if (includeDrafts || project.status === "published") return project;
       return null;
     }
   }
-  const legacy = getProjectById(String(id));
-  return legacy ? asProject(legacy, legacy.id) : null;
+
+  const legacy =
+    getProjectById(normalizedId) ||
+    legacyProjects.find((project) => project.slug === normalizedId);
+  if (!legacy) return null;
+  const normalized = asProject(legacy, legacy.id);
+  if (includeDrafts || normalized.status === "published") return normalized;
+  return null;
 }
 
 export async function saveProject(id, project, { isNew = false } = {}) {
