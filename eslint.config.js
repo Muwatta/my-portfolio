@@ -7,7 +7,7 @@ export default [
   { ignores: ["dist"] },
 
   {
-    files: ["scripts/**/*.js", "supabase/**/*.js", "vite.config.js"],
+    files: ["scripts/**/*.js", "supabase/**/*.js", "vite.config.js", "api/**/*.js"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.node,
