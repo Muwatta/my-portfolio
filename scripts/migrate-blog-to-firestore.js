@@ -66,18 +66,38 @@ const posts = JSON.parse(
   readFileSync(join(rootDir, "public", "blog.json"), "utf8"),
 );
 
+function withTimeout(promise, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      setTimeout(
+        () => reject(new Error(`${label} timed out after 30 seconds.`)),
+        30000,
+      );
+    }),
+  ]);
+}
+
 async function main() {
-  await signInWithEmailAndPassword(
-    auth,
-    env.FIREBASE_MIGRATION_EMAIL,
-    env.FIREBASE_MIGRATION_PASSWORD,
+  console.log("Signing in to Firebase Authentication...");
+  await withTimeout(
+    signInWithEmailAndPassword(
+      auth,
+      env.FIREBASE_MIGRATION_EMAIL,
+      env.FIREBASE_MIGRATION_PASSWORD,
+    ),
+    "Firebase Authentication sign-in",
   );
+  console.log(`Starting migration of ${posts.length} articles...`);
 
   for (const post of posts) {
     const id = String(post.id);
     if (!post.id) throw new Error(`Article is missing an id: ${post.title}`);
     const articleRef = doc(db, "articles", id);
-    const existing = await getDoc(articleRef);
+    const existing = await withTimeout(
+      getDoc(articleRef),
+      `Firestore read for article ${id}`,
+    );
     const status =
       post.status || (post.published === false ? "draft" : "published");
     const article = {
@@ -101,7 +121,10 @@ async function main() {
     if (status === "published" && !existing.data()?.publishedAt) {
       article.publishedAt = serverTimestamp();
     }
-    await setDoc(articleRef, article, { merge: true });
+    await withTimeout(
+      setDoc(articleRef, article, { merge: true }),
+      `Firestore write for article ${id}`,
+    );
     console.log(
       `${existing.exists() ? "Updated" : "Imported"}: ${id} ${post.title}`,
     );
