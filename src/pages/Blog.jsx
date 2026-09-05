@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaSearch, FaShareAlt, FaClock } from "react-icons/fa";
 import { HiArrowRight } from "react-icons/hi";
@@ -89,7 +90,7 @@ const Blog = () => {
   }, [category, search, blogs]);
 
   const share = (blog) => {
-    const url = blog.medium_link || window.location.href;
+    const url = blog.medium_link || `${window.location.origin}/blog/${blog.id}`;
     if (navigator.share) {
       navigator.share({ title: blog.title, text: blog.excerpt, url });
     } else {
@@ -228,7 +229,7 @@ const Blog = () => {
                     src={featured.image}
                     alt={featured.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    loading="lazy"
+                    loading="eager"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-slate-900/60 hidden lg:block" />
                   <div className="absolute top-4 left-4">
@@ -266,15 +267,23 @@ const Blog = () => {
                     )}
                   </div>
                   <div className="flex items-center gap-4 mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
-                    <a
-                      href={featured.medium_link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to={`/blog/${featured.id}`}
                       className="flex items-center gap-2 text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors group/link"
                     >
                       Read article{" "}
                       <HiArrowRight className="transition-transform group-hover/link:translate-x-1" />
-                    </a>
+                    </Link>
+                    {featured.medium_link && (
+                      <a
+                        href={featured.medium_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-slate-500 hover:text-blue-400 transition-colors"
+                      >
+                        Read on Medium
+                      </a>
+                    )}
                     <button
                       onClick={() => share(featured)}
                       className="flex items-center gap-1.5 text-slate-600 hover:text-blue-400 text-xs transition-colors ml-auto"
@@ -354,15 +363,13 @@ const Blog = () => {
                       </div>
                     )}
                     <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-200 dark:border-slate-800/80">
-                      <a
-                        href={blog.medium_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        to={`/blog/${blog.id}`}
                         className="flex items-center gap-1 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors group/link"
                       >
                         Read{" "}
                         <HiArrowRight className="text-[10px] transition-transform group-hover/link:translate-x-0.5" />
-                      </a>
+                      </Link>
                       <button
                         onClick={() => share(blog)}
                         className="flex items-center gap-1 text-slate-600 hover:text-blue-400 text-[11px] transition-colors ml-auto"

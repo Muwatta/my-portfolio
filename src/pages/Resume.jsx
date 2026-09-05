@@ -37,7 +37,7 @@ export const Resume = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm text-slate-600 dark:text-slate-400">
             <a
-              href="mailto:muwatta@example.com"
+              href="mailto:abdullahimusliudeen@gmail.com"
               className="hover:text-blue-600"
             >
               📧 Email
@@ -51,7 +51,7 @@ export const Resume = () => {
               💻 GitHub
             </a>
             <a
-              href="https://linkedin.com/in/abdullahi-musliudeen"
+              href="https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-600"

@@ -35,6 +35,7 @@ export const EngineeringExperience = () => {
           title="Engineering"
           highlight="Experience"
           subtitle="Production systems delivered. Real impact measured."
+          headingLevel="h1"
         />
 
         {/* Experience Timeline */}

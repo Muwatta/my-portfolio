@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SITE } from "../../lib/seo";
+import { pageUrl, SITE } from "../../lib/seo";
 
 /**
  * Reusable, consistent SEO meta for every page.
@@ -18,9 +18,8 @@ export default function Seo({
   robots = "index, follow",
   children,
 }) {
-  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
-  const url = `${SITE.url}${normalizedPath === "/" ? "" : normalizedPath}`;
-  const canonical = `${url}/`;
+  const url = pageUrl(path);
+  const canonical = url;
 
   return (
     <Helmet>
@@ -39,7 +38,7 @@ export default function Seo({
       <meta property="og:image:alt" content={`${title} image`} />
       <meta property="og:locale" content={SITE.locale} />
 
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

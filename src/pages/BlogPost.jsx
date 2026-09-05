@@ -1,11 +1,18 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { FaShareAlt, FaClock } from "react-icons/fa";
 import Seo from "../components/seo/Seo";
 import { fetchPosts, fetchPost } from "../lib/blog";
-import { absoluteUrl, breadcrumbSchema, PERSON_ID, SITE } from "../lib/seo";
+import {
+  absoluteUrl,
+  breadcrumbSchema,
+  pageUrl,
+  PERSON_ID,
+  SITE,
+} from "../lib/seo";
 
 const TAG_COLORS = {
   Tech: { bg: "#3b82f615", text: "#60a5fa", border: "#3b82f635" },
@@ -76,6 +83,10 @@ const BlogPost = () => {
   if (!post)
     return (
       <div className="min-h-screen bg-white dark:bg-[#06090f] flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 gap-4">
+        <Helmet>
+          <title>Article Not Found | Abdullahi Musliudeen</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
         <p className="text-6xl font-extrabold text-slate-700">404</p>
         <p className="text-sm">Post not found.</p>
         <Link
@@ -103,20 +114,19 @@ const BlogPost = () => {
           {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "@id": `${SITE.url}/blog/${post.id}/#article`,
+            "@id": `${pageUrl(`/blog/${post.id}`)}#article`,
             headline: post.title,
             description: post.excerpt,
-            url: `${SITE.url}/blog/${post.id}/`,
-            mainEntityOfPage: `${SITE.url}/blog/${post.id}/`,
-            image: absoluteUrl(post.image),
+            url: pageUrl(`/blog/${post.id}`),
+            mainEntityOfPage: pageUrl(`/blog/${post.id}`),
+            ...(post.image ? { image: absoluteUrl(post.image) } : {}),
             author: {
               "@type": "Person",
               "@id": PERSON_ID,
               name: "Abdullahi Oladipupo Musliudeen",
-              url: `${SITE.url}/about/`,
+              url: pageUrl("/about"),
             },
             datePublished: post.date,
-            dateModified: post.date,
             publisher: { "@id": PERSON_ID },
           },
           breadcrumbSchema([
@@ -208,7 +218,7 @@ const BlogPost = () => {
               <div className="w-9 h-9 rounded-full overflow-hidden ring-1 ring-slate-700 flex-shrink-0">
                 <img
                   src="https://res.cloudinary.com/dee5edoss/image/upload/w_400,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg"
-                  alt="Author"
+                  alt="Abdullahi Musliudeen"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -254,7 +264,7 @@ const BlogPost = () => {
             src={post.image}
             alt={post.title}
             className="w-full h-72 sm:h-96 object-cover"
-            loading="lazy"
+            loading="eager"
           />
         </motion.div>
 

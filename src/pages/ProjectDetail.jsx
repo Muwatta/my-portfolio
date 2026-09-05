@@ -14,7 +14,7 @@ import {
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { getProjectById } from "../data";
 import { ArchitectureDiagram } from "../features/portfolio/components/ArchitectureDiagram";
-import { breadcrumbSchema, PERSON_ID, SITE } from "../lib/seo";
+import { breadcrumbSchema, pageUrl, PERSON_ID, SITE } from "../lib/seo";
 
 const CATEGORY_COLORS = {
   Backend: { bg: "#3b82f620", text: "#60a5fa", border: "#3b82f640" },
@@ -122,11 +122,11 @@ const ProjectDetail = () => {
           {
             "@context": "https://schema.org",
             "@type": "CreativeWork",
-            "@id": `${SITE.url}/portfolio/${project.id}/#case-study`,
+            "@id": `${pageUrl(`/portfolio/${project.id}`)}#case-study`,
             name: project.title,
             description: project.description,
-            url: `${SITE.url}/portfolio/${project.id}/`,
-            image: project.image,
+            url: pageUrl(`/portfolio/${project.id}`),
+            ...(project.image ? { image: project.image } : {}),
             author: { "@id": PERSON_ID },
             keywords: project.tech,
           },
@@ -234,7 +234,7 @@ const ProjectDetail = () => {
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           ) : (
             <CoverFallback title={project.title} category={project.category} />

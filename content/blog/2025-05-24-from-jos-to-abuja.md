@@ -1,7 +1,13 @@
-title: From Jos to Nationals: How 3 Girls Used Tech to Dream Bigger  
-date: 2025-05-24T06:00:00.000Z  
-excerpt: Discover how three girls from Plateau State became national finalists in Nigeria’s Girls in ICT competition — and what it revealed about grassroots tech educhttps://res.cloudinary.com/dee5edoss/image/upload/v1748055293/IMG-20250417-WA0009_u0hipk.jpg/img/girls-ict-nationals.jpg  
-mediumLink: https://medium.com/@abdullahmusliudeen/from-jos-to-abuja-how-my-students-made-it-to-the-national-ict-competition-finals-b2c53eba11fb 
+---
+title: "From Jos to Nationals: How 3 Girls Used Tech to Dream Bigger"
+date: "2025-05-24T06:00:00.000Z"
+excerpt: "Discover how three girls from Plateau State became national finalists in Nigeria's Girls in ICT competition and what it revealed about grassroots tech education."
+image: "/images/atTheNational.jpg"
+medium_link: "https://medium.com/@abdullahmusliudeen/from-jos-to-abuja-how-my-students-made-it-to-the-national-ict-competition-finals-b2c53eba11fb"
+category: "Education"
+tags: ["Education", "Mentorship", "Nigeria"]
+featured: false
+published: true
 ---
 
 
@@ -73,6 +79,5 @@ And to every young girl out there:
 You’re not too small.
 You’re not too late.
 You’re not alone.
-
 Let’s keep building.
 

@@ -29,6 +29,7 @@ export const Now = () => {
           title="What I'm"
           highlight="Doing Now"
           subtitle="Current focus areas and ongoing work."
+          headingLevel="h1"
         />
 
         {/* Current Focus */}

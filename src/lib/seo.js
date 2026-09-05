@@ -13,6 +13,13 @@ export const SITE = {
 
 export const PERSON_ID = `${SITE.url}/#person`;
 
+export const pageUrl = (path = "/") => {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  return normalizedPath === "/"
+    ? SITE.canonical
+    : `${SITE.url}${normalizedPath.replace(/\/$/, "")}`;
+};
+
 export const personSchema = {
   "@type": "Person",
   "@id": PERSON_ID,
@@ -36,7 +43,7 @@ export const personSchema = {
   ],
   sameAs: [
     "https://github.com/muwatta",
-    "https://www.linkedin.com/in/abdullahi-musliudeen-64435a239/",
+    "https://www.linkedin.com/in/abdullahi-musliudeen-166b751b6",
   ],
   address: {
     "@type": "PostalAddress",

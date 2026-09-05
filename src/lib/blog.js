@@ -6,7 +6,7 @@ export const asPublicPost = (row = {}) => ({
   category: row.category,
   date: row.date,
   image: row.image,
-  medium_link: row.medium_link,
+  medium_link: row.medium_link || row.mediumLink,
   tags: row.tags || [],
   readTime: row.read_time || row.readTime,
   featured: Boolean(row.featured),

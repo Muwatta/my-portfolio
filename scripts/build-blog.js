@@ -20,7 +20,11 @@ const markdownPosts = existsSync(markdownDir)
       .map((f) => {
         const source = readFileSync(join(markdownDir, f), "utf8");
         const { data, content } = matter(source);
-        return { ...data, body: content.trim() };
+        return {
+          ...data,
+          medium_link: data.medium_link || data.mediumLink,
+          body: content.trim(),
+        };
       })
   : [];
 

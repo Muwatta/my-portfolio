@@ -179,7 +179,9 @@ export default function Skills() {
                 src="https://res.cloudinary.com/dee5edoss/image/upload/w_400,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg"
                 alt="Abdullahi Musliudeen Oladipupo"
                 className="w-full h-full object-cover"
-                loading="lazy"
+                loading="eager"
+                width={400}
+                height={400}
               />
             </div>
             <div className="absolute -bottom-2 -right-2 w-5 h-5 rounded-full bg-green-400 ring-2 ring-[#080c14]" />
