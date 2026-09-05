@@ -75,7 +75,7 @@ export const Hero = () => {
                   width={576}
                   height={576}
                   decoding="async"
-                  fetchPriority="high"
+                  fetchpriority="high"
                   loading="eager"
                   className="w-full h-full object-cover rounded-full"
                 />
