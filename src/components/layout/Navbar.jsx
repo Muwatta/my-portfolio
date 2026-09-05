@@ -80,11 +80,12 @@ const Navbar = () => {
           <MotionLink
             to="/"
             className="flex-shrink-0"
+            aria-label="Muwatta home"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-400">
-              AM
+              Muwatta
             </span>
           </MotionLink>
 

@@ -1,8 +1,9 @@
 export const SITE = {
-  name: "Abdullahi Musliudeen",
-  title: "Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
+  name: "Muwatta",
+  title:
+    "Muwatta | Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
   description:
-    "Abdullahi Musliudeen is a Nigerian Backend Engineer and Full-Stack Developer building scalable software, APIs, and educational technology with Python, Django, React, and TypeScript.",
+    "Muwatta is the portfolio of Abdullahi Musliudeen, a Nigerian Backend Engineer and Full-Stack Developer building scalable software, APIs, and educational technology with Python, Django, React, and TypeScript.",
   url: "https://www.muwatta.com.ng",
   canonical: "https://www.muwatta.com.ng/",
   twitter: "@MusliudeenAbdu1",
@@ -60,6 +61,7 @@ export const homeSchema = {
       "@id": `${SITE.url}/#website`,
       url: SITE.url,
       name: SITE.title,
+      alternateName: ["Muwatta", "Abdullahi Musliudeen portfolio"],
       description: SITE.description,
       publisher: { "@id": PERSON_ID },
       inLanguage: "en-NG",

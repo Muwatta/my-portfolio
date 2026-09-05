@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { MotionConfig } from "framer-motion";
 import { ThemeProvider } from "./context/ThemeContext";
@@ -34,6 +34,9 @@ const PageLoader = () => (
 );
 
 function App() {
+  const { pathname } = useLocation();
+  const isAdminRoute = pathname.startsWith("/admin");
+
   return (
     <HelmetProvider>
       <ThemeProvider>
@@ -47,7 +50,7 @@ function App() {
                 Skip to main content
               </a>
               <Loader>
-                <Navbar />
+                {!isAdminRoute && <Navbar />}
                 <main id="main-content" className="flex-grow">
                   <Suspense fallback={<PageLoader />}>
                     <Routes>
@@ -74,9 +77,9 @@ function App() {
                     </Routes>
                   </Suspense>
                 </main>
-                <Footer />
+                {!isAdminRoute && <Footer />}
               </Loader>
-              <PWAInstallPrompt />
+              {!isAdminRoute && <PWAInstallPrompt />}
             </div>
           </MotionConfig>
         </AuthProvider>
