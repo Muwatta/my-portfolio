@@ -40,9 +40,12 @@ export default async function handler(req, res) {
     token: token.access_token,
     provider: "github",
   });
+  const message = `authorization:github:success:${payload}`;
+
   res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.send(`<!doctype html><script>
-    window.opener.postMessage("authorization:github:success:${payload}", "*");
-    window.close();
-  </script>`);
+  res.send(`<!doctype html>
+<script>
+  window.opener.postMessage(${JSON.stringify(message)}, "*");
+  window.close();
+</script>`);
 }
