@@ -15,16 +15,20 @@ export default function Seo({
   image = SITE.image,
   type = "website",
   jsonLd,
+  robots = "index, follow",
   children,
 }) {
-  const url = `${SITE.url}${path === "/" ? "" : path}`;
-  const canonical = path === "/" ? SITE.canonical : `${url}/`;
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  const url = `${SITE.url}${normalizedPath === "/" ? "" : normalizedPath}`;
+  const canonical = `${url}/`;
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="author" content="Abdullahi Oladipupo Musliudeen" />
       <link rel="canonical" href={canonical} />
+      <meta name="robots" content={robots} />
 
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content={SITE.name} />
@@ -32,6 +36,7 @@ export default function Seo({
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:alt" content={`${title} image`} />
       <meta property="og:locale" content={SITE.locale} />
 
       <meta name="twitter:card" content="summary" />

@@ -140,8 +140,8 @@ const About = () => {
       style={{ fontFamily: "'Syne', sans-serif" }}
     >
       <Seo
-        title="About | Abdullahi Musliudeen Oladipupo"
-        description="Backend Engineer & Full-Stack Developer. I build production systems with Django, DRF, PostgreSQL, Redis and React — and run Algorise Tech Explorers."
+        title="About Abdullahi Musliudeen | Software Engineer & Educator"
+        description="Learn about Abdullahi Musliudeen, a Nigerian Backend Engineer and Full-Stack Developer working with Python, Django, React, TypeScript, APIs, and EdTech while mentoring new developers."
         path="/about"
         type="profile"
       >
@@ -192,10 +192,10 @@ const About = () => {
               Backend Engineer · Full-Stack Developer · Founder
             </p>
             <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-[1.05] mb-5">
-              Building Systems That
+              About Abdullahi Musliudeen:
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
-                Solve Real Problems
+                Building Systems That Solve Problems
               </span>
             </h1>
             <p

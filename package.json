@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "gen:blog": "node scripts/build-blog.js",
+    "gen:sitemap": "node scripts/build-sitemap.js",
     "dev": "npm run gen:blog && vite",
-    "build": "npm run gen:blog && vite build",
+    "build": "npm run gen:blog && npm run gen:sitemap && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest"

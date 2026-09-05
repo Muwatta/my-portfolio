@@ -1,0 +1,276 @@
+api/auth.js:1: trailing whitespace.
+[32m+[m[32mimport crypto from "node:crypto";[m[41m[m
+api/auth.js:2: trailing whitespace.
+[32m+[m[41m[m
+api/auth.js:3: trailing whitespace.
+[32m+[m[32mexport default function handler(req, res) {[m[41m[m
+api/auth.js:4: trailing whitespace.
+[32m+[m[32m  if (req.method !== "GET") {[m[41m[m
+api/auth.js:5: trailing whitespace.
+[32m+[m[32m    res.status(405).json({ error: "Method not allowed" });[m[41m[m
+api/auth.js:6: trailing whitespace.
+[32m+[m[32m    return;[m[41m[m
+api/auth.js:7: trailing whitespace.
+[32m+[m[32m  }[m[41m[m
+api/auth.js:8: trailing whitespace.
+[32m+[m[41m[m
+api/auth.js:9: trailing whitespace.
+[32m+[m[32m  const clientId = process.env.GITHUB_CLIENT_ID;[m[41m[m
+api/auth.js:10: trailing whitespace.
+[32m+[m[32m  if (!clientId) {[m[41m[m
+api/auth.js:11: trailing whitespace.
+[32m+[m[32m    res.status(500).json({ error: "GITHUB_CLIENT_ID is not configured" });[m[41m[m
+api/auth.js:12: trailing whitespace.
+[32m+[m[32m    return;[m[41m[m
+api/auth.js:13: trailing whitespace.
+[32m+[m[32m  }[m[41m[m
+api/auth.js:14: trailing whitespace.
+[32m+[m[41m[m
+api/auth.js:15: trailing whitespace.
+[32m+[m[32m  const state = crypto.randomBytes(24).toString("hex");[m[41m[m
+api/auth.js:16: trailing whitespace.
+[32m+[m[32m  const origin = process.env.SITE_URL || `https://${req.headers.host}`;[m[41m[m
+api/auth.js:17: trailing whitespace.
+[32m+[m[32m  const callback = `${origin}/api/callback`;[m[41m[m
+api/auth.js:18: trailing whitespace.
+[32m+[m[32m  const authorizeUrl = new URL("https://github.com/login/oauth/authorize");[m[41m[m
+api/auth.js:19: trailing whitespace.
+[32m+[m[32m  authorizeUrl.searchParams.set("client_id", clientId);[m[41m[m
+api/auth.js:20: trailing whitespace.
+[32m+[m[32m  authorizeUrl.searchParams.set("redirect_uri", callback);[m[41m[m
+api/auth.js:21: trailing whitespace.
+[32m+[m[32m  authorizeUrl.searchParams.set("scope", "repo");[m[41m[m
+api/auth.js:22: trailing whitespace.
+[32m+[m[32m  authorizeUrl.searchParams.set("state", state);[m[41m[m
+api/auth.js:23: trailing whitespace.
+[32m+[m[41m[m
+api/auth.js:24: trailing whitespace.
+[32m+[m[32m  res.setHeader([m[41m[m
+api/auth.js:25: trailing whitespace.
+[32m+[m[32m    "Set-Cookie",[m[41m[m
+api/auth.js:26: trailing whitespace.
+[32m+[m[32m    `decap_oauth_state=${state}; HttpOnly; Secure; SameSite=Lax; Path=/api; Max-Age=600`,[m[41m[m
+api/auth.js:27: trailing whitespace.
+[32m+[m[32m  );[m[41m[m
+api/auth.js:28: trailing whitespace.
+[32m+[m[32m  res.redirect(authorizeUrl.toString());[m[41m[m
+api/auth.js:29: trailing whitespace.
+[32m+[m[32m}[m[41m[m
+api/callback.js:1: trailing whitespace.
+[32m+[m[32mfunction readCookie(cookieHeader, name) {[m[41m[m
+api/callback.js:2: trailing whitespace.
+[32m+[m[32m  return cookieHeader[m[41m[m
+api/callback.js:3: trailing whitespace.
+[32m+[m[32m    ?.split(";")[m[41m[m
+api/callback.js:4: trailing whitespace.
+[32m+[m[32m    .map((part) => part.trim())[m[41m[m
+api/callback.js:5: trailing whitespace.
+[32m+[m[32m    .find((part) => part.startsWith(`${name}=`))[m[41m[m
+api/callback.js:6: trailing whitespace.
+[32m+[m[32m    ?.slice(name.length + 1);[m[41m[m
+api/callback.js:7: trailing whitespace.
+[32m+[m[32m}[m[41m[m
+api/callback.js:8: trailing whitespace.
+[32m+[m[41m[m
+api/callback.js:9: trailing whitespace.
+[32m+[m[32mexport default async function handler(req, res) {[m[41m[m
+api/callback.js:10: trailing whitespace.
+[32m+[m[32m  if (req.method !== "GET") {[m[41m[m
+api/callback.js:11: trailing whitespace.
+[32m+[m[32m    res.status(405).send("Method not allowed");[m[41m[m
+api/callback.js:12: trailing whitespace.
+[32m+[m[32m    return;[m[41m[m
+api/callback.js:13: trailing whitespace.
+[32m+[m[32m  }[m[41m[m
+api/callback.js:14: trailing whitespace.
+[32m+[m[41m[m
+api/callback.js:15: trailing whitespace.
+[32m+[m[32m  const { code, state, error } = req.query;[m[41m[m
+api/callback.js:16: trailing whitespace.
+[32m+[m[32m  const expectedState = readCookie(req.headers.cookie, "decap_oauth_state");[m[41m[m
+api/callback.js:17: trailing whitespace.
+[32m+[m[32m  if (error || !code || !state || state !== expectedState) {[m[41m[m
+api/callback.js:18: trailing whitespace.
+[32m+[m[32m    res.status(400).send("Invalid OAuth request.");[m[41m[m
+api/callback.js:19: trailing whitespace.
+[32m+[m[32m    return;[m[41m[m
+api/callback.js:20: trailing whitespace.
+[32m+[m[32m  }[m[41m[m
+api/callback.js:21: trailing whitespace.
+[32m+[m[41m[m
+api/callback.js:22: trailing whitespace.
+[32m+[m[32m  const response = await fetch("https://github.com/login/oauth/access_token", {[m[41m[m
+api/callback.js:23: trailing whitespace.
+[32m+[m[32m    method: "POST",[m[41m[m
+api/callback.js:24: trailing whitespace.
+[32m+[m[32m    headers: { Accept: "application/json", "Content-Type": "application/json" },[m[41m[m
+api/callback.js:25: trailing whitespace.
+[32m+[m[32m    body: JSON.stringify({[m[41m[m
+api/callback.js:26: trailing whitespace.
+[32m+[m[32m      client_id: process.env.GITHUB_CLIENT_ID,[m[41m[m
+api/callback.js:27: trailing whitespace.
+[32m+[m[32m      client_secret: process.env.GITHUB_CLIENT_SECRET,[m[41m[m
+api/callback.js:28: trailing whitespace.
+[32m+[m[32m      code,[m[41m[m
+api/callback.js:29: trailing whitespace.
+[32m+[m[32m      redirect_uri: `${process.env.SITE_URL || `https://${req.headers.host}`}/api/callback`,[m[41m[m
+api/callback.js:30: trailing whitespace.
+[32m+[m[32m    }),[m[41m[m
+api/callback.js:31: trailing whitespace.
+[32m+[m[32m  });[m[41m[m
+api/callback.js:32: trailing whitespace.
+[32m+[m[32m  const token = await response.json();[m[41m[m
+api/callback.js:33: trailing whitespace.
+[32m+[m[41m[m
+api/callback.js:34: trailing whitespace.
+[32m+[m[32m  if (!response.ok || !token.access_token) {[m[41m[m
+api/callback.js:35: trailing whitespace.
+[32m+[m[32m    res.status(502).send("GitHub authentication failed.");[m[41m[m
+api/callback.js:36: trailing whitespace.
+[32m+[m[32m    return;[m[41m[m
+api/callback.js:37: trailing whitespace.
+[32m+[m[32m  }[m[41m[m
+api/callback.js:38: trailing whitespace.
+[32m+[m[41m[m
+api/callback.js:39: trailing whitespace.
+[32m+[m[32m  const payload = JSON.stringify({[m[41m[m
+api/callback.js:40: trailing whitespace.
+[32m+[m[32m    token: token.access_token,[m[41m[m
+api/callback.js:41: trailing whitespace.
+[32m+[m[32m    provider: "github",[m[41m[m
+api/callback.js:42: trailing whitespace.
+[32m+[m[32m  });[m[41m[m
+api/callback.js:43: trailing whitespace.
+[32m+[m[32m  res.setHeader("Content-Type", "text/html; charset=utf-8");[m[41m[m
+api/callback.js:44: trailing whitespace.
+[32m+[m[32m  res.send(`<!doctype html><script>[m[41m[m
+api/callback.js:45: trailing whitespace.
+[32m+[m[32m    window.opener.postMessage("authorization:github:success:${payload}", "*");[m[41m[m
+api/callback.js:46: trailing whitespace.
+[32m+[m[32m    window.close();[m[41m[m
+api/callback.js:47: trailing whitespace.
+[32m+[m[32m  </script>`);[m[41m[m
+api/callback.js:48: trailing whitespace.
+[32m+[m[32m}[m[41m[m
+package.json:8: trailing whitespace.
+[32m+[m[32m    "gen:sitemap": "node scripts/build-sitemap.js",[m[41m[m
+package.json:10: trailing whitespace.
+[32m+[m[32m    "build": "npm run gen:blog && npm run gen:sitemap && vite build",[m[41m[m
+src/pages/About.jsx:143: trailing whitespace.
+[32m+[m[32m        title="About Abdullahi Musliudeen | Software Engineer & Educator"[m[41m[m
+src/pages/About.jsx:144: trailing whitespace.
+[32m+[m[32m        description="Learn about Abdullahi Musliudeen, a Nigerian Backend Engineer and Full-Stack Developer working with Python, Django, React, TypeScript, APIs, and EdTech while mentoring new developers."[m[41m[m
+src/pages/About.jsx:195: trailing whitespace.
+[32m+[m[32m              About Abdullahi Musliudeen:[m[41m[m
+src/pages/About.jsx:198: trailing whitespace.
+[32m+[m[32m                Building Systems That Solve Problems[m[41m[m
+src/pages/Admin.jsx:2: trailing whitespace.
+[32m+[m[32mimport { Helmet } from "react-helmet-async";[m[41m[m
+src/pages/Admin.jsx:6: trailing whitespace.
+[32m+[m[32m    <>[m[41m[m
+src/pages/Admin.jsx:7: trailing whitespace.
+[32m+[m[32m      <Helmet>[m[41m[m
+src/pages/Admin.jsx:8: trailing whitespace.
+[32m+[m[32m        <title>Content Manager | Abdullahi Musliudeen</title>[m[41m[m
+src/pages/Admin.jsx:9: trailing whitespace.
+[32m+[m[32m        <meta name="robots" content="noindex, nofollow" />[m[41m[m
+src/pages/Admin.jsx:10: trailing whitespace.
+[32m+[m[32m      </Helmet>[m[41m[m
+src/pages/Admin.jsx:11: trailing whitespace.
+[32m+[m[32m      <main className="min-h-screen flex items-center justify-center px-4">[m[41m[m
+src/pages/Admin.jsx:12: trailing whitespace.
+[32m+[m[32m        <div className="max-w-md text-center">[m[41m[m
+src/pages/Admin.jsx:13: trailing whitespace.
+[32m+[m[32m          <h1 className="text-2xl font-extrabold mb-3">Content Manager</h1>[m[41m[m
+src/pages/Admin.jsx:14: trailing whitespace.
+[32m+[m[32m          <p className="text-slate-500 mb-6">[m[41m[m
+src/pages/Admin.jsx:15: trailing whitespace.
+[32m+[m[32m            Open the GitHub-backed content manager to create and edit blog[m[41m[m
+src/pages/Admin.jsx:16: trailing whitespace.
+[32m+[m[32m            posts.[m[41m[m
+src/pages/Admin.jsx:17: trailing whitespace.
+[32m+[m[32m          </p>[m[41m[m
+src/pages/Admin.jsx:18: trailing whitespace.
+[32m+[m[32m          <a[m[41m[m
+src/pages/Admin.jsx:19: trailing whitespace.
+[32m+[m[32m            href="/admin/"[m[41m[m
+src/pages/Admin.jsx:20: trailing whitespace.
+[32m+[m[32m            className="inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-bold text-white"[m[41m[m
+src/pages/Admin.jsx:21: trailing whitespace.
+[32m+[m[32m          >[m[41m[m
+src/pages/Admin.jsx:22: trailing whitespace.
+[32m+[m[32m            Open Content Manager[m[41m[m
+src/pages/Admin.jsx:23: trailing whitespace.
+[32m+[m[32m          </a>[m[41m[m
+src/pages/Admin.jsx:24: trailing whitespace.
+[32m+[m[32m          <Link to="/blog" className="block mt-4 text-sm text-blue-500">[m[41m[m
+src/pages/Admin.jsx:25: trailing whitespace.
+[32m+[m[32m            Back to blog[m[41m[m
+src/pages/Admin.jsx:26: trailing whitespace.
+[32m+[m[32m          </Link>[m[41m[m
+src/pages/Admin.jsx:27: trailing whitespace.
+[32m+[m[32m        </div>[m[41m[m
+src/pages/Admin.jsx:28: trailing whitespace.
+[32m+[m[32m      </main>[m[41m[m
+src/pages/Admin.jsx:29: trailing whitespace.
+[32m+[m[32m    </>[m[41m[m
+src/pages/BlogPost.jsx:8: trailing whitespace.
+[32m+[m[32mimport { absoluteUrl, breadcrumbSchema, PERSON_ID, SITE } from "../lib/seo";[m[41m[m
+src/pages/BlogPost.jsx:102: trailing whitespace.
+[32m+[m[32m        jsonLd={[[m[41m[m
+src/pages/BlogPost.jsx:103: trailing whitespace.
+[32m+[m[32m          {[m[41m[m
+src/pages/BlogPost.jsx:104: trailing whitespace.
+[32m+[m[32m            "@context": "https://schema.org",[m[41m[m
+src/pages/BlogPost.jsx:105: trailing whitespace.
+[32m+[m[32m            "@type": "BlogPosting",[m[41m[m
+src/pages/BlogPost.jsx:106: trailing whitespace.
+[32m+[m[32m            "@id": `${SITE.url}/blog/${post.id}/#article`,[m[41m[m
+src/pages/BlogPost.jsx:107: trailing whitespace.
+[32m+[m[32m            headline: post.title,[m[41m[m
+src/pages/BlogPost.jsx:108: trailing whitespace.
+[32m+[m[32m            description: post.excerpt,[m[41m[m
+src/pages/BlogPost.jsx:109: trailing whitespace.
+[32m+[m[32m            url: `${SITE.url}/blog/${post.id}/`,[m[41m[m
+src/pages/BlogPost.jsx:110: trailing whitespace.
+[32m+[m[32m            mainEntityOfPage: `${SITE.url}/blog/${post.id}/`,[m[41m[m
+src/pages/BlogPost.jsx:111: trailing whitespace.
+[32m+[m[32m            image: absoluteUrl(post.image),[m[41m[m
+src/pages/BlogPost.jsx:112: trailing whitespace.
+[32m+[m[32m            author: {[m[41m[m
+src/pages/BlogPost.jsx:113: trailing whitespace.
+[32m+[m[32m              "@type": "Person",[m[41m[m
+src/pages/BlogPost.jsx:114: trailing whitespace.
+[32m+[m[32m              "@id": PERSON_ID,[m[41m[m
+src/pages/BlogPost.jsx:115: trailing whitespace.
+[32m+[m[32m              name: "Abdullahi Oladipupo Musliudeen",[m[41m[m
+src/pages/BlogPost.jsx:116: trailing whitespace.
+[32m+[m[32m              url: `${SITE.url}/about/`,[m[41m[m
+src/pages/BlogPost.jsx:117: trailing whitespace.
+[32m+[m[32m            },[m[41m[m
+src/pages/BlogPost.jsx:118: trailing whitespace.
+[32m+[m[32m            datePublished: post.date,[m[41m[m
+src/pages/BlogPost.jsx:119: trailing whitespace.
+[32m+[m[32m            dateModified: post.date,[m[41m[m
+src/pages/BlogPost.jsx:120: trailing whitespace.
+[32m+[m[32m            publisher: { "@id": PERSON_ID },[m[41m[m
+src/pages/BlogPost.jsx:121: trailing whitespace.
+[32m+[m[32m          },[m[41m[m
+src/pages/BlogPost.jsx:122: trailing whitespace.
+[32m+[m[32m          breadcrumbSchema([[m[41m[m
+src/pages/BlogPost.jsx:123: trailing whitespace.
+[32m+[m[32m            { name: "Home", path: "/" },[m[41m[m
+src/pages/BlogPost.jsx:124: trailing whitespace.
+[32m+[m[32m            { name: "Writing", path: "/blog" },[m[41m[m
+src/pages/BlogPost.jsx:125: trailing whitespace.
+[32m+[m[32m            { name: post.title, path: `/blog/${post.id}` },[m[41m[m
+src/pages/BlogPost.jsx:126: trailing whitespace.
+[32m+[m[32m          ]),[m[41m[m
+src/pages/BlogPost.jsx:127: trailing whitespace.
+[32m+[m[32m        ]}[m[41m[m
+src/pages/Home.jsx:3: trailing whitespace.
+[32m+[m[32mimport { homeSchema, SITE } from "../lib/seo";[m[41m[m
+src/pages/Home.jsx:20: trailing whitespace.
+[32m+[m[32m        description={SITE.description}[m[41m[m
+src/pages/Home.jsx:22: trailing whitespace.
+[32m+[m[32m        jsonLd={homeSchema}[m[41m[m

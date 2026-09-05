@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+import { SITE } from "../lib/seo";
 
 export const NotFound = () => {
   return (
@@ -11,7 +12,7 @@ export const NotFound = () => {
       <Helmet>
         <title>Page Not Found | Abdullahi Musliudeen</title>
         <meta name="robots" content="noindex" />
-        <link rel="canonical" href="https://muwatta.com.ng/" />
+        <link rel="canonical" href={SITE.canonical} />
       </Helmet>
 
       {/* Grid background */}

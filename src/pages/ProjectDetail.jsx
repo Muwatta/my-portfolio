@@ -14,6 +14,7 @@ import {
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { getProjectById } from "../data";
 import { ArchitectureDiagram } from "../features/portfolio/components/ArchitectureDiagram";
+import { breadcrumbSchema, PERSON_ID, SITE } from "../lib/seo";
 
 const CATEGORY_COLORS = {
   Backend: { bg: "#3b82f620", text: "#60a5fa", border: "#3b82f640" },
@@ -79,10 +80,10 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-white dark:bg-[#06090f] flex flex-col items-center justify-center px-4 text-center">
-      <Helmet>
-        <title>Project Not Found | Abdullahi Musliudeen</title>
-        <meta name="robots" content="noindex" />
-      </Helmet>
+        <Helmet>
+          <title>Project Not Found | Abdullahi Musliudeen</title>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-4">
           Error 404
         </p>
@@ -117,6 +118,24 @@ const ProjectDetail = () => {
         path={`/portfolio/${project.id}`}
         image={project.image}
         type="article"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "@id": `${SITE.url}/portfolio/${project.id}/#case-study`,
+            name: project.title,
+            description: project.description,
+            url: `${SITE.url}/portfolio/${project.id}/`,
+            image: project.image,
+            author: { "@id": PERSON_ID },
+            keywords: project.tech,
+          },
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Portfolio", path: "/portfolio" },
+            { name: project.title, path: `/portfolio/${project.id}` },
+          ]),
+        ]}
       />
 
       <div
@@ -290,10 +309,7 @@ const ProjectDetail = () => {
           )}
 
           {(project.result || project.metrics?.length > 0) && (
-            <Section
-              icon={<HiOutlineChartBar size={18} />}
-              title="Outcome"
-            >
+            <Section icon={<HiOutlineChartBar size={18} />} title="Outcome">
               {project.result && (
                 <p
                   className="text-slate-400 text-[15px] leading-relaxed mb-5"

@@ -5,6 +5,7 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 import { FaShareAlt, FaClock } from "react-icons/fa";
 import Seo from "../components/seo/Seo";
 import { fetchPosts, fetchPost } from "../lib/blog";
+import { absoluteUrl, breadcrumbSchema, PERSON_ID, SITE } from "../lib/seo";
 
 const TAG_COLORS = {
   Tech: { bg: "#3b82f615", text: "#60a5fa", border: "#3b82f635" },
@@ -98,6 +99,32 @@ const BlogPost = () => {
         description={post.excerpt}
         path={`/blog/${post.id}`}
         type="article"
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "@id": `${SITE.url}/blog/${post.id}/#article`,
+            headline: post.title,
+            description: post.excerpt,
+            url: `${SITE.url}/blog/${post.id}/`,
+            mainEntityOfPage: `${SITE.url}/blog/${post.id}/`,
+            image: absoluteUrl(post.image),
+            author: {
+              "@type": "Person",
+              "@id": PERSON_ID,
+              name: "Abdullahi Oladipupo Musliudeen",
+              url: `${SITE.url}/about/`,
+            },
+            datePublished: post.date,
+            dateModified: post.date,
+            publisher: { "@id": PERSON_ID },
+          },
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Writing", path: "/blog" },
+            { name: post.title, path: `/blog/${post.id}` },
+          ]),
+        ]}
       >
         <link
           href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap"

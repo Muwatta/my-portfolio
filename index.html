@@ -12,12 +12,8 @@
       name="description"
       content="Backend Engineer & Full-Stack Developer. I build production systems with Django, Django REST Framework, PostgreSQL, Redis, Celery, and React/TypeScript — used by real users and delivered to clients through Algorise Tech Explorers."
     />
-    <meta
-      name="keywords"
-      content="Abdullahi Musliudeen, Backend Engineer, Django, Django REST Framework, PostgreSQL, Redis, Celery, RabbitMQ, React, TypeScript, Full-Stack Developer, Lagos, Nigeria"
-    />
     <meta name="author" content="Abdullahi Oladipupo Musliudeen" />
-    <link rel="canonical" href="https://muwatta.com.ng/" />
+    <link rel="canonical" href="https://www.muwatta.com.ng/" />
     <meta name="theme-color" content="#0a0f1a" />
     <meta name="robots" content="index, follow" />
 
@@ -44,7 +40,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Abdullahi Musliudeen" />
-    <meta property="og:url" content="https://muwatta.com.ng/" />
+    <meta property="og:url" content="https://www.muwatta.com.ng/" />
     <meta
       property="og:title"
       content="Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer"
@@ -64,7 +60,7 @@
     <meta property="og:locale" content="en_NG" />
 
     <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
       content="Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer"
@@ -84,52 +80,48 @@
     <meta name="twitter:site" content="@MusliudeenAbdu1" />
     <meta name="twitter:creator" content="@MusliudeenAbdu1" />
 
-    <!-- Structured data: Person + WebSite -->
+    <!-- Structured data: Person, WebSite and homepage -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Abdullahi Oladipupo Musliudeen",
-        "url": "https://muwatta.com.ng",
-        "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_600,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg",
-        "jobTitle": "Backend Engineer & Full-Stack Developer",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Algorise Tech Explorers"
-        },
-        "knowsAbout": [
-          "Django",
-          "Django REST Framework",
-          "PostgreSQL",
-          "Redis",
-          "Celery",
-          "RabbitMQ",
-          "React",
-          "TypeScript",
-          "Docker",
-          "CI/CD"
-        ],
-        "sameAs": [
-          "https://github.com/muwatta",
-          "https://www.linkedin.com/in/abdullahi-musliudeen-64435a239/"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Lagos",
-          "addressCountry": "NG"
-        }
-      }
-    </script>
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://muwatta.com.ng",
-        "name": "Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
-        "author": {
-          "@type": "Person",
-          "name": "Abdullahi Oladipupo Musliudeen"
-        }
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.muwatta.com.ng/#person",
+            "name": "Abdullahi Oladipupo Musliudeen",
+            "givenName": "Abdullahi",
+            "familyName": "Musliudeen",
+            "alternateName": ["Abdullahi Musliudeen", "Muwatta"],
+            "url": "https://www.muwatta.com.ng",
+            "image": "https://res.cloudinary.com/dee5edoss/image/upload/w_600,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg",
+            "jobTitle": "Backend Engineer & Full-Stack Developer",
+            "description": "Abdullahi Musliudeen is a Nigerian Backend Engineer and Full-Stack Developer building scalable software, APIs, and educational technology with Python, Django, React, and TypeScript.",
+            "sameAs": [
+              "https://github.com/muwatta",
+              "https://www.linkedin.com/in/abdullahi-musliudeen-64435a239/"
+            ],
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "NG"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.muwatta.com.ng/#website",
+            "url": "https://www.muwatta.com.ng",
+            "name": "Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
+            "publisher": { "@id": "https://www.muwatta.com.ng/#person" },
+            "inLanguage": "en-NG"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://www.muwatta.com.ng/#webpage",
+            "url": "https://www.muwatta.com.ng/",
+            "name": "Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
+            "isPartOf": { "@id": "https://www.muwatta.com.ng/#website" },
+            "about": { "@id": "https://www.muwatta.com.ng/#person" }
+          }
+        ]
       }
     </script>
   </head>
