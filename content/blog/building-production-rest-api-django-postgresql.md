@@ -4,7 +4,6 @@ excerpt: "A deep dive into designing secure, scalable REST APIs using Django RES
 category: "Tech"
 date: "March 10, 2025"
 image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80"
-medium_link: "https://medium.com/@your-handle/your-article-slug"
 tags: ["Django", "PostgreSQL", "REST API", "Docker"]
 readTime: "8 min read"
 featured: true

@@ -4,7 +4,6 @@ excerpt: "A practical guide to async task processing in Django — without the h
 category: "Tech"
 date: "January 15, 2025"
 image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80"
-medium_link: "https://medium.com/@your-handle/your-article-slug-3"
 tags: ["Celery", "RabbitMQ", "Django", "Async"]
 readTime: "10 min read"
 featured: false

@@ -4,7 +4,6 @@ excerpt: "Running Algorise Tech Explorers taught me that curiosity beats credent
 category: "Education"
 date: "February 22, 2025"
 image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80"
-medium_link: "https://medium.com/@your-handle/your-article-slug-2"
 tags: ["Education", "Mentorship", "Backend"]
 readTime: "6 min read"
 featured: false

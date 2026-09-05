@@ -4,7 +4,6 @@ excerpt: "You don't need to master the entire React ecosystem. Here's the 20% th
 category: "Frontend"
 date: "December 5, 2024"
 image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80"
-medium_link: "https://medium.com/@your-handle/your-article-slug-4"
 tags: ["React", "Frontend", "Full Stack"]
 readTime: "7 min read"
 featured: false

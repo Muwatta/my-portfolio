@@ -23,7 +23,6 @@
     "category": "Tech",
     "date": "March 10, 2025",
     "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80",
-    "medium_link": "https://medium.com/@your-handle/your-article-slug",
     "tags": [
       "Django",
       "PostgreSQL",
@@ -41,7 +40,6 @@
     "category": "Education",
     "date": "February 22, 2025",
     "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80",
-    "medium_link": "https://medium.com/@your-handle/your-article-slug-2",
     "tags": [
       "Education",
       "Mentorship",
@@ -58,7 +56,6 @@
     "category": "Tech",
     "date": "January 15, 2025",
     "image": "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&q=80",
-    "medium_link": "https://medium.com/@your-handle/your-article-slug-3",
     "tags": [
       "Celery",
       "RabbitMQ",
@@ -85,7 +82,6 @@
     "category": "Frontend",
     "date": "December 5, 2024",
     "image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-    "medium_link": "https://medium.com/@your-handle/your-article-slug-4",
     "tags": [
       "React",
       "Frontend",
