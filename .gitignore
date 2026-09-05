@@ -14,6 +14,8 @@ dist-ssr
 .env.local
 .env
 .DS_Store
+secrets/
+service-account*.json
 
 # Editor directories and files
 .vscode/*

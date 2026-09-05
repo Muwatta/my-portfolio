@@ -6,6 +6,7 @@ import {
   ValueProposition,
   Skills,
   FeaturedProjects,
+  TeachingImpact,
   ImpactMetrics,
   Testimonials,
   AboutSummary,
@@ -29,6 +30,7 @@ export default function Home() {
           <ValueProposition />
           <Skills />
           <FeaturedProjects />
+          <TeachingImpact />
           <ImpactMetrics />
           <Testimonials />
           <AboutSummary />

@@ -56,6 +56,18 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /courses/{courseId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create: if isAdmin()
+        && validArticleStatus(request.resource.data.status)
+        && request.resource.data.title is string
+        && request.resource.data.slug is string
+        && request.resource.data.description is string;
+      allow update: if isAdmin()
+        && validArticleStatus(request.resource.data.status);
+      allow delete: if isAdmin();
+    }
+
     match /categories/{categoryId} {
       allow read: if true;
       allow write: if isAdmin();

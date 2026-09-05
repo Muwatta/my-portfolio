@@ -24,6 +24,8 @@ const EngineeringExperience = lazy(
 );
 
 const Resume = lazy(() => import("./pages/Resume"));
+const Courses = lazy(() => import("./pages/Courses"));
+const CourseDetail = lazy(() => import("./pages/CourseDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminProjects = lazy(() => import("./pages/AdminProjects"));
@@ -67,6 +69,8 @@ function App() {
                       <Route path="/blog" element={<Blog />} />
                       <Route path="/blog/:id" element={<BlogPost />} />
                       <Route path="/contact" element={<Contact />} />
+                      <Route path="/courses" element={<Courses />} />
+                      <Route path="/courses/:slug" element={<CourseDetail />} />
                       <Route path="/now" element={<Now />} />
                       <Route
                         path="/engineering-experience"
