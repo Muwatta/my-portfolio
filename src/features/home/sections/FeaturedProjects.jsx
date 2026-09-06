@@ -14,12 +14,12 @@ const ACHIEVEMENT_PLACEHOLDERS = [
   },
   {
     title: "Students recognised at Code, Create & Inspire",
-    description: "Learners showcased their work and received awards for their technology projects.",
+    description: "Learners received devices and recognition while presenting their technology achievements.",
     imageUrl: "/images/achievements/abuja-student-awards.jpg",
   },
   {
     title: "Student coding projects",
-    description: "Learners building practical software projects together through guided technology education.",
+    description: "Learners working together on practical computing activities through guided technology education.",
     imageUrl: "/images/achievements/students-coding-team.jpg",
   },
   {
@@ -28,14 +28,14 @@ const ACHIEVEMENT_PLACEHOLDERS = [
     imageUrl: "/images/achievements/agroguard-ai.png",
   },
   {
-    title: "Scratch learning showcase",
-    description: "Young learners creating interactive stories, games, and animations with Scratch.",
-    imageUrl: "/images/achievements/scratch-students.jpg",
+    title: "Scratch classroom",
+    description: "Learners practising Scratch programming and building interactive projects in class.",
+    imageUrl: "/images/achievements/scratch-class-2025.jpg",
   },
   {
-    title: "Technology learning community",
-    description: "Students and mentors learning, presenting, and celebrating progress together.",
-    imageUrl: "/images/achievements/at-the-national.jpg",
+    title: "Bootcamp cohort celebration",
+    description: "Learners celebrating their progress and completing a practical technology bootcamp.",
+    imageUrl: "/images/achievements/bootcamp-2025.jpg",
   },
 ];
 
@@ -112,9 +112,9 @@ export const FeaturedProjects = () => {
             {displayedAchievements.slice(0, 6).map((achievement, index) => (
               <article
                 key={achievement.id || achievement.title}
-                className="min-h-28 overflow-hidden rounded-xl border border-slate-300 bg-white/70 p-4 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
+                className="min-h-28 overflow-hidden rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
               >
-                {achievement.imageUrl && <img src={achievement.imageUrl} alt="" className="mb-3 h-20 w-full rounded-lg object-cover" />}
+                {achievement.imageUrl && <img src={achievement.imageUrl} alt={achievement.title} className="mb-4 aspect-[4/3] h-auto w-full rounded-lg object-cover sm:aspect-[16/10]" loading="lazy" />}
                 <span className="text-xs font-mono text-blue-500 dark:text-blue-400">
                   0{index + 1}
                 </span>
