@@ -51,20 +51,32 @@ function RegisterForm({ signUp, signIn, onAuthenticated, isConfigured }) {
     }
   };
   return (
-    <form onSubmit={submit} className="space-y-2">
+    <form onSubmit={submit} className="space-y-3">
       {mode === "signup" && (
-        <input className="field" type="text" required placeholder="Your name" value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
+        <label className="block">
+          <span className="sr-only">Your name</span>
+          <input className="field" type="text" required placeholder="Your name" value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
+        </label>
       )}
-      <input className="field" type="email" required placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} />
-      <input className="field" type="password" required minLength="6" placeholder="Password (6+ characters)" value={password} onChange={(event) => setPassword(event.target.value)} />
+      <label className="block">
+        <span className="sr-only">Email address</span>
+        <input className="field" type="email" required placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} />
+      </label>
+      <label className="block">
+        <span className="sr-only">Password</span>
+        <input className="field" type="password" required minLength="6" placeholder="Password (6+ characters)" value={password} onChange={(event) => setPassword(event.target.value)} />
+      </label>
       {mode === "signup" && (
-        <input className="field" type="password" required minLength="6" placeholder="Confirm password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+        <label className="block">
+          <span className="sr-only">Confirm password</span>
+          <input className="field" type="password" required minLength="6" placeholder="Confirm password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+        </label>
       )}
       {error && <p className="text-xs text-red-600">{error}</p>}
-      <button className="w-full rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white" type="submit">
+      <button className="min-h-12 w-full rounded-full bg-blue-600 px-4 py-3 text-sm font-semibold text-white" type="submit">
         {mode === "signup" ? "Create learner account" : "Sign in"}
       </button>
-      <button type="button" className="w-full text-xs text-blue-600" onClick={() => setMode((current) => current === "signup" ? "signin" : "signup")}>
+      <button type="button" className="min-h-10 w-full px-2 text-sm text-blue-600" onClick={() => setMode((current) => current === "signup" ? "signin" : "signup")}>
         {mode === "signup" ? "Already registered? Sign in" : "Need an account? Register"}
       </button>
     </form>
@@ -128,8 +140,8 @@ export default function CourseDetail() {
         description={course.description}
         path={`/courses/${course.slug}`}
       />
-      <Container className="py-16 md:py-24">
-        <div className="mb-8">
+      <Container className="px-4 py-10 sm:px-6 md:py-20 lg:px-8">
+        <div className="mb-6 sm:mb-8">
           <Link
             to="/courses"
             className="text-sm font-semibold text-blue-500 hover:text-blue-400"
@@ -137,34 +149,34 @@ export default function CourseDetail() {
             ← Back to courses
           </Link>
         </div>
-        <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:rounded-3xl sm:p-6 lg:p-10 dark:border-slate-800 dark:bg-slate-900">
+          <div className="flex flex-col gap-5 border-b border-slate-100 pb-6 sm:gap-6 sm:pb-8 md:flex-row md:items-end md:justify-between dark:border-slate-800">
+            <div className="min-w-0">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-500">
                 {course.category}
               </p>
-              <h1 className="mt-3 text-4xl font-bold text-slate-900 dark:text-white">
+              <h1 className="mt-3 break-words text-3xl font-bold leading-tight text-slate-900 sm:text-4xl lg:text-5xl dark:text-white">
                 {course.title}
               </h1>
             </div>
-            <div className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">
+            <div className="w-fit rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">
               {course.price === 0 ? "Free" : `$${course.price}`} ·{" "}
               {course.duration}
             </div>
           </div>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 dark:text-slate-300">
+          <p className="mt-6 max-w-3xl text-base leading-7 text-slate-600 sm:text-lg dark:text-slate-300">
             {course.description}
           </p>
           {(course.trialVideoUrl || course.trialText) && (
-            <section className="mt-8 rounded-2xl border border-blue-200 bg-blue-50/70 p-5 dark:border-blue-500/30 dark:bg-blue-500/10">
+            <section className="mt-6 rounded-2xl border border-blue-200 bg-blue-50/70 p-4 sm:mt-8 sm:p-5 dark:border-blue-500/30 dark:bg-blue-500/10">
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300">
                 Free preview
               </p>
-              <h2 className="mt-2 text-2xl font-bold">Try the first lesson</h2>
+              <h2 className="mt-2 text-xl font-bold sm:text-2xl">Try the first lesson</h2>
               {course.trialVideoUrl && (
                 <div className="mt-4 aspect-video overflow-hidden rounded-xl bg-slate-950">
                   <iframe
-                    className="h-full w-full"
+                    className="h-full min-h-52 w-full sm:min-h-72"
                     src={videoEmbedUrl(course.trialVideoUrl)}
                     title={`${course.title} trial lesson`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -179,12 +191,12 @@ export default function CourseDetail() {
               )}
             </section>
           )}
-          <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(18rem,0.8fr)] lg:items-start">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className="text-xl font-bold text-slate-900 sm:text-2xl dark:text-white">
                 What you will learn
               </h2>
-              <ul className="mt-4 space-y-3 text-slate-600 dark:text-slate-300">
+              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600 sm:text-base dark:text-slate-300">
                 {course.lessons.map((lesson) => (
                   <li key={lesson} className="flex gap-3">
                     <span className="mt-1 text-blue-500">•</span>
@@ -193,7 +205,7 @@ export default function CourseDetail() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800/80">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6 lg:sticky lg:top-24 dark:border-slate-700 dark:bg-slate-800/80">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Course info
               </p>
@@ -213,7 +225,7 @@ export default function CourseDetail() {
                   </span>
                 </div>
               </div>
-              <button onClick={register} disabled={registering} className="mt-6 w-full rounded-full bg-slate-900 px-5 py-3 font-semibold text-white transition hover:bg-blue-600 disabled:opacity-60 dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400">
+              <button onClick={register} disabled={registering} className="mt-6 min-h-12 w-full rounded-full bg-slate-900 px-5 py-3 font-semibold text-white transition hover:bg-blue-600 disabled:opacity-60 dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400">
                 {registering ? "Registering..." : user ? "Register for this course" : "Sign in to register"}
               </button>
               {notice && <p className="mt-3 text-center text-sm text-blue-700 dark:text-blue-300">{notice}</p>}
