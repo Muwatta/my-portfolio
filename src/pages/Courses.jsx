@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   FiArrowUpRight,
   FiBookOpen,
+  FiCheck,
   FiClock,
   FiPlay,
   FiSearch,
@@ -17,8 +18,15 @@ export default function Courses() {
   const [courses, setCourses] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   useEffect(() => {
-    fetchCourses().then(setCourses).catch(() => setCourses([]));
+    fetchCourses()
+      .then(setCourses)
+      .catch(() => {
+        setLoadError("Courses are temporarily unavailable. Please try again.");
+      })
+      .finally(() => setLoading(false));
   }, []);
   const categoryOptions = [
     "All",
@@ -54,30 +62,88 @@ export default function Courses() {
                 <span className="text-blue-400">useful things.</span>
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
-                Practical learning paths for curious beginners, growing
-                developers, and teams building for the real world.
+                Practical learning paths for beginners, aspiring developers,
+                and curious builders who want to understand technology by
+                actually creating with it.
               </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="#course-catalog"
+                  className="rounded-full bg-blue-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-blue-400"
+                >
+                  Explore courses
+                </a>
+                <a
+                  href="#course-catalog"
+                  className="rounded-full border border-slate-700 px-5 py-3 text-sm font-semibold text-white transition hover:border-blue-400 hover:text-blue-200"
+                >
+                  Start learning free
+                </a>
+                <a
+                  href="#learning-model"
+                  className="rounded-full px-2 py-3 text-sm font-semibold text-slate-300 transition hover:text-white"
+                >
+                  How learning works
+                </a>
+              </div>
             </div>
-            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-4 border-t border-white/10 pt-6 text-sm text-slate-300">
+            <div className="mt-10 grid max-w-2xl grid-cols-2 gap-4 border-t border-white/10 pt-6 text-sm text-slate-300 sm:grid-cols-3">
               <div>
                 <strong className="block text-2xl text-white">
-                  {courses.length}
+                  {loading ? "—" : courses.length}
                 </strong>
                 courses
               </div>
               <div>
-                <strong className="block text-2xl text-white">4</strong>learning
-                tracks
+                <strong className="block text-2xl text-white">
+                  {loading ? "—" : new Set(courses.map((course) => course.category)).size}
+                </strong>
+                learning categories
               </div>
               <div>
-                <strong className="block text-2xl text-white">1:1</strong>
-                mentor-led mindset
+                <strong className="block text-2xl text-white">Free</strong>
+                previews available
               </div>
             </div>
           </Container>
         </section>
 
         <Container className="py-10 md:py-14">
+          <section id="learning-model" className="scroll-mt-24">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
+                A practical learning model
+              </p>
+              <h2 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
+                Learn → Build → Practice → Apply
+              </h2>
+              <p className="mt-3 text-slate-600 dark:text-slate-300">
+                Each path connects clear explanations with hands-on work so you
+                can turn new concepts into useful projects.
+              </p>
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Learn", "Understand the fundamentals."],
+                ["Build", "Apply concepts through practical projects."],
+                ["Practice", "Work through exercises and lessons."],
+                ["Apply", "Use what you learn to solve real problems."],
+              ].map(([title, description]) => (
+                <div
+                  key={title}
+                  className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900"
+                >
+                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-700 dark:bg-blue-500/20 dark:text-blue-300">
+                    <FiCheck aria-hidden="true" />
+                  </span>
+                  <h3 className="mt-4 font-semibold text-slate-900 dark:text-white">{title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{description}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="course-catalog" className="mt-16 scroll-mt-24">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
@@ -116,7 +182,19 @@ export default function Courses() {
               </button>
             ))}
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {loadError && (
+            <p className="mt-8 rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-500/30 dark:bg-red-950/20 dark:text-red-300">
+              {loadError}
+            </p>
+          )}
+          {loading ? (
+            <p className="mt-8 text-slate-600 dark:text-slate-300">Loading courses...</p>
+          ) : filteredCourses.length === 0 ? (
+            <p className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+              No courses match your search. Try another topic or category.
+            </p>
+          ) : (
+            <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {filteredCourses.map((course) => (
               <article
                 key={course.slug}
@@ -163,20 +241,24 @@ export default function Courses() {
                     >
                       View course <FiArrowUpRight aria-hidden="true" />
                     </Link>
-                    <a
-                      href={course.youtubeUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`Watch ${course.title} on YouTube`}
-                      className="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 text-red-600 transition hover:border-red-300 hover:bg-red-50 dark:border-slate-700 dark:hover:bg-red-950/30"
-                    >
-                      <FiPlay aria-hidden="true" />
-                    </a>
+                    {course.youtubeUrl && (
+                      <a
+                        href={course.youtubeUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`Watch ${course.title} on YouTube`}
+                        className="inline-flex items-center justify-center rounded-full border border-slate-300 px-4 text-red-600 transition hover:border-red-300 hover:bg-red-50 dark:border-slate-700 dark:hover:bg-red-950/30"
+                      >
+                        <FiPlay aria-hidden="true" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </article>
             ))}
-          </div>
+            </div>
+          )}
+          </section>
         </Container>
       </div>
     </>
