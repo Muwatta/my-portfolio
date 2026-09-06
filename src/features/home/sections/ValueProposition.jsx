@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "../../../hooks/useInView";
 import { Container } from "../../../components/layout/Container";
-import { currentFocus } from "../../../data";
 
 export const ValueProposition = () => {
   const [ref, isInView] = useInView(0.2);
@@ -17,28 +16,32 @@ export const ValueProposition = () => {
         >
           <div>
             <h3 className="text-lg font-semibold text-white mb-2">
-              What I Build
+              Software Engineering
             </h3>
             <p className="text-slate-400">
-              Production-grade web applications with focus on scalability,
-              real-time features, and exceptional user experience.
+              Web applications, APIs, and backend platforms for education,
+              business, and operational workflows.
             </p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-white mb-2">
-              Who I Help
+              Technology Education
             </h3>
             <p className="text-slate-400">
-              EdTech startups, vocational training centers, and teams that need
-              backend systems, APIs, and reliable production infrastructure.
+              Practical programming, web development, Scratch, embedded systems,
+              robotics, and AI concepts for learners.
             </p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-white mb-2">
-              Current Focus
+              Hardware & Physical Computing
             </h3>
             <ul className="space-y-1">
-              {currentFocus.map((item) => (
+              {[
+                "Arduino, ESP32, and Raspberry Pi",
+                "Sensors, actuators, and cameras",
+                "Python, computer vision, and IoT",
+              ].map((item) => (
                 <li
                   key={item}
                   className="text-slate-400 text-sm flex items-center gap-2"

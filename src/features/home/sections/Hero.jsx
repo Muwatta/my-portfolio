@@ -25,16 +25,17 @@ export const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
               <span className="block text-slate-400 text-xl md:text-2xl font-normal mb-2">
-                Full-Stack Developer
+                Software Engineer · Technology Educator
               </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
-                  Abdullahi Musliudeen
+                Abdullahi Musliudeen
               </span>
             </h1>
 
             <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              I build backend systems and full-stack products that solve real
-              operational problems. Django · DRF · PostgreSQL · Redis · React
+              I build software for real operational problems, teach practical
+              technology, and work with systems that connect code to the
+              physical world.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -52,6 +53,10 @@ export const Hero = () => {
                 {ctaNavigation.secondary.name}
               </MagneticButton>
             </div>
+            <p className="mt-5 text-sm leading-6 text-slate-500">
+              Arabic Education → teaching → software engineering →
+              embedded systems, AI, and IoT
+            </p>
           </motion.div>
 
           {/* Visual */}
