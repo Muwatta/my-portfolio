@@ -3,13 +3,15 @@ import { ThemeContext } from "./ThemeContextValue";
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "dark"
+    () =>
+      localStorage.getItem("theme") || "dark",
   );
 
   useEffect(() => {
     const root = document.documentElement;
 
     root.classList.toggle("dark", theme === "dark");
+    root.style.colorScheme = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 

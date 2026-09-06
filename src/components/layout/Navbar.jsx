@@ -27,6 +27,8 @@ const Navbar = () => {
   useEffect(() => {
     if (!isOpen) return;
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
         setIsOpen(false);
@@ -34,7 +36,10 @@ const Navbar = () => {
       }
     };
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -74,7 +79,7 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto w-full px-4 sm:px-6">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <MotionLink
@@ -137,6 +142,8 @@ const Navbar = () => {
               whileHover={{ scale: 1.1 }}
               className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:border-blue-500/50 transition-colors"
               aria-label="Toggle theme"
+              title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              aria-pressed={theme === "dark"}
             >
               <AnimatePresence mode="wait">
                 {theme === "dark" ? (
@@ -171,6 +178,8 @@ const Navbar = () => {
               whileTap={{ scale: 0.9 }}
               className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors"
               aria-label="Toggle theme"
+              title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+              aria-pressed={theme === "dark"}
             >
               <AnimatePresence mode="wait">
                 {theme === "dark" ? (
@@ -244,7 +253,8 @@ const Navbar = () => {
             exit="closed"
             variants={menuVariants}
           >
-            <div className="container mx-auto px-6 py-6 space-y-1">
+            <div className="container mx-auto max-h-[calc(100dvh-5rem)] w-full overflow-y-auto px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-4 sm:px-6">
+              <div className="space-y-1">
               {navItems.map((item) => (
                 <motion.div key={item.name} variants={itemVariants}>
                   <NavLink
@@ -264,6 +274,7 @@ const Navbar = () => {
                   </NavLink>
                 </motion.div>
               ))}
+              </div>
             </div>
           </motion.div>
         )}

@@ -116,7 +116,7 @@ const Contact = () => {
           <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-3">
             Let's Connect
           </p>
-          <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-[1.05] mb-5">
+          <h1 className="text-5xl sm:text-6xl font-extrabold text-slate-900 dark:text-white leading-[1.05] mb-5">
             Get in
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
@@ -318,7 +318,7 @@ const Contact = () => {
                       <p className="text-[10px] font-mono text-slate-600 uppercase tracking-wider">
                         {link.label}
                       </p>
-                      <p className="text-sm text-slate-700 dark:text-slate-300 group-hover:text-white transition-colors truncate">
+                      <p className="text-sm text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors break-words">
                         {link.value}
                       </p>
                     </div>
@@ -333,7 +333,7 @@ const Contact = () => {
               <p className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-1">
                 Response time
               </p>
-              <p className="text-white font-bold">Usually within 24 hrs</p>
+              <p className="text-slate-900 dark:text-white font-bold">Usually within 24 hrs</p>
               <p
                 className="text-slate-500 text-xs mt-1"
                 style={{ fontFamily: "'Lora', serif" }}

@@ -8,7 +8,7 @@ export const Container = ({ children, className = "", size = "default" }) => {
 
   return (
     <div
-      className={`container mx-auto px-4 md:px-6 ${sizes[size]} ${className}`}
+      className={`container mx-auto w-full px-4 sm:px-6 lg:px-8 ${sizes[size]} ${className}`}
     >
       {children}
     </div>

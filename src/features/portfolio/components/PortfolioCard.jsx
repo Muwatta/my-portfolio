@@ -42,7 +42,7 @@ export const PortfolioCard = ({ project, index }) => {
       transition={{ delay: index * 0.1 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-blue-500/50 transition-all duration-500 flex flex-col"
+      className="group relative bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-500 flex flex-col"
     >
       {/* Image → case study */}
       <Link
@@ -80,12 +80,12 @@ export const PortfolioCard = ({ project, index }) => {
 
       {/* Content */}
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors leading-snug">
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-400 transition-colors leading-snug">
           <Link to={detailPath}>{project.title}</Link>
         </h3>
 
         {/* Problem / solution one-liner */}
-        <p className="text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2 leading-relaxed">
           {project.problem || project.description}
         </p>
 
@@ -94,20 +94,20 @@ export const PortfolioCard = ({ project, index }) => {
           {project.tech.slice(0, 4).map((tech) => (
             <span
               key={tech}
-              className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300"
+              className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
             >
               {tech}
             </span>
           ))}
           {project.tech.length > 4 && (
-            <span className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-500">
+            <span className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">
               +{project.tech.length - 4}
             </span>
           )}
         </div>
 
         {/* Verified metric */}
-        <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-800 mb-5">
+        <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-200 dark:border-slate-800 mb-5">
           {project.metrics.slice(0, 3).map((metric) => (
             <span
               key={metric}

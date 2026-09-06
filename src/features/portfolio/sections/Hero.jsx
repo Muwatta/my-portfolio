@@ -40,9 +40,9 @@ export const Hero = () => {
             <img
               src="https://res.cloudinary.com/dee5edoss/image/upload/w_400,ar_1:1,c_fill,g_auto,e_art:hokusai/v1741434757/IMG-20241231-WA0094_jf4axb.jpg"
               alt="Abdullahi Musliudeen"
-              className="relative w-full h-full rounded-full object-cover border-2 border-slate-700 ring-2 ring-blue-500/20"
+              className="relative w-full h-full rounded-full object-cover border-2 border-slate-300 dark:border-slate-700 ring-2 ring-blue-500/20"
             />
-            <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 ring-2 ring-slate-950" />
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 ring-2 ring-slate-50 dark:ring-slate-950" />
           </motion.div>
 
           {/* text */}
@@ -60,7 +60,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl sm:text-5xl font-extrabold leading-tight mb-3 text-white"
+              className="text-4xl sm:text-5xl font-extrabold leading-tight mb-3 text-slate-900 dark:text-white"
             >
               Abdullahi{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
@@ -72,7 +72,7 @@ export const Hero = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6"
+              className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed mb-6"
               style={{ fontFamily: "'Lora', serif" }}
             >
               I build production-grade backends with Django & PostgreSQL, ship
@@ -98,7 +98,7 @@ export const Hero = () => {
                 href="https://github.com/Muwatta"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-700 hover:border-slate-500 text-slate-300 text-sm font-bold transition-colors"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-blue-500 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300 text-sm font-bold transition-colors"
               >
                 <FaGithub size={15} /> GitHub
               </a>
@@ -118,7 +118,7 @@ export const Hero = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:border-blue-500/50 transition-all"
+                  className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-blue-500/50 transition-all"
                 >
                   {ICON_MAP[link.name] || (
                     <span className="text-xs font-bold">{link.name[0]}</span>
@@ -133,14 +133,14 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55 }}
-            className="flex gap-6 sm:gap-10 mt-2"
+            className="grid grid-cols-3 gap-3 sm:gap-10 mt-2"
           >
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
-                <p className="text-2xl sm:text-3xl font-extrabold text-white">
+                <p className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
                   {s.value}
                 </p>
-                <p className="text-[11px] font-mono text-slate-500 mt-0.5 uppercase tracking-wider">
+                <p className="text-[10px] sm:text-[11px] font-mono text-slate-500 mt-0.5 uppercase tracking-wider">
                   {s.label}
                 </p>
               </div>
@@ -152,7 +152,7 @@ export const Hero = () => {
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ delay: 0.65, duration: 0.5 }}
-            className="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent mt-2"
+            className="w-full max-w-xs h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent mt-2"
           />
         </div>
       </Container>

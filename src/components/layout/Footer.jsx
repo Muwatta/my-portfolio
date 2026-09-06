@@ -238,7 +238,7 @@ export default function Footer() {
                       >
                         <Icon size={12} />
                       </span>
-                      <span className="text-sm truncate">{value}</span>
+                      <span className="min-w-0 break-words text-sm">{value}</span>
                     </>
                   );
                   return (

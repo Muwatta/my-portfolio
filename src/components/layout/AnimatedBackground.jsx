@@ -7,7 +7,7 @@ export default function AnimatedBackground() {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
-      <div className="absolute inset-0 bg-slate-950" />
+      <div className="absolute inset-0 bg-slate-50 dark:bg-slate-950" />
 
       <motion.div
         className="absolute top-0 left-0 w-[800px] h-[800px] rounded-full opacity-30"
@@ -32,8 +32,8 @@ export default function AnimatedBackground() {
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(15,23,42,0.08) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(15,23,42,0.08) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
         }}
       />

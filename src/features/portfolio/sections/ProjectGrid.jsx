@@ -25,14 +25,14 @@ export const ProjectGrid = ({ projects = legacyProjects }) => {
           <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3">
             All Projects
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight mb-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight mb-3">
             Everything I've{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
               Built
             </span>
           </h2>
           <p
-            className="text-slate-400 text-sm max-w-md mx-auto leading-relaxed"
+            className="text-slate-600 dark:text-slate-400 text-sm max-w-md mx-auto leading-relaxed"
             style={{ fontFamily: "'Lora', serif" }}
           >
             A complete archive of my public work — from production backends to
@@ -48,7 +48,7 @@ export const ProjectGrid = ({ projects = legacyProjects }) => {
         </div>
 
         {/* Count */}
-        <p className="text-xs font-mono text-slate-600 text-center mb-6">
+        <p         className="text-xs font-mono text-slate-500 dark:text-slate-600 text-center mb-6">
           {filteredProjects.length} project
           {filteredProjects.length !== 1 ? "s" : ""}
         </p>
@@ -89,7 +89,7 @@ export const ProjectGrid = ({ projects = legacyProjects }) => {
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-700 hover:border-blue-500/50 text-slate-300 hover:text-white text-sm font-bold transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-sm font-bold transition-all"
           >
             ← Back to Featured Projects
           </Link>
@@ -103,14 +103,14 @@ export const ProjectGrid = ({ projects = legacyProjects }) => {
           transition={{ delay: 0.2 }}
           className="mt-6 text-center"
         >
-          <p className="text-slate-500 text-sm mb-4">
+          <p className="text-slate-500 dark:text-slate-500 text-sm mb-4">
             See everything I'm building
           </p>
           <a
             href="https://github.com/Muwatta"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-700 hover:border-blue-500/50 text-slate-300 hover:text-white text-sm font-bold transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-300 dark:border-slate-700 hover:border-blue-500/50 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-sm font-bold transition-all"
           >
             View GitHub Profile →
           </a>

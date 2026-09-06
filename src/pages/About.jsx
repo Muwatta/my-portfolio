@@ -193,7 +193,7 @@ const About = () => {
             <p className="text-[11px] font-mono tracking-[0.28em] uppercase text-blue-400 mb-3">
               Backend Engineer · Full-Stack Developer · Founder
             </p>
-            <h1 className="text-5xl sm:text-6xl font-extrabold text-white leading-[1.05] mb-5">
+            <h1 className="text-5xl sm:text-6xl font-extrabold text-slate-900 dark:text-white leading-[1.05] mb-5">
               About Abdullahi Musliudeen:
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
@@ -298,7 +298,7 @@ const About = () => {
                     <p className="text-[10px] font-mono text-blue-400 mb-2">
                       {s.label}
                     </p>
-                    <h3 className="text-2xl font-extrabold text-white mb-6">
+                    <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">
                       {s.title}
                     </h3>
                     <div className="space-y-4">
@@ -403,7 +403,7 @@ const About = () => {
                 className="relative z-10 max-w-2xl mx-auto text-center"
               >
                 <p
-                  className="text-xl sm:text-2xl font-semibold text-white leading-relaxed mb-6"
+                  className="text-xl sm:text-2xl font-semibold text-slate-900 dark:text-white leading-relaxed mb-6"
                   style={{ fontFamily: "'Lora', serif", fontStyle: "italic" }}
                 >
                   "{TESTIMONIALS[testimonialIdx].quote}"
@@ -464,7 +464,7 @@ const About = () => {
             <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-blue-400 mb-3">
               Open to opportunities
             </p>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-4">
               Let's build something great.
             </h2>
             <p

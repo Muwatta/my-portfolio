@@ -116,14 +116,14 @@ export default function Courses() {
               </button>
             ))}
           </div>
-          <div className="mt-8 grid gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {filteredCourses.map((course) => (
               <article
                 key={course.slug}
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900"
               >
                 <div className="h-2 bg-gradient-to-r from-blue-600 via-cyan-400 to-emerald-400" />
-                <div className="flex flex-1 flex-col p-4 sm:p-6">
+                <div className="flex flex-1 flex-col p-6">
                   <div className="mb-4 flex items-center justify-between gap-3">
                     <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-blue-700 dark:bg-blue-500/20 dark:text-blue-200">
                       {course.category}
@@ -132,13 +132,13 @@ export default function Courses() {
                       {course.level}
                     </span>
                   </div>
-                  <h2 className="text-xl font-bold leading-tight text-slate-900 sm:text-2xl dark:text-white">
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
                     {course.title}
                   </h2>
                   <p className="mt-4 flex-1 text-slate-600 dark:text-slate-300">
                     {course.description}
                   </p>
-                  <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-slate-100 pt-4 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400">
+                  <div className="mt-6 flex items-center gap-4 border-t border-slate-100 pt-4 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400">
                     <span className="inline-flex items-center gap-1.5">
                       <FiClock aria-hidden="true" />
                       {course.duration}
@@ -156,7 +156,7 @@ export default function Courses() {
                       <li key={lesson}>• {lesson}</li>
                     ))}
                   </ul>
-                  <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-6 flex gap-3">
                     <Link
                       to={`/courses/${course.slug}`}
                       className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-slate-900 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-600 dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400"
