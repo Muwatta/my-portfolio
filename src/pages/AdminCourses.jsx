@@ -23,6 +23,8 @@ const EMPTY = {
   description: "",
   lessons: [],
   youtubeUrl: "",
+  trialVideoUrl: "",
+  trialText: "",
   status: "draft",
   order: 0,
 };
@@ -169,6 +171,8 @@ export default function AdminCourses() {
           </div>
           <label className="block text-sm font-semibold">Description<textarea className="field" rows="4" required value={form.description} onChange={(event) => change("description", event.target.value)} /></label>
           <label className="block text-sm font-semibold">Lessons <span className="font-normal text-slate-500">(one per line)</span><textarea className="field" rows="6" value={lessonsText} onChange={(event) => setLessonsText(event.target.value)} /></label>
+          {field("Trial video URL", "trialVideoUrl", { type: "url", placeholder: "https://www.youtube.com/watch?v=..." })}
+          <label className="block text-sm font-semibold">Trial lesson text<textarea className="field" rows="5" value={form.trialText} onChange={(event) => change("trialText", event.target.value)} placeholder="Give learners a useful preview of the first lesson." /></label>
           {field("YouTube URL", "youtubeUrl", { type: "url" })}
           <label className="flex items-center gap-3 text-sm font-semibold"><input type="checkbox" checked={form.featured} onChange={(event) => change("featured", event.target.checked)} /> Featured course</label>
           {notice && <p className="text-sm text-blue-700 dark:text-blue-300">{notice}</p>}

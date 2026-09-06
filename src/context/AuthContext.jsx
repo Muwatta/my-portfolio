@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   browserLocalPersistence,
+  createUserWithEmailAndPassword,
   onAuthStateChanged,
   setPersistence,
   signInWithEmailAndPassword,
@@ -32,6 +33,11 @@ export function AuthProvider({ children }) {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  const signUp = (email, password) => {
+    if (!auth) throw new Error("Firebase is not configured.");
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   const signOut = () => (auth ? firebaseSignOut(auth) : Promise.resolve());
 
   return (
@@ -40,6 +46,7 @@ export function AuthProvider({ children }) {
         user,
         loading,
         signIn,
+        signUp,
         signOut,
         isConfigured: isFirebaseConfigured,
       }}

@@ -68,6 +68,15 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /users/{userId}/enrollments/{courseId} {
+      allow read: if signedIn() && request.auth.uid == userId;
+      allow create, update: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.courseSlug is string
+        && request.resource.data.courseTitle is string;
+      allow delete: if signedIn() && request.auth.uid == userId;
+    }
+
     match /categories/{categoryId} {
       allow read: if true;
       allow write: if isAdmin();

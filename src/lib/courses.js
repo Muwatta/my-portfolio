@@ -28,6 +28,8 @@ export const asCourse = (row = {}, id = row.id, order = 0) => ({
   description: row.description || "",
   lessons: Array.isArray(row.lessons) ? row.lessons : [],
   youtubeUrl: row.youtubeUrl || "",
+  trialVideoUrl: row.trialVideoUrl || "",
+  trialText: row.trialText || "",
   status: row.status || "published",
   order: Number.isFinite(row.order) ? row.order : order,
 });
@@ -85,4 +87,20 @@ export async function deleteCourse(id) {
   if (!isFirebaseConfigured || !db)
     throw new Error("Firebase is not configured.");
   await deleteDoc(doc(db, "courses", String(id)));
+}
+
+export async function enrollInCourse(userId, course) {
+  if (!isFirebaseConfigured || !db)
+    throw new Error("Firebase is not configured.");
+  if (!userId) throw new Error("Sign in before enrolling.");
+  await setDoc(
+    doc(db, "users", userId, "enrollments", course.slug),
+    {
+      courseSlug: course.slug,
+      courseTitle: course.title,
+      status: "active",
+      enrolledAt: serverTimestamp(),
+    },
+    { merge: true },
+  );
 }

@@ -3,16 +3,79 @@ import { useEffect, useState } from "react";
 import { Container } from "../components/layout/Container";
 import Seo from "../components/seo/Seo";
 import { fetchCourse } from "../lib/courses";
+import { enrollInCourse } from "../lib/courses";
+import { useAuth } from "../context/AuthContext";
+
+const videoEmbedUrl = (url) => {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url);
+    const id = parsed.searchParams.get("v") || parsed.pathname.split("/").pop();
+    return id ? `https://www.youtube.com/embed/${id}` : url;
+  } catch {
+    return url;
+  }
+};
+
+function RegisterForm({ signUp, signIn }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [mode, setMode] = useState("signup");
+  const [error, setError] = useState("");
+  const submit = async (event) => {
+    event.preventDefault();
+    setError("");
+    try {
+      await (mode === "signup" ? signUp : signIn)(email, password);
+    } catch (nextError) {
+      setError(nextError.message || "Authentication failed.");
+    }
+  };
+  return (
+    <form onSubmit={submit} className="space-y-2">
+      <input className="field" type="email" required placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} />
+      <input className="field" type="password" required minLength="6" placeholder="Password (6+ characters)" value={password} onChange={(event) => setPassword(event.target.value)} />
+      {error && <p className="text-xs text-red-600">{error}</p>}
+      <button className="w-full rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white" type="submit">
+        {mode === "signup" ? "Create learner account" : "Sign in"}
+      </button>
+      <button type="button" className="w-full text-xs text-blue-600" onClick={() => setMode((current) => current === "signup" ? "signin" : "signup")}>
+        {mode === "signup" ? "Already registered? Sign in" : "Need an account? Register"}
+      </button>
+    </form>
+  );
+}
 
 export default function CourseDetail() {
   const { slug } = useParams();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [registering, setRegistering] = useState(false);
+  const [notice, setNotice] = useState("");
+  const { user, signIn, signUp } = useAuth();
   useEffect(() => {
     fetchCourse(slug)
       .then(setCourse)
+      .catch(() => setCourse(null))
       .finally(() => setLoading(false));
   }, [slug]);
+
+  const register = async () => {
+    setNotice("");
+    if (!user) {
+      setNotice("Create an account or sign in below to register.");
+      return;
+    }
+    setRegistering(true);
+    try {
+      await enrollInCourse(user.uid, course);
+      setNotice("You are registered for this course.");
+    } catch (error) {
+      setNotice(error.message || "Registration failed.");
+    } finally {
+      setRegistering(false);
+    }
+  };
 
   if (loading) {
     return <Container className="py-16 text-center">Loading course...</Container>;
@@ -67,6 +130,30 @@ export default function CourseDetail() {
           <p className="mt-6 max-w-3xl text-lg text-slate-600 dark:text-slate-300">
             {course.description}
           </p>
+          {(course.trialVideoUrl || course.trialText) && (
+            <section className="mt-8 rounded-2xl border border-blue-200 bg-blue-50/70 p-5 dark:border-blue-500/30 dark:bg-blue-500/10">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-blue-600 dark:text-blue-300">
+                Free preview
+              </p>
+              <h2 className="mt-2 text-2xl font-bold">Try the first lesson</h2>
+              {course.trialVideoUrl && (
+                <div className="mt-4 aspect-video overflow-hidden rounded-xl bg-slate-950">
+                  <iframe
+                    className="h-full w-full"
+                    src={videoEmbedUrl(course.trialVideoUrl)}
+                    title={`${course.title} trial lesson`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
+              {course.trialText && (
+                <p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600 dark:text-slate-300">
+                  {course.trialText}
+                </p>
+              )}
+            </section>
+          )}
           <div className="mt-8 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
             <div>
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -101,9 +188,16 @@ export default function CourseDetail() {
                   </span>
                 </div>
               </div>
-              <button className="mt-6 w-full rounded-full bg-slate-900 px-5 py-3 font-semibold text-white transition hover:bg-blue-600 dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400">
-                {course.price === 0 ? "Start learning" : "Enroll now"}
+              <button onClick={register} disabled={registering} className="mt-6 w-full rounded-full bg-slate-900 px-5 py-3 font-semibold text-white transition hover:bg-blue-600 disabled:opacity-60 dark:bg-blue-500 dark:text-slate-950 dark:hover:bg-blue-400">
+                {registering ? "Registering..." : user ? "Register for this course" : "Sign in to register"}
               </button>
+              {notice && <p className="mt-3 text-center text-sm text-blue-700 dark:text-blue-300">{notice}</p>}
+              {!user && (
+                <div className="mt-4 space-y-3 border-t border-slate-200 pt-4 dark:border-slate-700">
+                  <p className="text-xs text-slate-500">Already have an account? Use the admin sign-in credentials, or create a learner account with the form below.</p>
+                  <RegisterForm signUp={signUp} signIn={signIn} />
+                </div>
+              )}
               <a
                 href={course.youtubeUrl}
                 target="_blank"
