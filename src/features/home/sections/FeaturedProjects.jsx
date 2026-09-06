@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../../../components/layout/Container";
 import { ProjectCard } from "./components/ProjectCard";
 import { featuredProjects } from "../../../data";
 import { Link } from "react-router-dom";
+import { fetchAchievements } from "../../../lib/achievements";
 
-const STUDENT_ACHIEVEMENTS = [
+const ACHIEVEMENT_PLACEHOLDERS = [
   "Student project showcase",
   "Scratch game or animation",
   "Arduino or ESP32 build",
@@ -16,7 +17,12 @@ const STUDENT_ACHIEVEMENTS = [
 
 export const FeaturedProjects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [achievements, setAchievements] = useState([]);
   const projects = featuredProjects.slice(0, 6);
+  useEffect(() => {
+    fetchAchievements().then(setAchievements).catch(() => setAchievements([]));
+  }, []);
+  const displayedAchievements = achievements.length ? achievements : ACHIEVEMENT_PLACEHOLDERS.map((title) => ({ title }));
 
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-32 bg-slate-900/30">
@@ -67,20 +73,32 @@ export const FeaturedProjects = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-            {STUDENT_ACHIEVEMENTS.map((achievement, index) => (
+            {displayedAchievements.slice(0, 6).map((achievement, index) => (
               <article
-                key={achievement}
+                key={achievement.id || achievement.title}
                 className="min-h-28 rounded-xl border border-dashed border-slate-300 bg-white/70 p-4 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
               >
+                {achievement.imageUrl && <img src={achievement.imageUrl} alt="" className="mb-3 h-20 w-full rounded-lg object-cover" />}
                 <span className="text-xs font-mono text-blue-500 dark:text-blue-400">
                   0{index + 1}
                 </span>
                 <h4 className="mt-3 text-sm font-semibold leading-snug text-slate-800 dark:text-slate-200 sm:text-base">
-                  {achievement}
+                  {achievement.title}
                 </h4>
                 <p className="mt-2 text-xs text-slate-500">
-                  Achievement details coming soon
+                  {achievement.description || "Achievement details coming soon"}
                 </p>
+                {achievement.studentName && <p className="mt-2 text-xs font-semibold text-blue-600 dark:text-blue-400">{achievement.studentName}</p>}
+                {achievement.projectUrl && (
+                  <a
+                    href={achievement.projectUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-block text-xs font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400"
+                  >
+                    View project →
+                  </a>
+                )}
               </article>
             ))}
           </div>

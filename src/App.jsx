@@ -30,6 +30,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminProjects = lazy(() => import("./pages/AdminProjects"));
 const AdminCourses = lazy(() => import("./pages/AdminCourses"));
+const AdminAchievements = lazy(() => import("./pages/AdminAchievements"));
 const AdminProjectPreview = lazy(() => import("./pages/AdminProjectPreview"));
 
 const PageLoader = () => (
@@ -88,6 +89,7 @@ function App() {
                         element={<AdminProjectPreview />}
                       />
                       <Route path="/admin/courses" element={<AdminCourses />} />
+                      <Route path="/admin/achievements" element={<AdminAchievements />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>

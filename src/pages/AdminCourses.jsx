@@ -48,6 +48,7 @@ function Frame({ children }) {
             <nav className="flex w-full flex-wrap gap-x-4 gap-y-2 text-sm sm:w-auto">
               <Link to="/admin" className="text-slate-500 hover:text-blue-600">Articles</Link>
               <Link to="/admin/projects" className="text-slate-500 hover:text-blue-600">Projects</Link>
+              <Link to="/admin/achievements" className="text-slate-500 hover:text-blue-600">Achievements</Link>
               <Link to="/courses" className="text-slate-500 hover:text-blue-600">View courses</Link>
             </nav>
           </header>

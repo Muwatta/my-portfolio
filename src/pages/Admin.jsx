@@ -82,6 +82,12 @@ function Shell({ title, children }) {
               >
                 Courses
               </Link>
+              <Link
+                to="/admin/achievements"
+                className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold dark:border-slate-700"
+              >
+                Achievements
+              </Link>
             </div>
           </header>
           {children}

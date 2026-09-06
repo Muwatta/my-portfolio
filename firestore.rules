@@ -68,6 +68,19 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /student_achievements/{achievementId} {
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create: if isAdmin()
+        && request.resource.data.title is string
+        && request.resource.data.description is string
+        && request.resource.data.status in ['draft', 'published', 'archived'];
+      allow update: if isAdmin()
+        && request.resource.data.title is string
+        && request.resource.data.description is string
+        && request.resource.data.status in ['draft', 'published', 'archived'];
+      allow delete: if isAdmin();
+    }
+
     match /users/{userId}/enrollments/{courseId} {
       allow read: if signedIn() && request.auth.uid == userId;
       allow create, update: if signedIn()
