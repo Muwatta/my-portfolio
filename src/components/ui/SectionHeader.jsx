@@ -24,9 +24,9 @@ export const SectionHeader = ({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5 }}
-      className={`mb-12 md:mb-16 ${alignClasses[align]} ${className}`}
+      className={`mb-8 md:mb-16 ${alignClasses[align]} ${className}`}
     >
-      <Heading className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+      <Heading className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 md:mb-4">
         {title}{" "}
         {highlight && (
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400">
@@ -35,7 +35,7 @@ export const SectionHeader = ({
         )}
       </Heading>
       {subtitle && (
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
           {subtitle}
         </p>
       )}

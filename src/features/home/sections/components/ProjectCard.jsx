@@ -29,10 +29,10 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       onClick={onClick}
-      className={`group relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 cursor-pointer transition-all duration-300 ${isActive ? "ring-2 ring-blue-500/50" : ""}`}
+      className={`group relative rounded-xl sm:rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 cursor-pointer transition-all duration-300 ${isActive ? "ring-2 ring-blue-500/50" : ""}`}
     >
       {/* Image */}
-      <div className="aspect-video relative overflow-hidden">
+      <div className="aspect-[4/3] sm:aspect-video relative overflow-hidden">
         {project.image ? (
           <img
             src={project.image}
@@ -57,16 +57,16 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+      <div className="p-3 sm:p-6">
+        <h3 className="text-sm sm:text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-400 transition-colors line-clamp-2">
           {project.title}
         </h3>
-        <p className="text-slate-400 text-sm mb-4 line-clamp-2">
+        <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
           {project.description}
         </p>
 
         {/* Metrics */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="hidden sm:flex flex-wrap gap-2 mb-4">
           {project.metrics.slice(0, 2).map((metric) => (
             <span key={metric} className="text-xs text-slate-500">
               • {metric}
@@ -79,7 +79,7 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
           {project.tech.slice(0, 3).map((t) => (
             <span
               key={t}
-              className="text-xs px-2 py-1 rounded bg-slate-800 text-slate-300"
+              className="text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
             >
               {t}
             </span>
@@ -87,13 +87,13 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
         </div>
 
         {/* Links */}
-        <div className="flex gap-3 pt-4 border-t border-slate-800">
+        <div className="flex gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-slate-200 dark:border-slate-800">
           {project.github && (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-slate-400 hover:text-white transition-colors"
+              className="flex items-center gap-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
               onClick={(e) => e.stopPropagation()}
             >
               <FiGithub size={16} /> Code
@@ -104,7 +104,7 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-blue-400 hover:text-blue-300 transition-colors ml-auto"
+              className="flex items-center gap-1 text-xs sm:text-sm text-blue-500 dark:text-blue-400 hover:text-blue-300 transition-colors ml-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <FiExternalLink size={16} /> Live
@@ -112,7 +112,7 @@ export const ProjectCard = ({ project, index, isActive, onClick }) => {
           )}
           <Link
             to={`/portfolio/${project.id}`}
-            className="flex items-center gap-1 text-sm font-semibold text-slate-300 hover:text-blue-400 transition-colors"
+            className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-blue-400 transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
             Case Study <FiArrowRight size={14} />
