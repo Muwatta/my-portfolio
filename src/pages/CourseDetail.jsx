@@ -17,24 +17,49 @@ const videoEmbedUrl = (url) => {
   }
 };
 
-function RegisterForm({ signUp, signIn }) {
+function RegisterForm({ signUp, signIn, onAuthenticated, isConfigured }) {
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [mode, setMode] = useState("signup");
   const [error, setError] = useState("");
   const submit = async (event) => {
     event.preventDefault();
     setError("");
+    if (!isConfigured) {
+      setError("Registration is temporarily unavailable. Please try again later.");
+      return;
+    }
+    if (mode === "signup" && password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
     try {
-      await (mode === "signup" ? signUp : signIn)(email, password);
+      const credential = mode === "signup"
+        ? await signUp(email, password, displayName)
+        : await signIn(email, password);
+      await onAuthenticated(credential.user);
     } catch (nextError) {
-      setError(nextError.message || "Authentication failed.");
+      const messages = {
+        "auth/email-already-in-use": "An account already exists for this email. Sign in instead.",
+        "auth/invalid-credential": "The email or password is incorrect.",
+        "auth/weak-password": "Use a stronger password with at least 6 characters.",
+        "auth/invalid-email": "Enter a valid email address.",
+      };
+      setError(messages[nextError.code] || nextError.message || "Authentication failed.");
     }
   };
   return (
     <form onSubmit={submit} className="space-y-2">
+      {mode === "signup" && (
+        <input className="field" type="text" required placeholder="Your name" value={displayName} onChange={(event) => setDisplayName(event.target.value)} />
+      )}
       <input className="field" type="email" required placeholder="Email address" value={email} onChange={(event) => setEmail(event.target.value)} />
       <input className="field" type="password" required minLength="6" placeholder="Password (6+ characters)" value={password} onChange={(event) => setPassword(event.target.value)} />
+      {mode === "signup" && (
+        <input className="field" type="password" required minLength="6" placeholder="Confirm password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} />
+      )}
       {error && <p className="text-xs text-red-600">{error}</p>}
       <button className="w-full rounded-full bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white" type="submit">
         {mode === "signup" ? "Create learner account" : "Sign in"}
@@ -52,7 +77,7 @@ export default function CourseDetail() {
   const [loading, setLoading] = useState(true);
   const [registering, setRegistering] = useState(false);
   const [notice, setNotice] = useState("");
-  const { user, signIn, signUp } = useAuth();
+  const { user, signIn, signUp, isConfigured } = useAuth();
   useEffect(() => {
     fetchCourse(slug)
       .then(setCourse)
@@ -60,15 +85,15 @@ export default function CourseDetail() {
       .finally(() => setLoading(false));
   }, [slug]);
 
-  const register = async () => {
+  const register = async (authenticatedUser = user) => {
     setNotice("");
-    if (!user) {
-      setNotice("Create an account or sign in below to register.");
+    if (!authenticatedUser) {
+      setNotice("Create a learner account or sign in below to register.");
       return;
     }
     setRegistering(true);
     try {
-      await enrollInCourse(user.uid, course);
+      await enrollInCourse(authenticatedUser.uid, course);
       setNotice("You are registered for this course.");
     } catch (error) {
       setNotice(error.message || "Registration failed.");
@@ -194,8 +219,13 @@ export default function CourseDetail() {
               {notice && <p className="mt-3 text-center text-sm text-blue-700 dark:text-blue-300">{notice}</p>}
               {!user && (
                 <div className="mt-4 space-y-3 border-t border-slate-200 pt-4 dark:border-slate-700">
-                  <p className="text-xs text-slate-500">Already have an account? Use the admin sign-in credentials, or create a learner account with the form below.</p>
-                  <RegisterForm signUp={signUp} signIn={signIn} />
+                  <p className="text-xs text-slate-500">Register with your own learner account below. Your account will be enrolled in this course after successful registration.</p>
+                  <RegisterForm
+                    signUp={signUp}
+                    signIn={signIn}
+                    onAuthenticated={register}
+                    isConfigured={isConfigured}
+                  />
                 </div>
               )}
               <a
