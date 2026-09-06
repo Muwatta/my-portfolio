@@ -46,9 +46,9 @@ function Shell({ title, children }) {
         <title>{title} | Abdullahi Musliudeen</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
-      <main className="min-h-screen bg-[#f6f8fb] px-4 py-6 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 sm:px-6 sm:py-8">
+      <main className="min-h-screen overflow-x-hidden bg-[#f6f8fb] px-3 py-4 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-7xl">
-          <header className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-5 dark:border-slate-800">
+          <header className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4 dark:border-slate-800 sm:mb-8 sm:gap-4 sm:pb-5">
             <Link to="/admin" className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-lg shadow-blue-600/20">
                 A
@@ -62,7 +62,7 @@ function Shell({ title, children }) {
                 </span>
               </span>
             </Link>
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-2 text-sm sm:w-auto sm:gap-4">
               <span className="hidden text-slate-500 sm:inline">{title}</span>
               <Link
                 className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"
@@ -117,7 +117,7 @@ function Login({ signIn, isConfigured }) {
   };
   return (
     <Shell title="Admin Login">
-      <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center py-8 sm:py-12">
+      <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center py-6 sm:min-h-[calc(100vh-10rem)] sm:py-12">
         <div className="w-full max-w-md">
           <div className="mb-8 text-center">
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
@@ -133,7 +133,7 @@ function Login({ signIn, isConfigured }) {
           <form
             onSubmit={submit}
             autoComplete="on"
-            className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7"
+            className="space-y-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7"
           >
             <label className="block text-sm font-semibold">
               Email
@@ -587,20 +587,24 @@ export default function AdminPage() {
               </div>
             </article>
           )}
-          <div className="flex gap-3">
+          <div className="grid gap-3 sm:flex sm:flex-wrap">
             <button
-              className="button-secondary inline-flex items-center gap-2"
+              className="button-secondary inline-flex min-h-11 w-full items-center justify-center gap-2 sm:w-auto"
               type="button"
               onClick={() => setPreview((current) => !current)}
             >
               <FiEye aria-hidden="true" />
               {preview ? "Hide preview" : "Preview"}
             </button>
-            <button className="button-primary" disabled={saving} type="submit">
+            <button
+              className="button-primary min-h-11 w-full sm:w-auto"
+              disabled={saving}
+              type="submit"
+            >
               {saving ? "Saving..." : "Save article"}
             </button>
             <button
-              className="button-secondary inline-flex items-center gap-2"
+              className="button-secondary inline-flex min-h-11 w-full items-center justify-center gap-2 sm:w-auto"
               type="button"
               onClick={signOut}
             >
