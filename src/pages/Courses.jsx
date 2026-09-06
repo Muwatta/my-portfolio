@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   FiArrowUpRight,
   FiBookOpen,
@@ -9,17 +9,21 @@ import {
 import { Link } from "react-router-dom";
 import { Container } from "../components/layout/Container";
 import Seo from "../components/seo/Seo";
-import { courses } from "../data/courses"; // Updated import to include new courses
+import { fetchCourses } from "../lib/courses";
 
-const categoryOptions = [
-  "All",
-  ...new Set(courses.map((course) => course.category)),
-];
 const formatPrice = (price) => (price === 0 ? "Free" : `$${price}`);
 
 export default function Courses() {
+  const [courses, setCourses] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    fetchCourses().then(setCourses).catch(() => setCourses([]));
+  }, []);
+  const categoryOptions = [
+    "All",
+    ...new Set(courses.map((course) => course.category)),
+  ];
   const filteredCourses = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
     return courses.filter((course) => {
@@ -29,7 +33,7 @@ export default function Courses() {
         `${course.title} ${course.category} ${course.description}`.toLowerCase();
       return matchesCategory && (!query || searchableText.includes(query));
     });
-  }, [activeCategory, searchTerm]);
+  }, [activeCategory, courses, searchTerm]);
 
   return (
     <>

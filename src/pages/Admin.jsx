@@ -76,6 +76,12 @@ function Shell({ title, children }) {
               >
                 Projects
               </Link>
+              <Link
+                className="text-slate-500 hover:text-blue-600"
+                to="/admin/courses"
+              >
+                Courses
+              </Link>
             </div>
           </header>
           {children}

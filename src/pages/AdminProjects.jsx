@@ -90,6 +90,9 @@ function AdminFrame({ children }) {
               <Link to="/admin" className="text-slate-500 hover:text-blue-600">
                 Articles
               </Link>
+              <Link to="/admin/courses" className="text-slate-500 hover:text-blue-600">
+                Courses
+              </Link>
               <Link to="/blog" className="text-slate-500 hover:text-blue-600">
                 View site
               </Link>

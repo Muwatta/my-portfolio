@@ -29,6 +29,7 @@ const CourseDetail = lazy(() => import("./pages/CourseDetail"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Admin = lazy(() => import("./pages/Admin"));
 const AdminProjects = lazy(() => import("./pages/AdminProjects"));
+const AdminCourses = lazy(() => import("./pages/AdminCourses"));
 const AdminProjectPreview = lazy(() => import("./pages/AdminProjectPreview"));
 
 const PageLoader = () => (
@@ -86,6 +87,7 @@ function App() {
                         path="/admin/projects/preview/:id"
                         element={<AdminProjectPreview />}
                       />
+                      <Route path="/admin/courses" element={<AdminCourses />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>

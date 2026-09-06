@@ -1,12 +1,22 @@
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Container } from "../components/layout/Container";
 import Seo from "../components/seo/Seo";
-import { getCourseBySlug } from "../data/courses"; // Updated import to include new courses
+import { fetchCourse } from "../lib/courses";
 
 export default function CourseDetail() {
   const { slug } = useParams();
-  const course = getCourseBySlug(slug);
+  const [course, setCourse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetchCourse(slug)
+      .then(setCourse)
+      .finally(() => setLoading(false));
+  }, [slug]);
 
+  if (loading) {
+    return <Container className="py-16 text-center">Loading course...</Container>;
+  }
   if (!course) {
     return (
       <Container className="py-16 text-center">
