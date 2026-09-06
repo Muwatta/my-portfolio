@@ -24,7 +24,7 @@ export const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
               <span className="block text-slate-400 text-xl md:text-2xl font-normal mb-2">
-                Software Engineer · Technology Educator · Builder
+                Software Engineer · Technology Educator
               </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
                 Abdullahi Musliudeen
