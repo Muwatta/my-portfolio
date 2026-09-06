@@ -64,12 +64,27 @@ export const ValueProposition = () => {
         </motion.div>
         <div className="mt-14 grid gap-4 sm:grid-cols-3">
           {[
-            ["Arduino", "Embedded programming, electronics, and sensors.", "/images/achievements/agroguard-ai.png"],
-            ["ESP32", "Connected systems and IoT concepts.", "/images/achievements/students-coding-team.jpg"],
-            ["Raspberry Pi", "Python, cameras, and computer vision.", "/images/achievements/scratch-students.jpg"],
-          ].map(([title, description, image]) => (
+            {
+              title: "Arduino",
+              description: "Embedded programming, electronics, and sensors.",
+              image: "/images/achievements/agroguard-ai.png",
+              alt: "AgroGuard AI project dashboard",
+            },
+            {
+              title: "ESP32",
+              description: "Connected systems and IoT concepts.",
+              image: "/images/achievements/students-coding-team.jpg",
+              alt: "Students working together on a technology project",
+            },
+            {
+              title: "Raspberry Pi",
+              description: "Python, cameras, and computer vision.",
+              image: "/images/achievements/scratch-students.jpg",
+              alt: "Students learning with computers in a classroom",
+            },
+          ].map(({ title, description, image, alt }) => (
             <div key={title} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/50">
-              <img src={image} alt="" className="h-32 w-full object-cover opacity-80" loading="lazy" />
+              <img src={image} alt={alt} className="h-32 w-full object-cover opacity-80" loading="lazy" />
               <div className="p-5"><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-400">{description}</p></div>
             </div>
           ))}

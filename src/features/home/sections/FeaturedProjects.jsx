@@ -8,33 +8,33 @@ import { fetchAchievements } from "../../../lib/achievements";
 
 const ACHIEVEMENT_PLACEHOLDERS = [
   {
-    title: "Third-place hackathon finish",
-    description: "A learner represented Algorise Tech Explorers at the African Intelligence Hackathon.",
+    title: "Bootcamp certificate ceremony",
+    description: "Learners gathered with their certificates at the end of the Algorise Tech Explorers bootcamp.",
     imageUrl: "/images/achievements/third-place-hackathon.jpg",
   },
   {
-    title: "Students recognised at Code, Create & Inspire",
-    description: "Learners received devices and recognition while presenting their technology achievements.",
+    title: "African Intelligence Hackathon — 3rd place",
+    description: "A learner is pictured with the 3rd Place Champion award at the African Intelligence Hackathon 2025.",
     imageUrl: "/images/achievements/abuja-student-awards.jpg",
   },
   {
-    title: "Student coding projects",
-    description: "Learners working together on practical computing activities through guided technology education.",
+    title: "Students working on a coding project",
+    description: "Three learners work together on a laptop-based computing activity.",
     imageUrl: "/images/achievements/students-coding-team.jpg",
   },
   {
-    title: "AgroGuard AI prototype",
-    description: "A physical-computing and AI project connecting software with real agricultural challenges.",
+    title: "AgroGuard AI dashboard",
+    description: "A crop-protection dashboard showing detection analytics, system status, and confidence results.",
     imageUrl: "/images/achievements/agroguard-ai.png",
   },
   {
     title: "Scratch classroom",
-    description: "Learners practising Scratch programming and building interactive projects in class.",
+    description: "Learners practise Scratch programming in a computer classroom using a projected lesson.",
     imageUrl: "/images/achievements/scratch-class-2025.jpg",
   },
   {
-    title: "Bootcamp cohort celebration",
-    description: "Learners celebrating their progress and completing a practical technology bootcamp.",
+    title: "Students recognised at Code, Create & Inspire",
+    description: "Students receive devices and recognition at a Code, Create & Inspire event.",
     imageUrl: "/images/achievements/bootcamp-2025.jpg",
   },
 ];
