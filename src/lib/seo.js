@@ -1,9 +1,9 @@
 export const SITE = {
   name: "Muwatta",
   title:
-    "Muwatta | Abdullahi Musliudeen — Backend Engineer & Full-Stack Developer",
+    "Muwatta | Abdullahi Musliudeen — Software Engineer, Technology Educator & Builder",
   description:
-    "Muwatta is the portfolio of Abdullahi Musliudeen, a Nigerian Backend Engineer and Full-Stack Developer building scalable software, APIs, and educational technology with Python, Django, React, and TypeScript.",
+    "Portfolio of Abdullahi Musliudeen, a Nigerian software engineer, technology educator, and builder working across backend systems, React, embedded systems, AI, and IoT.",
   url: "https://www.muwatta.com.ng",
   canonical: "https://www.muwatta.com.ng/",
   twitter: "@MusliudeenAbdu1",
@@ -30,7 +30,7 @@ export const personSchema = {
   alternateName: ["Abdullahi Musliudeen", "Muwatta"],
   url: SITE.url,
   image: SITE.image,
-  jobTitle: "Backend Engineer & Full-Stack Developer",
+  jobTitle: "Software Engineer, Technology Educator & Builder",
   description: SITE.description,
   knowsAbout: [
     "Python",
@@ -41,6 +41,13 @@ export const personSchema = {
     "REST APIs",
     "PostgreSQL",
     "EdTech",
+    "Embedded Systems",
+    "Arduino",
+    "ESP32",
+    "Raspberry Pi",
+    "Artificial Intelligence",
+    "IoT",
+    "Arabic Education",
   ],
   sameAs: [
     "https://github.com/muwatta",

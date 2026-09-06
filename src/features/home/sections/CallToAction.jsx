@@ -63,9 +63,9 @@ export const CallToAction = () => {
             transition={{ delay: 0.15 }}
             className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight mb-6"
           >
-            Ready to build something{" "}
+            Let's build or teach something{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-              that matters?
+              useful.
             </span>
           </motion.h2>
 
@@ -77,9 +77,9 @@ export const CallToAction = () => {
             className="text-base md:text-lg text-slate-500 dark:text-slate-400 mb-10 leading-relaxed max-w-xl mx-auto"
             style={{ fontFamily: "'Lora', serif" }}
           >
-            Whether you need a full-stack engineer, a backend specialist, or a
-            technical mentor — I bring production-grade thinking and real-world
-            experience to every project.
+            I am open to backend engineering roles, full-stack projects,
+            technology education opportunities, and practical computing
+            collaborations.
           </motion.p>
 
           {/* available for chips */}
@@ -110,7 +110,7 @@ export const CallToAction = () => {
               to="/contact"
               className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5"
             >
-              Start a Conversation
+              Work With Me
               <HiArrowRight className="transition-transform group-hover:translate-x-1" />
             </Link>
             <a

@@ -2,13 +2,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { MagneticButton } from "../../../components/ui/MagneticButton";
 import { Container } from "../../../components/layout/Container";
-import { ctaNavigation } from "../../../data";
 
 export const Hero = () => {
   const navigate = useNavigate();
   const reduceMotion = useReducedMotion();
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 pb-16 relative overflow-hidden">
+    <section className="min-h-0 lg:min-h-screen flex items-center justify-center pt-28 pb-16 lg:pt-20 relative overflow-hidden">
       <Container className="relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Content */}
@@ -25,7 +24,7 @@ export const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6">
               <span className="block text-slate-400 text-xl md:text-2xl font-normal mb-2">
-                Software Engineer · Technology Educator
+                Software Engineer · Technology Educator · Builder
               </span>
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
                 Abdullahi Musliudeen
@@ -33,24 +32,23 @@ export const Hero = () => {
             </h1>
 
             <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              I build software for real operational problems, teach practical
-              technology, and work with systems that connect code to the
-              physical world.
+              I build production software, teach practical technology, and work
+              with students on projects that connect code to the physical world.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <MagneticButton
                 size="lg"
-                onClick={() => navigate(ctaNavigation.primary.href)}
+                onClick={() => navigate("/portfolio")}
               >
-                {ctaNavigation.primary.name}
+                View My Work
               </MagneticButton>
               <MagneticButton
                 variant="secondary"
                 size="lg"
-                onClick={() => navigate(ctaNavigation.secondary.href)}
+                onClick={() => navigate("/resume")}
               >
-                {ctaNavigation.secondary.name}
+                View Resume
               </MagneticButton>
             </div>
             <p className="mt-5 text-sm leading-6 text-slate-500">

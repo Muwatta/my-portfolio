@@ -7,8 +7,8 @@ import {
   Skills,
   FeaturedProjects,
   TeachingImpact,
+  CoursePreview,
   ImpactMetrics,
-  Testimonials,
   AboutSummary,
   CallToAction,
 } from "../features/home";
@@ -31,8 +31,9 @@ export default function Home() {
           <Skills />
           <FeaturedProjects />
           <TeachingImpact />
+          <CoursePreview />
           <ImpactMetrics />
-          <Testimonials />
+          {/* Testimonials remain available on their dedicated content surfaces; the homepage prioritises evidence and teaching work. */}
           <AboutSummary />
           <CallToAction />
         </main>

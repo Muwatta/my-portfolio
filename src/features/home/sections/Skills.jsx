@@ -10,14 +10,14 @@ export const Skills = () => {
         <SectionHeader
           title="Technical"
           highlight="Expertise"
-          subtitle="Core technologies I use to build production systems. No fluff, just tools that ship."
+          subtitle="A concise technical focus, backed by the systems and projects shown below."
         />
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Core Stack */}
           <div>
             <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-5">
-              Core Stack
+              Technical Focus
             </h4>
             <div className="grid grid-cols-2 gap-3">
               {technicalSkills.map((skill, index) => (

@@ -2,27 +2,54 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "../../../components/layout/Container";
 import { ProjectCard } from "./components/ProjectCard";
-import { featuredProjects } from "../../../data";
+import { projects } from "../../../data";
 import { Link } from "react-router-dom";
 import { fetchAchievements } from "../../../lib/achievements";
 
 const ACHIEVEMENT_PLACEHOLDERS = [
-  "Student project showcase",
-  "Scratch game or animation",
-  "Arduino or ESP32 build",
-  "Python application",
-  "Robotics or sensor project",
-  "Learner progress highlight",
+  {
+    title: "Third-place hackathon finish",
+    description: "A learner represented Algorise Tech Explorers at the African Intelligence Hackathon.",
+    imageUrl: "/images/achievements/third-place-hackathon.jpg",
+  },
+  {
+    title: "Students recognised at Code, Create & Inspire",
+    description: "Learners showcased their work and received awards for their technology projects.",
+    imageUrl: "/images/achievements/abuja-student-awards.jpg",
+  },
+  {
+    title: "Student coding projects",
+    description: "Learners building practical software projects together through guided technology education.",
+    imageUrl: "/images/achievements/students-coding-team.jpg",
+  },
+  {
+    title: "AgroGuard AI prototype",
+    description: "A physical-computing and AI project connecting software with real agricultural challenges.",
+    imageUrl: "/images/achievements/agroguard-ai.png",
+  },
+  {
+    title: "Scratch learning showcase",
+    description: "Young learners creating interactive stories, games, and animations with Scratch.",
+    imageUrl: "/images/achievements/scratch-students.jpg",
+  },
+  {
+    title: "Technology learning community",
+    description: "Students and mentors learning, presenting, and celebrating progress together.",
+    imageUrl: "/images/achievements/at-the-national.jpg",
+  },
 ];
 
 export const FeaturedProjects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [achievements, setAchievements] = useState([]);
-  const projects = featuredProjects.slice(0, 6);
+  const customerIds = ["ate-management", "ssc-cooperative", "kma-spices", "dghi-academy"];
+  const engineeringIds = ["nexus-lms", "nextalk", "agroguard"];
+  const customerProjects = customerIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
+  const engineeringProjects = engineeringIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
   useEffect(() => {
     fetchAchievements().then(setAchievements).catch(() => setAchievements([]));
   }, []);
-  const displayedAchievements = achievements.length ? achievements : ACHIEVEMENT_PLACEHOLDERS.map((title) => ({ title }));
+  const displayedAchievements = achievements.length ? achievements : ACHIEVEMENT_PLACEHOLDERS;
 
   return (
     <section id="projects" className="py-12 sm:py-16 md:py-32 bg-slate-900/30">
@@ -47,8 +74,9 @@ export const FeaturedProjects = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-          {projects.map((project, index) => (
+        <h3 className="mb-5 text-xl font-bold sm:text-2xl">Customer & Production Work</h3>
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          {customerProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -57,6 +85,14 @@ export const FeaturedProjects = () => {
               onClick={() => setActiveIndex(index)}
             />
           ))}
+        </div>
+        <div className="mt-12">
+          <h3 className="mb-5 text-xl font-bold sm:text-2xl">Engineering & Technical Projects</h3>
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
+            {engineeringProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} isActive={false} onClick={() => {}} />
+            ))}
+          </div>
         </div>
 
         <div className="mt-14 md:mt-24">
@@ -76,7 +112,7 @@ export const FeaturedProjects = () => {
             {displayedAchievements.slice(0, 6).map((achievement, index) => (
               <article
                 key={achievement.id || achievement.title}
-                className="min-h-28 rounded-xl border border-dashed border-slate-300 bg-white/70 p-4 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
+                className="min-h-28 overflow-hidden rounded-xl border border-slate-300 bg-white/70 p-4 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
               >
                 {achievement.imageUrl && <img src={achievement.imageUrl} alt="" className="mb-3 h-20 w-full rounded-lg object-cover" />}
                 <span className="text-xs font-mono text-blue-500 dark:text-blue-400">

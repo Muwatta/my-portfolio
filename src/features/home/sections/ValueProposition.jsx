@@ -8,8 +8,17 @@ export const ValueProposition = () => {
   return (
     <section className="py-16 md:py-24 border-y border-slate-800/50 bg-slate-900/30">
       <Container>
+        <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-12 max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">A different path into technology</p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Education shaped how I build.</h2>
+          <p className="mt-4 leading-relaxed text-slate-400">
+            I studied Arabic Education at Ahmadu Bello University, Zaria, then
+            moved through teaching and technology education into software
+            engineering. Today my work spans production software, embedded
+            systems, AI, and IoT.
+          </p>
+        </motion.div>
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="grid md:grid-cols-3 gap-8 md:gap-12"
@@ -53,6 +62,18 @@ export const ValueProposition = () => {
             </ul>
           </div>
         </motion.div>
+        <div className="mt-14 grid gap-4 sm:grid-cols-3">
+          {[
+            ["Arduino", "Embedded programming, electronics, and sensors.", "/images/achievements/agroguard-ai.png"],
+            ["ESP32", "Connected systems and IoT concepts.", "/images/achievements/students-coding-team.jpg"],
+            ["Raspberry Pi", "Python, cameras, and computer vision.", "/images/achievements/scratch-students.jpg"],
+          ].map(([title, description, image]) => (
+            <div key={title} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/50">
+              <img src={image} alt="" className="h-32 w-full object-cover opacity-80" loading="lazy" />
+              <div className="p-5"><h3 className="font-semibold">{title}</h3><p className="mt-2 text-sm leading-relaxed text-slate-400">{description}</p></div>
+            </div>
+          ))}
+        </div>
       </Container>
     </section>
   );
