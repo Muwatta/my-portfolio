@@ -10,7 +10,7 @@
     "migrate:projects": "node scripts/migrate-projects-to-firestore.js",
     "seed:courses": "node scripts/seed-courses.mjs",
     "dev": "npm run gen:blog && vite",
-    "build": "npm run gen:blog && npm run gen:sitemap && vite build",
+    "build": "npm run gen:blog && npm run gen:sitemap && vite build && node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest"
