@@ -386,10 +386,10 @@ export default function AdminPage() {
           </div>
         ))}
       </div>
-      <div className="grid gap-6 lg:grid-cols-[290px_minmax(0,1fr)]">
-        <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:sticky lg:top-6">
+      <div className="grid min-w-0 gap-6 lg:grid-cols-[290px_minmax(0,1fr)]">
+        <aside className="min-w-0 h-fit rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:sticky lg:top-6">
           <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
-            <div>
+            <div className="min-w-0">
               <h2 className="font-bold">Articles</h2>
               <p className="mt-0.5 text-xs text-slate-500">
                 {posts.length} total
@@ -435,6 +435,7 @@ export default function AdminPage() {
             ))}
           </div>
         </aside>
+        /* /*
         <form
           onSubmit={save}
           className="min-w-0 space-y-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7"
@@ -444,7 +445,7 @@ export default function AdminPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">
                 {selected ? "Editing article" : "New article"}
               </p>
-              <h2 className="mt-1 text-xl font-black">
+              <h2 className="mt-1 break-words text-xl font-black">
                 {form.title || "Untitled draft"}
               </h2>
             </div>
@@ -572,7 +573,7 @@ export default function AdminPage() {
           </label>
           {notice && <p className="text-sm text-blue-700">{notice}</p>}
           {preview && (
-            <article className="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+            <article className="min-w-0 break-words rounded-xl border border-slate-200 p-5 dark:border-slate-700">
               {form.image && (
                 <img
                   className="mb-4 max-h-64 w-full rounded-lg object-cover"
@@ -728,8 +729,6 @@ function Shell({ title, children }) {
     </>
   );
 }
-*/
-
 function Panel({ title, children }) {
   return (
     <Shell title={title}>
@@ -1262,3 +1261,4 @@ export default function AdminPage() {
     </Shell>
   );
 }
+*/
