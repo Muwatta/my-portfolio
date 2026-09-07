@@ -52,6 +52,7 @@ body {
 
 .home-page {
   font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  text-align: center;
 }
 
 .home-page h1,
