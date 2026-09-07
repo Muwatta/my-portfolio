@@ -5,7 +5,7 @@ import { impactStats, recognition } from "../../../data";
 
 export const ImpactMetrics = () => {
   return (
-    <section className="py-16 md:py-32 relative overflow-hidden">
+    <section className="always-dark py-16 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-blue-950/10 to-slate-950" />
 
       <Container className="relative z-10">

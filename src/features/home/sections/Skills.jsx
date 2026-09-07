@@ -45,7 +45,7 @@ export const Skills = () => {
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="p-6 rounded-2xl bg-slate-900/50 border border-slate-800"
+                className="always-dark p-6 rounded-2xl bg-slate-900/50 border border-slate-800"
               >
                 <h4 className="text-lg font-semibold text-white mb-2">
                   {category.title}

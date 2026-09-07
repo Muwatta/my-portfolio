@@ -9,32 +9,38 @@ import { fetchAchievements } from "../../../lib/achievements";
 const ACHIEVEMENT_PLACEHOLDERS = [
   {
     title: "Bootcamp certificate ceremony",
-    description: "Learners gathered with their certificates at the end of the Algorise Tech Explorers bootcamp.",
+    description:
+      "Learners gathered with their certificates at the end of the Algorise Tech Explorers bootcamp.",
     imageUrl: "/images/achievements/third-place-hackathon.jpg",
   },
   {
     title: "African Intelligence Hackathon — 3rd place",
-    description: "A learner is pictured with the 3rd Place Champion award at the African Intelligence Hackathon 2025.",
+    description:
+      "A learner is pictured with the 3rd Place Champion award at the African Intelligence Hackathon 2025.",
     imageUrl: "/images/achievements/abuja-student-awards.jpg",
   },
   {
     title: "Students working on a coding project",
-    description: "Three learners work together on a laptop-based computing activity.",
+    description:
+      "Three learners work together on a laptop-based computing activity.",
     imageUrl: "/images/achievements/students-coding-team.jpg",
   },
   {
     title: "AgroGuard AI dashboard",
-    description: "A crop-protection dashboard showing detection analytics, system status, and confidence results.",
+    description:
+      "A crop-protection dashboard showing detection analytics, system status, and confidence results.",
     imageUrl: "/images/achievements/agroguard-ai.png",
   },
   {
     title: "Scratch classroom",
-    description: "Learners practise Scratch programming in a computer classroom using a projected lesson.",
+    description:
+      "Learners practise Scratch programming in a computer classroom using a projected lesson.",
     imageUrl: "/images/achievements/scratch-class-2025.jpg",
   },
   {
     title: "Students recognised at Code, Create & Inspire",
-    description: "Students receive devices and recognition at a Code, Create & Inspire event.",
+    description:
+      "Students receive devices and recognition at a Code, Create & Inspire event.",
     imageUrl: "/images/achievements/bootcamp-2025.jpg",
   },
 ];
@@ -42,17 +48,33 @@ const ACHIEVEMENT_PLACEHOLDERS = [
 export const FeaturedProjects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [achievements, setAchievements] = useState([]);
-  const customerIds = ["ate-management", "ssc-cooperative", "kma-spices", "dghi-academy"];
+  const customerIds = [
+    "ate-management",
+    "ssc-cooperative",
+    "kma-spices",
+    "dghi-academy",
+  ];
   const engineeringIds = ["nexus-lms", "nextalk", "agroguard"];
-  const customerProjects = customerIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
-  const engineeringProjects = engineeringIds.map((id) => projects.find((project) => project.id === id)).filter(Boolean);
+  const customerProjects = customerIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
+  const engineeringProjects = engineeringIds
+    .map((id) => projects.find((project) => project.id === id))
+    .filter(Boolean);
   useEffect(() => {
-    fetchAchievements().then(setAchievements).catch(() => setAchievements([]));
+    fetchAchievements()
+      .then(setAchievements)
+      .catch(() => setAchievements([]));
   }, []);
-  const displayedAchievements = achievements.length ? achievements : ACHIEVEMENT_PLACEHOLDERS;
+  const displayedAchievements = achievements.length
+    ? achievements
+    : ACHIEVEMENT_PLACEHOLDERS;
 
   return (
-    <section id="projects" className="py-12 sm:py-16 md:py-32 bg-slate-900/30">
+    <section
+      id="projects"
+      className="always-dark py-12 sm:py-16 md:py-32 bg-slate-900/30"
+    >
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-4">
           <div>
@@ -74,7 +96,9 @@ export const FeaturedProjects = () => {
           </Link>
         </div>
 
-        <h3 className="mb-5 text-xl font-bold sm:text-2xl">Customer & Production Work</h3>
+        <h3 className="mb-5 text-xl font-bold sm:text-2xl">
+          Customer & Production Work
+        </h3>
         <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {customerProjects.map((project, index) => (
             <ProjectCard
@@ -87,10 +111,18 @@ export const FeaturedProjects = () => {
           ))}
         </div>
         <div className="mt-12">
-          <h3 className="mb-5 text-xl font-bold sm:text-2xl">Engineering & Technical Projects</h3>
+          <h3 className="mb-5 text-xl font-bold sm:text-2xl">
+            Engineering & Technical Projects
+          </h3>
           <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
             {engineeringProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} isActive={false} onClick={() => {}} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                isActive={false}
+                onClick={() => {}}
+              />
             ))}
           </div>
         </div>
@@ -104,8 +136,8 @@ export const FeaturedProjects = () => {
               Learner achievements
             </h3>
             <p className="mt-2 max-w-xl text-sm sm:text-base text-slate-600 dark:text-slate-400">
-              A space for standout student projects and milestones from
-              Algorise Tech Explorers. Real achievements will be added here.
+              A space for standout student projects and milestones from Algorise
+              Tech Explorers. Real achievements will be added here.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
@@ -114,7 +146,14 @@ export const FeaturedProjects = () => {
                 key={achievement.id || achievement.title}
                 className="min-h-28 overflow-hidden rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"
               >
-                {achievement.imageUrl && <img src={achievement.imageUrl} alt={achievement.title} className="mb-4 aspect-[4/3] h-auto w-full rounded-lg object-cover sm:aspect-[16/10]" loading="lazy" />}
+                {achievement.imageUrl && (
+                  <img
+                    src={achievement.imageUrl}
+                    alt={achievement.title}
+                    className="mb-4 aspect-[4/3] h-auto w-full rounded-lg object-cover sm:aspect-[16/10]"
+                    loading="lazy"
+                  />
+                )}
                 <span className="text-xs font-mono text-blue-500 dark:text-blue-400">
                   0{index + 1}
                 </span>
@@ -124,7 +163,11 @@ export const FeaturedProjects = () => {
                 <p className="mt-2 text-xs text-slate-500">
                   {achievement.description || "Achievement details coming soon"}
                 </p>
-                {achievement.studentName && <p className="mt-2 text-xs font-semibold text-blue-600 dark:text-blue-400">{achievement.studentName}</p>}
+                {achievement.studentName && (
+                  <p className="mt-2 text-xs font-semibold text-blue-600 dark:text-blue-400">
+                    {achievement.studentName}
+                  </p>
+                )}
                 {achievement.projectUrl && (
                   <a
                     href={achievement.projectUrl}

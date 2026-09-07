@@ -18,7 +18,10 @@ export const Testimonials = () => {
   }, [paused]);
 
   return (
-    <section id="testimonials" className="py-16 md:py-32 bg-slate-900/30">
+    <section
+      id="testimonials"
+      className="always-dark py-16 md:py-32 bg-slate-900/30"
+    >
       <Container>
         <SectionHeader
           title="What People"

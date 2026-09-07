@@ -17,7 +17,7 @@ export const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/50 border border-slate-700 text-blue-400 text-sm mb-6">
+            <div className="home-hero-status inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/50 border border-slate-700 text-blue-400 text-sm mb-6">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               Available for projects
             </div>
@@ -26,7 +26,7 @@ export const Hero = () => {
               <span className="block text-slate-400 text-xl md:text-2xl font-normal mb-2">
                 Software Engineer · Technology Educator
               </span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
+              <span className="home-hero-name bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-blue-400">
                 Abdullahi Musliudeen
               </span>
             </h1>
@@ -37,10 +37,7 @@ export const Hero = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <MagneticButton
-                size="lg"
-                onClick={() => navigate("/portfolio")}
-              >
+              <MagneticButton size="lg" onClick={() => navigate("/portfolio")}>
                 View My Work
               </MagneticButton>
               <MagneticButton
@@ -52,8 +49,8 @@ export const Hero = () => {
               </MagneticButton>
             </div>
             <p className="mt-5 text-sm leading-6 text-slate-500">
-              Arabic Education → teaching → software engineering →
-              embedded systems, AI, and IoT
+              Arabic Education → teaching → software engineering → embedded
+              systems, AI, and IoT
             </p>
           </motion.div>
 

@@ -16,12 +16,12 @@ export const AboutSummary = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="max-w-xl text-3xl md:text-4xl font-bold leading-tight mb-6">
               Software, Education,
               <br />
               <span className="text-blue-400">and Physical Computing.</span>
             </h2>
-            <div className="space-y-4 text-slate-400 leading-relaxed">
+            <div className="max-w-2xl space-y-4 text-base leading-7 text-slate-400">
               <p>
                 I build production-grade backend systems: REST APIs, role-based
                 workflows, financial operations, and data-driven platforms.
