@@ -1,16 +1,25 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Seo from "../components/seo/Seo";
 import { fetchProject } from "../lib/projects";
+import { useAuth } from "../context/AuthContext";
+import { useAdminGuard } from "../hooks/useAdminGuard";
 
 export default function AdminProjectPreview() {
   const { id } = useParams();
+  const { user, loading: authLoading } = useAuth();
+  const { authorized } = useAdminGuard();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!user || !authorized) {
+      if (authorized !== null) setLoading(false);
+      return undefined;
+    }
+
     let active = true;
     setLoading(true);
     setError("");
@@ -29,7 +38,17 @@ export default function AdminProjectPreview() {
     return () => {
       active = false;
     };
-  }, [id]);
+  }, [id, user, authorized]);
+
+  if (authLoading || (user && authorized === null)) {
+    return (
+      <main className="always-dark min-h-screen bg-slate-950 px-4 py-24 text-center text-slate-300">
+        Checking access...
+      </main>
+    );
+  }
+
+  if (!user || !authorized) return <Navigate to="/admin" replace />;
 
   if (loading) {
     return (

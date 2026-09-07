@@ -12,10 +12,9 @@ import {
   FiPlus,
   FiTrash2,
 } from "react-icons/fi";
-import { doc, getDoc } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
-import { db } from "../lib/firebase";
 import { createPost, deletePost, fetchPosts, updatePost } from "../lib/blog";
+import { useAdminGuard } from "../hooks/useAdminGuard";
 
 const EMPTY = {
   title: "",
@@ -215,7 +214,7 @@ function StatusPill({ status }) {
 
 export default function AdminPage() {
   const { user, loading, signIn, signOut, isConfigured } = useAuth();
-  const [authorized, setAuthorized] = useState(null);
+  const { authorized } = useAdminGuard();
   const [posts, setPosts] = useState([]);
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(EMPTY);
@@ -224,21 +223,6 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false);
   const [preview, setPreview] = useState(false);
 
-  useEffect(() => {
-    if (!user || !db) {
-      setAuthorized(user ? false : null);
-      return;
-    }
-    getDoc(doc(db, "admin_users", user.uid))
-      .then((snapshot) =>
-        setAuthorized(
-          snapshot.exists() &&
-            snapshot.data().role === "admin" &&
-            snapshot.data().active === true,
-        ),
-      )
-      .catch(() => setAuthorized(false));
-  }, [user]);
   useEffect(() => {
     if (!user || !authorized) return;
     fetchPosts({ includeDrafts: true })

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link, Navigate } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
 import {
   FiArchive,
   FiCheck,
@@ -11,7 +10,7 @@ import {
   FiTrash2,
 } from "react-icons/fi";
 import { useAuth } from "../context/AuthContext";
-import { db } from "../lib/firebase";
+import { useAdminGuard } from "../hooks/useAdminGuard";
 import {
   deleteProject,
   fetchProjects,
@@ -90,10 +89,16 @@ function AdminFrame({ children }) {
               <Link to="/admin" className="text-slate-500 hover:text-blue-600">
                 Articles
               </Link>
-              <Link to="/admin/courses" className="text-slate-500 hover:text-blue-600">
+              <Link
+                to="/admin/courses"
+                className="text-slate-500 hover:text-blue-600"
+              >
                 Courses
               </Link>
-              <Link to="/admin/achievements" className="text-slate-500 hover:text-blue-600">
+              <Link
+                to="/admin/achievements"
+                className="text-slate-500 hover:text-blue-600"
+              >
                 Achievements
               </Link>
               <Link to="/blog" className="text-slate-500 hover:text-blue-600">
@@ -110,7 +115,7 @@ function AdminFrame({ children }) {
 
 export default function AdminProjects() {
   const { user, loading, signOut } = useAuth();
-  const [authorized, setAuthorized] = useState(null);
+  const { authorized } = useAdminGuard();
   const [projects, setProjects] = useState([]);
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(EMPTY);
@@ -119,21 +124,6 @@ export default function AdminProjects() {
   const [saving, setSaving] = useState(false);
   const [preview, setPreview] = useState(false);
 
-  useEffect(() => {
-    if (!user || !db) {
-      setAuthorized(user ? false : null);
-      return;
-    }
-    getDoc(doc(db, "admin_users", user.uid))
-      .then((snapshot) =>
-        setAuthorized(
-          snapshot.exists() &&
-            snapshot.data().role === "admin" &&
-            snapshot.data().active === true,
-        ),
-      )
-      .catch(() => setAuthorized(false));
-  }, [user]);
   useEffect(() => {
     if (authorized)
       fetchProjects({ includeDrafts: true })

@@ -37,14 +37,17 @@ export function AuthProvider({ children }) {
 
   const signUp = async (email, password, displayName = "") => {
     if (!auth) throw new Error("Firebase is not configured.");
-    const credential = await createUserWithEmailAndPassword(auth, email, password);
+    const credential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
     if (db) {
       await setDoc(
         doc(db, "profiles", credential.user.uid),
         {
           email: credential.user.email,
           displayName: displayName.trim(),
-          role: "learner",
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp(),
         },
