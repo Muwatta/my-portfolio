@@ -588,3 +588,645 @@ src/pages/Home.jsx:22: trailing whitespace.
  TAB ...................................... Complete filename & cycle.
  SHIFT-TAB ...................... ESC-TAB   Complete filename & reverse cycle.
  ctrl-L ................................... Complete filename, list all.
+[1mdiff --git a/src/pages/Admin.jsx b/src/pages/Admin.jsx[m
+[1mindex 7660e57..320493f 100644[m
+[1m--- a/src/pages/Admin.jsx[m
+[1m+++ b/src/pages/Admin.jsx[m
+[36m@@ -18,6 +18,637 @@[m [mimport { useAuth } from "../context/AuthContext";[m
+ import { db } from "../lib/firebase";[m
+ import { createPost, deletePost, fetchPosts, updatePost } from "../lib/blog";[m
+ [m
+[32m+[m[32mconst EMPTY = {[m[41m[m
+[32m+[m[32m  title: "",[m[41m[m
+[32m+[m[32m  slug: "",[m[41m[m
+[32m+[m[32m  excerpt: "",[m[41m[m
+[32m+[m[32m  body: "",[m[41m[m
+[32m+[m[32m  category: "Tech",[m[41m[m
+[32m+[m[32m  date: new Date().toISOString().slice(0, 10),[m[41m[m
+[32m+[m[32m  image: "",[m[41m[m
+[32m+[m[32m  medium_link: "",[m[41m[m
+[32m+[m[32m  tags: [],[m[41m[m
+[32m+[m[32m  readTime: "5 min read",[m[41m[m
+[32m+[m[32m  featured: false,[m[41m[m
+[32m+[m[32m  status: "draft",[m[41m[m
+[32m+[m[32m};[m[41m[m
+[32m+[m[32mconst slugify = (value) =>[m[41m[m
+[32m+[m[32m  value[m[41m[m
+[32m+[m[32m    .toLowerCase()[m[41m[m
+[32m+[m[32m    .trim()[m[41m[m
+[32m+[m[32m    .replace(/[^a-z0-9]+/g, "-")[m[41m[m
+[32m+[m[32m    .replace(/^-|-$/g, "");[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction Shell({ title, children }) {[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <>[m[41m[m
+[32m+[m[32m      <Helmet>[m[41m[m
+[32m+[m[32m        <title>{title} | Abdullahi Musliudeen</title>[m[41m[m
+[32m+[m[32m        <meta name="robots" content="noindex, nofollow" />[m[41m[m
+[32m+[m[32m      </Helmet>[m[41m[m
+[32m+[m[32m      <main className="min-h-screen overflow-x-hidden bg-[#f6f8fb] px-3 py-4 text-slate-900 dark:bg-[#080c14] dark:text-slate-100 sm:px-6 sm:py-8">[m[41m[m
+[32m+[m[32m        <div className="mx-auto min-w-0 max-w-7xl">[m[41m[m
+[32m+[m[32m          <header className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-4 dark:border-slate-800 sm:mb-8 sm:gap-4 sm:pb-5">[m[41m[m
+[32m+[m[32m            <Link to="/admin" className="flex items-center gap-3">[m[41m[m
+[32m+[m[32m              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-sm font-black text-white shadow-lg shadow-blue-600/20">[m[41m[m
+[32m+[m[32m                A[m[41m[m
+[32m+[m[32m              </span>[m[41m[m
+[32m+[m[32m              <span>[m[41m[m
+[32m+[m[32m                <span className="block text-sm font-bold tracking-tight">[m[41m[m
+[32m+[m[32m                  Muwatta CMS[m[41m[m
+[32m+[m[32m                </span>[m[41m[m
+[32m+[m[32m                <span className="block text-[11px] text-slate-500">[m[41m[m
+[32m+[m[32m                  Private workspace[m[41m[m
+[32m+[m[32m                </span>[m[41m[m
+[32m+[m[32m              </span>[m[41m[m
+[32m+[m[32m            </Link>[m[41m[m
+[32m+[m[32m            <div className="flex min-w-0 w-full flex-wrap items-center justify-between gap-x-3 gap-y-2 text-sm sm:w-auto sm:gap-4">[m[41m[m
+[32m+[m[32m              <span className="hidden text-slate-500 sm:inline">{title}</span>[m[41m[m
+[32m+[m[32m              <Link[m[41m[m
+[32m+[m[32m                className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-400"[m[41m[m
+[32m+[m[32m                to="/blog"[m[41m[m
+[32m+[m[32m              >[m[41m[m
+[32m+[m[32m                View site[m[41m[m
+[32m+[m[32m              </Link>[m[41m[m
+[32m+[m[32m              <Link[m[41m[m
+[32m+[m[32m                className="text-slate-500 hover:text-blue-600"[m[41m[m
+[32m+[m[32m                to="/admin/projects"[m[41m[m
+[32m+[m[32m              >[m[41m[m
+[32m+[m[32m                Projects[m[41m[m
+[32m+[m[32m              </Link>[m[41m[m
+[32m+[m[32m              <Link[m[41m[m
+[32m+[m[32m                className="text-slate-500 hover:text-blue-600"[m[41m[m
+[32m+[m[32m                to="/admin/courses"[m[41m[m
+[32m+[m[32m              >[m[41m[m
+[32m+[m[32m                Courses[m[41m[m
+[32m+[m[32m              </Link>[m[41m[m
+[32m+[m[32m              <Link[m[41m[m
+[32m+[m[32m                to="/admin/achievements"[m[41m[m
+[32m+[m[32m                className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold dark:border-slate-700"[m[41m[m
+[32m+[m[32m              >[m[41m[m
+[32m+[m[32m                Achievements[m[41m[m
+[32m+[m[32m              </Link>[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m          </header>[m[41m[m
+[32m+[m[32m          {children}[m[41m[m
+[32m+[m[32m        </div>[m[41m[m
+[32m+[m[32m      </main>[m[41m[m
+[32m+[m[32m    </>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction Panel({ title, children }) {[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <Shell title={title}>[m[41m[m
+[32m+[m[32m      <div className="mx-auto max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center text-sm text-slate-600 shadow-sm dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">[m[41m[m
+[32m+[m[32m        {children}[m[41m[m
+[32m+[m[32m      </div>[m[41m[m
+[32m+[m[32m    </Shell>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction Login({ signIn, isConfigured }) {[m[41m[m
+[32m+[m[32m  const [email, setEmail] = useState("");[m[41m[m
+[32m+[m[32m  const [password, setPassword] = useState("");[m[41m[m
+[32m+[m[32m  const [showPassword, setShowPassword] = useState(false);[m[41m[m
+[32m+[m[32m  const [error, setError] = useState("");[m[41m[m
+[32m+[m[32m  if (!isConfigured)[m[41m[m
+[32m+[m[32m    return ([m[41m[m
+[32m+[m[32m      <Panel title="Firebase is not configured">[m[41m[m
+[32m+[m[32m        Add the VITE_FIREBASE_* values from `.env.example` before signing in.[m[41m[m
+[32m+[m[32m      </Panel>[m[41m[m
+[32m+[m[32m    );[m[41m[m
+[32m+[m[32m  const submit = async (event) => {[m[41m[m
+[32m+[m[32m    event.preventDefault();[m[41m[m
+[32m+[m[32m    setError("");[m[41m[m
+[32m+[m[32m    try {[m[41m[m
+[32m+[m[32m      await signIn(email, password);[m[41m[m
+[32m+[m[32m    } catch (nextError) {[m[41m[m
+[32m+[m[32m      setError(nextError.message || "Unable to sign in.");[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <Shell title="Admin Login">[m[41m[m
+[32m+[m[32m      <div className="flex min-h-[calc(100vh-9rem)] items-center justify-center py-6 sm:min-h-[calc(100vh-10rem)] sm:py-12">[m[41m[m
+[32m+[m[32m        <div className="w-full max-w-md">[m[41m[m
+[32m+[m[32m          <div className="mb-8 text-center">[m[41m[m
+[32m+[m[32m            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">[m[41m[m
+[32m+[m[32m              Editorial workspace[m[41m[m
+[32m+[m[32m            </p>[m[41m[m
+[32m+[m[32m            <h1 className="text-3xl font-black tracking-tight sm:text-4xl">[m[41m[m
+[32m+[m[32m              Welcome back.[m[41m[m
+[32m+[m[32m            </h1>[m[41m[m
+[32m+[m[32m            <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-slate-500">[m[41m[m
+[32m+[m[32m              Sign in to manage your writing and publish directly to the site.[m[41m[m
+[32m+[m[32m            </p>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <form[m[41m[m
+[32m+[m[32m            onSubmit={submit}[m[41m[m
+[32m+[m[32m            autoComplete="on"[m[41m[m
+[32m+[m[32m            className="space-y-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7"[m[41m[m
+[32m+[m[32m          >[m[41m[m
+[32m+[m[32m            <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m              Email[m[41m[m
+[32m+[m[32m              <input[m[41m[m
+[32m+[m[32m                className="field"[m[41m[m
+[32m+[m[32m                type="email"[m[41m[m
+[32m+[m[32m                name="email"[m[41m[m
+[32m+[m[32m                autoComplete="username"[m[41m[m
+[32m+[m[32m                required[m[41m[m
+[32m+[m[32m                value={email}[m[41m[m
+[32m+[m[32m                onChange={(event) => setEmail(event.target.value)}[m[41m[m
+[32m+[m[32m              />[m[41m[m
+[32m+[m[32m            </label>[m[41m[m
+[32m+[m[32m            <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m              Password[m[41m[m
+[32m+[m[32m              <span className="relative block">[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field pr-11"[m[41m[m
+[32m+[m[32m                  type={showPassword ? "text" : "password"}[m[41m[m
+[32m+[m[32m                  name="password"[m[41m[m
+[32m+[m[32m                  autoComplete="current-password"[m[41m[m
+[32m+[m[32m                  required[m[41m[m
+[32m+[m[32m                  value={password}[m[41m[m
+[32m+[m[32m                  onChange={(event) => setPassword(event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m                <button[m[41m[m
+[32m+[m[32m                  type="button"[m[41m[m
+[32m+[m[32m                  aria-label={showPassword ? "Hide password" : "Show password"}[m[41m[m
+[32m+[m[32m                  title={showPassword ? "Hide password" : "Show password"}[m[41m[m
+[32m+[m[32m                  onClick={() => setShowPassword((visible) => !visible)}[m[41m[m
+[32m+[m[32m                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-2 text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"[m[41m[m
+[32m+[m[32m                >[m[41m[m
+[32m+[m[32m                  {showPassword ? ([m[41m[m
+[32m+[m[32m                    <FiEyeOff aria-hidden="true" />[m[41m[m
+[32m+[m[32m                  ) : ([m[41m[m
+[32m+[m[32m                    <FiEye aria-hidden="true" />[m[41m[m
+[32m+[m[32m                  )}[m[41m[m
+[32m+[m[32m                </button>[m[41m[m
+[32m+[m[32m              </span>[m[41m[m
+[32m+[m[32m            </label>[m[41m[m
+[32m+[m[32m            {error && <p className="text-sm text-red-600">{error}</p>}[m[41m[m
+[32m+[m[32m            <button className="button-primary w-full" type="submit">[m[41m[m
+[32m+[m[32m              Sign in[m[41m[m
+[32m+[m[32m            </button>[m[41m[m
+[32m+[m[32m            <Link[m[41m[m
+[32m+[m[32m              className="block text-center text-sm text-blue-600"[m[41m[m
+[32m+[m[32m              to="/blog"[m[41m[m
+[32m+[m[32m            >[m[41m[m
+[32m+[m[32m              Back to blog[m[41m[m
+[32m+[m[32m            </Link>[m[41m[m
+[32m+[m[32m          </form>[m[41m[m
+[32m+[m[32m        </div>[m[41m[m
+[32m+[m[32m      </div>[m[41m[m
+[32m+[m[32m    </Shell>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mfunction StatusPill({ status }) {[m[41m[m
+[32m+[m[32m  const styles = {[m[41m[m
+[32m+[m[32m    published:[m[41m[m
+[32m+[m[32m      "bg-emerald-50 text-emerald-700 dark:bg-emerald-400/10 dark:text-emerald-300",[m[41m[m
+[32m+[m[32m    archived:[m[41m[m
+[32m+[m[32m      "bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300",[m[41m[m
+[32m+[m[32m    draft:[m[41m[m
+[32m+[m[32m      "bg-amber-50 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300",[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <span[m[41m[m
+[32m+[m[32m      className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${styles[status] || styles.draft}`}[m[41m[m
+[32m+[m[32m    >[m[41m[m
+[32m+[m[32m      {status || "draft"}[m[41m[m
+[32m+[m[32m    </span>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32mexport default function AdminPage() {[m[41m[m
+[32m+[m[32m  const { user, loading, signIn, signOut, isConfigured } = useAuth();[m[41m[m
+[32m+[m[32m  const [authorized, setAuthorized] = useState(null);[m[41m[m
+[32m+[m[32m  const [posts, setPosts] = useState([]);[m[41m[m
+[32m+[m[32m  const [selected, setSelected] = useState(null);[m[41m[m
+[32m+[m[32m  const [form, setForm] = useState(EMPTY);[m[41m[m
+[32m+[m[32m  const [tagsText, setTagsText] = useState("");[m[41m[m
+[32m+[m[32m  const [notice, setNotice] = useState("");[m[41m[m
+[32m+[m[32m  const [saving, setSaving] = useState(false);[m[41m[m
+[32m+[m[32m  const [preview, setPreview] = useState(false);[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m  useEffect(() => {[m[41m[m
+[32m+[m[32m    if (!user || !db) {[m[41m[m
+[32m+[m[32m      setAuthorized(user ? false : null);[m[41m[m
+[32m+[m[32m      return;[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m    getDoc(doc(db, "admin_users", user.uid))[m[41m[m
+[32m+[m[32m      .then((snapshot) =>[m[41m[m
+[32m+[m[32m        setAuthorized([m[41m[m
+[32m+[m[32m          snapshot.exists() &&[m[41m[m
+[32m+[m[32m            snapshot.data().role === "admin" &&[m[41m[m
+[32m+[m[32m            snapshot.data().active === true,[m[41m[m
+[32m+[m[32m        ),[m[41m[m
+[32m+[m[32m      )[m[41m[m
+[32m+[m[32m      .catch(() => setAuthorized(false));[m[41m[m
+[32m+[m[32m  }, [user]);[m[41m[m
+[32m+[m[32m  useEffect(() => {[m[41m[m
+[32m+[m[32m    if (!user || !authorized) return;[m[41m[m
+[32m+[m[32m    fetchPosts({ includeDrafts: true })[m[41m[m
+[32m+[m[32m      .then(setPosts)[m[41m[m
+[32m+[m[32m      .catch(() =>[m[41m[m
+[32m+[m[32m        setNotice([m[41m[m
+[32m+[m[32m          "Could not load articles. Check the Firestore deployment and indexes.",[m[41m[m
+[32m+[m[32m        ),[m[41m[m
+[32m+[m[32m      );[m[41m[m
+[32m+[m[32m  }, [user, authorized]);[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m  if (loading) return <Panel title="Loading" />;[m[41m[m
+[32m+[m[32m  if (!user) return <Login signIn={signIn} isConfigured={isConfigured} />;[m[41m[m
+[32m+[m[32m  if (authorized === null) return <Panel title="Checking access" />;[m[41m[m
+[32m+[m[32m  if (!authorized)[m[41m[m
+[32m+[m[32m    return ([m[41m[m
+[32m+[m[32m      <Panel title="Access denied">[m[41m[m
+[32m+[m[32m        This Firebase account is not listed as an admin.[m[41m[m
+[32m+[m[32m        <button className="mt-4 block mx-auto text-blue-600" onClick={signOut}>[m[41m[m
+[32m+[m[32m          Sign out[m[41m[m
+[32m+[m[32m        </button>[m[41m[m
+[32m+[m[32m      </Panel>[m[41m[m
+[32m+[m[32m    );[m[41m[m
+[32m+[m[32m  if (window.location.pathname === "/admin/login")[m[41m[m
+[32m+[m[32m    return <Navigate to="/admin" replace />;[m[41m[m
+[32m+[m[41m[m
+[32m+[m[32m  const openNew = () => {[m[41m[m
+[32m+[m[32m    setSelected(null);[m[41m[m
+[32m+[m[32m    setForm({ ...EMPTY, date: new Date().toISOString().slice(0, 10) });[m[41m[m
+[32m+[m[32m    setTagsText("");[m[41m[m
+[32m+[m[32m    setNotice("");[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  const openEdit = (post) => {[m[41m[m
+[32m+[m[32m    setSelected(post);[m[41m[m
+[32m+[m[32m    setForm({ ...EMPTY, ...post, date: String(post.date || "").slice(0, 10) });[m[41m[m
+[32m+[m[32m    setTagsText((post.tags || []).join(", "));[m[41m[m
+[32m+[m[32m    setNotice("");[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  const change = (field, value) =>[m[41m[m
+[32m+[m[32m    setForm((current) => ({ ...current, [field]: value }));[m[41m[m
+[32m+[m[32m  const save = async (event) => {[m[41m[m
+[32m+[m[32m    event.preventDefault();[m[41m[m
+[32m+[m[32m    setSaving(true);[m[41m[m
+[32m+[m[32m    setNotice("");[m[41m[m
+[32m+[m[32m    try {[m[41m[m
+[32m+[m[32m      const payload = {[m[41m[m
+[32m+[m[32m        ...form,[m[41m[m
+[32m+[m[32m        slug: form.slug || slugify(form.title),[m[41m[m
+[32m+[m[32m        tags: tagsText[m[41m[m
+[32m+[m[32m          .split(",")[m[41m[m
+[32m+[m[32m          .map((tag) => tag.trim())[m[41m[m
+[32m+[m[32m          .filter(Boolean),[m[41m[m
+[32m+[m[32m      };[m[41m[m
+[32m+[m[32m      const result = selected[m[41m[m
+[32m+[m[32m        ? await updatePost(selected.id, payload)[m[41m[m
+[32m+[m[32m        : await createPost(payload);[m[41m[m
+[32m+[m[32m      setPosts((current) =>[m[41m[m
+[32m+[m[32m        selected[m[41m[m
+[32m+[m[32m          ? current.map((post) => (post.id === result.id ? result : post))[m[41m[m
+[32m+[m[32m          : [result, ...current],[m[41m[m
+[32m+[m[32m      );[m[41m[m
+[32m+[m[32m      setSelected(result);[m[41m[m
+[32m+[m[32m      setForm({ ...payload, id: result.id });[m[41m[m
+[32m+[m[32m      setNotice("Article saved.");[m[41m[m
+[32m+[m[32m    } catch (error) {[m[41m[m
+[32m+[m[32m      setNotice(error.message || "Unable to save article.");[m[41m[m
+[32m+[m[32m    } finally {[m[41m[m
+[32m+[m[32m      setSaving(false);[m[41m[m
+[32m+[m[32m    }[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  const remove = async (post) => {[m[41m[m
+[32m+[m[32m    if (!window.confirm(`Delete "${post.title}"?`)) return;[m[41m[m
+[32m+[m[32m    await deletePost(post.id);[m[41m[m
+[32m+[m[32m    setPosts((current) => current.filter((item) => item.id !== post.id));[m[41m[m
+[32m+[m[32m    if (selected?.id === post.id) openNew();[m[41m[m
+[32m+[m[32m  };[m[41m[m
+[32m+[m[32m  const publishedCount = posts.filter([m[41m[m
+[32m+[m[32m    (post) => post.status === "published" || post.published,[m[41m[m
+[32m+[m[32m  ).length;[m[41m[m
+[32m+[m[32m  const draftCount = posts.filter([m[41m[m
+[32m+[m[32m    (post) => (post.status || "draft") === "draft",[m[41m[m
+[32m+[m[32m  ).length;[m[41m[m
+[32m+[m[32m  const archivedCount = posts.filter([m[41m[m
+[32m+[m[32m    (post) => post.status === "archived",[m[41m[m
+[32m+[m[32m  ).length;[m[41m[m
+[32m+[m[32m  return ([m[41m[m
+[32m+[m[32m    <Shell title="Content Manager">[m[41m[m
+[32m+[m[32m      <div className="mb-7 flex flex-col justify-between gap-5 sm:flex-row sm:items-end">[m[41m[m
+[32m+[m[32m        <div>[m[41m[m
+[32m+[m[32m          <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">[m[41m[m
+[32m+[m[32m            Content overview[m[41m[m
+[32m+[m[32m          </p>[m[41m[m
+[32m+[m[32m          <h1 className="text-3xl font-black tracking-tight sm:text-4xl">[m[41m[m
+[32m+[m[32m            Your articles[m[41m[m
+[32m+[m[32m          </h1>[m[41m[m
+[32m+[m[32m          <p className="mt-2 max-w-xl text-sm leading-6 text-slate-500">[m[41m[m
+[32m+[m[32m            Write, refine, and publish from one quiet workspace.[m[41m[m
+[32m+[m[32m          </p>[m[41m[m
+[32m+[m[32m        </div>[m[41m[m
+[32m+[m[32m        <button[m[41m[m
+[32m+[m[32m          className="button-primary inline-flex items-center justify-center gap-2"[m[41m[m
+[32m+[m[32m          onClick={openNew}[m[41m[m
+[32m+[m[32m        >[m[41m[m
+[32m+[m[32m          <FiPlus aria-hidden="true" /> New article[m[41m[m
+[32m+[m[32m        </button>[m[41m[m
+[32m+[m[32m      </div>[m[41m[m
+[32m+[m[32m      <div className="mb-7 grid grid-cols-1 gap-3 sm:grid-cols-3">[m[41m[m
+[32m+[m[32m        {[[m[41m[m
+[32m+[m[32m          {[m[41m[m
+[32m+[m[32m            label: "All articles",[m[41m[m
+[32m+[m[32m            value: posts.length,[m[41m[m
+[32m+[m[32m            icon: FiFileText,[m[41m[m
+[32m+[m[32m            tone: "text-blue-600 dark:text-blue-400",[m[41m[m
+[32m+[m[32m          },[m[41m[m
+[32m+[m[32m          {[m[41m[m
+[32m+[m[32m            label: "Published",[m[41m[m
+[32m+[m[32m            value: publishedCount,[m[41m[m
+[32m+[m[32m            icon: FiCheckCircle,[m[41m[m
+[32m+[m[32m            tone: "text-emerald-600 dark:text-emerald-400",[m[41m[m
+[32m+[m[32m          },[m[41m[m
+[32m+[m[32m          {[m[41m[m
+[32m+[m[32m            label: "Drafts",[m[41m[m
+[32m+[m[32m            value: draftCount + archivedCount,[m[41m[m
+[32m+[m[32m            icon: FiClock,[m[41m[m
+[32m+[m[32m            tone: "text-amber-600 dark:text-amber-400",[m[41m[m
+[32m+[m[32m          },[m[41m[m
+[32m+[m[32m        ].map(({ label, value, icon: Icon, tone }) => ([m[41m[m
+[32m+[m[32m          <div[m[41m[m
+[32m+[m[32m            key={label}[m[41m[m
+[32m+[m[32m            className="flex items-center gap-4 rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm dark:border-slate-800 dark:bg-slate-900"[m[41m[m
+[32m+[m[32m          >[m[41m[m
+[32m+[m[32m            <Icon className={`text-lg ${tone}`} aria-hidden="true" />[m[41m[m
+[32m+[m[32m            <span>[m[41m[m
+[32m+[m[32m              <strong className="block text-xl font-black">{value}</strong>[m[41m[m
+[32m+[m[32m              <span className="text-xs text-slate-500">{label}</span>[m[41m[m
+[32m+[m[32m            </span>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m        ))}[m[41m[m
+[32m+[m[32m      </div>[m[41m[m
+[32m+[m[32m      <div className="grid gap-6 lg:grid-cols-[290px_minmax(0,1fr)]">[m[41m[m
+[32m+[m[32m        <aside className="h-fit rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 lg:sticky lg:top-6">[m[41m[m
+[32m+[m[32m          <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">[m[41m[m
+[32m+[m[32m            <div>[m[41m[m
+[32m+[m[32m              <h2 className="font-bold">Articles</h2>[m[41m[m
+[32m+[m[32m              <p className="mt-0.5 text-xs text-slate-500">[m[41m[m
+[32m+[m[32m                {posts.length} total[m[41m[m
+[32m+[m[32m              </p>[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m            <button[m[41m[m
+[32m+[m[32m              className="rounded-lg p-2 text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-400/10"[m[41m[m
+[32m+[m[32m              onClick={openNew}[m[41m[m
+[32m+[m[32m              aria-label="Create new article"[m[41m[m
+[32m+[m[32m              title="Create new article"[m[41m[m
+[32m+[m[32m            >[m[41m[m
+[32m+[m[32m              <FiPlus aria-hidden="true" />[m[41m[m
+[32m+[m[32m            </button>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <div className="max-h-[32rem] space-y-2 overflow-y-auto pr-1">[m[41m[m
+[32m+[m[32m            {posts.map((post) => ([m[41m[m
+[32m+[m[32m              <div[m[41m[m
+[32m+[m[32m                key={post.id}[m[41m[m
+[32m+[m[32m                className={`group flex items-center gap-2 rounded-xl border p-2 transition-colors ${selected?.id === post.id ? "border-blue-200 bg-blue-50/70 dark:border-blue-500/40 dark:bg-blue-400/10" : "border-transparent hover:border-slate-200 hover:bg-slate-50 dark:hover:border-slate-700 dark:hover:bg-slate-800/60"}`}[m[41m[m
+[32m+[m[32m              >[m[41m[m
+[32m+[m[32m                <button[m[41m[m
+[32m+[m[32m                  className="min-w-0 flex-1 text-left text-sm"[m[41m[m
+[32m+[m[32m                  onClick={() => openEdit(post)}[m[41m[m
+[32m+[m[32m                >[m[41m[m
+[32m+[m[32m                  <span className="block truncate font-semibold">[m[41m[m
+[32m+[m[32m                    {post.title || "Untitled"}[m[41m[m
+[32m+[m[32m                  </span>[m[41m[m
+[32m+[m[32m                  <StatusPill[m[41m[m
+[32m+[m[32m                    status={[m[41m[m
+[32m+[m[32m                      post.status || (post.published ? "published" : "draft")[m[41m[m
+[32m+[m[32m                    }[m[41m[m
+[32m+[m[32m                  />[m[41m[m
+[32m+[m[32m                </button>[m[41m[m
+[32m+[m[32m                <button[m[41m[m
+[32m+[m[32m                  className="rounded-md p-2 text-slate-400 opacity-0 transition-opacity hover:text-red-600 group-hover:opacity-100"[m[41m[m
+[32m+[m[32m                  aria-label={`Delete ${post.title || "article"}`}[m[41m[m
+[32m+[m[32m                  title="Delete article"[m[41m[m
+[32m+[m[32m                  onClick={() => remove(post)}[m[41m[m
+[32m+[m[32m                >[m[41m[m
+[32m+[m[32m                  <FiTrash2 aria-hidden="true" />[m[41m[m
+[32m+[m[32m                </button>[m[41m[m
+[32m+[m[32m              </div>[m[41m[m
+[32m+[m[32m            ))}[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m        </aside>[m[41m[m
+[32m+[m[32m        <form[m[41m[m
+[32m+[m[32m          onSubmit={save}[m[41m[m
+[32m+[m[32m          className="min-w-0 space-y-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-7"[m[41m[m
+[32m+[m[32m        >[m[41m[m
+[32m+[m[32m          <div className="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-5 dark:border-slate-800">[m[41m[m
+[32m+[m[32m            <div>[m[41m[m
+[32m+[m[32m              <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">[m[41m[m
+[32m+[m[32m                {selected ? "Editing article" : "New article"}[m[41m[m
+[32m+[m[32m              </p>[m[41m[m
+[32m+[m[32m              <h2 className="mt-1 text-xl font-black">[m[41m[m
+[32m+[m[32m                {form.title || "Untitled draft"}[m[41m[m
+[32m+[m[32m              </h2>[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m            {selected && <StatusPill status={form.status} />}[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <div className="space-y-4">[m[41m[m
+[32m+[m[32m            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">[m[41m[m
+[32m+[m[32m              <FiEdit3 aria-hidden="true" /> Details[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m            <div className="grid gap-4 md:grid-cols-2">[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Title[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  required[m[41m[m
+[32m+[m[32m                  value={form.title}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("title", event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Slug[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  required[m[41m[m
+[32m+[m[32m                  value={form.slug}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("slug", event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Status[m[41m[m
+[32m+[m[32m                <select[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  value={form.status}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("status", event.target.value)}[m[41m[m
+[32m+[m[32m                >[m[41m[m
+[32m+[m[32m                  <option value="draft">Draft</option>[m[41m[m
+[32m+[m[32m                  <option value="published">Published</option>[m[41m[m
+[32m+[m[32m                  <option value="archived">Archived</option>[m[41m[m
+[32m+[m[32m                </select>[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Date[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  type="date"[m[41m[m
+[32m+[m[32m                  value={form.date}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("date", event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Category[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  value={form.category}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("category", event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m              <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m                Read time[m[41m[m
+[32m+[m[32m                <input[m[41m[m
+[32m+[m[32m                  className="field"[m[41m[m
+[32m+[m[32m                  value={form.readTime}[m[41m[m
+[32m+[m[32m                  onChange={(event) => change("readTime", event.target.value)}[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              </label>[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <div className="space-y-4 border-t border-slate-100 pt-5 dark:border-slate-800">[m[41m[m
+[32m+[m[32m            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-400">[m[41m[m
+[32m+[m[32m              <FiFileText aria-hidden="true" /> Story[m[41m[m
+[32m+[m[32m            </div>[m[41m[m
+[32m+[m[32m            <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m              Excerpt[m[41m[m
+[32m+[m[32m              <textarea[m[41m[m
+[32m+[m[32m                className="field"[m[41m[m
+[32m+[m[32m                rows="3"[m[41m[m
+[32m+[m[32m                value={form.excerpt}[m[41m[m
+[32m+[m[32m                onChange={(event) => change("excerpt", event.target.value)}[m[41m[m
+[32m+[m[32m              />[m[41m[m
+[32m+[m[32m            </label>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m            Body[m[41m[m
+[32m+[m[32m            <textarea[m[41m[m
+[32m+[m[32m              className="field"[m[41m[m
+[32m+[m[32m              rows="14"[m[41m[m
+[32m+[m[32m              required[m[41m[m
+[32m+[m[32m              value={form.body}[m[41m[m
+[32m+[m[32m              onChange={(event) => change("body", event.target.value)}[m[41m[m
+[32m+[m[32m            />[m[41m[m
+[32m+[m[32m          </label>[m[41m[m
+[32m+[m[32m          <div className="grid gap-4 md:grid-cols-2">[m[41m[m
+[32m+[m[32m            <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m              Tags[m[41m[m
+[32m+[m[32m              <input[m[41m[m
+[32m+[m[32m                className="field"[m[41m[m
+[32m+[m[32m                placeholder="react, firebase"[m[41m[m
+[32m+[m[32m                value={tagsText}[m[41m[m
+[32m+[m[32m                onChange={(event) => setTagsText(event.target.value)}[m[41m[m
+[32m+[m[32m              />[m[41m[m
+[32m+[m[32m            </label>[m[41m[m
+[32m+[m[32m            <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m              Cover image[m[41m[m
+[32m+[m[32m              <input[m[41m[m
+[32m+[m[32m                className="field"[m[41m[m
+[32m+[m[32m                type="url"[m[41m[m
+[32m+[m[32m                placeholder="https://example.com/cover.jpg"[m[41m[m
+[32m+[m[32m                value={form.image}[m[41m[m
+[32m+[m[32m                onChange={(event) => change("image", event.target.value)}[m[41m[m
+[32m+[m[32m              />[m[41m[m
+[32m+[m[32m              <span className="mt-1 block text-xs font-normal text-slate-500">[m[41m[m
+[32m+[m[32m                Firebase Storage requires a paid billing plan. Use an image URL[m[41m[m
+[32m+[m[32m                on the free plan.[m[41m[m
+[32m+[m[32m              </span>[m[41m[m
+[32m+[m[32m            </label>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m          <label className="block text-sm font-semibold">[m[41m[m
+[32m+[m[32m            Medium link[m[41m[m
+[32m+[m[32m            <input[m[41m[m
+[32m+[m[32m              className="field"[m[41m[m
+[32m+[m[32m              type="url"[m[41m[m
+[32m+[m[32m              value={form.medium_link}[m[41m[m
+[32m+[m[32m              onChange={(event) => change("medium_link", event.target.value)}[m[41m[m
+[32m+[m[32m            />[m[41m[m
+[32m+[m[32m          </label>[m[41m[m
+[32m+[m[32m          {notice && <p className="text-sm text-blue-700">{notice}</p>}[m[41m[m
+[32m+[m[32m          {preview && ([m[41m[m
+[32m+[m[32m            <article className="rounded-xl border border-slate-200 p-5 dark:border-slate-700">[m[41m[m
+[32m+[m[32m              {form.image && ([m[41m[m
+[32m+[m[32m                <img[m[41m[m
+[32m+[m[32m                  className="mb-4 max-h-64 w-full rounded-lg object-cover"[m[41m[m
+[32m+[m[32m                  src={form.image}[m[41m[m
+[32m+[m[32m                  alt=""[m[41m[m
+[32m+[m[32m                />[m[41m[m
+[32m+[m[32m              )}[m[41m[m
+[32m+[m[32m              <p className="text-xs font-bold uppercase tracking-widest text-blue-600">[m[41m[m
+[32m+[m[32m                {form.category} · {form.status}[m[41m[m
+[32m+[m[32m              </p>[m[41m[m
+[32m+[m[32m              <h2 className="mt-2 text-2xl font-extrabold">[m[41m[m
+[32m+[m[32m                {form.title || "Untitled article"}[m[41m[m
+[32m+[m[32m              </h2>[m[41m[m
+[32m+[m[32m              <p className="mt-2 text-sm text-slate-500">{form.excerpt}</p>[m[41m[m
+[32m+[m[32m              <div className="mt-5 space-y-3 text-sm leading-7">[m[41m[m
+[32m+[m[32m                {(form.body || "Write the article body to preview it.")[m[41m[m
+[32m+[m[32m                  .split(/\n+/)[m[41m[m
+[32m+[m[32m                  .filter(Boolean)[m[41m[m
+[32m+[m[32m                  .map((paragraph, index) => ([m[41m[m
+[32m+[m[32m                    <p key={`${index}-${paragraph.slice(0, 12)}`}>[m[41m[m
+[32m+[m[32m                      {paragraph}[m[41m[m
+[32m+[m[32m                    </p>[m[41m[m
+[32m+[m[32m                  ))}[m[41m[m
+[32m+[m[32m              </div>[m[41m[m
+[32m+[m[32m            </article>[m[41m[m
+[32m+[m[32m          )}[m[41m[m
+[32m+[m[32m          <div className="grid gap-3 sm:flex sm:flex-wrap">[m[41m[m
+[32m+[m[32m            <button[m[41m[m
+[32m+[m[32m              className="button-secondary inline-flex min-h-11 w-full items-center justify-center gap-2 sm:w-auto"[m[41m[m
+[32m+[m[32m              type="button"[m[41m[m
+[32m+[m[32m              onClick={() => setPreview((current) => !current)}[m[41m[m
+[32m+[m[32m            >[m[41m[m
+[32m+[m[32m              <FiEye aria-hidden="true" />[m[41m[m
+[32m+[m[32m              {preview ? "Hide preview" : "Preview"}[m[41m[m
+[32m+[m[32m            </button>[m[41m[m
+[32m+[m[32m            <button[m[41m[m
+[32m+[m[32m              className="button-primary min-h-11 w-full sm:w-auto"[m[41m[m
+[32m+[m[32m              disabled={saving}[m[41m[m
+[32m+[m[32m              type="submit"[m[41m[m
+[32m+[m[32m            >[m[41m[m
+[32m+[m[32m              {saving ? "Saving..." : "Save article"}[m[41m[m
+[32m+[m[32m            </button>[m[41m[m
+[32m+[m[32m            <button[m[41m[m
+[32m+[m[32m              className="button-secondary inline-flex min-h-11 w-full items-center justify-center gap-2 sm:w-auto"[m[41m[m
+[32m+[m[32m              type="button"[m[41m[m
+[32m+[m[32m              onClick={signOut}[m[41m[m
+[32m+[m[32m            >[m[41m[m
+[32m+[m[32m              <FiLogOut aria-hidden="true" />[m[41m[m
+[32m+[m[32m              Sign out[m[41m[m
+[32m+[m[32m            </button>[m[41m[m
+[32m+[m[32m          </div>[m[41m[m
+[32m+[m[32m        </form>[m[41m[m
+[32m+[m[32m      </div>[m[41m[m
+[32m+[m[32m    </Shell>[m[41m[m
+[32m+[m[32m  );[m[41m[m
+[32m+[m[32m}[m[41m[m
+[32m+[m[32mimport { useEffect, useState } from "react";[m[41m[m
+[32m+[m[32mimport { Helmet } from "react-helmet-async";[m[41m[m
+[32m+[m[32mimport { Link, Navigate } from "react-router-dom";[m[41m[m
+[32m+[m[32mimport {[m[41m[m
+[32m+[m[32m  FiArchive,[m[41m[m
+[32m+[m[32m  FiCheckCircle,[m[41m[m
+[32m+[m[32m  FiClock,[m[41m[m
+[32m+[m[32m  FiEdit3,[m[41m[m
+[32m+[m[32m  FiEye,[m[41m[m
+[32m+[m[32m  FiEyeOff,[m[41m[m
+[32m+[m[32m  FiFileText,[m[41m[m
+[32m+[m[32m  FiLogOut,[m[41m[m
+[32m+[m[32m  FiPlus,[m[41m[m
+[32m+[m[32m  FiTrash2,[m[41m[m
+[32m+[m[32m} from "react-icons/fi";[m[41m[m
+[32m+[m[32mimport { doc, getDoc } from "firebase/firestore";[m[41m[m
+[32m+[m[32mimport { useAuth } from "../context/AuthContext";[m[41m[m
+[32m+[m[32mimport { db } from "../lib/firebase";[m[41m[m
+[32m+[m[32mimport { createPost, deletePost, fetchPosts, updatePost } from "../lib/blog";[m[41m[m
+[32m+[m[41m[m
+ const EMPTY = {[m
+   title: "",[m
+   slug: "",[m
