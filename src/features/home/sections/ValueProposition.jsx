@@ -6,11 +6,20 @@ export const ValueProposition = () => {
   const [ref, isInView] = useInView(0.2);
 
   return (
-    <section className="py-16 md:py-24 border-y border-slate-800/50 bg-slate-900/30">
+    <section className="always-dark py-16 md:py-24 border-y border-slate-800/50 bg-slate-900/30">
       <Container>
-        <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-12 max-w-3xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">A different path into technology</p>
-          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Education shaped how I build.</h2>
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          className="mb-12 max-w-3xl"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-400">
+            A different path into technology
+          </p>
+          <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+            Education shaped how I build.
+          </h2>
           <p className="mt-4 leading-relaxed text-slate-400">
             I studied Arabic Education at Ahmadu Bello University, Zaria, then
             moved through teaching and technology education into software

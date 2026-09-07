@@ -189,4 +189,16 @@ pre {
   :root:not(.dark) .border-slate-200 {
     border-color: var(--border);
   }
+
+  :root:not(.dark) .always-dark .text-slate-300 {
+    color: #cbd5e1;
+  }
+
+  :root:not(.dark) .always-dark .text-slate-400 {
+    color: #94a3b8;
+  }
+
+  :root:not(.dark) .always-dark .text-slate-500 {
+    color: #64748b;
+  }
 }

@@ -62,7 +62,7 @@ const Section = ({ icon, title, children }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5 }}
-    className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8"
+    className="always-dark rounded-2xl border border-slate-800 bg-slate-900/40 p-6 sm:p-8"
   >
     <SectionHeader icon={icon} title={title} />
     {children}

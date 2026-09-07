@@ -11,17 +11,16 @@ const Arrow = () => (
         fill="none"
         className="text-blue-500"
       >
-        <path
-          d="M7 8L0 0.5L14 0.5L7 8Z"
-          fill="currentColor"
-          opacity="0.7"
-        />
+        <path d="M7 8L0 0.5L14 0.5L7 8Z" fill="currentColor" opacity="0.7" />
       </svg>
     </div>
   </div>
 );
 
-export const ArchitectureDiagram = ({ architecture, title = "Architecture" }) => {
+export const ArchitectureDiagram = ({
+  architecture,
+  title = "Architecture",
+}) => {
   const nodes = parseArchitecture(architecture);
 
   if (nodes.length === 0) return null;
@@ -35,7 +34,7 @@ export const ArchitectureDiagram = ({ architecture, title = "Architecture" }) =>
       <ol className="flex flex-col items-stretch">
         {nodes.map((node, index) => (
           <li key={`${node.label}-${index}`} className="flex flex-col">
-            <div className="rounded-xl border border-blue-500/25 bg-slate-900/60 px-5 py-4">
+            <div className="always-dark rounded-xl border border-blue-500/25 bg-slate-900/60 px-5 py-4">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="text-sm font-bold text-blue-400 w-fit">
                   {node.label}

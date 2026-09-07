@@ -10,7 +10,7 @@ export const StatCounter = ({ stat, index }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.1 }}
-      className="relative group p-6 md:p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-600 transition-colors"
+      className="always-dark relative group p-6 md:p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-slate-600 transition-colors"
     >
       <div className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-400 mb-2 font-mono">
         {stat.value}

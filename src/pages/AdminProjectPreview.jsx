@@ -33,7 +33,7 @@ export default function AdminProjectPreview() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-slate-950 px-4 py-24 text-center text-slate-300">
+      <main className="always-dark min-h-screen bg-slate-950 px-4 py-24 text-center text-slate-300">
         Loading project preview...
       </main>
     );
@@ -41,7 +41,7 @@ export default function AdminProjectPreview() {
 
   if (error || !project) {
     return (
-      <main className="min-h-screen bg-slate-950 px-4 py-24 text-center text-slate-300">
+      <main className="always-dark min-h-screen bg-slate-950 px-4 py-24 text-center text-slate-300">
         <Helmet>
           <title>Project preview unavailable</title>
           <meta name="robots" content="noindex, nofollow" />
@@ -70,7 +70,7 @@ export default function AdminProjectPreview() {
         image={project.image || project.imageUrl}
         robots="noindex, nofollow"
       />
-      <main className="min-h-screen bg-slate-950 px-4 py-10 text-slate-100">
+      <main className="always-dark min-h-screen bg-slate-950 px-4 py-10 text-slate-100">
         <div className="mx-auto max-w-4xl">
           <div className="mb-6 flex items-center justify-between gap-4">
             <div>

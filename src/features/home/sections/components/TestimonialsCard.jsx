@@ -9,7 +9,7 @@ export const TestimonialCard = ({ testimonial }) => {
       transition={{ duration: 0.5 }}
       className="absolute inset-0 flex items-center justify-center"
     >
-      <div className="bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-6 md:p-8 rounded-2xl max-w-2xl mx-4">
+      <div className="always-dark bg-slate-900/80 backdrop-blur-xl border border-slate-800 p-6 md:p-8 rounded-2xl max-w-2xl mx-4">
         <div className="text-4xl text-blue-500/30 font-serif mb-4">"</div>
         <p className="text-lg md:text-xl text-slate-200 leading-relaxed mb-6">
           {testimonial.quote}
