@@ -33,7 +33,6 @@ export default function Home() {
           <TeachingImpact />
           <CoursePreview />
           <ImpactMetrics />
-          {/* Testimonials remain available on their dedicated content surfaces; the homepage prioritises evidence and teaching work. */}
           <AboutSummary />
           <CallToAction />
         </main>

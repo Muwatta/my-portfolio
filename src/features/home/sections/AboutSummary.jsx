@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "../../../hooks/useInView";
 import { Container } from "../../../components/layout/Container";
-import { MagneticButton } from "../../../components/ui/MagneticButton";
-import { Link } from "react-router-dom";
 
 export const AboutSummary = () => {
   const [ref, isInView] = useInView(0.2);

@@ -8,40 +8,42 @@ import { fetchAchievements } from "../../../lib/achievements";
 
 const ACHIEVEMENT_PLACEHOLDERS = [
   {
-    title: "Bootcamp certificate ceremony",
+    title: "African Intelligence Hackathon 2025",
     description:
-      "Learners gathered with their certificates at the end of the Algorise Tech Explorers bootcamp.",
-    imageUrl: "/images/achievements/third-place-hackathon.jpg",
+      "A learner presents the team's 3rd Place Champion award at the African Intelligence Hackathon 2025.",
+    imageUrl: "/images/achievements/third_place_hackathon.jpg",
   },
   {
-    title: "African Intelligence Hackathon — 3rd place",
+    title: "Code, Create & Inspire recognition",
     description:
-      "A learner is pictured with the 3rd Place Champion award at the African Intelligence Hackathon 2025.",
+      "Students are recognised with devices at a Code, Create & Inspire event.",
     imageUrl: "/images/achievements/abuja-student-awards.jpg",
   },
   {
-    title: "Students working on a coding project",
+    title: "Students competing virtually",
     description:
       "Three learners work together on a laptop-based computing activity.",
     imageUrl: "/images/achievements/students-coding-team.jpg",
   },
   {
-    title: "AgroGuard AI dashboard",
+    title: "Training students on Python for AI/ML",
     description:
-      "A crop-protection dashboard showing detection analytics, system status, and confidence results.",
-    imageUrl: "/images/achievements/agroguard-ai.png",
+      "Learners practise Python programming and explore how it supports artificial intelligence and machine learning projects.",
+    imageUrl: "/images/achievements/training_session_Ilorin.jpg",
   },
   {
-    title: "Scratch classroom",
+    title:
+      "Smart community using sensors for the light and car movements by students in Jos",
     description:
-      "Learners practise Scratch programming in a computer classroom using a projected lesson.",
-    imageUrl: "/images/achievements/scratch-class-2025.jpg",
+      "Students build a sensor-based smart-community project that responds to lighting and vehicle movement.",
+    imageUrl: "/images/achievements/smart_street.jpg",
   },
   {
-    title: "Students recognised at Code, Create & Inspire",
+    title: "Fire fighting Project",
     description:
-      "Students receive devices and recognition at a Code, Create & Inspire event.",
-    imageUrl: "/images/achievements/bootcamp-2025.jpg",
+      "Students demonstrate a fire-fighting project built with sensors, wiring, and physical computing.",
+    imageUrl:
+      "/images/achievements/CIMAI_fire_fighting_project_session_in_Ilorin.JPG",
   },
 ];
 
@@ -69,6 +71,12 @@ export const FeaturedProjects = () => {
   const displayedAchievements = achievements.length
     ? achievements
     : ACHIEVEMENT_PLACEHOLDERS;
+  const uniqueAchievements = displayedAchievements.filter(
+    (achievement, index, items) =>
+      !achievement.imageUrl ||
+      items.findIndex((item) => item.imageUrl === achievement.imageUrl) ===
+        index,
+  );
 
   return (
     <section
@@ -141,7 +149,7 @@ export const FeaturedProjects = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
-            {displayedAchievements.slice(0, 6).map((achievement, index) => (
+            {uniqueAchievements.slice(0, 6).map((achievement, index) => (
               <article
                 key={achievement.id || achievement.title}
                 className="min-h-28 overflow-hidden rounded-xl border border-slate-300 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-900/50 sm:min-h-36 sm:p-5"

@@ -81,8 +81,6 @@ export const projects = [
       "Banking-style emails",
       "Dark mode support",
     ],
-    image:
-      "https://res.cloudinary.com/dee5edoss/image/upload/v1782392024/Screenshot_2026-06-25_131450_idclwm.png",
     github: "https://github.com/Muwatta/ssc-cooperative-system",
     live: "https://solacestaffcooperative.com.ng",
   },

@@ -11,7 +11,7 @@ import {
   FaLocationArrow,
 } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
-import { motion, AnimatePresence, useScroll, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 // DAT─
@@ -115,8 +115,17 @@ const SocialIcon = ({ href, icon: Icon, label, color, hoverBg }) => {
 const BackToTop = () => {
   const [visible, setVisible] = useState(false);
   const reduceMotion = useReducedMotion();
-  const { scrollY } = useScroll();
-  useEffect(() => scrollY.on("change", (v) => setVisible(v > 400)), [scrollY]);
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.1 },
+    );
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <AnimatePresence>
@@ -238,7 +247,9 @@ export default function Footer() {
                       >
                         <Icon size={12} />
                       </span>
-                      <span className="min-w-0 break-words text-sm">{value}</span>
+                      <span className="min-w-0 break-words text-sm">
+                        {value}
+                      </span>
                     </>
                   );
                   return (
@@ -287,9 +298,7 @@ export default function Footer() {
               </motion.span>
               in Lagos, Nigeria
             </p>
-            <p>
-              Backend Engineer · Full-Stack Developer
-            </p>
+            <p>Backend Engineer · Full-Stack Developer</p>
           </div>
         </div>
       </footer>

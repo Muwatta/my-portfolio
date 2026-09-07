@@ -3,36 +3,36 @@ import { Container } from "../../../components/layout/Container";
 
 const teachingHighlights = [
   {
-    title: "Programming & web development",
+    title: "Programming and Web Development",
     description:
-      "I teach learners practical programming foundations, Python, Scratch, and web development through projects.",
+      "Practical instruction in programming fundamentals, Python, Scratch, and web development, delivered through project-based learning.",
   },
   {
-    title: "Embedded systems",
+    title: "Embedded Systems and Robotics",
     description:
-      "Students explore Arduino, ESP32, Raspberry Pi, sensors, and physical computing alongside software.",
+      "Learners work with Arduino, ESP32, Raspberry Pi, sensors, and physical-computing projects that connect software to the real world.",
   },
   {
-    title: "Learning with purpose",
+    title: "Clear, Purposeful Learning",
     description:
-      "My background in Arabic Education informs how I make complex technical ideas clear, structured, and useful.",
+      "A background in Arabic Education shapes a structured teaching approach that makes complex technical ideas clear, practical, and useful.",
   },
 ];
 
 const teachingGallery = [
   [
-    "Scratch classroom",
-    "Learners practising creative computing.",
+    "Creative Computing Workshop",
+    "Learners develop programming confidence through Scratch projects and guided experimentation.",
     "/images/achievements/scratch-class-2025.jpg",
   ],
   [
-    "Student showcase",
-    "Students presenting their technology work.",
+    "National ICT Competition Recognition",
+    "A student receives recognition at the 2025 national Girls in ICT competition in Abuja.",
     "/images/achievements/abuja-student-awards.jpg",
   ],
   [
-    "Learning together",
-    "A project-based technology learning environment.",
+    "Project-Based Bootcamp",
+    "Learners celebrate the completion of a three-week technology bootcamp in December 2024.",
     "/images/achievements/bootcamp-2025.jpg",
   ],
 ];
@@ -42,11 +42,12 @@ export const TeachingImpact = () => (
     <Container>
       <div className="mx-auto max-w-4xl text-center mb-12">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">
-          Teaching & student impact
+          Teaching and Student Impact
         </p>
         <h2 className="mt-4 text-3xl md:text-5xl font-bold">
-          Technology education grounded in{" "}
-          <span className="text-blue-400">building and doing</span>.
+          Building practical skills through{" "}
+          <span className="text-blue-400">purposeful technology education</span>
+          .
         </h2>
       </div>
       <div className="grid gap-6 md:grid-cols-3">

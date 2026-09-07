@@ -129,6 +129,7 @@ export default function CourseDetail() {
   const [notice, setNotice] = useState("");
   const { user, signIn, signUp, isConfigured } = useAuth();
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
     fetchCourse(slug)
       .then(setCourse)
       .catch(() => setCourse(null))
@@ -314,7 +315,6 @@ export default function CourseDetail() {
   );
 }
 /*
-  import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container } from "../components/layout/Container";
 import Seo from "../components/seo/Seo";
